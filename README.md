@@ -1,3 +1,3 @@
 # TypeSafeContracts
 
-A description of this package.
+Under construction... stay tuned!

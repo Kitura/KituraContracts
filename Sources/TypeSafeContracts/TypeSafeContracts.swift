@@ -16,6 +16,7 @@
 
  public enum TypeError: Error {
     case invalidIdentifier
+    case persistenceFailure
     case unknown
 }
 
@@ -50,6 +51,7 @@ public protocol Persistable {
     static func read(respondWith: @escaping ([Model]?, Error?) -> Void)
     // Update
     static func update(id: Id, model: Model, respondWith: @escaping (Model?, Error?) -> Void)
+    // How about returning Identifer instaces for the delere operations?
     // Delete
     static func delete(id: Id, respondWith: @escaping (Error?) -> Void)
     // Delete all
