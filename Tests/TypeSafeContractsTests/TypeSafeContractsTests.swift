@@ -13,6 +13,12 @@ class TypeSafeContractsTests: XCTestCase {
 
         let identifier2: Identifier = String(value: strId)
         XCTAssertEqual(strId,  identifier2.value)
+
+        guard let strId2 = identifier2 as? String else {
+            XCTFail("Failed to cast to concrete type: String")
+            return
+        }        
+        XCTAssertEqual(strId, strId2)
     }
 
     func testIntIdentifier() {
