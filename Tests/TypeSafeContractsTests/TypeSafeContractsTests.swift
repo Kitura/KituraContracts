@@ -2,15 +2,31 @@ import XCTest
 @testable import TypeSafeContracts
 
 class TypeSafeContractsTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        //XCTAssertEqual(TypeSafeContracts().text, "Hello, World!")
+     static var allTests = [
+        ("testStringIdentifier", testStringIdentifier),
+    ]
+
+    func testStringIdentifier() {
+        let strId = "123456"
+        let identifier1: Identifier = String(strId)
+        XCTAssertEqual(strId,  identifier1.value)
+
+        let identifier2: Identifier = String(value: strId)
+        XCTAssertEqual(strId,  identifier2.value)
     }
 
+    func testIntIdentifier() {
+        let strId = "123456"
+        guard let identifier: Identifier = try? IntId(value: strId) else {
+            XCTFail("Failed to create an Int identifier!")
+            return
+        }        
+        XCTAssertEqual(strId,  identifier.value)
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+        guard let intIdentifier = identifier as? IntId else {
+            XCTFail("Failed to cast to concrete type: IntId")
+            return
+        }
+        XCTAssertEqual(123456,  intIdentifier.id)
+    }
 }

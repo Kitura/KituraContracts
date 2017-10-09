@@ -25,6 +25,18 @@ public protocol Identifier {
     var value: String { get }
 }
 
+extension String: Identifier {
+    public init(value: String) {
+        self.init(value)
+    }
+
+    public var value: String {
+        get {
+            return self
+        }
+    }
+}
+
 public struct IntId: Identifier {
     public let id: Int
     public let value: String
