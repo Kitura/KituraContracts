@@ -1,6 +1,6 @@
 import XCTest
-@testable import TypeSafeContractsTests
+@testable import SafetyContractsTests
 
 XCTMain([
-    testCase(TypeSafeContractsTests.allTests),
+    testCase(SafetyContractsTests.allTests),
 ])

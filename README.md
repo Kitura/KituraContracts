@@ -1,3 +1,3 @@
-# TypeSafeContracts
+# SafetyContracts
 
 Under construction... stay tuned!

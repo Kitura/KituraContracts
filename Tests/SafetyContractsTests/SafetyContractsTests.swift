@@ -1,9 +1,10 @@
 import XCTest
-@testable import TypeSafeContracts
+@testable import SafetyContracts
 
-class TypeSafeContractsTests: XCTestCase {
+class SafetyContractsTests: XCTestCase {
      static var allTests = [
         ("testStringIdentifier", testStringIdentifier),
+        ("testIntIdentifier", testIntIdentifier),
     ]
 
     func testStringIdentifier() {
