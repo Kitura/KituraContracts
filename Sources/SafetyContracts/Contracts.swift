@@ -69,3 +69,15 @@ public protocol Persistable {
     // Delete all
     static func delete(respondWith: @escaping (Error?) -> Void)
 }
+
+// Provides utility methods for getting the type  and routes for the class
+// conforming to Persistable
+public extension Persistable {
+    // Set up name space based on name of model (e.g. User -> user(s))
+    static var modelType: String {
+        let kind = String(describing: Swift.type(of: self))
+        return String(kind.characters.dropLast(5))
+    }
+	static var routeSingular: String { return "/\(modelType.lowercased())" }
+    static var routePlural: String { return "\(routeSingular)s" }
+}
