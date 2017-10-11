@@ -55,13 +55,8 @@ class SafetyContractsTests: XCTestCase {
     }
 
     func testTypeComputation() {
-        let modelType = User.modelType
-        XCTAssertEqual(modelType, "User")
-
-        let routeSingular = User.routeSingular
-        XCTAssertEqual(routeSingular, "/user")
-
-        let routePlural = User.routePlural
-        XCTAssertEqual(routePlural, "/users")
+        XCTAssertEqual(User.type, "User")
+        XCTAssertEqual(User.typeLowerCased, "user")
+        XCTAssertEqual(User.route, "/users")
     }
 }

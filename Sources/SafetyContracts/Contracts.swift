@@ -74,10 +74,10 @@ public protocol Persistable {
 // conforming to Persistable
 public extension Persistable {
     // Set up name space based on name of model (e.g. User -> user(s))
-    static var modelType: String {
+    static var type: String {
         let kind = String(describing: Swift.type(of: self))
         return String(kind.characters.dropLast(5))
     }
-	static var routeSingular: String { return "/\(modelType.lowercased())" }
-    static var routePlural: String { return "\(routeSingular)s" }
+	static var typeLowerCased: String { return "\(type.lowercased())" }
+    static var route: String { return "/\(typeLowerCased)s" }
 }
