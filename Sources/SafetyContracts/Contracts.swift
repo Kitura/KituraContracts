@@ -71,19 +71,18 @@ extension Int: Identifier {
     }
 }
 
-public protocol Persistable {
+public protocol Persistable: Codable {
     // Related types
-    associatedtype Model: Codable = Self
     associatedtype Id: Identifier
 
     // Create
-    static func create(model: Model, respondWith: @escaping (Model?, Error?) -> Void)
+    static func create(model: Self, respondWith: @escaping (Self?, Error?) -> Void)
     // Read
-    static func read(id: Id, respondWith: @escaping (Model?, Error?) -> Void)
+    static func read(id: Id, respondWith: @escaping (Self?, Error?) -> Void)
     // Read all
-    static func read(respondWith: @escaping ([Model]?, Error?) -> Void)
+    static func read(respondWith: @escaping ([Self]?, Error?) -> Void)
     // Update
-    static func update(id: Id, model: Model, respondWith: @escaping (Model?, Error?) -> Void)
+    static func update(id: Id, model: Self, respondWith: @escaping (Self?, Error?) -> Void)
     // How about returning Identifer instaces for the delere operations?
     // Delete
     static func delete(id: Id, respondWith: @escaping (Error?) -> Void)
@@ -99,6 +98,6 @@ public extension Persistable {
         let kind = String(describing: Swift.type(of: self))
         return String(kind.characters.dropLast(5))
     }
-	static var typeLowerCased: String { return "\(type.lowercased())" }
+    static var typeLowerCased: String { return "\(type.lowercased())" }
     static var route: String { return "/\(typeLowerCased)s" }
 }

@@ -17,25 +17,23 @@
 import SafetyContracts
 
 extension Persistable {
-    
     // create
-    static func create(model: Model, respondWith: @escaping (Model?, Error?) -> Void) {
+    static func create(model: Self, respondWith: @escaping (Self?, Error?) -> Void) {
        // dummy implementation
     }
-    
+
     // read
-    static func read(id: Id, respondWith: @escaping (Model?, Error?) -> Void) {
-        // dummy implementation
-    }
-    
-    // read all
-    static func read(respondWith: @escaping ([Model]?, Error?) -> Void) {
+    static func read(id: Id, respondWith: @escaping (Self?, Error?) -> Void) {
         // dummy implementation
     }
 
+    // read all
+    static func read(respondWith: @escaping ([Self]?, Error?) -> Void) {
+        // dummy implementation
+    }
 
     // update
-    static func update(id: Id, model: Model, respondWith: @escaping (Model?, Error?) -> Void) {
+    static func update(id: Id, model: Self, respondWith: @escaping (Self?, Error?) -> Void) {
         // dummy implementation
     }
 
