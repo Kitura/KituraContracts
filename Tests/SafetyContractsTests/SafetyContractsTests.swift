@@ -42,17 +42,17 @@ class SafetyContractsTests: XCTestCase {
 
     func testIntIdentifier() {
         let strId = "123456"
-        guard let identifier: Identifier = try? IntId(value: strId) else {
+        guard let identifier: Identifier = try? Int(value: strId) else {
             XCTFail("Failed to create an Int identifier!")
             return
         }        
         XCTAssertEqual(strId,  identifier.value)
 
-        guard let intIdentifier = identifier as? IntId else {
+        guard let intIdentifier = identifier as? Int else {
             XCTFail("Failed to cast to concrete type: IntId")
             return
         }
-        XCTAssertEqual(123456,  intIdentifier.id)
+        XCTAssertEqual(123456,  intIdentifier)
     }
 
     func testTypeComputation() {

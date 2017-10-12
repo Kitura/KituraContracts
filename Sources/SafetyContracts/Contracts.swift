@@ -57,16 +57,17 @@ extension String: Identifier {
     }
 }
 
-public struct IntId: Identifier {
-    public let id: Int
-    public let value: String
+extension Int: Identifier {
     public init(value: String) throws {
         if let id = Int(value) {
-            self.id = id
-            self.value = value
+            self = id
         } else {
             throw TypeError.invalidIdentifier
         }
+    }
+
+    public var value: String {
+        return String(describing: self)
     }
 }
 

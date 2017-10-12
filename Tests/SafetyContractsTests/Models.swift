@@ -56,7 +56,7 @@ struct User: Codable {
 }
 
 extension User: Persistable {
-    public typealias Id = IntId
+    public typealias Id = Int
 }
 
 
