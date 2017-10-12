@@ -36,7 +36,7 @@ class SafetyContractsTests: XCTestCase {
         guard let strId2 = identifier2 as? String else {
             XCTFail("Failed to cast to concrete type: String")
             return
-        }        
+        }
         XCTAssertEqual(strId, strId2)
     }
 
@@ -45,11 +45,11 @@ class SafetyContractsTests: XCTestCase {
         guard let identifier: Identifier = try? Int(value: strId) else {
             XCTFail("Failed to create an Int identifier!")
             return
-        }        
+        }
         XCTAssertEqual(strId,  identifier.value)
 
         guard let intIdentifier = identifier as? Int else {
-            XCTFail("Failed to cast to concrete type: IntId")
+            XCTFail("Failed to cast to concrete type: Int")
             return
         }
         XCTAssertEqual(123456,  intIdentifier)
@@ -68,7 +68,7 @@ class SafetyContractsTests: XCTestCase {
             throw GenericError(code: code, message: message)
         } catch let error as GenericError {
             XCTAssertEqual(error.code, code)
-            XCTAssertEqual(error.message, message)           
+            XCTAssertEqual(error.message, message)
         } catch {
             XCTFail("Failed to throw generic error!")
         }

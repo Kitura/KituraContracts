@@ -14,7 +14,7 @@
  * limitations under the License.
  **/
 
- public enum RouteHandlerError: Int, Error {
+public enum RouteHandlerError: Int, Error {
     case accepted = 202, badGateway = 502, badRequest = 400, conflict = 409, `continue` = 100, created = 201
     case expectationFailed = 417, failedDependency = 424, forbidden = 403, gatewayTimeout = 504, gone = 410
     case httpVersionNotSupported = 505, insufficientSpaceOnResource = 419, insufficientStorage = 507
@@ -30,12 +30,12 @@
     case unsupportedMediaType = 415, useProxy = 305, misdirectedRequest = 421, unknown = -1
 }
 
- public struct GenericError: Error {
-     let code: Int?
-     let message: String?
- }
+public struct GenericError: Error {
+    let code: Int?
+    let message: String?
+}
 
- public enum TypeError: Error {
+public enum TypeError: Error {
     case invalidIdentifier
     case unknown
 }

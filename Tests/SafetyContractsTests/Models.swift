@@ -57,4 +57,3 @@ extension User: Persistable {
     public typealias Id = Int
 }
 
-
