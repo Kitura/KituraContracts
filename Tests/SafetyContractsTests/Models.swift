@@ -18,32 +18,32 @@ import SafetyContracts
 
 extension Persistable {
     // create
-    static func create(model: Self, respondWith: @escaping (Self?, Error?) -> Void) {
+    static func create(model: Self, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void) {
        // dummy implementation
     }
 
     // read
-    static func read(id: Id, respondWith: @escaping (Self?, Error?) -> Void) {
+    static func read(id: Id, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void) {
         // dummy implementation
     }
 
     // read all
-    static func read(respondWith: @escaping ([Self]?, Error?) -> Void) {
+    static func read(respondWith: @escaping ([Self]?, ProcessHandlerError?) -> Void) {
         // dummy implementation
     }
 
     // update
-    static func update(id: Id, model: Self, respondWith: @escaping (Self?, Error?) -> Void) {
+    static func update(id: Id, model: Self, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void) {
         // dummy implementation
     }
 
     // delete
-    static func delete(id: Id, respondWith: @escaping (Error?) -> Void) {
+    static func delete(id: Id, respondWith: @escaping (ProcessHandlerError?) -> Void) {
         // dummy implementation
     }
 
     // delete all
-    static func delete(respondWith: @escaping (Error?) -> Void) {
+    static func delete(respondWith: @escaping (ProcessHandlerError?) -> Void) {
         // dummy implementation
     }
 }

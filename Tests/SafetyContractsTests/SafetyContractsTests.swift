@@ -22,7 +22,6 @@ class SafetyContractsTests: XCTestCase {
         ("testStringIdentifier", testStringIdentifier),
         ("testIntIdentifier", testIntIdentifier),
         ("testTypeComputation", testTypeComputation),
-        ("testGenericError", testGenericError)
     ]
 
     func testStringIdentifier() {
@@ -59,18 +58,5 @@ class SafetyContractsTests: XCTestCase {
         XCTAssertEqual(User.type, "User")
         XCTAssertEqual(User.typeLowerCased, "user")
         XCTAssertEqual(User.route, "/users")
-    }
-
-    func testGenericError() {
-        let code = 500
-        let message = "Something went wrong!"
-        do {
-            throw GenericError(code: code, message: message)
-        } catch let error as GenericError {
-            XCTAssertEqual(error.code, code)
-            XCTAssertEqual(error.message, message)
-        } catch {
-            XCTFail("Failed to throw generic error!")
-        }
     }
 }
