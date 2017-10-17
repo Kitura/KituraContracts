@@ -22,6 +22,7 @@ class SafetyContractsTests: XCTestCase {
         ("testStringIdentifier", testStringIdentifier),
         ("testIntIdentifier", testIntIdentifier),
         ("testTypeComputation", testTypeComputation),
+        ("testProcessHandlerError", testProcessHandlerError)
     ]
 
     func testStringIdentifier() {
