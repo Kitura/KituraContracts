@@ -59,4 +59,22 @@ class SafetyContractsTests: XCTestCase {
         XCTAssertEqual(User.typeLowerCased, "user")
         XCTAssertEqual(User.route, "/users")
     }
+
+    func testProcessHandlerError() {
+        var errorCode = 500
+        var reason = "Internal Server Error"
+        var error = ProcessHandlerError.internalServerError
+        XCTAssertEqual(errorCode, error.rawValue)
+        XCTAssertEqual(errorCode, error.httpCode)
+        XCTAssertEqual(reason, error.reason)
+        XCTAssertEqual("\(errorCode) : \(reason)", error.description)
+
+        errorCode = 1500
+        reason = "http_\(errorCode)"
+        error = ProcessHandlerError(httpCode: errorCode)
+        XCTAssertEqual(errorCode, error.rawValue)
+        XCTAssertEqual(errorCode, error.httpCode)
+        XCTAssertEqual(reason, error.reason)
+        XCTAssertEqual("\(errorCode) : \(reason)", error.description)
+     }
 }
