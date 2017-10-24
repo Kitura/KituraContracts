@@ -22,7 +22,7 @@ class KituraContractsTests: XCTestCase {
         ("testStringIdentifier", testStringIdentifier),
         ("testIntIdentifier", testIntIdentifier),
         ("testTypeComputation", testTypeComputation),
-        ("testProcessHandlerError", testProcessHandlerError)
+        ("testRequestError", testRequestError)
     ]
 
     func testStringIdentifier() {
@@ -61,10 +61,10 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(User.route, "/users")
     }
 
-    func testProcessHandlerError() {
+    func testRequestError() {
         var errorCode = 500
         var reason = "Internal Server Error"
-        var error = ProcessHandlerError.internalServerError
+        var error = RequestError.internalServerError
         XCTAssertEqual(errorCode, error.rawValue)
         XCTAssertEqual(errorCode, error.httpCode)
         XCTAssertEqual(reason, error.reason)
@@ -72,7 +72,7 @@ class KituraContractsTests: XCTestCase {
 
         errorCode = 1500
         reason = "http_\(errorCode)"
-        error = ProcessHandlerError(httpCode: errorCode)
+        error = RequestError(httpCode: errorCode)
         XCTAssertEqual(errorCode, error.rawValue)
         XCTAssertEqual(errorCode, error.httpCode)
         XCTAssertEqual(reason, error.reason)

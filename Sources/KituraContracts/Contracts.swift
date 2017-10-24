@@ -14,7 +14,7 @@
  * limitations under the License.
  **/
 
-public struct ProcessHandlerError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
+public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
     public typealias RawValue = Int
     public let rawValue: Int
     public let reason: String
@@ -35,18 +35,18 @@ public struct ProcessHandlerError: RawRepresentable, Equatable, Hashable, Compar
     }
 
     //MARK: Comparable
-    public static func <(lhs: ProcessHandlerError, rhs: ProcessHandlerError) -> Bool {
+    public static func <(lhs: RequestError, rhs: RequestError) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 
     //MARK: Equatable
-    public static func ==(lhs: ProcessHandlerError, rhs: ProcessHandlerError) -> Bool {
+    public static func ==(lhs: RequestError, rhs: RequestError) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 
     public init(rawValue: Int) {
         self.rawValue = rawValue
-        self.reason = ProcessHandlerError.reason(forCode: rawValue)
+        self.reason = RequestError.reason(forCode: rawValue)
     }
 
     public init(httpCode: Int) {
@@ -54,64 +54,64 @@ public struct ProcessHandlerError: RawRepresentable, Equatable, Hashable, Compar
     }
 
     // HTTP status codes
-    public static let `continue` = ProcessHandlerError(httpCode: 100)
-    public static let switchingProtocols = ProcessHandlerError(httpCode: 101)
-    public static let ok = ProcessHandlerError(httpCode: 200)
-    public static let created = ProcessHandlerError(httpCode: 201)
-    public static let accepted = ProcessHandlerError(httpCode: 202)
-    public static let nonAuthoritativeInformation = ProcessHandlerError(httpCode: 203)
-    public static let noContent = ProcessHandlerError(httpCode: 204)
-    public static let resetContent = ProcessHandlerError(httpCode: 205)
-    public static let partialContent = ProcessHandlerError(httpCode: 206)
-    public static let multiStatus = ProcessHandlerError(httpCode: 207)
-    public static let alreadyReported = ProcessHandlerError(httpCode: 208)
-    public static let imUsed = ProcessHandlerError(httpCode: 226)
-    public static let multipleChoices = ProcessHandlerError(httpCode: 300)
-    public static let movedPermanently = ProcessHandlerError(httpCode: 301)
-    public static let found = ProcessHandlerError(httpCode: 302)
-    public static let seeOther = ProcessHandlerError(httpCode: 303)
-    public static let notModified = ProcessHandlerError(httpCode: 304)
-    public static let useProxy = ProcessHandlerError(httpCode: 305)
-    public static let temporaryRedirect = ProcessHandlerError(httpCode: 307)
-    public static let permanentRedirect = ProcessHandlerError(httpCode: 308)
-    public static let badRequest = ProcessHandlerError(httpCode: 400)
-    public static let unauthorized = ProcessHandlerError(httpCode: 401)
-    public static let paymentRequired = ProcessHandlerError(httpCode: 402)
-    public static let forbidden = ProcessHandlerError(httpCode: 403)
-    public static let notFound = ProcessHandlerError(httpCode: 404)
-    public static let methodNotAllowed = ProcessHandlerError(httpCode: 405)
-    public static let notAcceptable = ProcessHandlerError(httpCode: 406)
-    public static let proxyAuthenticationRequired = ProcessHandlerError(httpCode: 407)
-    public static let requestTimeout = ProcessHandlerError(httpCode: 408)
-    public static let conflict = ProcessHandlerError(httpCode: 409)
-    public static let gone = ProcessHandlerError(httpCode: 410)
-    public static let lengthRequired = ProcessHandlerError(httpCode: 411)
-    public static let preconditionFailed = ProcessHandlerError(httpCode: 412)
-    public static let payloadTooLarge = ProcessHandlerError(httpCode: 413)
-    public static let uriTooLong = ProcessHandlerError(httpCode: 414)
-    public static let unsupportedMediaType = ProcessHandlerError(httpCode: 415)
-    public static let rangeNotSatisfiable = ProcessHandlerError(httpCode: 416)
-    public static let expectationFailed = ProcessHandlerError(httpCode: 417)
-    public static let misdirectedRequest = ProcessHandlerError(httpCode: 421)
-    public static let unprocessableEntity = ProcessHandlerError(httpCode: 422)
-    public static let locked = ProcessHandlerError(httpCode: 423)
-    public static let failedDependency = ProcessHandlerError(httpCode: 424)
-    public static let upgradeRequired = ProcessHandlerError(httpCode: 426)
-    public static let preconditionRequired = ProcessHandlerError(httpCode: 428)
-    public static let tooManyRequests = ProcessHandlerError(httpCode: 429)
-    public static let requestHeaderFieldsTooLarge = ProcessHandlerError(httpCode: 431)
-    public static let unavailableForLegalReasons = ProcessHandlerError(httpCode: 451)
-    public static let internalServerError = ProcessHandlerError(httpCode: 500)
-    public static let notImplemented = ProcessHandlerError(httpCode: 501)
-    public static let badGateway = ProcessHandlerError(httpCode: 502)
-    public static let serviceUnavailable = ProcessHandlerError(httpCode: 503)
-    public static let gatewayTimeout = ProcessHandlerError(httpCode: 504)
-    public static let httpVersionNotSupported = ProcessHandlerError(httpCode: 505)
-    public static let variantAlsoNegotiates = ProcessHandlerError(httpCode: 506)
-    public static let insufficientStorage = ProcessHandlerError(httpCode: 507)
-    public static let loopDetected = ProcessHandlerError(httpCode: 508)
-    public static let notExtended = ProcessHandlerError(httpCode: 510)
-    public static let networkAuthenticationRequired = ProcessHandlerError(httpCode: 511)
+    public static let `continue` = RequestError(httpCode: 100)
+    public static let switchingProtocols = RequestError(httpCode: 101)
+    public static let ok = RequestError(httpCode: 200)
+    public static let created = RequestError(httpCode: 201)
+    public static let accepted = RequestError(httpCode: 202)
+    public static let nonAuthoritativeInformation = RequestError(httpCode: 203)
+    public static let noContent = RequestError(httpCode: 204)
+    public static let resetContent = RequestError(httpCode: 205)
+    public static let partialContent = RequestError(httpCode: 206)
+    public static let multiStatus = RequestError(httpCode: 207)
+    public static let alreadyReported = RequestError(httpCode: 208)
+    public static let imUsed = RequestError(httpCode: 226)
+    public static let multipleChoices = RequestError(httpCode: 300)
+    public static let movedPermanently = RequestError(httpCode: 301)
+    public static let found = RequestError(httpCode: 302)
+    public static let seeOther = RequestError(httpCode: 303)
+    public static let notModified = RequestError(httpCode: 304)
+    public static let useProxy = RequestError(httpCode: 305)
+    public static let temporaryRedirect = RequestError(httpCode: 307)
+    public static let permanentRedirect = RequestError(httpCode: 308)
+    public static let badRequest = RequestError(httpCode: 400)
+    public static let unauthorized = RequestError(httpCode: 401)
+    public static let paymentRequired = RequestError(httpCode: 402)
+    public static let forbidden = RequestError(httpCode: 403)
+    public static let notFound = RequestError(httpCode: 404)
+    public static let methodNotAllowed = RequestError(httpCode: 405)
+    public static let notAcceptable = RequestError(httpCode: 406)
+    public static let proxyAuthenticationRequired = RequestError(httpCode: 407)
+    public static let requestTimeout = RequestError(httpCode: 408)
+    public static let conflict = RequestError(httpCode: 409)
+    public static let gone = RequestError(httpCode: 410)
+    public static let lengthRequired = RequestError(httpCode: 411)
+    public static let preconditionFailed = RequestError(httpCode: 412)
+    public static let payloadTooLarge = RequestError(httpCode: 413)
+    public static let uriTooLong = RequestError(httpCode: 414)
+    public static let unsupportedMediaType = RequestError(httpCode: 415)
+    public static let rangeNotSatisfiable = RequestError(httpCode: 416)
+    public static let expectationFailed = RequestError(httpCode: 417)
+    public static let misdirectedRequest = RequestError(httpCode: 421)
+    public static let unprocessableEntity = RequestError(httpCode: 422)
+    public static let locked = RequestError(httpCode: 423)
+    public static let failedDependency = RequestError(httpCode: 424)
+    public static let upgradeRequired = RequestError(httpCode: 426)
+    public static let preconditionRequired = RequestError(httpCode: 428)
+    public static let tooManyRequests = RequestError(httpCode: 429)
+    public static let requestHeaderFieldsTooLarge = RequestError(httpCode: 431)
+    public static let unavailableForLegalReasons = RequestError(httpCode: 451)
+    public static let internalServerError = RequestError(httpCode: 500)
+    public static let notImplemented = RequestError(httpCode: 501)
+    public static let badGateway = RequestError(httpCode: 502)
+    public static let serviceUnavailable = RequestError(httpCode: 503)
+    public static let gatewayTimeout = RequestError(httpCode: 504)
+    public static let httpVersionNotSupported = RequestError(httpCode: 505)
+    public static let variantAlsoNegotiates = RequestError(httpCode: 506)
+    public static let insufficientStorage = RequestError(httpCode: 507)
+    public static let loopDetected = RequestError(httpCode: 508)
+    public static let notExtended = RequestError(httpCode: 510)
+    public static let networkAuthenticationRequired = RequestError(httpCode: 511)
 
     private static func reason(forCode code: Int) -> String {
         switch code {
@@ -220,18 +220,18 @@ public protocol Persistable: Codable {
     associatedtype Id: Identifier
 
     // Create
-    static func create(model: Self, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void)
+    static func create(model: Self, respondWith: @escaping (Self?, RequestError?) -> Void)
     // Read
-    static func read(id: Id, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void)
+    static func read(id: Id, respondWith: @escaping (Self?, RequestError?) -> Void)
     // Read all
-    static func read(respondWith: @escaping ([Self]?, ProcessHandlerError?) -> Void)
+    static func read(respondWith: @escaping ([Self]?, RequestError?) -> Void)
     // Update
-    static func update(id: Id, model: Self, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void)
+    static func update(id: Id, model: Self, respondWith: @escaping (Self?, RequestError?) -> Void)
     // How about returning Identifer instances for the delete operations?
     // Delete
-    static func delete(id: Id, respondWith: @escaping (ProcessHandlerError?) -> Void)
+    static func delete(id: Id, respondWith: @escaping (RequestError?) -> Void)
     // Delete all
-    static func delete(respondWith: @escaping (ProcessHandlerError?) -> Void)
+    static func delete(respondWith: @escaping (RequestError?) -> Void)
 }
 
 // Provides utility methods for getting the type  and routes for the class

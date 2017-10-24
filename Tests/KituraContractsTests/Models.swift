@@ -18,32 +18,32 @@ import KituraContracts
 
 extension Persistable {
     // create
-    static func create(model: Self, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void) {
+    static func create(model: Self, respondWith: @escaping (Self?, RequestError?) -> Void) {
        // dummy implementation
     }
 
     // read
-    static func read(id: Id, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void) {
+    static func read(id: Id, respondWith: @escaping (Self?, RequestError?) -> Void) {
         // dummy implementation
     }
 
     // read all
-    static func read(respondWith: @escaping ([Self]?, ProcessHandlerError?) -> Void) {
+    static func read(respondWith: @escaping ([Self]?, RequestError?) -> Void) {
         // dummy implementation
     }
 
     // update
-    static func update(id: Id, model: Self, respondWith: @escaping (Self?, ProcessHandlerError?) -> Void) {
+    static func update(id: Id, model: Self, respondWith: @escaping (Self?, RequestError?) -> Void) {
         // dummy implementation
     }
 
     // delete
-    static func delete(id: Id, respondWith: @escaping (ProcessHandlerError?) -> Void) {
+    static func delete(id: Id, respondWith: @escaping (RequestError?) -> Void) {
         // dummy implementation
     }
 
     // delete all
-    static func delete(respondWith: @escaping (ProcessHandlerError?) -> Void) {
+    static func delete(respondWith: @escaping (RequestError?) -> Void) {
         // dummy implementation
     }
 }
