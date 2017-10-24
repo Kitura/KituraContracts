@@ -15,9 +15,9 @@
  **/
 
 import XCTest
-@testable import SafetyContracts
+@testable import KituraContracts
 
-class SafetyContractsTests: XCTestCase {
+class KituraContractsTests: XCTestCase {
      static var allTests = [
         ("testStringIdentifier", testStringIdentifier),
         ("testIntIdentifier", testIntIdentifier),

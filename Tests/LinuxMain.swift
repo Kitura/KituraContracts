@@ -15,8 +15,8 @@
  **/
 
 import XCTest
-@testable import SafetyContractsTests
+@testable import KituraContractsTests
 
 XCTMain([
-    testCase(SafetyContractsTests.allTests),
+    testCase(KituraContractsTests.allTests),
 ])

@@ -14,7 +14,7 @@
  * limitations under the License.
  **/
 
-import SafetyContracts
+import KituraContracts
 
 extension Persistable {
     // create
