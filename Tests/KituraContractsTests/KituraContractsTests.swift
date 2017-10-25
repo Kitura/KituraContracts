@@ -21,7 +21,7 @@ class KituraContractsTests: XCTestCase {
      static var allTests = [
         ("testStringIdentifier", testStringIdentifier),
         ("testIntIdentifier", testIntIdentifier),
-        ("testTypeComputation", testTypeComputation),
+//        ("testTypeComputation", testTypeComputation),
         ("testRequestError", testRequestError)
     ]
 
@@ -55,11 +55,11 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(123456,  intIdentifier)
     }
 
-    func testTypeComputation() {
-        XCTAssertEqual(User.type, "User")
-        XCTAssertEqual(User.typeLowerCased, "user")
-        XCTAssertEqual(User.route, "/users")
-    }
+//    func testTypeComputation() {
+//        XCTAssertEqual(User.type, "User")
+//        XCTAssertEqual(User.typeLowerCased, "user")
+//        XCTAssertEqual(User.route, "/users")
+//    }
 
     func testRequestError() {
         var errorCode = 500
