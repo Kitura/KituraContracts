@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RequestError Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Struct/RequestError" class="dashAnchor"></a>
+
+    <a title="RequestError Structure Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          KituraContracts Docs
+        </a>
+         (87% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/IBM-Swift/KituraContracts/">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      RequestError Structure Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/IdentifierError.html">IdentifierError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Identifier.html">Identifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Persistable.html">Persistable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RequestError.html">RequestError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>RequestError</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RequestError</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>An error representing a failed request.
+This definition is intended to be used by both the client side (eg KituraKit)
+and server side (eg Kitura) of the request (typically a HTTP REST request).</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight plaintext"><code>router.get("/users") { (id: Int, respondWith: (User?, RequestError?) -&gt; Void) in
+    ...
+    respondWith(nil, RequestError.notFound)
+    ...
+}
+</code></pre>
+
+<p>In this example the <code>RequestError</code> is used in a Kitura server Codable route handler to
+indicate the request has failed because the requested record was not found.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Creating%20a%20RequestError%20from%20a%20numeric%20code"></a>
+                <a name="//apple_ref/swift/Section/Creating a RequestError from a numeric code" class="dashAnchor"></a>
+                <a href="#/Creating%20a%20RequestError%20from%20a%20numeric%20code">
+                  <h3 class="section-name">Creating a RequestError from a numeric code</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorVACSi8rawValue_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(rawValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorVACSi8rawValue_tcfc">init(rawValue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an error representing the given error code.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorVACSi8httpCode_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(httpCode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorVACSi8httpCode_tcfc">init(httpCode:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an error representing a HTTP status code</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>httpCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a standard HTTP status code</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20information%20about%20the%20error%20type"></a>
+                <a name="//apple_ref/swift/Section/Accessing information about the error type" class="dashAnchor"></a>
+                <a href="#/Accessing%20information%20about%20the%20error%20type">
+                  <h3 class="section-name">Accessing information about the error type</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8rawValueSiv"></a>
+                    <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8rawValueSiv">rawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An error code representing the type of error that has occurred.
+The range of error codes from 100 up to 599 are reserved for HTTP status codes.
+Custom error codes may be used and must not conflict with this range.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV6reasonSSv"></a>
+                    <a name="//apple_ref/swift/Property/reason" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6reasonSSv">reason</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A human-readable description of the error code.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8httpCodeSiv"></a>
+                    <a name="//apple_ref/swift/Property/httpCode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8httpCodeSiv">httpCode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The HTTP status code for the error.
+This value should be a valid HTTP status code if inside the range 100 to 599,
+however, it may take a value outside that range when representing other types
+of error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">httpCode</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Comparing%20RequestErrors"></a>
+                <a name="//apple_ref/swift/Section/Comparing RequestErrors" class="dashAnchor"></a>
+                <a href="#/Comparing%20RequestErrors">
+                  <h3 class="section-name">Comparing RequestErrors</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV1loiSbAC_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV1loiSbAC_ACtFZ">&lt;(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether the value of the first argument is less than that of the second argument.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV2eeoiSbAC_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV2eeoiSbAC_ACtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether two URLs are the same.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Describing%20a%20RequestError"></a>
+                <a name="//apple_ref/swift/Section/Describing a RequestError" class="dashAnchor"></a>
+                <a href="#/Describing%20a%20RequestError">
+                  <h3 class="section-name">Describing a RequestError</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV11descriptionSSv"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11descriptionSSv">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A textual description of the error containing the error code and reason.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV9hashValueSiv"></a>
+                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9hashValueSiv">hashValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The computed hash value for the error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20constants%20representing%20HTTP%20status%20codes"></a>
+                <a name="//apple_ref/swift/Section/Accessing constants representing HTTP status codes" class="dashAnchor"></a>
+                <a href="#/Accessing%20constants%20representing%20HTTP%20status%20codes">
+                  <h3 class="section-name">Accessing constants representing HTTP status codes</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8continueACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/continue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8continueACvZ">continue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 100 - Continue</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">let</span> <span class="err">`</span><span class="k">continue</span><span class="err">`</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV18switchingProtocolsACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/switchingProtocols" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18switchingProtocolsACvZ">switchingProtocols</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 101 - Switching Protocols</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">switchingProtocols</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">101</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV2okACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/ok" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV2okACvZ">ok</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 200 - OK</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">ok</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV7createdACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/created" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV7createdACvZ">created</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 201 - Created</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">created</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">201</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8acceptedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/accepted" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8acceptedACvZ">accepted</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 202 - Accepted</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">accepted</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">202</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV27nonAuthoritativeInformationACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/nonAuthoritativeInformation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27nonAuthoritativeInformationACvZ">nonAuthoritativeInformation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 203 - Non Authoritative Information</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">nonAuthoritativeInformation</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">203</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV9noContentACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/noContent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9noContentACvZ">noContent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 204 - No Content</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">noContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">204</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV12resetContentACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/resetContent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12resetContentACvZ">resetContent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 205 - Reset Content</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">resetContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">205</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV14partialContentACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/partialContent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14partialContentACvZ">partialContent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 206 - Partial Content</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">partialContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">206</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV11multiStatusACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/multiStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11multiStatusACvZ">multiStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 207 - Multi Status</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multiStatus</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">207</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV15alreadyReportedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/alreadyReported" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15alreadyReportedACvZ">alreadyReported</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 208 - Already Reported</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">alreadyReported</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">208</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV6imUsedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/imUsed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6imUsedACvZ">imUsed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 226 - IM Used</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">imUsed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">226</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV15multipleChoicesACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/multipleChoices" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15multipleChoicesACvZ">multipleChoices</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 300 - Multiple Choices</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multipleChoices</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV16movedPermanentlyACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/movedPermanently" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16movedPermanentlyACvZ">movedPermanently</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 301 - Moved Permanently</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">movedPermanently</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">301</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV5foundACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/found" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV5foundACvZ">found</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 302 - Found</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">found</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">302</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8seeOtherACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/seeOther" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8seeOtherACvZ">seeOther</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 303 - See Other</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">seeOther</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">303</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV11notModifiedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/notModified" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11notModifiedACvZ">notModified</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 304 - Not Modified</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notModified</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">304</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8useProxyACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/useProxy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8useProxyACvZ">useProxy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 305 - Use Proxy</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">useProxy</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">305</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV17temporaryRedirectACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/temporaryRedirect" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17temporaryRedirectACvZ">temporaryRedirect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 307 - Temporary Redirect</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">temporaryRedirect</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">307</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV17permanentRedirectACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/permanentRedirect" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17permanentRedirectACvZ">permanentRedirect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 308 - Permanent Redirect</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">permanentRedirect</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">308</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV03badC0ACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/badRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV03badC0ACvZ">badRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 400 - Bad Request</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">badRequest</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">400</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV12unauthorizedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/unauthorized" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12unauthorizedACvZ">unauthorized</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 401 - Unauthorized</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unauthorized</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV15paymentRequiredACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/paymentRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15paymentRequiredACvZ">paymentRequired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 402 - Payment Required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">paymentRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">402</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV9forbiddenACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/forbidden" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9forbiddenACvZ">forbidden</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 403 - Forbidden</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">forbidden</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8notFoundACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/notFound" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8notFoundACvZ">notFound</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 404 - Not Found</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notFound</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">404</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV16methodNotAllowedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/methodNotAllowed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16methodNotAllowedACvZ">methodNotAllowed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 405 - Method Not Allowed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">methodNotAllowed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">405</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV13notAcceptableACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/notAcceptable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV13notAcceptableACvZ">notAcceptable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 406 - Not Acceptable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notAcceptable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">406</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV27proxyAuthenticationRequiredACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/proxyAuthenticationRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27proxyAuthenticationRequiredACvZ">proxyAuthenticationRequired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 407 - Proxy Authentication Required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">proxyAuthenticationRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">407</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV14requestTimeoutACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/requestTimeout" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14requestTimeoutACvZ">requestTimeout</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 408 - Request Timeout</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">requestTimeout</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">408</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV8conflictACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/conflict" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8conflictACvZ">conflict</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 409 - Conflict</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">conflict</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">409</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV4goneACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/gone" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV4goneACvZ">gone</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 410 - Gone</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">gone</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">410</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV14lengthRequiredACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/lengthRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14lengthRequiredACvZ">lengthRequired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 411 - Length Required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">lengthRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">411</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV18preconditionFailedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/preconditionFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18preconditionFailedACvZ">preconditionFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 412 - Precondition Failed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">preconditionFailed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">412</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV15payloadTooLargeACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/payloadTooLarge" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15payloadTooLargeACvZ">payloadTooLarge</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 413 - Payload Too Large</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">payloadTooLarge</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">413</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV10uriTooLongACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/uriTooLong" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10uriTooLongACvZ">uriTooLong</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 414 - URI Too Long</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">uriTooLong</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">414</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV20unsupportedMediaTypeACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/unsupportedMediaType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV20unsupportedMediaTypeACvZ">unsupportedMediaType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 415 - Unsupported Media Type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unsupportedMediaType</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">415</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV19rangeNotSatisfiableACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/rangeNotSatisfiable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19rangeNotSatisfiableACvZ">rangeNotSatisfiable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 416 - Range Not Satisfiable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">rangeNotSatisfiable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">416</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV17expectationFailedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/expectationFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17expectationFailedACvZ">expectationFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 417 - Expectation Failed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">expectationFailed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">417</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV011misdirectedC0ACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/misdirectedRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV011misdirectedC0ACvZ">misdirectedRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 421 - Misdirected Request</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">misdirectedRequest</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">421</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV19unprocessableEntityACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/unprocessableEntity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19unprocessableEntityACvZ">unprocessableEntity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 422 - Unprocessable Entity</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unprocessableEntity</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">422</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV6lockedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/locked" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6lockedACvZ">locked</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 423 - Locked</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">locked</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">423</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV16failedDependencyACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/failedDependency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16failedDependencyACvZ">failedDependency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 424 - Failed Dependency</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">failedDependency</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">424</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV15upgradeRequiredACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/upgradeRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15upgradeRequiredACvZ">upgradeRequired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 426 - Upgrade Required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">upgradeRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">426</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV20preconditionRequiredACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/preconditionRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV20preconditionRequiredACvZ">preconditionRequired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 428 - Precondition Required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">preconditionRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">428</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV15tooManyRequestsACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/tooManyRequests" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15tooManyRequestsACvZ">tooManyRequests</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 429 - Too Many Requests</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">tooManyRequests</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">429</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV27requestHeaderFieldsTooLargeACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/requestHeaderFieldsTooLarge" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27requestHeaderFieldsTooLargeACvZ">requestHeaderFieldsTooLarge</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 431 - Request Header Fields Too Large</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">requestHeaderFieldsTooLarge</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">431</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV26unavailableForLegalReasonsACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/unavailableForLegalReasons" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV26unavailableForLegalReasonsACvZ">unavailableForLegalReasons</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 451 - Unavailable For Legal Reasons</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unavailableForLegalReasons</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">451</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV014internalServerD0ACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/internalServerError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV014internalServerD0ACvZ">internalServerError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 500 - Internal Server Error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">internalServerError</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV14notImplementedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/notImplemented" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14notImplementedACvZ">notImplemented</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 501 - Not Implemented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notImplemented</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">501</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV10badGatewayACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/badGateway" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10badGatewayACvZ">badGateway</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 502 - Bad Gateway</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">badGateway</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">502</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV18serviceUnavailableACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/serviceUnavailable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18serviceUnavailableACvZ">serviceUnavailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 503 - Service Unavailable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">serviceUnavailable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">503</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV14gatewayTimeoutACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/gatewayTimeout" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14gatewayTimeoutACvZ">gatewayTimeout</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 504 - Gateway Timeout</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">gatewayTimeout</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">504</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV23httpVersionNotSupportedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/httpVersionNotSupported" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV23httpVersionNotSupportedACvZ">httpVersionNotSupported</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 505 - HTTP Version Not Supported</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">httpVersionNotSupported</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">505</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV21variantAlsoNegotiatesACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/variantAlsoNegotiates" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV21variantAlsoNegotiatesACvZ">variantAlsoNegotiates</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 506 - Variant Also Negotiates</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">variantAlsoNegotiates</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">506</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV19insufficientStorageACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/insufficientStorage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19insufficientStorageACvZ">insufficientStorage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 507 - Insufficient Storage</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">insufficientStorage</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">507</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV12loopDetectedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/loopDetected" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12loopDetectedACvZ">loopDetected</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 508 - Loop Detected</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">loopDetected</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">508</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV11notExtendedACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/notExtended" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11notExtendedACvZ">notExtended</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 510 - Not Extended</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notExtended</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">510</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV29networkAuthenticationRequiredACvZ"></a>
+                    <a name="//apple_ref/swift/Variable/networkAuthenticationRequired" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV29networkAuthenticationRequiredACvZ">networkAuthenticationRequired</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>HTTP code 511 - Network Authentication Required</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">networkAuthenticationRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">511</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2017-10-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

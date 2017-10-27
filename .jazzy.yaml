@@ -1,0 +1,15 @@
+module: KituraContracts
+author: IBM
+github_url: https://github.com/IBM-Swift/KituraContracts/
+
+theme: fullwidth
+clean: true
+exclude: [Packages]
+
+readme: README.md
+
+skip_undocumented: false
+hide_documentation_coverage: false
+
+xcodebuild_arguments: [-project, KituraContracts.xcodeproj, -target, KituraContracts, LIBRARY_SEARCH_PATHS=.build/debug]
+
