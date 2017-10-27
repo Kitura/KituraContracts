@@ -1,82 +1,82 @@
 {
   "warnings": [
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": null,
       "symbol": "Persistable",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 334,
       "symbol": "Persistable",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 339,
       "symbol": "Persistable.create(model:respondWith:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 341,
       "symbol": "Persistable.read(id:respondWith:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 343,
       "symbol": "Persistable.read(respondWith:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 345,
       "symbol": "Persistable.update(id:model:respondWith:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 348,
       "symbol": "Persistable.delete(id:respondWith:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 350,
       "symbol": "Persistable.delete(respondWith:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 357,
       "symbol": "Persistable.type",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 361,
       "symbol": "Persistable.typeLowerCased",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/tunniclm/Documents/reltest/repos/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "file": "/Users/david/GitHub/KituraDevelopment/KituraContracts/Sources/KituraContracts/Contracts.swift",
       "line": 362,
       "symbol": "Persistable.route",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/tunniclm/Documents/reltest/repos/KituraContracts"
+  "source_directory": "/Users/david/GitHub/KituraDevelopment/KituraContracts"
 }
