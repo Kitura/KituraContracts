@@ -331,33 +331,33 @@ extension Int: Identifier {
     }
 }
 
-public protocol Persistable: Codable {
-    // Related types
-    associatedtype Id: Identifier
-
-    // Create
-    static func create(model: Self, respondWith: @escaping (Self?, RequestError?) -> Void)
-    // Read
-    static func read(id: Id, respondWith: @escaping (Self?, RequestError?) -> Void)
-    // Read all
-    static func read(respondWith: @escaping ([Self]?, RequestError?) -> Void)
-    // Update
-    static func update(id: Id, model: Self, respondWith: @escaping (Self?, RequestError?) -> Void)
-    // How about returning Identifer instances for the delete operations?
-    // Delete
-    static func delete(id: Id, respondWith: @escaping (RequestError?) -> Void)
-    // Delete all
-    static func delete(respondWith: @escaping (RequestError?) -> Void)
-}
-
-// Provides utility methods for getting the type  and routes for the class
-// conforming to Persistable
-public extension Persistable {
-    // Set up name space based on name of model (e.g. User -> user(s))
-    static var type: String {
-        let kind = String(describing: Swift.type(of: self))
-        return String(kind.characters.dropLast(5))
-    }
-    static var typeLowerCased: String { return "\(type.lowercased())" }
-    static var route: String { return "/\(typeLowerCased)s" }
-}
+//public protocol Persistable: Codable {
+//    // Related types
+//    associatedtype Id: Identifier
+//
+//    // Create
+//    static func create(model: Self, respondWith: @escaping (Self?, RequestError?) -> Void)
+//    // Read
+//    static func read(id: Id, respondWith: @escaping (Self?, RequestError?) -> Void)
+//    // Read all
+//    static func read(respondWith: @escaping ([Self]?, RequestError?) -> Void)
+//    // Update
+//    static func update(id: Id, model: Self, respondWith: @escaping (Self?, RequestError?) -> Void)
+//    // How about returning Identifer instances for the delete operations?
+//    // Delete
+//    static func delete(id: Id, respondWith: @escaping (RequestError?) -> Void)
+//    // Delete all
+//    static func delete(respondWith: @escaping (RequestError?) -> Void)
+//}
+//
+//// Provides utility methods for getting the type  and routes for the class
+//// conforming to Persistable
+//public extension Persistable {
+//    // Set up name space based on name of model (e.g. User -> user(s))
+//    static var type: String {
+//        let kind = String(describing: Swift.type(of: self))
+//        return String(kind.characters.dropLast(5))
+//    }
+//    static var typeLowerCased: String { return "\(type.lowercased())" }
+//    static var route: String { return "/\(typeLowerCased)s" }
+//}
