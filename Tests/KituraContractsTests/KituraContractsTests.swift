@@ -71,11 +71,20 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual("\(errorCode) : \(reason)", error.description)
 
         errorCode = 1500
-        reason = "http_\(errorCode)"
-        error = RequestError(httpCode: errorCode)
+        reason = "error_\(errorCode)"
+        error = RequestError(httpCode: errorCode, reason: reason)
         XCTAssertEqual(errorCode, error.rawValue)
         XCTAssertEqual(errorCode, error.httpCode)
         XCTAssertEqual(reason, error.reason)
         XCTAssertEqual("\(errorCode) : \(reason)", error.description)
+
+        error = RequestError.internalServerError
+        switch error {
+            case .internalServerError:
+                break
+            default:
+                XCTFail("Could not match error type in switch statement!")
+
+        }
      }
 }
