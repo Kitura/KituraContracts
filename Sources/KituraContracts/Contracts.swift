@@ -49,14 +49,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.reason = reason
     }
 
-    /// Creates an error representing a HTTP status code.
-    /// - Parameter httpCode: a standard HTTP status code
-    public init(httpCode: Int) {
-        self.rawValue = httpCode
-        self.reason = RequestError.reason(forHTTPCode: httpCode)
-    }
-
-    // MARK: Accessing information about the error type
+    // MARK: Accessing information about the error.
 
     /// An error code representing the type of error that has occurred.
     /// The range of error codes from 100 up to 599 are reserved for HTTP status codes.
@@ -65,14 +58,6 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /// A human-readable description of the error code.
     public let reason: String
-
-    /// The HTTP status code for the error.
-    /// This value should be a valid HTTP status code if inside the range 100 to 599,
-    /// however, it may take a value outside that range when representing other types
-    /// of error.
-    public var httpCode: Int {
-        return rawValue
-    }
 
     // MARK: Comparing RequestErrors
 
@@ -88,15 +73,36 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     // MARK: Describing a RequestError
 
-    /// A textual description of the error containing the error code and reason.
+    /// A textual description of the RequestError instance containing the error code and reason.
     public var description: String {
         return "\(rawValue) : \(reason)"
     }
 
-    /// The computed hash value for the error.
+    /// The computed hash value for the RequestError instance.
     public var hashValue: Int {
         let str = reason + String(rawValue)
         return str.hashValue
+    }
+}
+
+/**
+ Extends `RequestError` to provide HTTP specific error code and reason values.
+ */
+public extension RequestError {
+
+    /// The HTTP status code for the error.
+    /// This value should be a valid HTTP status code if inside the range 100 to 599,
+    /// however, it may take a value outside that range when representing other types
+    /// of error.
+    public var httpCode: Int {
+        return rawValue
+    }
+
+    /// Creates an error representing a HTTP status code.
+    /// - Parameter httpCode: a standard HTTP status code
+    public init(httpCode: Int) {
+        self.rawValue = httpCode
+        self.reason = RequestError.reason(forHTTPCode: httpCode)
     }
 
     // MARK: Accessing constants representing HTTP status codes

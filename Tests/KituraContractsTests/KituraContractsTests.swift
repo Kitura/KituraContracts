@@ -107,7 +107,7 @@ class KituraContractsTests: XCTestCase {
         }
 
         // Test equality
-        var anotherError = RequestError.internalServerError
+        let anotherError = RequestError.internalServerError
         XCTAssertEqual(error, anotherError)
      }
 }
