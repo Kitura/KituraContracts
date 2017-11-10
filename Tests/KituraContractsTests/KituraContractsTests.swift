@@ -63,6 +63,7 @@ class KituraContractsTests: XCTestCase {
 
     func testRequestError() {
         // Test construction of error instances
+        // Test predefined instances of RequestError
         var errorCode = 500
         var reason = "Internal Server Error"
         var error = RequestError.internalServerError
@@ -71,8 +72,25 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(reason, error.reason)
         XCTAssertEqual("\(errorCode) : \(reason)", error.description)
 
+        // Test construction of custom RequestError for http codes
+        error = RequestError(httpCode: errorCode)
+        XCTAssertEqual(errorCode, error.rawValue)
+        XCTAssertEqual(errorCode, error.httpCode)
+        XCTAssertEqual(reason, error.reason)
+        XCTAssertEqual("\(errorCode) : \(reason)", error.description)
+
+        // Test construction of custom RequestError for raw codes
         errorCode = 1500
         reason = "error_\(errorCode)"
+        error = RequestError(rawValue: errorCode)
+        XCTAssertEqual(errorCode, error.rawValue)
+        XCTAssertEqual(errorCode, error.httpCode)
+        XCTAssertEqual(reason, error.reason)
+        XCTAssertEqual("\(errorCode) : \(reason)", error.description)
+
+        // Test construction of custom RequestError for unknown http codes
+        errorCode = 1500
+        reason = "http_\(errorCode)"
         error = RequestError(httpCode: errorCode)
         XCTAssertEqual(errorCode, error.rawValue)
         XCTAssertEqual(errorCode, error.httpCode)
