@@ -62,6 +62,7 @@ class KituraContractsTests: XCTestCase {
 //    }
 
     func testRequestError() {
+        // Test construction of error instances
         var errorCode = 500
         var reason = "Internal Server Error"
         var error = RequestError.internalServerError
@@ -72,19 +73,23 @@ class KituraContractsTests: XCTestCase {
 
         errorCode = 1500
         reason = "error_\(errorCode)"
-        error = RequestError(httpCode: errorCode, reason: reason)
+        error = RequestError(httpCode: errorCode)
         XCTAssertEqual(errorCode, error.rawValue)
         XCTAssertEqual(errorCode, error.httpCode)
         XCTAssertEqual(reason, error.reason)
         XCTAssertEqual("\(errorCode) : \(reason)", error.description)
 
+        // Test we can use switch statement on error instances
         error = RequestError.internalServerError
         switch error {
             case .internalServerError:
                 break
             default:
-                XCTFail("Could not match error type in switch statement!")
-
+                XCTFail("Could not match error type inside switch statement!")
         }
+
+        // Test equality
+        var anotherError = RequestError.internalServerError
+        XCTAssertEqual(error, anotherError)
      }
 }

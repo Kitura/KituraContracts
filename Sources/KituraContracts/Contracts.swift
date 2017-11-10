@@ -56,6 +56,12 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.init(rawValue: httpCode, reason: reason)
     }
 
+    /// Creates an error representing a HTTP status code.
+    /// - Parameter httpCode: a standard HTTP status code
+    public init(httpCode: Int) {
+        self.init(rawValue: httpCode)
+    }
+
     // MARK: Accessing information about the error type
 
     /// An error code representing the type of error that has occurred.
@@ -83,7 +89,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /// Indicates whether two URLs are the same.
     public static func ==(lhs: RequestError, rhs: RequestError) -> Bool {
-        return lhs.rawValue == rhs.rawValue
+        return (lhs.rawValue == rhs.rawValue && lhs.reason == rhs.reason)
     }
 
     // MARK: Describing a RequestError
@@ -95,7 +101,8 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /// The computed hash value for the error.
     public var hashValue: Int {
-        return rawValue
+        let str = reason + String(rawValue)
+        return str.hashValue
     }
 
     // MARK: Accessing constants representing HTTP status codes
