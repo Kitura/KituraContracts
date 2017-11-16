@@ -18,22 +18,46 @@
 
 /**
 The `ResultClosure` is used by other `Codable` aliases when responding with only a `RequestError` is needed
-*/
+ 
+ ````
+ // The following two typealias make use of ResultClosure
+ public typealias NonCodableClosure = (@escaping ResultClosure) -> Void
+ ...
+ public typealias IdentifierNonCodableClosure<Id: Identifier> = (Id, @escaping ResultClosure) -> Void
+ ````
+ */
 public typealias ResultClosure = (RequestError?) -> Void
 
 /**
 The `CodableResultClosure` is used by other `Codable` aliases when responding with an object which conforms to Codable or an `RequestError` is needed.
-*/
+ 
+ ````
+ // The following two typealias make use of CodableResultClosure
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ...
+ public typealias CodableClosure<I: Codable, O: Codable> = (I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
 public typealias CodableResultClosure<O: Codable> = (O?, RequestError?) -> Void
 
 /**
 The `CodableArrayResultClosure` is used by other `Codable` aliases when responding with an array of objects which conform to Codable or an `RequestError` is needed.
-*/
+ 
+ ````
+ // The following typealias makes use of CodableArrayResultClosure
+ public typealias CodableArrayClosure<O: Codable> = (@escaping CodableArrayResultClosure<O>) -> Void
+ ````
+ */
 public typealias CodableArrayResultClosure<O: Codable> = ([O]?, RequestError?) -> Void
 
 /**
 The `IdentifierCodableResultClosure` is used by other `Codable` aliases when responding with an object which conforms to Codable and/or an obect that conforms to `Identifier` or `RequestError` is needed.
-*/
+ 
+ ````
+ // The following typealias makes use of IdentifierCodableResultClosure
+ public typealias CodableIdentifierClosure<I: Codable, Id: Identifier, O: Codable> = (I, @escaping IdentifierCodableResultClosure<Id, O>) -> Void
+ ````
+ */
 public typealias IdentifierCodableResultClosure<Id: Identifier, O: Codable> = (Id?, O?, RequestError?) -> Void
 
 /**
