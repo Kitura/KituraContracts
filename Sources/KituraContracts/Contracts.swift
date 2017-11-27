@@ -22,7 +22,7 @@
  and server side (eg Kitura) of the request (typically a HTTP REST request).
 
  ### Usage Example: ###
- ````
+ ````swift
  router.get("/users") { (id: Int, respondWith: (User?, RequestError?) -> Void) in
      ...
      respondWith(nil, RequestError.notFound)
@@ -290,6 +290,12 @@ public extension RequestError {
 
 /**
  An error representing a failure to create an `Identifier`.
+
+### Usage Example: ###
+ ````swift
+ //An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
+ throw IdentifierError.invalidValue
+ ````
  */
 public enum IdentifierError: Error {
     /// Represents a failure to create an `Identifier` from a given `String` representation.
@@ -298,6 +304,12 @@ public enum IdentifierError: Error {
 
 /**
  An identifier for an entity with a string representation.
+
+### Usage Example: ###
+ ````swift
+ //Used in the Id field.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
  */
 public protocol Identifier {
     /// Creates an identifier from a given string value.
@@ -310,6 +322,12 @@ public protocol Identifier {
 
 /**
  Extends `String` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ //The Identifier used in the Id field could be a `String`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
  */
 extension String: Identifier {
     /// Creates a string identifier from a given string value.
@@ -325,6 +343,12 @@ extension String: Identifier {
 
 /**
  Extends `Int` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ //The Identifier used in the Id field could be an `Int`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
  */
 extension Int: Identifier {
     /// Creates an integer identifier from a given string representation.
