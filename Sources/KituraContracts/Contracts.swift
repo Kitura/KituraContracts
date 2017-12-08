@@ -291,7 +291,7 @@ public extension RequestError {
 /**
  An identifier for a query parameter object
  */
-protocol Query: Codable {}
+public protocol Query: Codable {}
 
 /**
  An error representing a failure to create an `Identifier`.
