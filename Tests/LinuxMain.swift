@@ -19,4 +19,5 @@ import XCTest
 
 XCTMain([
     testCase(KituraContractsTests.allTests),
+    testCase(QueryCoderTests.allTests),
 ])
