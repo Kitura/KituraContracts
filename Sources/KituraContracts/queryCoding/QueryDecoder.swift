@@ -161,17 +161,18 @@ public class QueryDecoder: Coder, Decoder {
         var allKeys: [Key] { return [] }
 
         func contains(_ key: Key) -> Bool {
-            return true
+          return decoder.dictionary[key.stringValue] != nil
         }
-
+      
         func decode<T>(_ type: T.Type, forKey key: Key) throws -> T where T : Decodable {
-            self.decoder.codingPath.append(key)
-            defer { self.decoder.codingPath.removeLast() }
-            return try decoder.decode(T.self)
+          self.decoder.codingPath.append(key)
+          defer { self.decoder.codingPath.removeLast() }
+          return try decoder.decode(T.self)
         }
 
+        // If it is not in the dictionary it should be nil
         func decodeNil(forKey key: Key) throws -> Bool {
-            return false
+          return !contains(key)
         }
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type, forKey key: Key) throws -> KeyedDecodingContainer<NestedKey> where NestedKey : CodingKey {

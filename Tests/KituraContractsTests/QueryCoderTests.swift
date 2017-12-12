@@ -57,15 +57,15 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
-    let expectedDict = ["optionalIntField": "282", "intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
+    let expectedDict = ["intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
-    let expectedQueryString = "?intArray=1%2C2%2C3&stringField=a%20string&intField=23&optionalIntField=282&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
+    let expectedQueryString = "?intArray=1%2C2%2C3&stringField=a%20string&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
 
     let expectedDateStr = "2017-10-31T16:15:56+0000"
     let expectedDate = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
 
     let expectedMyQuery = MyQuery(intField: 23,
-                                  optionalIntField: 282,
+                                  optionalIntField: nil,
                                   stringField: "a string",
                                   intArray: [1, 2, 3],
                                   dateField: Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!,
@@ -81,7 +81,7 @@ class QueryCoderTests: XCTestCase {
         XCTAssertEqual(query, expectedMyQuery)
 
     }
-
+  
     func testQueryEncoder() {
 
         let query = MyQuery(intField: 23, optionalIntField: 282, stringField: "a string", intArray: [1, 2, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
