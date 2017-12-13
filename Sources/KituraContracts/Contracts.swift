@@ -14,6 +14,8 @@
  * limitations under the License.
  **/
 
+ import Foundation
+
 // MARK
 
 /**
@@ -34,6 +36,9 @@
  */
 public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
     public typealias RawValue = Int
+    public enum Format {
+        case json
+    }
 
     // MARK: Creating a RequestError from a numeric code
 
@@ -49,6 +54,16 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.reason = reason
     }
 
+    public init<BodyType: Encodable>(_ base: RequestError, body: BodyType) {
+        self.rawValue = base.rawValue
+        self.reason = base.reason
+        self.bodyDataGenerator = { format in
+            switch format {
+                case .json: return try JSONEncoder().encode(body)
+            }
+        }
+    }
+
     // MARK: Accessing information about the error.
 
     /// An error code representing the type of error that has occurred.
@@ -58,6 +73,9 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /// A human-readable description of the error code.
     public let reason: String
+
+    /// A closure that stores an Encodable body describing the error.
+    public private(set) var bodyDataGenerator: ((Format) throws -> Data)? = nil
 
     // MARK: Comparing RequestErrors
 

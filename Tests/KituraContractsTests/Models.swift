@@ -53,6 +53,18 @@ struct User: Codable {
     let name: String
 }
 
+struct Status: Codable, Equatable {
+    enum Value: String, Codable {
+        case OK
+        case BROKEN
+    }
+    let value: Value
+
+    public static func ==(lhs: Status, rhs: Status) -> Bool {
+        return lhs.value == rhs.value
+    }
+}
+
 //extension User: Persistable {
 //    public typealias Id = Int
 //}
