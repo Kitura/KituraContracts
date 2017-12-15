@@ -14,6 +14,61 @@
  * limitations under the License.
  **/
 
+import Foundation
+
+public protocol RequestErrorProtocol: Hashable, Comparable, Error, CustomStringConvertible {
+    var rawValue: Int { get }
+    var reason: String { get }
+}
+
+public extension RequestErrorProtocol {
+    // MARK: Comparing RequestErrors
+
+    /// Returns a Boolean value indicating whether the value of the first argument is less than that of the second argument.
+    public static func <(lhs: Self, rhs: Self) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+
+    /// Indicates whether two URLs are the same.
+    public static func ==(lhs: Self, rhs: Self) -> Bool {
+        return (lhs.rawValue == rhs.rawValue && lhs.reason == rhs.reason)
+    }
+
+    // MARK: Describing a RequestError
+
+    /// A textual description of the RequestError instance containing the error code and reason.
+    public var description: String {
+        return "\(rawValue) : \(reason)"
+    }
+
+    /// The computed hash value for the RequestError instance.
+    public var hashValue: Int {
+        let str = reason + String(rawValue)
+        return str.hashValue
+    }
+}
+
+public struct RequestErrorWithBody<BodyType: Codable>: RequestErrorProtocol {
+    public init(_ base: RequestError, body: BodyType) {
+        self.rawValue = base.rawValue
+        self.reason = base.reason
+        self.body = body
+    }
+
+    // MARK: Accessing information about the error.
+
+    /// An error code representing the type of error that has occurred.
+    /// The range of error codes from 100 up to 599 are reserved for HTTP status codes.
+    /// Custom error codes may be used and must not conflict with this range.
+    public let rawValue: Int
+
+    /// A human-readable description of the error code.
+    public let reason: String
+
+    /// A closure that stores an Encodable body describing the error.
+    public let body: BodyType
+}
+
 // MARK
 
 /**
@@ -32,9 +87,7 @@
  In this example the `RequestError` is used in a Kitura server Codable route handler to
  indicate the request has failed because the requested record was not found.
  */
-public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
-    public typealias RawValue = Int
-
+public struct RequestError: RequestErrorProtocol, RawRepresentable {
     // MARK: Creating a RequestError from a numeric code
 
     /// Creates an error representing the given error code.
@@ -58,31 +111,6 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /// A human-readable description of the error code.
     public let reason: String
-
-    // MARK: Comparing RequestErrors
-
-    /// Returns a Boolean value indicating whether the value of the first argument is less than that of the second argument.
-    public static func <(lhs: RequestError, rhs: RequestError) -> Bool {
-        return lhs.rawValue < rhs.rawValue
-    }
-
-    /// Indicates whether two URLs are the same.
-    public static func ==(lhs: RequestError, rhs: RequestError) -> Bool {
-        return (lhs.rawValue == rhs.rawValue && lhs.reason == rhs.reason)
-    }
-
-    // MARK: Describing a RequestError
-
-    /// A textual description of the RequestError instance containing the error code and reason.
-    public var description: String {
-        return "\(rawValue) : \(reason)"
-    }
-
-    /// The computed hash value for the RequestError instance.
-    public var hashValue: Int {
-        let str = reason + String(rawValue)
-        return str.hashValue
-    }
 }
 
 /**

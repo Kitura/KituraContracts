@@ -97,6 +97,13 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(reason, error.reason)
         XCTAssertEqual("\(errorCode) : \(reason)", error.description)
 
+        // Test construction of custom RequestError with body
+        let error2 = RequestErrorWithBody(.serviceUnavailable, body: Status(value: .BROKEN))
+        XCTAssertEqual(error2.rawValue, RequestError.serviceUnavailable.rawValue)
+        XCTAssertEqual(error2.rawValue, RequestError.serviceUnavailable.httpCode)
+        XCTAssertEqual(error2.reason, RequestError.serviceUnavailable.reason)
+        XCTAssertEqual(error2.body, Status(value: .BROKEN))
+
         // Test we can use switch statement on error instances
         error = RequestError.internalServerError
         switch error {
