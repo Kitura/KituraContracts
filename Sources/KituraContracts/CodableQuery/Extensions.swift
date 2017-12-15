@@ -25,9 +25,49 @@ extension String {
         return Int(self)
     }
 
+    /// Converts the given String to a Int8?
+    public var int8: Int8? {
+        return Int8(self)
+    }
+    
+    /// Converts the given String to a Int16?
+    public var int16: Int16? {
+        return Int16(self)
+    }
+    
+    /// Converts the given String to a Int32?
+    public var int32: Int32? {
+        return Int32(self)
+    }
+    
+    /// Converts the given String to a Int64?
+    public var int64: Int64? {
+        return Int64(self)
+    }
+
     /// Converts the given String to a UInt?
     public var uInt: UInt? {
         return UInt(self)
+    }
+
+    /// Converts the given String to a UInt8?
+    public var uInt8: UInt8? {
+        return UInt8(self)
+    }
+
+    /// Converts the given String to a UInt16?
+    public var uInt16: UInt16? {
+        return UInt16(self)
+    }
+    
+    /// Converts the given String to a UInt32?
+    public var uInt32: UInt32? {
+        return UInt32(self)
+    }
+    
+    /// Converts the given String to a UInt64?
+    public var uInt64: UInt64? {
+        return UInt64(self)
     }
 
     /// Converts the given String to a Float?
@@ -52,52 +92,67 @@ extension String {
 
     /// Converts the given String to an [Int]?
     public var intArray: [Int]? {
-        let strs: [String] = self.components(separatedBy: ",")
-        let ints: [Int] = strs.map { Int($0) }.filter { $0 != nil }.map { $0! }
-        if ints.count == strs.count {
-            return ints
-        }
-        return nil
+        return decodeArray(Int.self)
+    }
+
+    /// Converts the given String to an [Int8]?
+    public var int8Array: [Int8]? {
+        return decodeArray(Int8.self)
+    }
+
+    /// Converts the given String to an [Int16]?
+    public var int16Array: [Int16]? {
+        return decodeArray(Int16.self)
+    }
+
+    /// Converts the given String to an [Int32]?
+    public var int32Array: [Int32]? {
+        return decodeArray(Int32.self)
+    }
+
+    /// Converts the given String to an [Int64]?
+    public var int64Array: [Int64]? {
+        return decodeArray(Int64.self)
     }
 
     /// Converts the given String to an [UInt]?
     public var uIntArray: [UInt]? {
-        let strs: [String] = self.components(separatedBy: ",")
-        let uInts: [UInt] = strs.map { UInt($0) }.filter { $0 != nil }.map { $0! }
-        if uInts.count == strs.count {
-            return uInts
-        }
-        return nil
+        return decodeArray(UInt.self)
+    }
+
+    /// Converts the given String to an [UInt8]?
+    public var uInt8Array: [UInt8]? {
+        return decodeArray(UInt8.self)
+    }
+
+    /// Converts the given String to an [UInt16]?
+    public var uInt16Array: [UInt16]? {
+        return decodeArray(UInt16.self)
+    }
+    
+    /// Converts the given String to an [UInt32]?
+    public var uInt32Array: [UInt32]? {
+        return decodeArray(UInt32.self)
+    }
+
+    /// Converts the given String to an [UInt64]?
+    public var uInt64Array: [UInt64]? {
+        return decodeArray(UInt64.self)
     }
 
     /// Converts the given String to a [Float]?
     public var floatArray: [Float]? {
-        let strs: [String] = self.components(separatedBy: ",")
-        let floats: [Float] = strs.map { Float($0) }.filter { $0 != nil }.map { $0! }
-        if floats.count == strs.count {
-            return floats
-        }
-        return nil
+        return decodeArray(Float.self)
     }
 
     /// Converts the given String to a [Double]?
     public var doubleArray: [Double]? {
-        let strs: [String] = self.components(separatedBy: ",")
-        let doubles: [Double] = strs.map { Double($0) }.filter { $0 != nil }.map { $0! }
-        if doubles.count == strs.count {
-            return doubles
-        }
-        return nil
+        return decodeArray(Double.self)
     }
 
     /// Converts the given String to a [Bool]?
     public var booleanArray: [Bool]? {
-        let strs: [String] = self.components(separatedBy: ",")
-        let bools: [Bool] = strs.map { Bool($0) }.filter { $0 != nil }.map { $0! }
-        if bools.count == strs.count {
-            return bools
-        }
-        return nil
+        return decodeArray(Bool.self)
     }
 
     /// Converts the given String to a [String]
@@ -140,5 +195,12 @@ extension String {
             return dates
         }
         return nil
+    }
+
+    /// Helper Method to decode a string to an LosslessStringConvertible array types
+    private func decodeArray<T: LosslessStringConvertible>(_ type: T.Type) -> [T]? {
+        let strs: [String] = self.components(separatedBy: ",")
+        let values: [T] = strs.map { T($0) }.filter { $0 != nil }.map { $0! }
+        return values.count == strs.count ? values : nil
     }
 }

@@ -41,94 +41,77 @@ public class QueryDecoder: Coder, Decoder {
         Log.verbose("fieldName: \(fieldName), fieldValue: \(String(describing: fieldValue))")
 
         switch type {
-        case is Array<Int>.Type:
-            if let ints = fieldValue?.intArray as? T {
-                return ints
-            } else {
-                throw decodingError()
-            }
+        /// Ints
         case is Int.Type:
-            if let intValue = fieldValue?.int as? T {
-                return intValue
-            } else {
-                throw decodingError()
-            }
-        case is Array<UInt>.Type:
-            if let uInts = fieldValue?.uIntArray as? T {
-                return uInts
-            } else {
-                throw decodingError()
-            }
+            return try decodeType(fieldValue?.int, to: T.self)
+        case is Int8.Type:
+            return try decodeType(fieldValue?.int8, to: T.self)
+        case is Int16.Type:
+            return try decodeType(fieldValue?.int16, to: T.self)
+        case is Int32.Type:
+            return try decodeType(fieldValue?.int32, to: T.self)
+        case is Int64.Type:
+            return try decodeType(fieldValue?.int64, to: T.self)
+        /// Int Arrays
+        case is [Int].Type:
+            return try decodeType(fieldValue?.intArray, to: T.self)
+        case is [Int8].Type:
+            return try decodeType(fieldValue?.int8Array, to: T.self)
+        case is [Int16].Type:
+            return try decodeType(fieldValue?.int16Array, to: T.self)
+        case is [Int32].Type:
+            return try decodeType(fieldValue?.int32Array, to: T.self)
+        case is [Int64].Type:
+            return try decodeType(fieldValue?.int64Array, to: T.self)
+        /// UInts
         case is UInt.Type:
-            if let uIntValue = fieldValue?.uInt as? T {
-                return uIntValue
-            } else {
-                throw decodingError()
-            }
+            return try decodeType(fieldValue?.uInt, to: T.self)
+        case is UInt8.Type:
+            return try decodeType(fieldValue?.uInt8, to: T.self)
+        case is UInt16.Type:
+            return try decodeType(fieldValue?.uInt16, to: T.self)
+        case is UInt32.Type:
+            return try decodeType(fieldValue?.uInt32, to: T.self)
+        case is UInt64.Type:
+            return try decodeType(fieldValue?.uInt64, to: T.self)
+        /// UInt Arrays
+        case is [UInt].Type:
+            return try decodeType(fieldValue?.uIntArray, to: T.self)
+        case is [UInt8].Type:
+            return try decodeType(fieldValue?.uInt8Array, to: T.self)
+        case is [UInt16].Type:
+            return try decodeType(fieldValue?.uInt16Array, to: T.self)
+        case is [UInt32].Type:
+            return try decodeType(fieldValue?.uInt32Array, to: T.self)
+        case is [UInt64].Type:
+            return try decodeType(fieldValue?.uInt64Array, to: T.self)
+        /// Floats
         case is Float.Type:
-            if let floatValue = fieldValue?.float as? T {
-                return floatValue
-            } else {
-                throw decodingError()
-            }
-        case is Array<Float>.Type:
-            if let floats = fieldValue?.floatArray as? T {
-                return floats
-            } else {
-                throw decodingError()
-            }
+            return try decodeType(fieldValue?.float, to: T.self)
+        case is [Float].Type:
+            return try decodeType(fieldValue?.floatArray, to: T.self)
+        /// Doubles
         case is Double.Type:
-            if let doubleValue = fieldValue?.double as? T {
-                return doubleValue
-            } else {
-                throw decodingError()
-            }
-        case is Array<Double>.Type:
-            if let doubles = fieldValue?.doubleArray as? T {
-                return doubles
-            } else {
-                throw decodingError()
-            }
-        case is Bool.Type:
-            if let booleanValue = fieldValue?.boolean as? T {
-                return booleanValue
-            } else {
-                throw decodingError()
-            }
-        case is String.Type:
-            if let stringValue = fieldValue?.string as? T {
-                return stringValue
-            } else {
-                throw decodingError()
-            }
-        case is Array<String>.Type:
-            if let strings = fieldValue?.stringArray as? T {
-                return strings
-            } else {
-                throw decodingError()
-            }
+            return try decodeType(fieldValue?.double, to: T.self)
+        case is [Double].Type:
+            return try decodeType(fieldValue?.doubleArray, to: T.self)
+        /// Dates
         case is Date.Type:
-            if let dateValue = fieldValue?.date(dateFormatter) as? T {
-                return dateValue
-            } else {
-                throw decodingError()
-            }
-        case is Array<Date>.Type:
-            if let dates = fieldValue?.dateArray(dateFormatter) as? T {
-                return dates
-            } else {
-                throw decodingError()
-            }
+            return try decodeType(fieldValue?.date(dateFormatter), to: T.self)
+        case is [Date].Type:
+            return try decodeType(fieldValue?.dateArray(dateFormatter), to: T.self)
+        /// Strings
+        case is String.Type:
+            return try decodeType(fieldValue?.string, to: T.self)
+        case is [String].Type:
+            return try decodeType(fieldValue?.stringArray, to: T.self)
         default:
             Log.verbose("Decoding Custom Type: \(T.Type.self)")
             if fieldName.isEmpty {
                 return try T(from: self)
-            } else {    // Processing an instance member of the class/struct
-                if let decodable = fieldValue?.decodable(T.self) {
-                    return decodable
-                } else {
-                    throw decodingError()
-                }
+            } else {
+                // Processing an instance member of the class/struct
+                return try decodeType(fieldValue?.decodable(T.self), to: T.self)
             }
         }
     }
@@ -143,6 +126,14 @@ public class QueryDecoder: Coder, Decoder {
 
     public func singleValueContainer() throws -> SingleValueDecodingContainer {
         return UnkeyedContainer(decoder: self)
+    }
+
+    private func decodeType<S: Decodable, T: Decodable>(_ object: S, to type: T.Type) throws -> T {
+        if let values = object as? T {
+            return values
+        } else {
+            throw decodingError()
+        }
     }
 
     private func decodingError() -> DecodingError {

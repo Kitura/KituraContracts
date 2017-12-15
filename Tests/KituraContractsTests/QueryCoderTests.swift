@@ -24,11 +24,64 @@ class QueryCoderTests: XCTestCase {
         return [
             ("testQueryDecoder", testQueryDecoder),
             ("testQueryEncoder", testQueryEncoder),
-            ("testCycle", testCycle)
+            ("testCycle", testCycle),
+            ("testIllegalInt", testIllegalInt)
         ]
     }
 
-    struct MyQuery: Codable, Equatable {
+    struct MyInts: Query, Equatable {
+        let intField: Int
+        let int8Field: Int8
+        let int16Field: Int16
+        let int32Field: Int32
+        let int64Field: Int64
+        let uintField: UInt
+        let uint8Field: UInt8
+        let uint16Field: UInt16
+        let uint32Field: UInt32
+        let uint64Field: UInt64
+
+        public static func ==(lhs: MyInts, rhs: MyInts) -> Bool {
+            return  lhs.intField == rhs.intField &&
+                    lhs.int8Field == rhs.int8Field &&
+                    lhs.int16Field == rhs.int16Field &&
+                    lhs.int32Field == rhs.int32Field &&
+                    lhs.int64Field == rhs.int64Field &&
+                    lhs.uintField == rhs.uintField &&
+                    lhs.uint8Field == rhs.uint8Field &&
+                    lhs.uint16Field == rhs.uint16Field &&
+                    lhs.uint32Field == rhs.uint32Field &&
+                    lhs.uint64Field == rhs.uint64Field
+        }
+    }
+
+    struct MyIntArrays: Query, Equatable {
+        let intField: [Int]
+        let int8Field: [Int8]
+        let int16Field: [Int16]
+        let int32Field: [Int32]
+        let int64Field: [Int64]
+        let uintField: [UInt]
+        let uint8Field: [UInt8]
+        let uint16Field: [UInt16]
+        let uint32Field: [UInt32]
+        let uint64Field: [UInt64]
+
+        public static func ==(lhs: MyIntArrays, rhs: MyIntArrays) -> Bool {
+            return  lhs.intField == rhs.intField &&
+                lhs.int8Field == rhs.int8Field &&
+                lhs.int16Field == rhs.int16Field &&
+                lhs.int32Field == rhs.int32Field &&
+                lhs.int64Field == rhs.int64Field &&
+                lhs.uintField == rhs.uintField &&
+                lhs.uint8Field == rhs.uint8Field &&
+                lhs.uint16Field == rhs.uint16Field &&
+                lhs.uint32Field == rhs.uint32Field &&
+                lhs.uint64Field == rhs.uint64Field
+        }
+    }
+
+    struct MyQuery: Query, Equatable {
         public let intField: Int
         public let optionalIntField: Int?
         public let stringField: String
@@ -81,10 +134,10 @@ class QueryCoderTests: XCTestCase {
         XCTAssertEqual(query, expectedMyQuery)
 
     }
-  
+
     func testQueryEncoder() {
 
-        let query = MyQuery(intField: 23, optionalIntField: 282, stringField: "a string", intArray: [1, 2, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
+        let query = MyQuery(intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
@@ -95,10 +148,10 @@ class QueryCoderTests: XCTestCase {
             return
         }
 
-        XCTAssertEqual(myQueryDict["intField"], "23")
+        XCTAssertEqual(myQueryDict["intField"], "-1")
         XCTAssertEqual(myQueryDict["optionalIntField"], "282")
         XCTAssertEqual(myQueryDict["stringField"], "a string")
-        XCTAssertEqual(myQueryDict["intArray"], "1,2,3")
+        XCTAssertEqual(myQueryDict["intArray"], "1,-1,3")
         XCTAssertEqual(myQueryDict["dateField"], expectedDateStr)
         XCTAssertEqual(myQueryDict["optionalDateField"], expectedDateStr)
 
@@ -129,17 +182,55 @@ class QueryCoderTests: XCTestCase {
     }
 
     func testCycle() {
+        let myInts = MyInts(intField: 1, int8Field: 2, int16Field: 3, int32Field: 4, int64Field: 5, uintField: 6, uint8Field: 7, uint16Field: 8, uint32Field: 9, uint64Field: 10)
+        let myIntArrays = MyIntArrays(intField: [1,2,3],
+                                 int8Field: [3,4,5],
+                                 int16Field: [6,7,8],
+                                 int32Field: [9,10,11],
+                                 int64Field: [12,13,14],
+                                 uintField: [15,16,17],
+                                 uint8Field: [18,19,20],
+                                 uint16Field: [21,22,23],
+                                 uint32Field: [24,25,26],
+                                 uint64Field: [27,28,29])
+        cycleTester(expectedMyQuery)
+        cycleTester(myInts)
+        cycleTester(myIntArrays)
+    }
 
-        guard let myQueryDict: [String : String] = try? QueryEncoder().encode(expectedMyQuery) else {
+    func testIllegalInt() {
+        let outOfBoundsDict = ["int8Field": "128", /// Out of bounds
+                              "uintField": "6", "uint8Field": "7", "intField": "1", "uint64Field": "10", "int32Field": "4",
+                              "int64Field": "5", "int16Field": "3", "uint32Field": "9", "uint16Field": "8"]
+
+        let negativeDict = ["int8Field": "1", "uintField": "-1", // Can't be negative
+                            "uint8Field": "255", "intField": "1", "uint64Field": "10", "int32Field": "4",
+                            "int64Field": "5", "int16Field": "3", "uint32Field": "9", "uint16Field": "8"]
+
+        malformedDictTester(outOfBoundsDict)
+        malformedDictTester(negativeDict)
+    }
+
+    private func malformedDictTester(_ dict: [String: String]) {
+        guard let _ = try? QueryDecoder(dictionary: dict).decode(MyInts.self) else {
+            return
+        }
+
+        XCTFail("Decoded a malformed dictionary to codable object")
+    }
+
+    private func cycleTester<T: Query&Equatable>(_ obj: T) {
+
+        guard let myQueryDict: [String : String] = try? QueryEncoder().encode(obj) else {
             XCTFail("Failed to encode query to [String: String]")
             return
         }
 
-        guard let myQuery2 = try? QueryDecoder(dictionary: myQueryDict).decode(MyQuery.self) else {
+        guard let myQuery2 = try? QueryDecoder(dictionary: myQueryDict).decode(T.self) else {
             XCTFail("Failed to decode query to MyQuery object")
             return
         }
 
-        XCTAssertEqual(myQuery2, expectedMyQuery)
+        XCTAssertEqual(myQuery2, obj)
     }
 }

@@ -55,35 +55,87 @@ public class QueryEncoder: Coder, Encoder {
         Log.verbose("fieldName: \(fieldName), fieldValue: \(value)")
 
         switch value {
+        /// Ints
         case let fieldValue as Int:
             self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Array<Int>:
+        case let fieldValue as Int8:
+            self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as Int16:
+            self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as Int32:
+            self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as Int64:
+            self.dictionary[fieldName] = String(fieldValue)
+        /// Int Arrays
+        case let fieldValue as [Int]:
             let strs: [String] = fieldValue.map { String($0) }
             self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [Int8]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [Int16]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [Int32]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [Int64]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        /// UInts
         case let fieldValue as UInt:
             self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Array<UInt>:
+        case let fieldValue as UInt8:
+            self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as UInt16:
+            self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as UInt32:
+            self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as UInt64:
+            self.dictionary[fieldName] = String(fieldValue)
+        /// UInt Arrays
+        case let fieldValue as [UInt]:
             let strs: [String] = fieldValue.map { String($0) }
             self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [UInt8]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [UInt16]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [UInt32]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        case let fieldValue as [UInt64]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        /// Floats
         case let fieldValue as Float:
             self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Array<Float>:
+        case let fieldValue as [Float]:
             let strs: [String] = fieldValue.map { String($0) }
             self.dictionary[fieldName] = strs.joined(separator: ",")
+        /// Doubles
         case let fieldValue as Double:
             self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Array<Double>:
+        case let fieldValue as [Double]:
             let strs: [String] = fieldValue.map { String($0) }
             self.dictionary[fieldName] = strs.joined(separator: ",")
+        /// Bools
         case let fieldValue as Bool:
             self.dictionary[fieldName] = String(fieldValue)
+        case let fieldValue as [Bool]:
+            let strs: [String] = fieldValue.map { String($0) }
+            self.dictionary[fieldName] = strs.joined(separator: ",")
+        /// Strings
         case let fieldValue as String:
             self.dictionary[fieldName] = fieldValue
-        case let fieldValue as Array<String>:
+        case let fieldValue as [String]:
             self.dictionary[fieldName] = fieldValue.joined(separator: ",")
+        /// Dates
         case let fieldValue as Date:
             self.dictionary[fieldName] = dateFormatter.string(from: fieldValue)
-        case let fieldValue as Array<Date>:
+        case let fieldValue as [Date]:
             let strs: [String] = fieldValue.map { dateFormatter.string(from: $0) }
             self.dictionary[fieldName] = strs.joined(separator: ",")
         default:
