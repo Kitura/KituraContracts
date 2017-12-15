@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Int Extension Reference</title>
+    <title>Coder Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Extension/Int" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/Coder" class="dashAnchor"></a>
 
-    <a title="Int Extension Reference"></a>
+    <a title="Coder Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Int Extension Reference
+      Coder Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -149,14 +149,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Int</h1>
+            <h1>Coder</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Int</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Coder</span></code></pre>
 
                 </div>
               </div>
-            <p>Extends <code>Int</code> to comply to the <code><a href="../Protocols/Identifier.html">Identifier</a></code> protocol.</p>
+            <p>Class defining shared resources for the QueryDecoder and QueryEncoder</p>
 
           </div>
         </section>
@@ -168,9 +168,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Si15KituraContractsESiSS5value_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Si15KituraContractsESiSS5value_tKcfc">init(value:)</a>
+                    <a name="/s:15KituraContracts5CoderC13dateFormatterSo04DateE0Cv"></a>
+                    <a name="//apple_ref/swift/Property/dateFormatter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC13dateFormatterSo04DateE0Cv">dateFormatter</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -178,19 +178,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an integer identifier from a given string representation.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    An <code><a href="../Enums/IdentifierError.html#/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF">IdentifierError.invalidValue</a></code> if the given string cannot be converted to an integer.
-
-</div>
+                        <p>The designated DateFormatter used for encoding and decoding query parameters</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dateFormatter</span><span class="p">:</span> <span class="kt">DateFormatter</span></code></pre>
 
                         </div>
                       </div>
@@ -200,9 +195,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Si15KituraContractsE5valueSSv"></a>
-                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Si15KituraContractsE5valueSSv">value</a>
+                    <a name="/s:15KituraContracts5CoderCACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5CoderCACycfc">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -210,14 +205,42 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The string representation of the identifier.</p>
+                        <p>Initializes a Coder instance with a Date Formatter
+using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date format</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts5CoderC12getFieldNameSSSays9CodingKey_pG4from_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/getFieldName(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC12getFieldNameSSSays9CodingKey_pG4from_tFZ">getFieldName(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Helper method to extract the field name from a CodingKey array</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getFieldName</span><span class="p">(</span><span class="n">from</span> <span class="nv">codingPath</span><span class="p">:</span> <span class="p">[</span><span class="kt">CodingKey</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>

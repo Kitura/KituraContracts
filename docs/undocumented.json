@@ -1,6 +1,19 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/AaronLiberatore/Documents/KituraContracts/Sources/KituraContracts/CodableQuery/QueryDecoder.swift",
+      "line": 28,
+      "symbol": "QueryDecoder.dictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/AaronLiberatore/Documents/KituraContracts/Sources/KituraContracts/CodableQuery/QueryDecoder.swift",
+      "line": 30,
+      "symbol": "QueryDecoder.init(dictionary:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/AaronLiberatore/Documents/KituraContracts"
 }

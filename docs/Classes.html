@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Protocols  Reference</title>
+    <title>Classes  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
   <body>
 
 
-    <a title="Protocols  Reference"></a>
+    <a title="Classes  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -43,7 +43,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">KituraContracts Reference</a>
       <img class="carat" src="img/carat.png" />
-      Protocols  Reference
+      Classes  Reference
     </p>
 
     <div class="content-wrapper">
@@ -148,8 +148,8 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Protocols</h1>
-            <p>The following protocols are available globally.</p>
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
 
           </div>
         </section>
@@ -161,9 +161,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts5QueryP"></a>
-                    <a name="//apple_ref/swift/Protocol/Query" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts5QueryP">Query</a>
+                    <a name="/s:15KituraContracts5CoderC"></a>
+                    <a name="//apple_ref/swift/Class/Coder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC">Coder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -171,26 +171,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An identifier for a query parameter object</p>
+                        <p>Class defining shared resources for the QueryDecoder and QueryEncoder</p>
 
+                        <a href="Classes/Coder.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Query</span><span class="p">:</span> <span class="kt">Codable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Coder</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts10IdentifierP"></a>
-                    <a name="//apple_ref/swift/Protocol/Identifier" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts10IdentifierP">Identifier</a>
+                    <a name="/s:15KituraContracts12QueryDecoderC"></a>
+                    <a name="//apple_ref/swift/Class/QueryDecoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC">QueryDecoder</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,15 +203,48 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An identifier for an entity with a string representation.</p>
+                        <p>Query Parameter Decoder
+Decodes a [String: String] object to a Decodable object instance</p>
 
-                        <a href="Protocols/Identifier.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/QueryDecoder.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Identifier</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryDecoder</span><span class="p">:</span> <span class="kt"><a href="Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Decoder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12QueryEncoderC"></a>
+                    <a name="//apple_ref/swift/Class/QueryEncoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC">QueryEncoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Query Parameter Encoder</p>
+
+                        <a href="Classes/QueryEncoder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryEncoder</span><span class="p">:</span> <span class="kt"><a href="Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Encoder</span></code></pre>
 
                         </div>
                       </div>
