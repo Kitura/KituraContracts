@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
-
+    
     <script src="js/lunr.min.js" defer></script>
     <script src="js/typeahead.jquery.js" defer></script>
     <script src="js/jazzy.search.js" defer></script>
@@ -24,20 +24,20 @@
         </a>
          (100% documented)
       </p>
-
+    
       <p class="header-col--secondary">
         <form role="search" action="search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
       </p>
-
+    
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/IBM-Swift/KituraContracts/">
             <img class="header-icon" src="img/gh.png"/>
             View on GitHub
           </a>
         </p>
-
+    
     </header>
 
     <p class="breadcrumbs">
@@ -131,16 +131,49 @@
 
         <section class="section">
           <div class="section-content">
+            
+            <p align="center">
+<a href="http://kitura.io/">
+<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+</a>
+</p>
 
-            <p><a href="http://kitura.io"><img src="https://raw.githubusercontent.com/IBM-Swift/Kitura-net/doc_overhaul/Documentation/KituraLogo.png" alt="Kitura"></a></p>
-<h1 id='kitura-net' class='heading'>KituraContracts</h1>
-
-<p><a href="https://travis-ci.org/IBM-Swift/KituraContracts"><img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master"></a>
-<img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
-<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux"></p>
+<p align="center">
+<a href="http://www.kitura.io/">
+<img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
+</a>
+<a href="https://travis-ci.org/IBM-Swift/Kitura-net">
+<img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master">
+</a>
+<img src="https://img.shields.io/badge/os-Mac%20OS%20X-green.svg?style=flat" alt="Mac OS X">
+<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
+<img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
+<a href="http://swift-at-ibm-slack.mybluemix.net/">
+<img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
+</a>
+</p>
+<h1 id='kituracontracts' class='heading'>KituraContracts</h1>
 <h2 id='summary' class='heading'>Summary</h2>
 
 <p>KituraContracts is a library containing type definitions shared by client (e.g. <a href="https://ibm-swift.github.io/KituraKit/">KituraKit</a>) and server (e.g. <a href="https://ibm-swift.github.io/Kitura">Kitura</a>) code. These shared type definitions include <a href="https://ibm-swift.github.io/KituraContracts/Typealiases.html">Codable Closure Aliases</a>, <a href="https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html">RequestError</a>, <a href="https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv">Identifier Protocol</a> and <a href="https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS">Extensions</a> to String and Int, which add conformity to the Identifier protocol.</p>
+<h3 id='example-code-sample' class='heading'>Example Code Sample:</h3>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+<span class="o">...</span>
+<span class="p">}</span>
+
+<span class="n">router</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
+
+    <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="c1">//If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.</span>
+        <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="c1">//If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.</span>
+        <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <h2 id='swift-version' class='heading'>Swift version</h2>
 
 <p>The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.2 binary. Please note that this is the default version of Swift that is include in <a href="https://developer.apple.com/xcode/">Xcode 9.1</a>.</p>
@@ -155,7 +188,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2017-12-14)</p>
+      <p>&copy; 2017 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2017-12-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
