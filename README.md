@@ -9,7 +9,7 @@
 KituraContracts is a library containing type definitions shared by client (e.g. [KituraKit](https://ibm-swift.github.io/KituraKit/)) and server (e.g. [Kitura](https://ibm-swift.github.io/Kitura)) code. These shared type definitions include [Codable Closure Aliases](https://ibm-swift.github.io/KituraContracts/Typealiases.html), [RequestError](https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html), [Identifier Protocol](https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv) and [Extensions](https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS) to String and Int, which add conformity to the Identifier protocol.
 
 ## Swift version
-The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.2 binary. Please note that this is the default version of Swift that is include in [Xcode 9.1](https://developer.apple.com/xcode/).
+The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.3 binary. Please note that this is the default version of Swift that is include in [Xcode 9.1](https://developer.apple.com/xcode/).
 
 ## Community
 
