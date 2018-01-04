@@ -36,7 +36,8 @@
  */
 public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
     public typealias RawValue = Int
-    public enum Format {
+    
+    public enum BodyFormat {
         case json
     }
 
@@ -54,10 +55,10 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.reason = reason
     }
 
-    public init<BodyType: Encodable>(_ base: RequestError, body: BodyType) {
+    public init<Body: Encodable>(_ base: RequestError, body: Body) {
         self.rawValue = base.rawValue
         self.reason = base.reason
-        self.bodyDataGenerator = { format in
+        self.bodyData = { format in
             switch format {
                 case .json: return try JSONEncoder().encode(body)
             }
@@ -75,7 +76,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     public let reason: String
 
     /// A closure that stores an Encodable body describing the error.
-    public private(set) var bodyDataGenerator: ((Format) throws -> Data)? = nil
+    public private(set) var bodyData: ((BodyFormat) throws -> Data)? = nil
 
     // MARK: Comparing RequestErrors
 
