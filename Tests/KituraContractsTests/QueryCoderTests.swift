@@ -29,7 +29,7 @@ class QueryCoderTests: XCTestCase {
         ]
     }
 
-    struct MyInts: Query, Equatable {
+    struct MyInts: QueryParams, Equatable {
         let intField: Int
         let int8Field: Int8
         let int16Field: Int16
@@ -55,7 +55,7 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
-    struct MyIntArrays: Query, Equatable {
+    struct MyIntArrays: QueryParams, Equatable {
         let intField: [Int]
         let int8Field: [Int8]
         let int16Field: [Int16]
@@ -81,7 +81,7 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
-    struct MyQuery: Query, Equatable {
+    struct MyQuery: QueryParams, Equatable {
         public let intField: Int
         public let optionalIntField: Int?
         public let stringField: String
@@ -219,7 +219,7 @@ class QueryCoderTests: XCTestCase {
         XCTFail("Decoded a malformed dictionary to codable object")
     }
 
-    private func cycleTester<T: Query&Equatable>(_ obj: T) {
+    private func cycleTester<T: QueryParams&Equatable>(_ obj: T) {
 
         guard let myQueryDict: [String : String] = try? QueryEncoder().encode(obj) else {
             XCTFail("Failed to encode query to [String: String]")

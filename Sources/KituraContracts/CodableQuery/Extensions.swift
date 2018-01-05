@@ -29,17 +29,17 @@ extension String {
     public var int8: Int8? {
         return Int8(self)
     }
-    
+
     /// Converts the given String to a Int16?
     public var int16: Int16? {
         return Int16(self)
     }
-    
+
     /// Converts the given String to a Int32?
     public var int32: Int32? {
         return Int32(self)
     }
-    
+
     /// Converts the given String to a Int64?
     public var int64: Int64? {
         return Int64(self)
@@ -59,12 +59,12 @@ extension String {
     public var uInt16: UInt16? {
         return UInt16(self)
     }
-    
+
     /// Converts the given String to a UInt32?
     public var uInt32: UInt32? {
         return UInt32(self)
     }
-    
+
     /// Converts the given String to a UInt64?
     public var uInt64: UInt64? {
         return UInt64(self)
@@ -129,7 +129,7 @@ extension String {
     public var uInt16Array: [UInt16]? {
         return decodeArray(UInt16.self)
     }
-    
+
     /// Converts the given String to an [UInt32]?
     public var uInt32Array: [UInt32]? {
         return decodeArray(UInt32.self)
