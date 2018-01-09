@@ -138,15 +138,37 @@ class QueryCoderTests: XCTestCase {
     func testQueryEncoder() {
 
         let query = MyQuery(intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
+        
+        let myInts = MyInts(intField: 1, int8Field: 2, int16Field: 3, int32Field: 4, int64Field: 5, uintField: 6, uint8Field: 7, uint16Field: 8, uint32Field: 9, uint64Field: 10)
 
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
             return
         }
+
         guard let myQueryStr: String = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to String")
             return
         }
+
+        guard let myURLQueryItems: [URLQueryItem] = try? QueryEncoder().encode(myInts) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+        
+        let queryItems = [
+                          URLQueryItem(name: "intField", value: "1"),
+                          URLQueryItem(name: "int8Field", value: "2"),
+                          URLQueryItem(name: "int16Field", value: "3"),
+                          URLQueryItem(name: "int32Field", value: "4"),
+                          URLQueryItem(name: "int64Field", value: "5"),
+                          URLQueryItem(name: "uintField", value: "6"),
+                          URLQueryItem(name: "uint8Field", value: "7"),
+                          URLQueryItem(name: "uint16Field", value: "8"),
+                          URLQueryItem(name: "uint32Field", value: "9"),
+                          URLQueryItem(name: "uint64Field", value: "10")
+                          ]
+        XCTAssertEqual(Set(queryItems), Set(myURLQueryItems))
 
         XCTAssertEqual(myQueryDict["intField"], "-1")
         XCTAssertEqual(myQueryDict["optionalIntField"], "282")
