@@ -51,10 +51,10 @@ public class QueryEncoder: Coder, Encoder {
     /// - Parameter _ value: The Encodable object to encode to its [URLQueryItem] representation
     public func encode<T: Encodable>(_ value: T) throws -> [URLQueryItem] {
         let dict: [String : String] = try encode(value)
-        return dict.reduce([URLQueryItem]()) { acc, el in
-            var acc = acc
-            acc.append(URLQueryItem(name: el.key, value: el.value))
-            return acc
+        return dict.reduce([URLQueryItem]()) { array, element in
+            var array = array
+            array.append(URLQueryItem(name: element.key, value: element.value))
+            return array
         }
     }
 
