@@ -29,6 +29,13 @@ class QueryCoderTests: XCTestCase {
         ]
     }
 
+    struct SimpleStruct: QueryParams, Equatable {
+      let intField: Int
+      public static func ==(lhs: SimpleStruct, rhs: SimpleStruct) -> Bool {
+          return lhs.intField == rhs.intField
+      }
+    }
+
     struct MyInts: QueryParams, Equatable {
         let intField: Int
         let int8Field: Int8
@@ -139,14 +146,25 @@ class QueryCoderTests: XCTestCase {
 
         let query = MyQuery(intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
+        let myInts = SimpleStruct(intField: 1)
+
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
             return
         }
+
         guard let myQueryStr: String = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to String")
             return
         }
+
+        guard let myURLQueryItems: [URLQueryItem] = try? QueryEncoder().encode(myInts) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        let queryItems = [ URLQueryItem(name: "intField", value: "1") ]
+        XCTAssertEqual(queryItems, myURLQueryItems)
 
         XCTAssertEqual(myQueryDict["intField"], "-1")
         XCTAssertEqual(myQueryDict["optionalIntField"], "282")
