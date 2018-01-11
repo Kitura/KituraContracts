@@ -244,7 +244,7 @@ router.get("/status") { (respondWith: (Status?, RequestError?) -> Void) in
 public typealias SimpleCodableClosure<O: Codable> = (@escaping CodableResultClosure<O>) -> Void
 
 /**
-The `IdentifierSimpleCodableClosure` is for use in cases where you'd want to perform a series of actions utilising an object which conforms to `Identifier` then respond with an object conforming to `Codable` or a `RequestError` in the form of a `CodableResultClosure`
+The `IdentifierSimpleCodableClosure` is for use in cases where you'd want to perform a series of actions utilising an object which conforms to `Identifier` then respond with an object conforming to `Codable` or a `RequestError` in the form of a `CodableResultClosure`.
  
 ### Usage Example: ###
 ````swift
