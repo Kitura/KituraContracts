@@ -46,14 +46,12 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     public init(rawValue: Int) {
         self.rawValue = rawValue
         self.reason = "error_\(rawValue)"
-        self.body = nil
     }
 
     /// Creates an error representing the given error code and reason string.
     public init(rawValue: Int, reason: String) {
         self.rawValue = rawValue
         self.reason = reason
-        self.body = nil
     }
 
     public init<Body: Codable>(_ base: RequestError, body: Body) {
@@ -91,7 +89,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     /// - Note: The code accessing this property is expected to know the
     ///         concrete type of this object and downcast, handling any
     ///         failures do to type-mismatch appropriately.
-    public let body: Codable?
+    public private(set) var body: Codable? = nil
 
     /// A closure that encodes the `body` into a `Data` object in the
     /// requested format
@@ -145,7 +143,6 @@ public extension RequestError {
     public init(httpCode: Int) {
         self.rawValue = httpCode
         self.reason = RequestError.reason(forHTTPCode: httpCode)
-        self.body = nil
     }
 
     // MARK: Accessing constants representing HTTP status codes
