@@ -46,18 +46,21 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     public init(rawValue: Int) {
         self.rawValue = rawValue
         self.reason = "error_\(rawValue)"
+        self.body = nil
     }
 
     /// Creates an error representing the given error code and reason string.
     public init(rawValue: Int, reason: String) {
         self.rawValue = rawValue
         self.reason = reason
+        self.body = nil
     }
 
-    public init<BodyType: Encodable>(_ base: RequestError, body: BodyType) {
+    public init<Body: Codable>(_ base: RequestError, body: Body) {
         self.rawValue = base.rawValue
         self.reason = base.reason
-        self.bodyDataGenerator = { format in
+        self.body = body
+        self.bodyData = { format in
             switch format {
                 case .json: return try JSONEncoder().encode(body)
             }
@@ -74,8 +77,29 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     /// A human-readable description of the error code.
     public let reason: String
 
-    /// A closure that stores an Encodable body describing the error.
-    public private(set) var bodyDataGenerator: ((Format) throws -> Data)? = nil
+    /// A type-erased Codable object describing the error
+    ///
+    /// Usage Example:
+    /// ```
+    ///     if let errorBody = error.body as? MyCodableObject {
+    ///         // Access full error information encoded in errorBody
+    ///     } else {
+    ///         // Handle unexpected type in error / fallback to less
+    ///         // specific error handling based only on error number
+    ///     }
+    /// ```
+    /// - Note: The code accessing this property is expected to know the
+    ///         concrete type of this object and downcast, handling any
+    ///         failures do to type-mismatch appropriately.
+    public let body: Codable?
+
+    /// A closure that encodes the `body` into a `Data` object in the
+    /// requested format
+    /// - parameter `Format` describes the format that should be used
+    ///             (for example: `Format.json`)
+    /// - returns the `Data` object or `nil` if `body` is `nil`
+    /// - throws an `EncodingError` if the encoding fails
+    public private(set) var bodyData: ((Format) throws -> Data)? = nil
 
     // MARK: Comparing RequestErrors
 
@@ -121,6 +145,7 @@ public extension RequestError {
     public init(httpCode: Int) {
         self.rawValue = httpCode
         self.reason = RequestError.reason(forHTTPCode: httpCode)
+        self.body = nil
     }
 
     // MARK: Accessing constants representing HTTP status codes

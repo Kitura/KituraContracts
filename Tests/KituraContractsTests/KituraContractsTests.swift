@@ -102,9 +102,11 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(error.rawValue, RequestError.serviceUnavailable.rawValue)
         XCTAssertEqual(error.rawValue, RequestError.serviceUnavailable.httpCode)
         XCTAssertEqual(error.reason, RequestError.serviceUnavailable.reason)
-        XCTAssertNotNil(error.bodyDataGenerator)
-        if let bodyDataGenerator = error.bodyDataGenerator {
-            XCTAssertEqual(try? bodyDataGenerator(.json), try! JSONEncoder().encode(Status(value: .BROKEN)))
+        XCTAssertNotNil(error.body)
+        XCTAssertNotNil(error.body as? Status)
+        XCTAssertNotNil(error.bodyData)
+        if let bodyData = error.bodyData {
+            XCTAssertEqual(try? bodyData(.json), try! JSONEncoder().encode(Status(value: .BROKEN)))
         }
 
         // Test we can use switch statement on error instances
