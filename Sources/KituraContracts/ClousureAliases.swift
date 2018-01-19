@@ -76,7 +76,7 @@ router.put("/users") { (id: Int, user: User, respondWith: (User?, RequestError?)
 
   guard let oldUser = self.userStore[id] else {
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
       respondWith(nil, .notFound)
 
       return
@@ -84,7 +84,7 @@ router.put("/users") { (id: Int, user: User, respondWith: (User?, RequestError?)
 
   ...
 
-  //If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
+  // If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
   respondWith(user, nil)
 }
 ````
@@ -93,7 +93,7 @@ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable
 
 /**
 The `CodableClosure` is for use in cases where you'd want to perform a series of actions utilising an object conforming to `Identifier` then respond with an object which conforms to `Codable`, which is of the same type as the object passed as a parameter, or responding with a `RequestError` in the form of a `CodableResultClosure`
- 
+
 ### Usage Example: ###
 ````swift
 public struct User: Codable {
@@ -105,14 +105,14 @@ router.post("/users") { (user: User, respondWith: (User?, RequestError?) -> Void
   if databaseConnectionIsOk {
 
       ...
-      //If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
+      // If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
       respondWith(user, nil)
 
   } else {
 
       ...
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
       respondWith(nil, .internalServerError)
   }
 }
@@ -122,7 +122,7 @@ public typealias CodableClosure<I: Codable, O: Codable> = (I, @escaping CodableR
 
 /**
 The `CodableIdentifierClosure` is for use in cases where you'd want to perform a series of actions utilising an object conforming to `Identifier`, then respond with an object which conforms to `Codable`, and/or an object conforming to `Identifier` or responding with a `RequestError` in the form of a `IdentifierCodableResultClosure`
- 
+
 ### Usage Example: ###
 ````swift
 public struct User: Codable {
@@ -134,14 +134,14 @@ router.post("/users") { (user: User, respondWith: (Int?, User?, RequestError?) -
   if databaseConnectionIsOk {
 
       ...
-      //If no errors occured and you have a User and the corresponding identifier, you can just respond with the identifier and user, and pass nil as the 'RequestError?' value.
+      // If no errors occured and you have a User and the corresponding identifier, you can just respond with the identifier and user, and pass nil as the 'RequestError?' value.
       respondWith(id, user, nil)
 
   } else {
 
       ...
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for Int? and nil for User?.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for Int? and nil for User?.
       respondWith(nil, nil, .internalServerError)
   }
 }
@@ -159,12 +159,12 @@ router.delete("/users") { (respondWith: (RequestError?) -> Void) in
     if databaseConnectionIsOk {
 
       ...
-      //If no errors occured you can just pass nil as the 'RequestError?' value.
+      // If no errors occured you can just pass nil as the 'RequestError?' value.
       respondWith(nil)
 
     } else {
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error.
       respondWith(.internalServerError)
 
       ...
@@ -176,7 +176,7 @@ public typealias NonCodableClosure = (@escaping ResultClosure) -> Void
 
 /**
 The `IdentifierNonCodableClosure` is for use in cases where you'd want to perform a series of actions utilising an object which conforms to `Identifier` then respond with a `RequestError` in the form of a `ResultClosure`
- 
+
 ### Usage Example: ###
 ````swift
 router.delete("/users") { (id: Int, respondWith: (RequestError?) -> Void) in
@@ -185,14 +185,14 @@ router.delete("/users") { (id: Int, respondWith: (RequestError?) -> Void) in
 
       ...
 
-      //If no errors occured you can just pass nil as the 'RequestError?' value.
+      // If no errors occured you can just pass nil as the 'RequestError?' value.
       respondWith(nil)
 
   } else {
 
       ...
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error.
       respondWith(.internalServerError)
   }
 }
@@ -202,7 +202,7 @@ public typealias IdentifierNonCodableClosure<Id: Identifier> = (Id, @escaping Re
 
 /**
 The `CodableArrayClosure` is for use in cases where you'd want to perform a series of actions then respond with an array of objects conforming to `Codable` or a `RequestError` in the form of a `CodableArrayResultClosure`
- 
+
 ### Usage Example: ###
 ````swift
 router.get("/users") { (respondWith: ([User]?, RequestError?) -> Void) in
@@ -211,14 +211,14 @@ router.get("/users") { (respondWith: ([User]?, RequestError?) -> Void) in
 
       ...
 
-      //If no errors occured and you have an array of Users you can just respond with the users by passing nil as the 'RequestError?' value.
+      // If no errors occured and you have an array of Users you can just respond with the users by passing nil as the 'RequestError?' value.
       respondWith(users, nil)
 
   } else {
 
       ...
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the [User]?.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the [User]?.
       respondWith(nil, .internalServerError)
   }
 }
@@ -245,7 +245,6 @@ public typealias SimpleCodableClosure<O: Codable> = (@escaping CodableResultClos
 
 /**
 The `IdentifierSimpleCodableClosure` is for use in cases where you'd want to perform a series of actions utilising an object which conforms to `Identifier` then respond with an object conforming to `Codable` or a `RequestError` in the form of a `CodableResultClosure`.
- 
 ### Usage Example: ###
 ````swift
 public struct User: Codable {
@@ -258,7 +257,7 @@ router.get("/users") { (id: Int, respondWith: (User?, RequestError?) -> Void) in
 
   guard let user = self.userStore[id] else {
 
-      //If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
+      // If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
       respondWith(nil, .notFound)
 
       return
@@ -266,7 +265,7 @@ router.get("/users") { (id: Int, respondWith: (User?, RequestError?) -> Void) in
 
   ...
 
-  //If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
+  // If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
   respondWith(user, nil)
 }
 ````

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KituraContracts  Reference</title>
+    <title>Classes  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
   <body>
 
 
-    <a title="KituraContracts  Reference"></a>
+    <a title="Classes  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -43,7 +43,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">KituraContracts Reference</a>
       <img class="carat" src="img/carat.png" />
-      KituraContracts  Reference
+      Classes  Reference
     </p>
 
     <div class="content-wrapper">
@@ -148,59 +148,116 @@
 
         <section class="section">
           <div class="section-content">
-            
-            <p align="center">
-<a href="http://kitura.io/">
-<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
-</a>
-</p>
-
-<p align="center">
-<a href="http://www.kitura.io/">
-<img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
-</a>
-<a href="https://travis-ci.org/IBM-Swift/KituraContracts">
-<img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master">
-</a>
-<img src="https://img.shields.io/badge/os-Mac%20OS%20X-green.svg?style=flat" alt="Mac OS X">
-<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
-<img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
-<a href="http://swift-at-ibm-slack.mybluemix.net/">
-<img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
-</a>
-</p>
-<h1 id='kituracontracts' class='heading'>KituraContracts</h1>
-<h2 id='summary' class='heading'>Summary</h2>
-
-<p>KituraContracts is a library containing type definitions shared by client (e.g. <a href="https://ibm-swift.github.io/KituraKit/">KituraKit</a>) and server (e.g. <a href="https://ibm-swift.github.io/Kitura">Kitura</a>) code. These shared type definitions include <a href="https://ibm-swift.github.io/KituraContracts/Typealiases.html">Codable Closure Aliases</a>, <a href="https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html">RequestError</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryEncoder.html">QueryEncoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryDecoder.html">QueryDecoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/Coder.html">Coder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv">Identifier Protocol</a> and <a href="https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS">Extensions</a> to String and Int, which add conformity to the Identifier protocol.</p>
-<h3 id='example-code-sample' class='heading'>Example Code Sample:</h3>
-<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
-<span class="o">...</span>
-<span class="p">}</span>
-
-<span class="n">router</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
-
-    <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-        <span class="o">...</span>
-        <span class="c1">//If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.</span>
-        <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="o">...</span>
-        <span class="c1">//If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.</span>
-        <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-<h2 id='swift-version' class='heading'>Swift version</h2>
-
-<p>The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.3 binary. Please note that this is the default version of Swift that is include in <a href="https://developer.apple.com/xcode/">Xcode 9.2</a>.</p>
-<h2 id='community' class='heading'>Community</h2>
-
-<p>We love to talk server-side Swift and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
 
           </div>
         </section>
 
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts5CoderC"></a>
+                    <a name="//apple_ref/swift/Class/Coder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC">Coder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Class defining shared resources for the QueryDecoder and QueryEncoder.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span><span class="o">!</span>
+</code></pre>
+
+                        <a href="Classes/Coder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Coder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12QueryDecoderC"></a>
+                    <a name="//apple_ref/swift/Class/QueryDecoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC">QueryDecoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Query Parameter Decoder
+Decodes a [String: String] object to a Decodable object instance</p>
+
+                        <a href="Classes/QueryDecoder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryDecoder</span><span class="p">:</span> <span class="kt"><a href="Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Decoder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12QueryEncoderC"></a>
+                    <a name="//apple_ref/swift/Class/QueryEncoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC">QueryEncoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Query Parameter Encoder</p>
+
+                        <a href="Classes/QueryEncoder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryEncoder</span><span class="p">:</span> <span class="kt"><a href="Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Encoder</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
       </article>
     </div>
