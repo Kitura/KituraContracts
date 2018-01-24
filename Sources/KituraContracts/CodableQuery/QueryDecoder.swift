@@ -17,24 +17,60 @@
 import Foundation
 import LoggerAPI
 
-/// Query Parameter Decoder
-/// Decodes a [String: String] object to a Decodable object instance
+/**
+ Query Parameter Decoder decodes a `[String: String]` object to a Decodable object instance.
+ 
+ ### Usage Example: ###
+ ````swift
+ guard let query = try? QueryDecoder(dictionary: expectedDict).decode(MyQuery.self) else {
+     print("Failed to decode query to MyQuery Object")
+     return
+ }
+ ````
+ */
 public class QueryDecoder: Coder, Decoder {
-
+    
+    /**
+     The coding key path.
+     
+     ### Usage Example: ###
+     ````swift
+     let fieldName = Coder.getFieldName(from: codingPath)
+     ````
+     */
     public var codingPath: [CodingKey] = []
 
+    /**
+     The coding user info key.
+     */
     public var userInfo: [CodingUserInfoKey : Any] = [:]
 
+    /**
+     A `[String: String]` dictionary.
+     */
     public var dictionary: [String : String]
 
+    /**
+     Initializer with a `[String : String]` dictionary.
+     */
     public init(dictionary: [String : String]) {
         self.dictionary = dictionary
         super.init()
     }
 
-    /// Decodes a String -> String mapping to its Decodable object representation
-    ///
-    /// - Parameter _ value: The Decodable object to decode the dictionary into
+    /**
+     Decodes a String -> String mapping to its Decodable object representation.
+     
+     - Parameter _ value: The Decodable object to decode the dictionary into
+     
+     ### Usage Example: ###
+     ````swift
+     guard let query = try? QueryDecoder(dictionary: expectedDict).decode(MyQuery.self) else {
+         print("Failed to decode query to MyQuery Object")
+         return
+     }
+     ````
+     */
     public func decode<T: Decodable>(_ type: T.Type) throws -> T {
         let fieldName = Coder.getFieldName(from: codingPath)
         let fieldValue = dictionary[fieldName]
@@ -116,14 +152,38 @@ public class QueryDecoder: Coder, Decoder {
         }
     }
 
+    /**
+     Returns a keyed decoding container based on the key type.
+
+     ### Usage Example: ###
+     ````swift
+     decoder.container(keyedBy: keyType)
+     ````
+     */
     public func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> where Key : CodingKey {
         return KeyedDecodingContainer(KeyedContainer<Key>(decoder: self))
     }
 
+    /**
+     Returns an unkeyed decoding container.
+     
+     ### Usage Example: ###
+     ````swift
+     decoder.unkeyedContainer()
+     ````
+     */
     public func unkeyedContainer() throws -> UnkeyedDecodingContainer {
         return UnkeyedContainer(decoder: self)
     }
 
+    /**
+     Returns an single value decoding container based on the key type.
+     
+     ### Usage Example: ###
+     ````swift
+     decoder.singleValueContainer()
+     ````
+     */
     public func singleValueContainer() throws -> SingleValueDecodingContainer {
         return UnkeyedContainer(decoder: self)
     }

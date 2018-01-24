@@ -71,7 +71,7 @@ public struct User: Codable {
 
 var userStore: [Int, User] = [...]
 
-//By default `Int` has conformity to Identifier
+// By default `Int` has conformity to Identifier
 router.put("/users") { (id: Int, user: User, respondWith: (User?, RequestError?) -> Void) in
 
   guard let oldUser = self.userStore[id] else {
@@ -230,7 +230,7 @@ public typealias CodableArrayClosure<O: Codable> = (@escaping CodableArrayResult
 The `SimpleCodableClosure` is for use in cases where you'd want to perform a series of actions then respond with an object conforming to `Codable` or a `RequestError` in the form of a `CodableResultClosure`.
 
 ### Usage Example: ###
-````
+````swift
 public struct Status: Codable {
   ...
 }

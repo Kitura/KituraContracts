@@ -36,11 +36,11 @@ router.post("/users") { (user: User, respondWith: (User?, RequestError?) -> Void
 
     if databaseConnectionIsOk {
         ...
-        //If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
+        // If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.
         respondWith(user, nil)
     } else {
         ...
-        //If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
+        // If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.
         respondWith(nil, .internalServerError)
     }
 }

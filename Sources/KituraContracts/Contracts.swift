@@ -298,7 +298,7 @@ public protocol QueryParams: Codable {}
 
 ### Usage Example: ###
  ````swift
- //An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
+ // An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
  throw IdentifierError.invalidValue
  ````
  */
@@ -312,7 +312,7 @@ public enum IdentifierError: Error {
 
 ### Usage Example: ###
  ````swift
- //Used in the Id field.
+ // Used in the Id field.
  public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
  ````
  */
@@ -330,7 +330,7 @@ public protocol Identifier {
  
 ### Usage Example: ###
  ````swift
- //The Identifier used in the Id field could be a `String`.
+ // The Identifier used in the Id field could be a `String`.
  public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
  ````
  */
@@ -351,7 +351,7 @@ extension String: Identifier {
  
 ### Usage Example: ###
  ````swift
- //The Identifier used in the Id field could be an `Int`.
+ // The Identifier used in the Id field could be an `Int`.
  public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
  ````
  */

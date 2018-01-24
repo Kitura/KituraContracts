@@ -38,7 +38,7 @@ public class Coder {
 
     /**
     Initializes a Coder instance with a Date Formatter
-    using the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format
+    using the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
      */
     public init() {
         self.dateFormatter = DateFormatter()
@@ -47,7 +47,12 @@ public class Coder {
     }
 
     /**
-     Helper method to extract the field name from a CodingKey array
+     Helper method to extract the field name from a CodingKey array.
+     
+     ### Usage Example: ###
+     ````swift
+     let fieldName = Coder.getFieldName(from: codingPath)
+     ````
      */
     public static func getFieldName(from codingPath: [CodingKey]) -> String {
         return codingPath.flatMap({"\($0)"}).joined(separator: ".")

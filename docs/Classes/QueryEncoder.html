@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           KituraContracts Docs
         </a>
-         (98% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -156,7 +156,13 @@
 
                 </div>
               </div>
-            <p>Query Parameter Encoder</p>
+            <p>Query Parameter Encoder.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryDict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to [String: String]"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
           </div>
         </section>
@@ -168,9 +174,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7EncoderP10codingPathSays9CodingKey_pGv"></a>
+                    <a name="/s:15KituraContracts12QueryEncoderC10codingPathSays9CodingKey_pGv"></a>
                     <a name="//apple_ref/swift/Property/codingPath" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7EncoderP10codingPathSays9CodingKey_pGv">codingPath</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC10codingPathSays9CodingKey_pGv">codingPath</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -178,7 +184,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The coding key path.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">fieldName</span> <span class="o">=</span> <span class="kt">Coder</span><span class="o">.</span><span class="nf">getFieldName</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">codingPath</span><span class="p">)</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -194,9 +204,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7EncoderP8userInfos10DictionaryVys010CodingUserC3KeyVypGv"></a>
+                    <a name="/s:15KituraContracts12QueryEncoderC8userInfos10DictionaryVys010CodingUserF3KeyVypGv"></a>
                     <a name="//apple_ref/swift/Property/userInfo" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7EncoderP8userInfos10DictionaryVys010CodingUserC3KeyVypGv">userInfo</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC8userInfos10DictionaryVys010CodingUserF3KeyVypGv">userInfo</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -204,7 +214,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The coding user info key.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -230,7 +241,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Initializer with a dictionary.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -256,7 +268,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Encodes an Encodable object to a query parameter string</p>
+                        <p>Encodes an Encodable object to a query parameter string.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryStr</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to String"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -283,7 +301,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Encodes an Encodable object to a URLQueryItem array</p>
+                        <p>Encodes an Encodable object to a URLQueryItem array.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQuery2</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryDecoder</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="n">myQueryDict</span><span class="p">)</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to decode query to MyQuery object"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -310,7 +334,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Encodes an Encodable object to a String -&gt; String dictionary</p>
+                        <p>Encodes an Encodable object to a String -&gt; String dictionary.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryDict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to [String: String]"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -327,9 +357,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7EncoderP9containers22KeyedEncodingContainerVyqd__Gqd__m7keyedBy_ts9CodingKeyRd__lF"></a>
+                    <a name="/s:15KituraContracts12QueryEncoderC9containers22KeyedEncodingContainerVyxGxm7keyedBy_ts9CodingKeyRzlF"></a>
                     <a name="//apple_ref/swift/Method/container(keyedBy:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7EncoderP9containers22KeyedEncodingContainerVyqd__Gqd__m7keyedBy_ts9CodingKeyRd__lF">container(keyedBy:)</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC9containers22KeyedEncodingContainerVyxGxm7keyedBy_ts9CodingKeyRzlF">container(keyedBy:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -337,7 +367,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Returns a keyed decencodingoding container based on the key type.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="n">encoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="n">keyType</span><span class="p">)</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -353,9 +387,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7EncoderP16unkeyedContainers015UnkeyedEncodingC0_pyF"></a>
+                    <a name="/s:15KituraContracts12QueryEncoderC16unkeyedContainers015UnkeyedEncodingF0_pyF"></a>
                     <a name="//apple_ref/swift/Method/unkeyedContainer()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7EncoderP16unkeyedContainers015UnkeyedEncodingC0_pyF">unkeyedContainer()</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC16unkeyedContainers015UnkeyedEncodingF0_pyF">unkeyedContainer()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -363,7 +397,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Returns an unkeyed encoding container.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="n">encoder</span><span class="o">.</span><span class="nf">unkeyedContainer</span><span class="p">()</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -379,9 +417,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7EncoderP20singleValueContainers06Singlec8EncodingD0_pyF"></a>
+                    <a name="/s:15KituraContracts12QueryEncoderC20singleValueContainers06Singlef8EncodingG0_pyF"></a>
                     <a name="//apple_ref/swift/Method/singleValueContainer()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7EncoderP20singleValueContainers06Singlec8EncodingD0_pyF">singleValueContainer()</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC20singleValueContainers06Singlef8EncodingG0_pyF">singleValueContainer()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -389,7 +427,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Returns an single value encoding container based on the key type.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="n">encoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -410,7 +452,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-19)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-24)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

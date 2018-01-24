@@ -21,23 +21,60 @@ extension CharacterSet {
     static let customURLQueryAllowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~=:&")
 }
 
-/// Query Parameter Encoder
+/**
+ Query Parameter Encoder.
+ 
+ ### Usage Example: ###
+ ````swift
+ guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
+     print("Failed to encode query to [String: String]")
+     return
+ }
+ ````
+ */
 public class QueryEncoder: Coder, Encoder {
 
+    /**
+     A `[String: String]` dictionary.
+     */
     private var dictionary: [String: String]
 
+    /**
+     The coding key path.
+     
+     ### Usage Example: ###
+     ````swift
+     let fieldName = Coder.getFieldName(from: codingPath)
+     ````
+     */
     public var codingPath: [CodingKey] = []
 
+    /**
+     The coding user info key.
+     */
     public var userInfo: [CodingUserInfoKey: Any] = [:]
 
+    /**
+     Initializer with a dictionary.
+     */
     public override init() {
         self.dictionary = [:]
         super.init()
     }
 
-    /// Encodes an Encodable object to a query parameter string
-    ///
-    /// - Parameter _ value: The Encodable object to encode to its String representation
+    /**
+     Encodes an Encodable object to a query parameter string.
+     
+     - Parameter _ value: The Encodable object to encode to its String representation
+     
+     ### Usage Example: ###
+     ````swift
+     guard let myQueryStr: String = try? QueryEncoder().encode(query) else {
+         print("Failed to encode query to String")
+         return
+     }
+     ````
+     */
     public func encode<T: Encodable>(_ value: T) throws -> String {
         let dict: [String : String] = try encode(value)
         let desc: String = dict.map { key, value in "\(key)=\(value)" }
@@ -46,9 +83,19 @@ public class QueryEncoder: Coder, Encoder {
         return "?" + String(desc.dropFirst())
     }
 
-    /// Encodes an Encodable object to a URLQueryItem array
-    ///
-    /// - Parameter _ value: The Encodable object to encode to its [URLQueryItem] representation
+    /**
+     Encodes an Encodable object to a URLQueryItem array.
+     
+     - Parameter _ value: The Encodable object to encode to its [URLQueryItem] representation
+     
+     ### Usage Example: ###
+     ````swift
+     guard let myQuery2 = try? QueryDecoder(dictionary: myQueryDict).decode(T.self) else {
+         print("Failed to decode query to MyQuery object")
+         return
+     }
+     ````
+     */
     public func encode<T: Encodable>(_ value: T) throws -> [URLQueryItem] {
         let dict: [String : String] = try encode(value)
         return dict.reduce([URLQueryItem]()) { array, element in
@@ -58,9 +105,19 @@ public class QueryEncoder: Coder, Encoder {
         }
     }
 
-    /// Encodes an Encodable object to a String -> String dictionary
-    ///
-    /// - Parameter _ value: The Encodable object to encode to its [String: String] representation
+    /**
+     Encodes an Encodable object to a String -> String dictionary.
+     
+     - Parameter _ value: The Encodable object to encode to its [String: String] representation
+     
+     ### Usage Example: ###
+     ````swift
+     guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
+         print("Failed to encode query to [String: String]")
+         return
+     }
+     ````
+     */
     public func encode<T: Encodable>(_ value: T) throws -> [String : String] {
         let fieldName = Coder.getFieldName(from: codingPath)
 
@@ -166,14 +223,38 @@ public class QueryEncoder: Coder, Encoder {
         return self.dictionary
     }
 
+    /**
+     Returns a keyed decencodingoding container based on the key type.
+     
+     ### Usage Example: ###
+     ````swift
+     encoder.container(keyedBy: keyType)
+     ````
+     */
     public func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key : CodingKey {
         return KeyedEncodingContainer(KeyedContainer<Key>(encoder: self))
     }
 
+    /**
+     Returns an unkeyed encoding container.
+     
+     ### Usage Example: ###
+     ````swift
+     encoder.unkeyedContainer()
+     ````
+     */
     public func unkeyedContainer() -> UnkeyedEncodingContainer {
         return UnkeyedContanier(encoder: self)
     }
-
+    
+    /**
+     Returns an single value encoding container based on the key type.
+     
+     ### Usage Example: ###
+     ````swift
+     encoder.singleValueContainer()
+     ````
+     */
     public func singleValueContainer() -> SingleValueEncodingContainer {
         return UnkeyedContanier(encoder: self)
     }

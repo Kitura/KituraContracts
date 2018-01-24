@@ -1,19 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/shihab.mehboob1@ibm.com/Documents/newnewcon/KituraContracts/Sources/KituraContracts/CodableQuery/QueryDecoder.swift",
-      "line": 28,
-      "symbol": "QueryDecoder.dictionary",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/shihab.mehboob1@ibm.com/Documents/newnewcon/KituraContracts/Sources/KituraContracts/CodableQuery/QueryDecoder.swift",
-      "line": 30,
-      "symbol": "QueryDecoder.init(dictionary:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/shihab.mehboob1@ibm.com/Documents/newnewcon/KituraContracts"
 }
