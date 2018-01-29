@@ -36,9 +36,6 @@
  */
 public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
     public typealias RawValue = Int
-    public enum Format {
-        case json
-    }
 
     // MARK: Creating a RequestError from a numeric code
 
@@ -61,6 +58,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.bodyData = { format in
             switch format {
                 case .json: return try JSONEncoder().encode(body)
+                default: throw UnsupportedBodyFormatError(format)
             }
         }
     }
@@ -97,17 +95,17 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     ///             (for example: `Format.json`)
     /// - returns the `Data` object or `nil` if `body` is `nil`
     /// - throws an `EncodingError` if the encoding fails
-    public private(set) var bodyData: ((Format) throws -> Data)? = nil
+    public private(set) var bodyData: ((BodyFormat) throws -> Data)? = nil
 
     // MARK: Comparing RequestErrors
 
     /// Returns a Boolean value indicating whether the value of the first argument is less than that of the second argument.
-    public static func <(lhs: RequestError, rhs: RequestError) -> Bool {
+    public static func < (lhs: RequestError, rhs: RequestError) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 
     /// Indicates whether two URLs are the same.
-    public static func ==(lhs: RequestError, rhs: RequestError) -> Bool {
+    public static func == (lhs: RequestError, rhs: RequestError) -> Bool {
         return (lhs.rawValue == rhs.rawValue && lhs.reason == rhs.reason)
     }
 

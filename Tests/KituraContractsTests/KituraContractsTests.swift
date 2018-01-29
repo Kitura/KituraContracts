@@ -105,8 +105,8 @@ class KituraContractsTests: XCTestCase {
         XCTAssertNotNil(error.body)
         XCTAssertNotNil(error.body as? Status)
         XCTAssertNotNil(error.bodyData)
-        if let bodyData = error.bodyData {
-            XCTAssertEqual(try? bodyData(.json), try! JSONEncoder().encode(Status(value: .BROKEN)))
+        if let bodyData = try? error.bodyData?(.json) {
+            XCTAssertEqual(bodyData, try JSONEncoder().encode(Status(value: .BROKEN)))
         }
 
         // Test we can use switch statement on error instances
