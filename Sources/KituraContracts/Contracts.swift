@@ -90,7 +90,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      ````
      - Note: The code accessing this property is expected to know the
              concrete type of this object and downcast, handling any
-             failures do to type-mismatch appropriately.
+             failures appropriately.
      */
     public private(set) var body: Codable? = nil
 
