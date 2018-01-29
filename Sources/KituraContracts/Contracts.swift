@@ -51,6 +51,8 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.reason = reason
     }
 
+    /// Creates an error respresenting the given base error and with a custom
+    /// response body
     public init<Body: Codable>(_ base: RequestError, body: Body) {
         self.rawValue = base.rawValue
         self.reason = base.reason
