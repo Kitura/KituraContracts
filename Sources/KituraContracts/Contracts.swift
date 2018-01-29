@@ -100,8 +100,9 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
      ### Usage Example: ###
      ```
-     if let errorbodyData = error.bodyData {
+     if let errorBodyData = error.bodyData {
          let data = try errorBodyData(.json)
+         ...
      }
      ```
      - parameter `BodyFormat` describes the format that should be used
