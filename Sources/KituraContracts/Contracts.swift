@@ -51,7 +51,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.reason = reason
     }
 
-    /// Creates an error respresenting the given base error and with a custom
+    /// Creates an error respresenting the given base error, with a custom
     /// response body
     public init<Body: Codable>(_ base: RequestError, body: Body) {
         self.rawValue = base.rawValue
@@ -76,7 +76,8 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     public let reason: String
 
     /**
-     A type-erased Codable object describing the error
+     A (type-erased) Codable object representing the custom response body
+     for this error
 
      ### Usage Example: ###
      ````
