@@ -73,28 +73,41 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     /// A human-readable description of the error code.
     public let reason: String
 
-    /// A type-erased Codable object describing the error
-    ///
-    /// Usage Example:
-    /// ```
-    ///     if let errorBody = error.body as? MyCodableObject {
-    ///         // Access full error information encoded in errorBody
-    ///     } else {
-    ///         // Handle unexpected type in error / fallback to less
-    ///         // specific error handling based only on error number
-    ///     }
-    /// ```
-    /// - Note: The code accessing this property is expected to know the
-    ///         concrete type of this object and downcast, handling any
-    ///         failures do to type-mismatch appropriately.
+    /**
+     A type-erased Codable object describing the error
+
+     ### Usage Example: ###
+     ````
+     if let errorBody = error.body as? MyCodableObject {
+         // Access full error information encoded in errorBody
+     } else {
+         // Handle unexpected type in error / fallback to less
+         // specific error handling based only on error number
+     }
+     ````
+     - Note: The code accessing this property is expected to know the
+             concrete type of this object and downcast, handling any
+             failures do to type-mismatch appropriately.
+     */
     public private(set) var body: Codable? = nil
 
-    /// A closure that encodes the `body` into a `Data` object in the
-    /// requested format
-    /// - parameter `Format` describes the format that should be used
-    ///             (for example: `Format.json`)
-    /// - returns the `Data` object or `nil` if `body` is `nil`
-    /// - throws an `EncodingError` if the encoding fails
+    /**
+     A closure that encodes the `body` into a `Data` object in the
+     requested format
+
+     ### Usage Example: ###
+     ```
+     if let errorbodyData = error.bodyData {
+         let data = try errorBodyData(.json)
+     }
+     ```
+     - parameter `BodyFormat` describes the format that should be used
+                 (for example: `BodyFormat.json`)
+     - returns the `Data` object or `nil` if `body` is `nil`
+     - throws an `EncodingError` if the encoding fails
+     - throws an `UnsupportedBodyFormatError` if the provided `BodyFormat`
+              is not supported
+     */
     public private(set) var bodyData: ((BodyFormat) throws -> Data)? = nil
 
     // MARK: Comparing RequestErrors
