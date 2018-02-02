@@ -157,8 +157,8 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
          // Handle failure to decode
      }
      ```
-     - parameter `BodyFormat` describes the format that should be used
-                 (for example: `BodyFormat.json`)
+     - parameter the type of the value to decode from the body data
+                 (for example: `MyCodableType.self`)
      - returns the `Codable` object or `nil` if there is no body or if the
                error was not initialized with `init(_:bodyData:format:)`
      - throws a `DecodingError` if decoding fails
