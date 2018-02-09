@@ -29,12 +29,14 @@ class KituraContractsTests: XCTestCase {
         ("testRequestErrorCreatedWithCustomHTTPCodeHasExpectedErrorCodeAndReason", testRequestErrorCreatedWithCustomHTTPCodeHasExpectedErrorCodeAndReason),
         ("testRequestErrorCreatedWithCustomRawCodeHasExpectedErrorCodeAndReason", testRequestErrorCreatedWithCustomRawCodeHasExpectedErrorCodeAndReason),
         ("testRequestErrorWithBodyHasExpectedErrorCodeAndReason", testRequestErrorWithBodyHasExpectedErrorCodeAndReason),
-        ("testRequestErrorWithBodyReturnsCorrectBodyData", testRequestErrorWithBodyReturnsCorrectBodyData),
-        ("testRequestErrorWithoutBodyReturnsNilBodyData", testRequestErrorWithoutBodyReturnsNilBodyData),
-        ("testRequestErrorWithoutBodyOrBodyDataReturnsNilBodyData", testRequestErrorWithoutBodyOrBodyDataReturnsNilBodyData),
+        ("testRequestErrorWithBodyHasExpectedBody", testRequestErrorWithBodyHasExpectedBody),
+        ("testRequestErrorWithBodyReturnsCorrectBodyDataWhenEncoded", testRequestErrorWithBodyReturnsCorrectBodyDataWhenEncoded),
+        ("testRequestErrorWithoutCodableBodyReturnsNilWhenEncoded", testRequestErrorWithoutCodableBodyReturnsNilWhenEncoded),
+        ("testRequestErrorWithoutBodyOrBodyDataReturnsNilWhenEncoded", testRequestErrorWithoutBodyOrBodyDataReturnsNilWhenEncoded),
         ("testRequestErrorWithBodyThatCannotBeEncodedThrowsEncodingError", testRequestErrorWithBodyThatCannotBeEncodedThrowsEncodingError),
         ("testRequestErrorWithBodyDataHasExpectedErrorCodeAndReason", testRequestErrorWithBodyDataHasExpectedErrorCodeAndReason),
-        ("testRequestErrorWithBodyDataReturnsCorrectBodyObject", testRequestErrorWithBodyDataReturnsCorrectBodyObject),
+        ("testRequestErrorWithBodyDataHasExpectedBody", testRequestErrorWithBodyDataHasExpectedBody),
+        ("testRequestErrorWithBodyDataReturnsCorrectBodyObjectWhenDecoded", testRequestErrorWithBodyDataReturnsCorrectBodyObjectWhenDecoded),
         ("testRequestErrorWithoutBodyDataReturnsNilBody", testRequestErrorWithoutBodyDataReturnsNilBody),
         ("testRequestErrorWithoutBodyOrBodyDataReturnsNilBody", testRequestErrorWithoutBodyOrBodyDataReturnsNilBody),
         ("testRequestErrorWithBodyDataThatCannotBeDecodedThrowsDecodingError", testRequestErrorWithBodyDataThatCannotBeDecodedThrowsDecodingError),
@@ -144,41 +146,57 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(baseError.description, error.description)
     }
 
+    // Test construction of error instances with Codable body
+    func testRequestErrorWithBodyHasExpectedBody() {
+        let error = RequestError(.serviceUnavailable, body: Status(value: .BROKEN))
+        XCTAssertNotNil(error.body)
+        if let body = error.body {
+            switch body {
+                case .codable(_ as Status):
+                    break
+                case let .codable(value):
+                    XCTFail("body value incorrect: expected .codable(Status), got: .codable(\(type(of: value)))")
+                case .data:
+                    XCTFail("body value incorrect: expected .codable, got: .data")
+            }
+        }
+    }
+
     // Test error instances created with Codable body can be encoded to Data
-    func testRequestErrorWithBodyReturnsCorrectBodyData() throws {
+    func testRequestErrorWithBodyReturnsCorrectBodyDataWhenEncoded() throws {
         let customErrorBody = Status(value: .BROKEN)
         let customErrorBodyData = try JSONEncoder().encode(customErrorBody)
         let error = RequestError(.serviceUnavailable, body: customErrorBody)
-        XCTAssertNoThrow(try error.bodyData(.json))
+        XCTAssertNoThrow(try error.encodeBody(.json))
 
-        let bodyData = (try? error.bodyData(.json)) ?? nil
+        let bodyData = (try? error.encodeBody(.json)) ?? nil
         XCTAssertNotNil(bodyData)
         if let bodyData = bodyData {
             XCTAssertEqual(customErrorBodyData, bodyData)
         }
     }
 
-    // Test that bodyData() returns nil if RequestError not created with
+    // Test that encodeBody() returns nil if RequestError not created with
     // `RequestError.init(_:body)`
-    func testRequestErrorWithoutBodyReturnsNilBodyData() throws {
+    func testRequestErrorWithoutCodableBodyReturnsNilWhenEncoded() throws {
         let customErrorBodyData = try JSONEncoder().encode(Status(value: .BROKEN))
         let error = try RequestError(.serviceUnavailable, bodyData: customErrorBodyData, format: .json)
-        XCTAssertNoThrow(try error.bodyData(.json))
-        XCTAssertNil(try error.bodyData(.json))
+        XCTAssertNoThrow(try error.encodeBody(.json))
+        XCTAssertNil(try error.encodeBody(.json))
     }
 
-    // Test that bodyData() returns nil if error has no body
-    func testRequestErrorWithoutBodyOrBodyDataReturnsNilBodyData() {
+    // Test that encodeBody() returns nil if error has no body
+    func testRequestErrorWithoutBodyOrBodyDataReturnsNilWhenEncoded() {
         let error = RequestError.serviceUnavailable
-        XCTAssertNil(try error.bodyData(.json))
+        XCTAssertNil(try error.encodeBody(.json))
     }
 
-    // Check bodyData() throws EncodingError if Codable object cannot be
+    // Check encodeBody() throws EncodingError if Codable object cannot be
     // encoded
     func testRequestErrorWithBodyThatCannotBeEncodedThrowsEncodingError() throws {
         let bogusBody = "Codable but not encodable to JSON"
         let error = RequestError(.serviceUnavailable, body: bogusBody)
-        XCTAssertThrowsError(try error.bodyData(.json)) { XCTAssert($0 is EncodingError, "threw error: \($0)") }
+        XCTAssertThrowsError(try error.encodeBody(.json)) { XCTAssert($0 is EncodingError, "threw error: \($0)") }
     }
 
     // Test construction of error instances with body data
@@ -192,39 +210,66 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(baseError.description, error.description)
     }
 
+    // Test construction of error instances with Codable body
+    func testRequestErrorWithBodyDataHasExpectedBody() throws {
+        let customErrorBodyData = try JSONEncoder().encode(Status(value: .BROKEN))
+        let error = try RequestError(.serviceUnavailable, bodyData: customErrorBodyData, format: .json)
+        XCTAssertNotNil(error.body)
+        if let body = error.body {
+            switch body {
+                case .data(_, .json):
+                    break
+                case let .data(_, format):
+                    XCTFail("body value incorrect: expected .data(_, BodyFormat.json), got: .data(_, \(format))")
+                case .codable:
+                    XCTFail("body value incorrect: expected .data, got: .codable")
+            }
+        }
+    }
+
     // Test error instances created with body data can be decoded to a Codable
     // object (with the correct type)
-    func testRequestErrorWithBodyDataReturnsCorrectBodyObject() throws {
+    func testRequestErrorWithBodyDataReturnsCorrectBodyObjectWhenDecoded() throws {
         let customErrorBody = Status(value: .BROKEN)
         let customErrorBodyData = try JSONEncoder().encode(customErrorBody)
         let error = try RequestError(.serviceUnavailable, bodyData: customErrorBodyData, format: .json)
-        XCTAssertNoThrow(try error.bodyAs(Status.self))
+        XCTAssertNoThrow(try error.decodeBody(Status.self))
 
-        let body = (try? error.bodyAs(Status.self)) ?? nil
+        let body = (try? error.decodeBody(Status.self)) ?? nil
         XCTAssertNotNil(body)
         if let errorBody = body {
             XCTAssertEqual(errorBody, customErrorBody)
         }
+
+        XCTAssertNotNil(error.bodyAs(Status.self))
+        XCTAssertEqual(error.bodyAs(Status.self), customErrorBody)
     }
 
-    // Test that bodyAs() returns nil if RequestError not created with
-    // `RequestError.init(_:bodyData:format:)`
+    // Test that decodeBody() and bodyAs() returns nil if RequestError 
+    // not created with `RequestError.init(_:bodyData:format:)`
     func testRequestErrorWithoutBodyDataReturnsNilBody() {
         let error = RequestError(.serviceUnavailable, body: Status(value: .BROKEN))
-        XCTAssertNoThrow(try error.bodyAs(Status.self))
-        XCTAssertNil(try error.bodyAs(Status.self))
+        XCTAssertNoThrow(try error.decodeBody(Status.self))
+        XCTAssertNil(try error.decodeBody(Status.self))
+
+        XCTAssertNil(error.bodyAs(Status.self))
     }
 
-    // Test that bodyAs() returns nil if error has no body
+    // Test that body, decodeBody)() and bodyAs() return nil if error
+    // has no body
     func testRequestErrorWithoutBodyOrBodyDataReturnsNilBody() {
         let error = RequestError.serviceUnavailable
-        XCTAssertNil(try error.bodyAs(Status.self))
+        XCTAssertNil(error.body)
+        XCTAssertNil(try error.decodeBody(Status.self))
+        XCTAssertNil(error.bodyAs(Status.self))
     }
 
-    // Test that bodyAs() throws DecodingError if Data cannot be decoded
+    // Test that decodeBody() throws DecodingError, and bodyAs() returns
+    // nil, if Data cannot be decoded
     func testRequestErrorWithBodyDataThatCannotBeDecodedThrowsDecodingError() throws {
         let bogusData = "{\"bogus\": \"because schema doesn't match Status object\"}".data(using: .utf8)!
         let error = try RequestError(.serviceUnavailable, bodyData: bogusData, format: .json)
-        XCTAssertThrowsError(try error.bodyAs(Status.self)) { XCTAssert($0 is DecodingError, "threw error: \($0)") }
+        XCTAssertThrowsError(try error.decodeBody(Status.self)) { XCTAssert($0 is DecodingError, "threw error: \($0)") }
+        XCTAssertNil(error.bodyAs(Status.self))
     }
 }
