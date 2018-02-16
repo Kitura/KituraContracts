@@ -127,7 +127,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     private var bodyDataEncoder: ((BodyFormat) throws -> Data)? = nil
 
     /**
-     Returns the error body encoded into bytes in a given format (eg: JSON).
+     Returns the Codable error body encoded into bytes in a given format (eg: JSON).
 
      This function should be used if the RequestError was created using
      `init(_:body:)`, otherwise it will return `nil`.
@@ -160,7 +160,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     }
 
     /**
-     Returns the error body as the requested `Codable` type.
+     Returns the Data error body as the requested `Codable` type.
 
      This function should be used if the RequestError was created using
      `init(_:bodyData:format:)`, otherwise it will return `nil`.
@@ -197,7 +197,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     }
 
     /**
-     Returns the error body as the requested `Codable` type.
+     Returns the Data error body as the requested `Codable` type.
 
      This function should be used if the RequestError was created using
      `init(_:bodyData:format:)`, otherwise it will return `nil`.
