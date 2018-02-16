@@ -74,6 +74,9 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /// Creates an error respresenting the given base error, with a custom
     /// response body given as Data and a BodyFormat
+    ///
+    /// - throws an `UnsupportedBodyFormatError` if the provided `BodyFormat`
+    ///          is not supported
     public init(_ base: RequestError, bodyData: Data, format: BodyFormat) throws {
         self.rawValue = base.rawValue
         self.reason = base.reason
