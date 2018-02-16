@@ -21,7 +21,7 @@ import Foundation
 
  This struct is intended to be "enum-like" and values should be
  accessed via the public static stored properties.
- 
+
  - Note: An enum was not used here because currently enums are
          always exhaustive. This means adding a case to an enum
          is a breaking change. In order to keep such additions
