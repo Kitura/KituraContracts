@@ -471,7 +471,7 @@ public enum IdentifierError: Error {
 /**
  An identifier for an entity with a string representation.
  */
-public protocol Identifier {
+public protocol Identifier: Hashable {
     /// Creates an identifier from a given string value.
     /// - Throws: An IdentifierError.invalidValue if the given string is not a valid representation.
     init(value: String) throws
