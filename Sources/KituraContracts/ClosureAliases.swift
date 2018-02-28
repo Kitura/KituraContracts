@@ -32,7 +32,7 @@ The `CodableArrayResultClosure` is used by other `Codable` aliases when respondi
 public typealias CodableArrayResultClosure<O: Codable> = ([O]?, RequestError?) -> Void
 
 /**
- The `IdentifierCodableArrayResultClosure` is used by other `Codable` aliases when responding with an array of tuples containing an identifiers and a Codable object, or an `RequestError`.
+ The `IdentifierCodableArrayResultClosure` is used by other `Codable` aliases when responding with an array of tuples containing an identifier and a Codable object, or an `RequestError`.
  */
 public typealias IdentifierCodableArrayResultClosure<Id: Identifier, O: Codable> = ([(Id, O)]?, RequestError?) -> Void
 
@@ -208,7 +208,7 @@ router.get("/users") { (respondWith: ([User]?, RequestError?) -> Void) in
 public typealias CodableArrayClosure<O: Codable> = (@escaping CodableArrayResultClosure<O>) -> Void
 
 /**
- The `IdentifierCodableArrayClosure` is for use in cases where you'd want to perform a series of actions then respond with an array of tuples containing an identifiers and a Codable object, or an `RequestError`, in the form of a `IdentifierCodableArrayResultClosure`.
+ The `IdentifierCodableArrayClosure` is for use in cases where you'd want to perform a series of actions then respond with an array of tuples containing an identifier and a Codable object, or an `RequestError`, in the form of a `IdentifierCodableArrayResultClosure`.
  
  ### Usage Example: ###
  ````
