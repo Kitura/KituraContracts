@@ -25,9 +25,9 @@ public class QueryDecoder: Coder, Decoder {
 
     public var userInfo: [CodingUserInfoKey : Any] = [:]
 
-    public var dictionary: [String : String]
+    public var dictionary: [String : [String]]
 
-    public init(dictionary: [String : String]) {
+    public init(dictionary: [String : [String]]) {
         self.dictionary = dictionary
         super.init()
     }
@@ -37,7 +37,7 @@ public class QueryDecoder: Coder, Decoder {
     /// - Parameter _ value: The Decodable object to decode the dictionary into
     public func decode<T: Decodable>(_ type: T.Type) throws -> T {
         let fieldName = Coder.getFieldName(from: codingPath)
-        let fieldValue = dictionary[fieldName]
+        let fieldValue = dictionary[fieldName]?.first
         Log.verbose("fieldName: \(fieldName), fieldValue: \(String(describing: fieldValue))")
 
         switch type {
