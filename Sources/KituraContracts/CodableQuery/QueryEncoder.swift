@@ -65,7 +65,7 @@ public class QueryEncoder: Coder, Encoder {
     /**
      Encodes an Encodable object to a query parameter string.
      
-     - Parameter _ value: The Encodable object to encode to its String representation
+     - Parameter value: The Encodable object to encode to its String representation.
      
      ### Usage Example: ###
      ````swift
@@ -86,7 +86,7 @@ public class QueryEncoder: Coder, Encoder {
     /**
      Encodes an Encodable object to a URLQueryItem array.
      
-     - Parameter _ value: The Encodable object to encode to its [URLQueryItem] representation
+     - Parameter value: The Encodable object to encode to its [URLQueryItem] representation.
      
      ### Usage Example: ###
      ````swift
@@ -108,7 +108,7 @@ public class QueryEncoder: Coder, Encoder {
     /**
      Encodes an Encodable object to a String -> String dictionary.
      
-     - Parameter _ value: The Encodable object to encode to its [String: String] representation
+     - Parameter value: The Encodable object to encode to its [String: String] representation.
      
      ### Usage Example: ###
      ````swift
@@ -224,7 +224,7 @@ public class QueryEncoder: Coder, Encoder {
     }
 
     /**
-     Returns a keyed decencodingoding container based on the key type.
+     Returns a keyed encoding container based on the key type.
      
      ### Usage Example: ###
      ````swift

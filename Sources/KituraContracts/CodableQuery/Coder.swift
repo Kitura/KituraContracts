@@ -17,7 +17,7 @@
 import Foundation
 
 /**
- Class defining shared resources for the QueryDecoder and QueryEncoder.
+ Class defining shared resources for the [QueryDecoder](https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift) and [QueryEncoder](https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift).
  
  ### Usage Example: ###
  ````swift
@@ -27,17 +27,17 @@ import Foundation
 public class Coder {
 
     /**
-     The designated DateFormatter used for encoding and decoding query parameters.
+     The designated [DateFormatter](https://developer.apple.com/documentation/foundation/dateformatter) used for encoding and decoding query parameters.
      
      ### Usage Example: ###
      ````swift
-     let date = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
+     let date = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")
      ````
      */
     public let dateFormatter: DateFormatter
 
     /**
-    Initializes a Coder instance with a Date Formatter
+    Initializes a `Coder` instance with a `DateFormatter`
     using the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
      */
     public init() {
@@ -47,7 +47,7 @@ public class Coder {
     }
 
     /**
-     Helper method to extract the field name from a CodingKey array.
+     Helper method to extract the field name from a `CodingKey` array.
      
      ### Usage Example: ###
      ````swift

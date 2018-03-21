@@ -18,10 +18,13 @@
 
 /**
  An error representing a failed request.
- This definition is intended to be used by both the client side (eg KituraKit)
- and server side (eg Kitura) of the request (typically a HTTP REST request).
+ This definition is intended to be used by both the client side (e.g. KituraKit)
+ and server side (e.g. Kitura) of the request (typically a HTTP REST request).
 
  ### Usage Example: ###
+ 
+ In this example, the `RequestError` is used in a Kitura server Codable route handler to
+ indicate the request has failed because the requested record was not found.
  ````swift
  router.get("/users") { (id: Int, respondWith: (User?, RequestError?) -> Void) in
      ...
@@ -29,8 +32,6 @@
      ...
  }
  ````
- In this example the `RequestError` is used in a Kitura server Codable route handler to
- indicate the request has failed because the requested record was not found.
  */
 public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
     public typealias RawValue = Int
@@ -49,7 +50,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.reason = reason
     }
 
-    // MARK: Accessing information about the error.
+    // MARK: Accessing information about the error
 
     /// An error code representing the type of error that has occurred.
     /// The range of error codes from 100 up to 599 are reserved for HTTP status codes.
@@ -99,7 +100,7 @@ public extension RequestError {
     }
 
     /// Creates an error representing a HTTP status code.
-    /// - Parameter httpCode: a standard HTTP status code
+    /// - Parameter httpCode: A standard HTTP status code.
     public init(httpCode: Int) {
         self.rawValue = httpCode
         self.reason = RequestError.reason(forHTTPCode: httpCode)
@@ -297,8 +298,9 @@ public protocol QueryParams: Codable {}
  An error representing a failure to create an `Identifier`.
 
 ### Usage Example: ###
+ 
+ An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
  ````swift
- // An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
  throw IdentifierError.invalidValue
  ````
  */

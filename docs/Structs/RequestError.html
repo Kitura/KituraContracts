@@ -157,9 +157,12 @@
                 </div>
               </div>
             <p>An error representing a failed request.
-This definition is intended to be used by both the client side (eg KituraKit)
-and server side (eg Kitura) of the request (typically a HTTP REST request).</p>
+This definition is intended to be used by both the client side (e.g. KituraKit)
+and server side (e.g. Kitura) of the request (typically a HTTP REST request).</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
+
+<p>In this example, the <code>RequestError</code> is used in a Kitura server Codable route handler to
+indicate the request has failed because the requested record was not found.</p>
 <pre class="highlight swift"><code><span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
     <span class="o">...</span>
     <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="kt">RequestError</span><span class="o">.</span><span class="n">notFound</span><span class="p">)</span>
@@ -167,14 +170,41 @@ and server side (eg Kitura) of the request (typically a HTTP REST request).</p>
 <span class="p">}</span>
 </code></pre>
 
-<p>In this example the <code>RequestError</code> is used in a Kitura server Codable route handler to
-indicate the request has failed because the requested record was not found.</p>
-
           </div>
         </section>
 
         <section class="section">
           <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s16RawRepresentableP0A5Value"></a>
+                    <a name="//apple_ref/swift/Alias/RawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s16RawRepresentableP0A5Value">RawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RawValue</span> <span class="o">=</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Creating%20a%20RequestError%20from%20a%20numeric%20code"></a>
@@ -242,19 +272,19 @@ indicate the request has failed because the requested record was not found.</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Accessing%20information%20about%20the%20error."></a>
-                <a name="//apple_ref/swift/Section/Accessing information about the error." class="dashAnchor"></a>
-                <a href="#/Accessing%20information%20about%20the%20error.">
-                  <h3 class="section-name">Accessing information about the error.</h3>
+                <a name="/Accessing%20information%20about%20the%20error"></a>
+                <a name="//apple_ref/swift/Section/Accessing information about the error" class="dashAnchor"></a>
+                <a href="#/Accessing%20information%20about%20the%20error">
+                  <h3 class="section-name">Accessing information about the error</h3>
                 </a>
               </div>
               <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8rawValueSiv"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8rawValueSivp"></a>
                     <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8rawValueSiv">rawValue</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8rawValueSivp">rawValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -281,9 +311,9 @@ Custom error codes may be used and must not conflict with this range.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV6reasonSSv"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV6reasonSSvp"></a>
                     <a name="//apple_ref/swift/Property/reason" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6reasonSSv">reason</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6reasonSSvp">reason</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -384,9 +414,9 @@ Custom error codes may be used and must not conflict with this range.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV11descriptionSSv"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV11descriptionSSvp"></a>
                     <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11descriptionSSv">description</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11descriptionSSvp">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -411,9 +441,9 @@ Custom error codes may be used and must not conflict with this range.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV9hashValueSiv"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV9hashValueSivp"></a>
                     <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9hashValueSiv">hashValue</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9hashValueSivp">hashValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -442,9 +472,9 @@ Custom error codes may be used and must not conflict with this range.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8httpCodeSiv"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8httpCodeSivp"></a>
                     <a name="//apple_ref/swift/Property/httpCode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8httpCodeSiv">httpCode</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8httpCodeSivp">httpCode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -505,7 +535,7 @@ of error.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>a standard HTTP status code</p>
+                                  <p>A standard HTTP status code.</p>
                                 </div>
                               </td>
                             </tr>
@@ -529,9 +559,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8continueACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8continueACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/continue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8continueACvZ">continue</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8continueACvpZ">continue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -556,9 +586,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV18switchingProtocolsACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV18switchingProtocolsACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/switchingProtocols" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18switchingProtocolsACvZ">switchingProtocols</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18switchingProtocolsACvpZ">switchingProtocols</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -583,9 +613,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV2okACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV2okACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/ok" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV2okACvZ">ok</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV2okACvpZ">ok</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -610,9 +640,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV7createdACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV7createdACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/created" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV7createdACvZ">created</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV7createdACvpZ">created</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -637,9 +667,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8acceptedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8acceptedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/accepted" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8acceptedACvZ">accepted</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8acceptedACvpZ">accepted</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -664,9 +694,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV27nonAuthoritativeInformationACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV27nonAuthoritativeInformationACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/nonAuthoritativeInformation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27nonAuthoritativeInformationACvZ">nonAuthoritativeInformation</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27nonAuthoritativeInformationACvpZ">nonAuthoritativeInformation</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -691,9 +721,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV9noContentACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV9noContentACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/noContent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9noContentACvZ">noContent</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9noContentACvpZ">noContent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -718,9 +748,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV12resetContentACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV12resetContentACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/resetContent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12resetContentACvZ">resetContent</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12resetContentACvpZ">resetContent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -745,9 +775,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV14partialContentACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV14partialContentACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/partialContent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14partialContentACvZ">partialContent</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14partialContentACvpZ">partialContent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -772,9 +802,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV11multiStatusACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV11multiStatusACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/multiStatus" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11multiStatusACvZ">multiStatus</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11multiStatusACvpZ">multiStatus</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -799,9 +829,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV15alreadyReportedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV15alreadyReportedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/alreadyReported" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15alreadyReportedACvZ">alreadyReported</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15alreadyReportedACvpZ">alreadyReported</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -826,9 +856,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV6imUsedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV6imUsedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/imUsed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6imUsedACvZ">imUsed</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6imUsedACvpZ">imUsed</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -853,9 +883,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV15multipleChoicesACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV15multipleChoicesACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/multipleChoices" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15multipleChoicesACvZ">multipleChoices</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15multipleChoicesACvpZ">multipleChoices</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -880,9 +910,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV16movedPermanentlyACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV16movedPermanentlyACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/movedPermanently" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16movedPermanentlyACvZ">movedPermanently</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16movedPermanentlyACvpZ">movedPermanently</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -907,9 +937,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV5foundACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV5foundACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/found" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV5foundACvZ">found</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV5foundACvpZ">found</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -934,9 +964,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8seeOtherACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8seeOtherACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/seeOther" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8seeOtherACvZ">seeOther</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8seeOtherACvpZ">seeOther</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -961,9 +991,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV11notModifiedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV11notModifiedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/notModified" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11notModifiedACvZ">notModified</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11notModifiedACvpZ">notModified</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -988,9 +1018,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8useProxyACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8useProxyACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/useProxy" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8useProxyACvZ">useProxy</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8useProxyACvpZ">useProxy</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1015,9 +1045,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV17temporaryRedirectACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV17temporaryRedirectACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/temporaryRedirect" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17temporaryRedirectACvZ">temporaryRedirect</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17temporaryRedirectACvpZ">temporaryRedirect</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1042,9 +1072,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV17permanentRedirectACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV17permanentRedirectACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/permanentRedirect" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17permanentRedirectACvZ">permanentRedirect</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17permanentRedirectACvpZ">permanentRedirect</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1069,9 +1099,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV03badC0ACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV03badC0ACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/badRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV03badC0ACvZ">badRequest</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV03badC0ACvpZ">badRequest</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1096,9 +1126,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV12unauthorizedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV12unauthorizedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/unauthorized" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12unauthorizedACvZ">unauthorized</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12unauthorizedACvpZ">unauthorized</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1123,9 +1153,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV15paymentRequiredACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV15paymentRequiredACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/paymentRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15paymentRequiredACvZ">paymentRequired</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15paymentRequiredACvpZ">paymentRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1150,9 +1180,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV9forbiddenACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV9forbiddenACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/forbidden" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9forbiddenACvZ">forbidden</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV9forbiddenACvpZ">forbidden</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1177,9 +1207,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8notFoundACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8notFoundACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/notFound" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8notFoundACvZ">notFound</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8notFoundACvpZ">notFound</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1204,9 +1234,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV16methodNotAllowedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV16methodNotAllowedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/methodNotAllowed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16methodNotAllowedACvZ">methodNotAllowed</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16methodNotAllowedACvpZ">methodNotAllowed</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1231,9 +1261,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV13notAcceptableACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV13notAcceptableACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/notAcceptable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV13notAcceptableACvZ">notAcceptable</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV13notAcceptableACvpZ">notAcceptable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1258,9 +1288,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV27proxyAuthenticationRequiredACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV27proxyAuthenticationRequiredACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/proxyAuthenticationRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27proxyAuthenticationRequiredACvZ">proxyAuthenticationRequired</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27proxyAuthenticationRequiredACvpZ">proxyAuthenticationRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1285,9 +1315,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV14requestTimeoutACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV14requestTimeoutACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/requestTimeout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14requestTimeoutACvZ">requestTimeout</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14requestTimeoutACvpZ">requestTimeout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1312,9 +1342,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV8conflictACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8conflictACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/conflict" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8conflictACvZ">conflict</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8conflictACvpZ">conflict</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1339,9 +1369,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV4goneACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV4goneACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/gone" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV4goneACvZ">gone</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV4goneACvpZ">gone</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1366,9 +1396,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV14lengthRequiredACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV14lengthRequiredACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/lengthRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14lengthRequiredACvZ">lengthRequired</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14lengthRequiredACvpZ">lengthRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1393,9 +1423,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV18preconditionFailedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV18preconditionFailedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/preconditionFailed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18preconditionFailedACvZ">preconditionFailed</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18preconditionFailedACvpZ">preconditionFailed</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1420,9 +1450,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV15payloadTooLargeACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV15payloadTooLargeACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/payloadTooLarge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15payloadTooLargeACvZ">payloadTooLarge</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15payloadTooLargeACvpZ">payloadTooLarge</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1447,9 +1477,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV10uriTooLongACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV10uriTooLongACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/uriTooLong" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10uriTooLongACvZ">uriTooLong</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10uriTooLongACvpZ">uriTooLong</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1474,9 +1504,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV20unsupportedMediaTypeACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV20unsupportedMediaTypeACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/unsupportedMediaType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV20unsupportedMediaTypeACvZ">unsupportedMediaType</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV20unsupportedMediaTypeACvpZ">unsupportedMediaType</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1501,9 +1531,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV19rangeNotSatisfiableACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV19rangeNotSatisfiableACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/rangeNotSatisfiable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19rangeNotSatisfiableACvZ">rangeNotSatisfiable</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19rangeNotSatisfiableACvpZ">rangeNotSatisfiable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1528,9 +1558,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV17expectationFailedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV17expectationFailedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/expectationFailed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17expectationFailedACvZ">expectationFailed</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV17expectationFailedACvpZ">expectationFailed</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1555,9 +1585,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV011misdirectedC0ACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV011misdirectedC0ACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/misdirectedRequest" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV011misdirectedC0ACvZ">misdirectedRequest</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV011misdirectedC0ACvpZ">misdirectedRequest</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1582,9 +1612,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV19unprocessableEntityACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV19unprocessableEntityACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/unprocessableEntity" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19unprocessableEntityACvZ">unprocessableEntity</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19unprocessableEntityACvpZ">unprocessableEntity</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1609,9 +1639,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV6lockedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV6lockedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/locked" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6lockedACvZ">locked</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6lockedACvpZ">locked</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1636,9 +1666,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV16failedDependencyACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV16failedDependencyACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/failedDependency" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16failedDependencyACvZ">failedDependency</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV16failedDependencyACvpZ">failedDependency</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1663,9 +1693,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV15upgradeRequiredACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV15upgradeRequiredACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/upgradeRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15upgradeRequiredACvZ">upgradeRequired</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15upgradeRequiredACvpZ">upgradeRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1690,9 +1720,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV20preconditionRequiredACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV20preconditionRequiredACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/preconditionRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV20preconditionRequiredACvZ">preconditionRequired</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV20preconditionRequiredACvpZ">preconditionRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1717,9 +1747,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV15tooManyRequestsACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV15tooManyRequestsACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/tooManyRequests" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15tooManyRequestsACvZ">tooManyRequests</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV15tooManyRequestsACvpZ">tooManyRequests</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1744,9 +1774,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV27requestHeaderFieldsTooLargeACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV27requestHeaderFieldsTooLargeACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/requestHeaderFieldsTooLarge" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27requestHeaderFieldsTooLargeACvZ">requestHeaderFieldsTooLarge</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV27requestHeaderFieldsTooLargeACvpZ">requestHeaderFieldsTooLarge</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1771,9 +1801,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV26unavailableForLegalReasonsACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV26unavailableForLegalReasonsACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/unavailableForLegalReasons" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV26unavailableForLegalReasonsACvZ">unavailableForLegalReasons</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV26unavailableForLegalReasonsACvpZ">unavailableForLegalReasons</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1798,9 +1828,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV014internalServerD0ACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV014internalServerD0ACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/internalServerError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV014internalServerD0ACvZ">internalServerError</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV014internalServerD0ACvpZ">internalServerError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1825,9 +1855,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV14notImplementedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV14notImplementedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/notImplemented" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14notImplementedACvZ">notImplemented</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14notImplementedACvpZ">notImplemented</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1852,9 +1882,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV10badGatewayACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV10badGatewayACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/badGateway" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10badGatewayACvZ">badGateway</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10badGatewayACvpZ">badGateway</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1879,9 +1909,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV18serviceUnavailableACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV18serviceUnavailableACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/serviceUnavailable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18serviceUnavailableACvZ">serviceUnavailable</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV18serviceUnavailableACvpZ">serviceUnavailable</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1906,9 +1936,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV14gatewayTimeoutACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV14gatewayTimeoutACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/gatewayTimeout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14gatewayTimeoutACvZ">gatewayTimeout</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV14gatewayTimeoutACvpZ">gatewayTimeout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1933,9 +1963,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV23httpVersionNotSupportedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV23httpVersionNotSupportedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/httpVersionNotSupported" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV23httpVersionNotSupportedACvZ">httpVersionNotSupported</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV23httpVersionNotSupportedACvpZ">httpVersionNotSupported</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1960,9 +1990,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV21variantAlsoNegotiatesACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV21variantAlsoNegotiatesACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/variantAlsoNegotiates" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV21variantAlsoNegotiatesACvZ">variantAlsoNegotiates</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV21variantAlsoNegotiatesACvpZ">variantAlsoNegotiates</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1987,9 +2017,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV19insufficientStorageACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV19insufficientStorageACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/insufficientStorage" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19insufficientStorageACvZ">insufficientStorage</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV19insufficientStorageACvpZ">insufficientStorage</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2014,9 +2044,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV12loopDetectedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV12loopDetectedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/loopDetected" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12loopDetectedACvZ">loopDetected</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV12loopDetectedACvpZ">loopDetected</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2041,9 +2071,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV11notExtendedACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV11notExtendedACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/notExtended" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11notExtendedACvZ">notExtended</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV11notExtendedACvpZ">notExtended</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2068,9 +2098,9 @@ of error.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12RequestErrorV29networkAuthenticationRequiredACvZ"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV29networkAuthenticationRequiredACvpZ"></a>
                     <a name="//apple_ref/swift/Variable/networkAuthenticationRequired" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12RequestErrorV29networkAuthenticationRequiredACvZ">networkAuthenticationRequired</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV29networkAuthenticationRequiredACvpZ">networkAuthenticationRequired</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -2100,7 +2130,7 @@ of error.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-24)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-03-21)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

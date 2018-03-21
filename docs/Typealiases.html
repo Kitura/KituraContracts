@@ -178,9 +178,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>ResultClosure</code> is used by other <code>Codable</code> aliases when responding with only a <code><a href="Structs/RequestError.html">RequestError</a></code> is needed</p>
-<pre class="highlight swift"><code> <span class="c1">// The following two typealias make use of ResultClosure</span>
- <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">NonCodableClosure</span> <span class="o">=</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="kt">ResultClosure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+                        <p>The <code>ResultClosure</code> is used by other <code>Codable</code> aliases when responding with only a <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
+
+<p>The following two typealiases make use of <code>ResultClosure</code>:</p>
+<pre class="highlight swift"><code> <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">NonCodableClosure</span> <span class="o">=</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="kt">ResultClosure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 
  <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IdentifierNonCodableClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Id</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">ResultClosure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 </code></pre>
@@ -210,9 +211,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>CodableResultClosure</code> is used by other <code>Codable</code> aliases when responding with an object which conforms to Codable or an <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
-<pre class="highlight swift"><code> <span class="c1">// The following two typealias make use of CodableResultClosure</span>
- <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IdentifierCodableClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">,</span> <span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Id</span><span class="p">,</span> <span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">CodableResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+                        <p>The <code>CodableResultClosure</code> is used by other <code>Codable</code> aliases when responding with an object which conforms to <code>Codable</code>, or a <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
+
+<p>The following two typealias make use of <code>CodableResultClosure</code>:</p>
+<pre class="highlight swift"><code> <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IdentifierCodableClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">,</span> <span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Id</span><span class="p">,</span> <span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">CodableResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 
  <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CodableClosure</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">CodableResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 </code></pre>
@@ -242,9 +244,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>CodableArrayResultClosure</code> is used by other <code>Codable</code> aliases when responding with an array of objects which conform to Codable or an <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
-<pre class="highlight swift"><code> <span class="c1">// The following typealias makes use of CodableArrayResultClosure</span>
- <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CodableArrayClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="kt">CodableArrayResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+                        <p>The <code>CodableArrayResultClosure</code> is used by other <code>Codable</code> aliases when responding with an array of objects which conform to <code>Codable</code>, or a <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
+
+<p>The following typealias makes use of <code>CodableArrayResultClosure</code>:</p>
+<pre class="highlight swift"><code> <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CodableArrayClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="kt">CodableArrayResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 </code></pre>
 
                       </div>
@@ -272,9 +275,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>IdentifierCodableResultClosure</code> is used by other <code>Codable</code> aliases when responding with an object which conforms to Codable and/or an obect that conforms to <code><a href="Protocols/Identifier.html">Identifier</a></code> or <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
-<pre class="highlight swift"><code> <span class="c1">// The following typealias makes use of IdentifierCodableResultClosure</span>
- <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CodableIdentifierClosure</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">IdentifierCodableResultClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+                        <p>The <code>IdentifierCodableResultClosure</code> is used by other <code>Codable</code> aliases when responding with an object which conforms to <code>Codable</code>, and/or an object that conforms to <code><a href="Protocols/Identifier.html">Identifier</a></code> or <code><a href="Structs/RequestError.html">RequestError</a></code> is needed.</p>
+
+<p>The following typealias makes use of <code>IdentifierCodableResultClosure</code>:</p>
+<pre class="highlight swift"><code> <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">CodableIdentifierClosure</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">IdentifierCodableResultClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 </code></pre>
 
                       </div>
@@ -302,7 +306,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code>IdentifierCodableClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions utilising an object conforming to <code><a href="Protocols/Identifier.html">Identifier</a></code> and an object conforming to &lsquo;Codable&rsquo;, then respond with an object which conforms to <code>Codable</code>, which is of the same type as the object passed as a parameter, or responding with a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a></code></p>
+                        <p>Used when you want to perform a series of actions which use an object conforming to <code><a href="Protocols/Identifier.html">Identifier</a></code> and an object conforming to <code>Codable</code>. After which you want to respond with an object which conforms to <code>Codable</code>, which is of the same type as the object passed as a parameter, or respond with a <code><a href="Structs/RequestError.html">RequestError</a></code>.</p>
+
+<p>By default <code>Int</code> has conformity to <code><a href="Protocols/Identifier.html">Identifier</a></code>. If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error and passing nil for the <code>User?</code>. If no errors occured and you have a <code>User</code>, you can just respond with the user by passing nil as the <code>RequestError?</code> value.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
   <span class="o">...</span>
@@ -310,20 +316,14 @@
 
 <span class="k">var</span> <span class="nv">userStore</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">User</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
 
-<span class="c1">// By default `Int` has conformity to Identifier</span>
 <span class="n">router</span><span class="o">.</span><span class="nf">put</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
-
   <span class="k">guard</span> <span class="k">let</span> <span class="nv">oldUser</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">userStore</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="k">else</span> <span class="p">{</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">notFound</span><span class="p">)</span>
-
       <span class="k">return</span>
   <span class="p">}</span>
 
   <span class="o">...</span>
 
-  <span class="c1">// If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.</span>
   <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
@@ -354,6 +354,8 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>CodableClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions utilising an object conforming to <code><a href="Protocols/Identifier.html">Identifier</a></code> then respond with an object which conforms to <code>Codable</code>, which is of the same type as the object passed as a parameter, or responding with a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a></code></p>
+
+<p>If no errors occured and you have a User you can just respond with the user by passing nil as the <code>RequestError?</code> value. If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error and passing nil for the <code>User?</code>.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
   <span class="o">...</span>
@@ -362,16 +364,10 @@
 <span class="n">router</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
   <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-
       <span class="o">...</span>
-      <span class="c1">// If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
-
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
       <span class="o">...</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -403,6 +399,8 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>CodableIdentifierClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions utilising an object conforming to <code><a href="Protocols/Identifier.html">Identifier</a></code>, then respond with an object which conforms to <code>Codable</code>, and/or an object conforming to <code><a href="Protocols/Identifier.html">Identifier</a></code> or responding with a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts30IdentifierCodableResultClosurea">IdentifierCodableResultClosure</a></code></p>
+
+<p>If no errors occured and you have a <code>User</code> and the corresponding identifier, you can just respond with the identifier and user, and pass nil as the <code>RequestError?</code> value. If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error and passing nil for <code>Int?</code> and nil for <code>User?</code>.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
   <span class="o">...</span>
@@ -411,16 +409,10 @@
 <span class="n">router</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">?,</span> <span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
   <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-
       <span class="o">...</span>
-      <span class="c1">// If no errors occured and you have a User and the corresponding identifier, you can just respond with the identifier and user, and pass nil as the 'RequestError?' value.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
-
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
       <span class="o">...</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for Int? and nil for User?.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -452,20 +444,16 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>NonCodableClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions then respond with a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts13ResultClosurea">ResultClosure</a></code></p>
+
+<p>If no errors occured you can just pass nil as the <code>RequestError?</code> value. If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="n">router</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
     <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-
       <span class="o">...</span>
-      <span class="c1">// If no errors occured you can just pass nil as the 'RequestError?' value.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
-
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
-
       <span class="o">...</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -497,21 +485,16 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>IdentifierNonCodableClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions utilising an object which conforms to <code><a href="Protocols/Identifier.html">Identifier</a></code> then respond with a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts13ResultClosurea">ResultClosure</a></code></p>
+
+<p>If no errors occured you can just pass nil as the <code>RequestError?</code> value. If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="n">router</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
   <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-
       <span class="o">...</span>
-
-      <span class="c1">// If no errors occured you can just pass nil as the 'RequestError?' value.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
-
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
       <span class="o">...</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -543,21 +526,16 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>CodableArrayClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions then respond with an array of objects conforming to <code>Codable</code> or a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts25CodableArrayResultClosurea">CodableArrayResultClosure</a></code></p>
+
+<p>If no errors occured and you have an array of <code>Users</code> you can just respond with the users by passing nil as the <code>RequestError?</code> value. If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error and passing nil for the <code>[User]?</code>.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">respondWith</span><span class="p">:</span> <span class="p">([</span><span class="kt">User</span><span class="p">]?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
   <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-
       <span class="o">...</span>
-
-      <span class="c1">// If no errors occured and you have an array of Users you can just respond with the users by passing nil as the 'RequestError?' value.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
-
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
       <span class="o">...</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the [User]?.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -626,6 +604,8 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The <code>IdentifierSimpleCodableClosure</code> is for use in cases where you&rsquo;d want to perform a series of actions utilising an object which conforms to <code><a href="Protocols/Identifier.html">Identifier</a></code> then respond with an object conforming to <code>Codable</code> or a <code><a href="Structs/RequestError.html">RequestError</a></code> in the form of a <code><a href="Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a></code>.</p>
+
+<p>If there has been an error you can use the <code>respondWith</code> call to respond with an appropiate error and passing nil for the <code>User?</code>. If no errors occured and you have a <code>User</code> you can just respond with the user by passing nil as the <code>RequestError?</code> value.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
   <span class="o">...</span>
@@ -636,16 +616,10 @@
 <span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
   <span class="k">guard</span> <span class="k">let</span> <span class="nv">user</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">userStore</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="k">else</span> <span class="p">{</span>
-
-      <span class="c1">// If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.</span>
       <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">notFound</span><span class="p">)</span>
-
       <span class="k">return</span>
   <span class="p">}</span>
-
   <span class="o">...</span>
-
-  <span class="c1">// If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.</span>
   <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
@@ -670,7 +644,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-24)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-03-21)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

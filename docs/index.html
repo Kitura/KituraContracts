@@ -162,7 +162,7 @@
 <a href="https://travis-ci.org/IBM-Swift/KituraContracts">
 <img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master">
 </a>
-<img src="https://img.shields.io/badge/os-Mac%20OS%20X-green.svg?style=flat" alt="Mac OS X">
+<img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
 <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
 <a href="http://swift-at-ibm-slack.mybluemix.net/">
@@ -173,30 +173,40 @@
 <h2 id='summary' class='heading'>Summary</h2>
 
 <p>KituraContracts is a library containing type definitions shared by client (e.g. <a href="https://ibm-swift.github.io/KituraKit/">KituraKit</a>) and server (e.g. <a href="https://ibm-swift.github.io/Kitura">Kitura</a>) code. These shared type definitions include <a href="https://ibm-swift.github.io/KituraContracts/Typealiases.html">Codable Closure Aliases</a>, <a href="https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html">RequestError</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryEncoder.html">QueryEncoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryDecoder.html">QueryDecoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/Coder.html">Coder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv">Identifier Protocol</a> and <a href="https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS">Extensions</a> to String and Int, which add conformity to the Identifier protocol.</p>
-<h3 id='example-code-sample' class='heading'>Example Code Sample:</h3>
+<h2 id='getting-started' class='heading'>Getting Started</h2>
+
+<p>To use KituraContracts, import the package:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">KituraContracts</span>
+</code></pre>
+
+<p>KituraContracts represents the types and protocols that are common to both the <a href="https://github.com/IBM-Swift/Kitura">Kitura</a> server and <a href="https://github.com/IBM-Swift/KituraKit">KituraKit</a> client side library. If using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.</p>
+<h2 id='example' class='heading'>Example</h2>
+
+<p>This example, shows how to use a shared type definition for <code><a href="Structs/RequestError.html">RequestError</a></code> within a router POST method on <code>users</code>. If no errors occurred and you have a <code>User</code> you can respond with the user and pass nil as the <code>RequestError?</code> value. If there has been an error you can respond with an appropriate error and pass nil for the <code>User?</code>.</p>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
-<span class="o">...</span>
+    <span class="o">...</span>
 <span class="p">}</span>
 
 <span class="n">router</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
     <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
         <span class="o">...</span>
-        <span class="c1">//If no errors occured and you have a User you can just respond with the user by passing nil as the 'RequestError?' value.</span>
         <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="o">...</span>
-        <span class="c1">//If there has been an error you can use the respondWith call to respond with an appropiate error and passing nil for the User?.</span>
         <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 <h2 id='swift-version' class='heading'>Swift version</h2>
 
-<p>The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.3 binary. Please note that this is the default version of Swift that is include in <a href="https://developer.apple.com/xcode/">Xcode 9.2</a>.</p>
+<p>The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.3 binary. Please note that this is the default version of Swift that is included in <a href="https://developer.apple.com/xcode/">Xcode 9.2</a>.</p>
 <h2 id='community' class='heading'>Community</h2>
 
 <p>We love to talk server-side Swift and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/LICENSE">LICENSE</a></p>
 
           </div>
         </section>
@@ -205,7 +215,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-24)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-03-21)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
