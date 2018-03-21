@@ -51,6 +51,16 @@ In this example, the `CodableArrayResultClosure` is used by other `Codable` alia
 public typealias CodableArrayResultClosure<O: Codable> = ([O]?, RequestError?) -> Void
 
 /**
+In this example, the `IdentifierCodableArrayResultClosure` is used by other `Codable` aliases when responding with an array of tuples containing an identifier and a `Codable` object, or an `RequestError`.
+ 
+ The following typealias makes use of `IdentifierCodableResultClosure`:
+ ````swift
+ public typealias CodableIdentifierClosure<I: Codable, Id: Identifier, O: Codable> = (I, @escaping IdentifierCodableResultClosure<[Id, O]?>) -> Void
+ ````
+*/
+public typealias IdentifierCodableArrayResultClosure<Id: Identifier, O: Codable> = ([(Id, O)]?, RequestError?) -> Void
+
+/**
 In this example, the `IdentifierCodableResultClosure` is used by other `Codable` aliases when responding with an object which conforms to `Codable`, and/or an object that conforms to `Identifier` or `RequestError` is needed.
  
  The following typealias makes use of `IdentifierCodableResultClosure`:
@@ -193,6 +203,25 @@ router.get("/users") { (respondWith: ([User]?, RequestError?) -> Void) in
 ````
 */
 public typealias CodableArrayClosure<O: Codable> = (@escaping CodableArrayResultClosure<O>) -> Void
+
+/**
+ The `IdentifierCodableArrayClosure` is for use in cases where you'd want to perform a series of actions then respond with an array of tuples containing an identifier and a Codable object, or an `RequestError`, in the form of a `IdentifierCodableArrayResultClosure`.
+ 
+If no errors occured and you have an array of `Users` you can just respond with the users by passing nil as the `RequestError?` value. If there has been an error you can use the `respondWith` call to respond with an appropiate error and passing nil for the `[User]?`.
+ ### Usage Example: ###
+ ````
+ router.get("/users") { (respondWith: ([(Int, User)]?, RequestError?) -> Void) in
+     if databaseConnectionIsOk {
+         ...
+        respondWith([(Int, User)], nil)
+     } else {
+         ...
+         respondWith(nil, .internalServerError)
+     }
+ }
+ ````
+ */
+public typealias IdentifierCodableArrayClosure<Id: Identifier, O: Codable> = (@escaping IdentifierCodableArrayResultClosure<Id, O>) -> Void
 
 /**
 In this example, the `SimpleCodableClosure` is for use in cases where you'd want to perform a series of actions then respond with an object conforming to `Codable` or a `RequestError` in the form of a `CodableResultClosure`.

@@ -55,6 +55,10 @@ public class Coder {
      ````
      */
     public static func getFieldName(from codingPath: [CodingKey]) -> String {
-        return codingPath.flatMap({"\($0)"}).joined(separator: ".")
+        #if swift(>=4.1)
+            return codingPath.compactMap({$0.stringValue}).joined(separator: ".")
+        #else
+            return codingPath.flatMap({$0.stringValue}).joined(separator: ".")
+        #endif
     }
 }
