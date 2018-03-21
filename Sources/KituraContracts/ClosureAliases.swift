@@ -53,7 +53,7 @@ public typealias CodableArrayResultClosure<O: Codable> = ([O]?, RequestError?) -
 /**
 In this example, the `IdentifierCodableArrayResultClosure` is used by other `Codable` aliases when responding with an array of tuples containing an identifier and a `Codable` object, or an `RequestError`.
  
- The following typealias makes use of `IdentifierCodableResultClosure`:
+ The following typealias makes use of `IdentifierCodableArrayResultClosure`:
  ````swift
  public typealias CodableIdentifierClosure<I: Codable, Id: Identifier, O: Codable> = (I, @escaping IdentifierCodableResultClosure<[Id, O]?>) -> Void
  ````
@@ -61,7 +61,7 @@ In this example, the `IdentifierCodableArrayResultClosure` is used by other `Cod
 public typealias IdentifierCodableArrayResultClosure<Id: Identifier, O: Codable> = ([(Id, O)]?, RequestError?) -> Void
 
 /**
-In this example, the `IdentifierCodableResultClosure` is used by other `Codable` aliases when responding with an object which conforms to `Codable`, and/or an object that conforms to `Identifier` or `RequestError` is needed.
+This example is used when you want to perform a series of actions which use an object conforming to `Identifier` and an object conforming to `Codable`. After which you want to respond with an object which conforms to `Codable`, which is of the same type as the object passed as a parameter, or respond with a `RequestError`.
  
  The following typealias makes use of `IdentifierCodableResultClosure`:
  ````swift
@@ -71,10 +71,9 @@ In this example, the `IdentifierCodableResultClosure` is used by other `Codable`
 public typealias IdentifierCodableResultClosure<Id: Identifier, O: Codable> = (Id?, O?, RequestError?) -> Void
 
 /**
-This example is used when you want to perform a series of actions which use an object conforming to `Identifier` and an object conforming to `Codable`. After which you want to respond with an object which conforms to `Codable`, which is of the same type as the object passed as a parameter, or respond with a `RequestError`.
-
+In this example, the `IdentifierCodableClosure` is for use in cases where you'd want to perform a series of actions utilising an object conforming to `Identifier` and an object conforming to 'Codable', then respond with an object which conforms to `Codable`, which is of the same type as the object passed as a parameter, or responding with a `RequestError` in the form of a `CodableResultClosure`
+ 
 By default `Int` has conformity to `Identifier`. If there has been an error you can use the `respondWith` call to respond with an appropiate error and passing nil for the `User?`. If no errors occured and you have a `User`, you can just respond with the user by passing nil as the `RequestError?` value.
-### Usage Example: ###
 ````swift
 public struct User: Codable {
   ...
