@@ -1,6 +1,47 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
+      "line": 40,
+      "symbol": "BodyFormat.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
+      "line": 50,
+      "symbol": "BodyFormat.json",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
+      "line": 58,
+      "symbol": "UnsupportedBodyFormatError.bodyFormat",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
+      "line": 59,
+      "symbol": "UnsupportedBodyFormatError.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "line": 44,
+      "symbol": "RequestError.ErrorBody.codable",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "line": 45,
+      "symbol": "RequestError.ErrorBody.data",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts"
 }

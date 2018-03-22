@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           KituraContracts Docs
         </a>
-         (100% documented)
+         (96% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -98,7 +98,16 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RequestError/ErrorBody.html">– ErrorBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a>
               </li>
             </ul>
           </li>
@@ -119,6 +128,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts29IdentifierCodableArrayClosurea">IdentifierCodableArrayClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts35IdentifierCodableArrayResultClosurea">IdentifierCodableArrayResultClosure</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts24IdentifierCodableClosurea">IdentifierCodableClosure</a>
@@ -203,6 +218,35 @@ indicate the request has failed because the requested record was not found.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV0D4BodyO"></a>
+                    <a name="//apple_ref/swift/Enum/ErrorBody" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV0D4BodyO">ErrorBody</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Representation of the error body
+May be a type-erased Codable object or a Data (in a particular format)</p>
+
+                        <a href="../Structs/RequestError/ErrorBody.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorBody</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -262,6 +306,68 @@ indicate the request has failed because the requested record was not found.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorVA2C_x4bodytcs9DecodableRzs9EncodableRzlufc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:body:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorVA2C_x4bodytcs9DecodableRzs9EncodableRzlufc">init(_:body:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an error representing the given base error, with a custom
+response body given as a Codable</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Body</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:bodyData:format:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an error respresenting the given base error, with a custom
+response body given as Data and a BodyFormat</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    throws an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+     is not supported
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">bodyData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -335,6 +441,214 @@ Custom error codes may be used and must not conflict with this range.</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV4bodyAC0D4BodyOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV4bodyAC0D4BodyOSgvp">body</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Representation of the error body-an object representing further
+details of the failure.</p>
+
+<p>The value may be:</p>
+
+<ul>
+<li><code>nil</code> if there is no body</li>
+<li>a (type-erased) Codable object if the error was initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_x4bodytcs9DecodableRzs9EncodableRzlufc">init(_:body:)</a></code></li>
+<li>bytes of data and a signifier of the format in which they are stored (eg: JSON)
+if the error was initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code></li>
+</ul>
+<h3 id='usage-example' class='heading'>Usage example:</h3>
+<pre class="highlight plaintext"><code>if let errorBody = error.body {
+    switch error.body {
+       case let .codable(body): ... // body is Codable
+       case let .data(bytes, format): ... // bytes is Data, format is BodyFormat
+    }
+}
+</code></pre>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    If you need a Codable representation and the body is data, you
+    can call the <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorV6bodyAsxSgxms9DecodableRzs9EncodableRzlF">bodyAs(_:)</a></code> function to get the converted value
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt"><a href="../Structs/RequestError/ErrorBody.html">ErrorBody</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV10encodeBody10Foundation4DataVSgAA0F6FormatVKF"></a>
+                    <a name="//apple_ref/swift/Method/encodeBody(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10encodeBody10Foundation4DataVSgAA0F6FormatVKF">encodeBody(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the Codable error body encoded into bytes in a given format (eg: JSON).</p>
+
+<p>This function should be used if the RequestError was created using
+<code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_x4bodytcs9DecodableRzs9EncodableRzlufc">init(_:body:)</a></code>, otherwise it will return <code>nil</code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This function is primarily intended for use by the Kitura Router so
+    that it can encode and send a custom error body returned from
+    a codable route.
+
+</div>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight plaintext"><code>do {
+    if let errorBodyData = try error.encodeBody(.json) {
+        ...
+    }
+} catch {
+    // Handle the failure to encode
+}
+</code></pre>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    throws an <code>EncodingError</code> if the encoding fails
+
+</div>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    throws an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+     is not supported
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encodeBody</span><span class="p">(</span><span class="n">_</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV10decodeBodyxSgxmKs9DecodableRzs9EncodableRzlF"></a>
+                    <a name="//apple_ref/swift/Method/decodeBody(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV10decodeBodyxSgxmKs9DecodableRzs9EncodableRzlF">decodeBody(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the Data error body as the requested <code>Codable</code> type.</p>
+
+<p>This function should be used if the RequestError was created using
+<code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code>, otherwise it will return <code>nil</code>.</p>
+
+<p>This function throws; you can use <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorV6bodyAsxSgxms9DecodableRzs9EncodableRzlF">bodyAs(_:)</a></code> instead if you want
+to ignore DecodingErrors.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This function is primarily intended for use by users of KituraKit
+    or similar client-side code that needs to convert a custom error
+    response from <code>Data</code> to a <code>Codable</code> type.
+
+</div>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight plaintext"><code>do {
+    if let errorBody = try error.decodeBody(MyCodableType.self) {
+        ...
+    }
+} catch {
+    // Handle failure to decode
+}
+</code></pre>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    throws a <code>DecodingError</code> if decoding fails
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">decodeBody</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts12RequestErrorV6bodyAsxSgxms9DecodableRzs9EncodableRzlF"></a>
+                    <a name="//apple_ref/swift/Method/bodyAs(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV6bodyAsxSgxms9DecodableRzs9EncodableRzlF">bodyAs(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the Data error body as the requested <code>Codable</code> type.</p>
+
+<p>This function should be used if the RequestError was created using
+<code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code>, otherwise it will return <code>nil</code>.</p>
+
+<p>This function ignores DecodingErrors, and returns <code>nil</code> if decoding
+fails. If you want DecodingErrors to be thrown, use <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorV10decodeBodyxSgxmKs9DecodableRzs9EncodableRzlF">decodeBody(_:)</a></code>
+instead.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This function is primarily intended for use by users of KituraKit
+    or similar client-side code that needs to convert a custom error
+    response from <code>Data</code> to a <code>Codable</code> type.
+
+</div>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight plaintext"><code>if let errorBody = error.bodyAs(MyCodableType.self) {
+    ...
+}
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bodyAs</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -366,7 +680,7 @@ Custom error codes may be used and must not conflict with this range.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -393,7 +707,7 @@ Custom error codes may be used and must not conflict with this range.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>

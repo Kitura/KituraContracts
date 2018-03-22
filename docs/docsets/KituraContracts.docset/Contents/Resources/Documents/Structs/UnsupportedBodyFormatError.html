@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Identifier Protocol Reference</title>
+    <title>UnsupportedBodyFormatError Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/Identifier" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/UnsupportedBodyFormatError" class="dashAnchor"></a>
 
-    <a title="Identifier Protocol Reference"></a>
+    <a title="UnsupportedBodyFormatError Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Identifier Protocol Reference
+      UnsupportedBodyFormatError Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -164,18 +164,15 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Identifier</h1>
+            <h1>UnsupportedBodyFormatError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Identifier</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">UnsupportedBodyFormatError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                 </div>
               </div>
-            <p>An identifier for an entity with a string representation.</p>
-<h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight swift"><code> <span class="c1">// Used in the Id field.</span>
- <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IdentifierCodableClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">,</span> <span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Id</span><span class="p">,</span> <span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">CodableResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-</code></pre>
+            <p>An error that may be thrown when a particular instance of <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+is not supported</p>
 
           </div>
         </section>
@@ -187,9 +184,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts10IdentifierPxSS5value_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts10IdentifierPxSS5value_tKcfc">init(value:)</a>
+                    <a name="/s:15KituraContracts26UnsupportedBodyFormatErrorV04bodyE0AA0dE0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/bodyFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts26UnsupportedBodyFormatErrorV04bodyE0AA0dE0Vvp">bodyFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,19 +194,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an identifier from a given string value.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    An IdentifierError.invalidValue if the given string is not a valid representation.
-
-</div>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="nf">init</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">UnsupportedBodyFormatError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
@@ -219,9 +211,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts10IdentifierP5valueSSvp"></a>
-                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts10IdentifierP5valueSSvp">value</a>
+                    <a name="/s:15KituraContracts26UnsupportedBodyFormatErrorVAcA0dE0Vcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts26UnsupportedBodyFormatErrorVAcA0dE0Vcfc">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,14 +221,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The string representation of the identifier.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">UnsupportedBodyFormatError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>

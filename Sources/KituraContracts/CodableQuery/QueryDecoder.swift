@@ -18,11 +18,13 @@ import Foundation
 import LoggerAPI
 
 /**
- Query Parameter Decoder decodes a `[String: String]` object to a Decodable object instance.
+ Query Parameter Decoder decodes a `[String: String]` object to a `Decodable` object instance. The decode function takes the `Decodable` object as a parameter to decode the dictionary into.
  
  ### Usage Example: ###
  ````swift
- guard let query = try? QueryDecoder(dictionary: expectedDict).decode(MyQuery.self) else {
+ let dict = ["intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
+ 
+ guard let query = try? QueryDecoder(dictionary: dict).decode(MyQuery.self) else {
      print("Failed to decode query to MyQuery Object")
      return
  }
@@ -61,7 +63,7 @@ public class QueryDecoder: Coder, Decoder {
     /**
      Decodes a String -> String mapping to its Decodable object representation.
      
-     - Parameter _ value: The Decodable object to decode the dictionary into
+     - Parameter value: The Decodable object to decode the dictionary into
      
      ### Usage Example: ###
      ````swift

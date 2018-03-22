@@ -24,8 +24,13 @@ extension CharacterSet {
 /**
  Query Parameter Encoder.
  
+ Encodes an `Encodable` object to a query parameter string, a `URLQueryItemArray`, or to a `String -> String` dictionary. The encode function takes the `Encodable` object to encode as the parameter.
+ 
  ### Usage Example: ###
  ````swift
+ let date = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")
+ let query = MyQuery(intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: date, optionalDateField: date, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
+ 
  guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
      print("Failed to encode query to [String: String]")
      return
@@ -55,7 +60,7 @@ public class QueryEncoder: Coder, Encoder {
     public var userInfo: [CodingUserInfoKey: Any] = [:]
 
     /**
-     Initializer with a dictionary.
+     Initializer for the dictionary, which initializes an empty `[String: String]` dictionary.
      */
     public override init() {
         self.dictionary = [:]
