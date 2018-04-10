@@ -9,8 +9,8 @@
     <a href="http://www.kitura.io/">
     <img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
     </a>
-    <a href="https://travis-ci.org/IBM-Swift/<REPO_NAME_HERE>">
-    <img src="https://travis-ci.org/IBM-Swift/<REPO_NAME_HERE>.svg?branch=master" alt="Build Status - Master">
+    <a href="https://travis-ci.org/IBM-Swift/KituraContracts">
+    <img src="https://travis-ci.org/IBM-Swift/KituraContract.svg?branch=master" alt="Build Status - Master">
     </a>
     <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
     <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
@@ -21,10 +21,6 @@
 </p>
 
 # KituraContracts
-
-[![Build Status - Master](https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master)](https://travis-ci.org/IBM-Swift/KituraContracts)
-![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
-![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
 
 ## Summary
 
