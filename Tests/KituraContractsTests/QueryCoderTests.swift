@@ -89,6 +89,7 @@ class QueryCoderTests: XCTestCase {
     }
 
     struct MyQuery: QueryParams, Equatable {
+        public let boolField: Bool
         public let intField: Int
         public let optionalIntField: Int?
         public let stringField: String
@@ -98,7 +99,8 @@ class QueryCoderTests: XCTestCase {
         public let nested: Nested
 
         public static func ==(lhs: MyQuery, rhs: MyQuery) -> Bool {
-            return  lhs.intField == rhs.intField &&
+            return  lhs.boolField == rhs.boolField &&
+                    lhs.intField == rhs.intField &&
                     lhs.optionalIntField == rhs.optionalIntField &&
                     lhs.stringField == rhs.stringField &&
                     lhs.intArray == rhs.intArray &&
@@ -117,14 +119,15 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
-    let expectedDict = ["intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
+    let expectedDict = ["boolField": "true", "intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
-    let expectedQueryString = "?intArray=1%2C2%2C3&stringField=a%20string&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
+    let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=a%20string&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
 
     let expectedDateStr = "2017-10-31T16:15:56+0000"
     let expectedDate = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
 
-    let expectedMyQuery = MyQuery(intField: 23,
+    let expectedMyQuery = MyQuery(boolField: true,
+                                  intField: 23,
                                   optionalIntField: nil,
                                   stringField: "a string",
                                   intArray: [1, 2, 3],
@@ -144,7 +147,7 @@ class QueryCoderTests: XCTestCase {
 
     func testQueryEncoder() {
 
-        let query = MyQuery(intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
+        let query = MyQuery(boolField: true, intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
         let myInts = SimpleStruct(intField: 1)
 
@@ -166,6 +169,7 @@ class QueryCoderTests: XCTestCase {
         let queryItems = [ URLQueryItem(name: "intField", value: "1") ]
         XCTAssertEqual(queryItems, myURLQueryItems)
 
+        XCTAssertEqual(myQueryDict["boolField"], "true")
         XCTAssertEqual(myQueryDict["intField"], "-1")
         XCTAssertEqual(myQueryDict["optionalIntField"], "282")
         XCTAssertEqual(myQueryDict["stringField"], "a string")
@@ -189,6 +193,7 @@ class QueryCoderTests: XCTestCase {
         let myQueryStrSplit1: [String: String] = createDict(myQueryStr)
         let myQueryStrSplit2: [String: String] = createDict(expectedQueryString)
 
+        XCTAssertEqual(myQueryStrSplit1["boolField"], myQueryStrSplit2["boolField"])
         XCTAssertEqual(myQueryStrSplit1["intField"], myQueryStrSplit2["intField"])
         XCTAssertEqual(myQueryStrSplit1["optionalIntField"], myQueryStrSplit2["optionalIntField"])
         XCTAssertEqual(myQueryStrSplit1["stringField"], myQueryStrSplit2["stringField"])

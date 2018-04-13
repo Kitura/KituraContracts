@@ -41,6 +41,9 @@ public class QueryDecoder: Coder, Decoder {
         Log.verbose("fieldName: \(fieldName), fieldValue: \(String(describing: fieldValue))")
 
         switch type {
+        /// Bool
+        case is Bool.Type:
+            return try decodeType(fieldValue?.boolean, to: T.self)
         /// Ints
         case is Int.Type:
             return try decodeType(fieldValue?.int, to: T.self)
