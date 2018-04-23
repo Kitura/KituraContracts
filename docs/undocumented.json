@@ -16,14 +16,14 @@
     },
     {
       "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/Contracts.swift",
-      "line": 44,
+      "line": 51,
       "symbol": "RequestError.ErrorBody.codable",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/Contracts.swift",
-      "line": 45,
+      "line": 52,
       "symbol": "RequestError.ErrorBody.data",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"

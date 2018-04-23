@@ -195,9 +195,9 @@ indicate the request has failed because the requested record was not found.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s16RawRepresentableP0A5Value"></a>
+                    <a name="/s:15KituraContracts12RequestErrorV8RawValuea"></a>
                     <a name="//apple_ref/swift/Alias/RawValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s16RawRepresentableP0A5Value">RawValue</a>
+                    <a class="token" href="#/s:15KituraContracts12RequestErrorV8RawValuea">RawValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -205,7 +205,10 @@ indicate the request has failed because the requested record was not found.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>A typealias representing the type of error that has occurred.
+The range of error codes from 100 up to 599 are reserved for HTTP status codes.
+Custom error codes may be used and must not conflict with this range.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -231,8 +234,8 @@ indicate the request has failed because the requested record was not found.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Representation of the error body
-May be a type-erased Codable object or a Data (in a particular format)</p>
+                        <p>Representation of the error body.
+May be a type-erased Codable object or a Data (in a particular format).</p>
 
                         <a href="../Structs/RequestError/ErrorBody.html" class="slightly-smaller">See more</a>
                       </div>
@@ -282,6 +285,25 @@ May be a type-erased Codable object or a Data (in a particular format)</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An Int indicating an error code representing the type of error that has occurred.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -309,6 +331,37 @@ May be a type-erased Codable object or a Data (in a particular format)</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An Int indicating an error code representing the type of error that has occurred.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reason</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A human-readable description of the error code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -325,8 +378,8 @@ May be a type-erased Codable object or a Data (in a particular format)</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an error representing the given base error, with a custom
-response body given as a Codable</p>
+                        <p>Creates an error representing the given base error, with a custom.
+response body given as a Codable.</p>
 
                       </div>
                       <div class="declaration">
@@ -336,6 +389,37 @@ response body given as a Codable</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Body</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>base</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>RequestError</code> object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>body</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A representation of the error body-an object representing further details of the failure.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -353,12 +437,12 @@ response body given as a Codable</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an error respresenting the given base error, with a custom
-response body given as Data and a BodyFormat</p>
+                        <p>Creates an error respresenting the given base error, with a custom.
+response body given as Data and a BodyFormat.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    throws an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
-     is not supported
+    an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+     is not supported.
 
 </div>
 
@@ -370,6 +454,49 @@ response body given as Data and a BodyFormat</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">bodyData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>base</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>RequestError</code> object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bodyData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Data</code> object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>format</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code> object used to check whether it is legal JSON.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -466,17 +593,17 @@ details of the failure.</p>
 if the error was initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code></li>
 </ul>
 <h3 id='usage-example' class='heading'>Usage example:</h3>
-<pre class="highlight plaintext"><code>if let errorBody = error.body {
-    switch error.body {
-       case let .codable(body): ... // body is Codable
-       case let .data(bytes, format): ... // bytes is Data, format is BodyFormat
-    }
-}
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">errorBody</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">body</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="n">error</span><span class="o">.</span><span class="n">body</span> <span class="p">{</span>
+       <span class="k">case</span> <span class="kd">let</span> <span class="o">.</span><span class="nf">codable</span><span class="p">(</span><span class="n">body</span><span class="p">):</span> <span class="o">...</span> <span class="c1">// body is Codable</span>
+       <span class="k">case</span> <span class="kd">let</span> <span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">format</span><span class="p">):</span> <span class="o">...</span> <span class="c1">// bytes is Data, format is BodyFormat</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     If you need a Codable representation and the body is data, you
-    can call the <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorV6bodyAsxSgxms9DecodableRzs9EncodableRzlF">bodyAs(_:)</a></code> function to get the converted value
+    can call the <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorV6bodyAsxSgxms9DecodableRzs9EncodableRzlF">bodyAs(_:)</a></code> function to get the converted value.
 
 </div>
 
@@ -517,23 +644,23 @@ if the error was initialized with <code><a href="../Structs/RequestError.html#/s
 
 </div>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight plaintext"><code>do {
-    if let errorBodyData = try error.encodeBody(.json) {
-        ...
-    }
-} catch {
-    // Handle the failure to encode
-}
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">errorBodyData</span> <span class="o">=</span> <span class="k">try</span> <span class="n">error</span><span class="o">.</span><span class="nf">encodeBody</span><span class="p">(</span><span class="o">.</span><span class="n">json</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// Handle the failure to encode</span>
+<span class="p">}</span>
 </code></pre>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    throws an <code>EncodingError</code> if the encoding fails
+    an <code>EncodingError</code> if the encoding fails.
 
 </div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    throws an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
-     is not supported
+    an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+     is not supported.
 
 </div>
 
@@ -545,6 +672,31 @@ if the error was initialized with <code><a href="../Structs/RequestError.html#/s
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encodeBody</span><span class="p">(</span><span class="n">_</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>format</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Describes the format that should be used
+        (for example: <code><a href="../Structs/BodyFormat.html#/s:15KituraContracts10BodyFormatV4jsonACvpZ">BodyFormat.json</a></code>).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the <code>Data</code> object or <code>nil</code> if there is no body, or if the
+      error was not initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_x4bodytcs9DecodableRzs9EncodableRzlufc">init(_:body:)</a></code>.</p>
                       </div>
                     </section>
                   </div>
@@ -577,17 +729,17 @@ to ignore DecodingErrors.</p>
 
 </div>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight plaintext"><code>do {
-    if let errorBody = try error.decodeBody(MyCodableType.self) {
-        ...
-    }
-} catch {
-    // Handle failure to decode
-}
+<pre class="highlight swift"><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">errorBody</span> <span class="o">=</span> <span class="k">try</span> <span class="n">error</span><span class="o">.</span><span class="nf">decodeBody</span><span class="p">(</span><span class="kt">MyCodableType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// Handle failure to decode</span>
+<span class="p">}</span>
 </code></pre>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    throws a <code>DecodingError</code> if decoding fails
+    a <code>DecodingError</code> if decoding fails.
 
 </div>
 
@@ -599,6 +751,31 @@ to ignore DecodingErrors.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">decodeBody</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the value to decode from the body data
+        (for example: <code>MyCodableType.self</code>).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the <code>Codable</code> object or <code>nil</code> if there is no body or if the
+      error was not initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code>.</p>
                       </div>
                     </section>
                   </div>
@@ -632,9 +809,9 @@ instead.</p>
 
 </div>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight plaintext"><code>if let errorBody = error.bodyAs(MyCodableType.self) {
-    ...
-}
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">errorBody</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="nf">bodyAs</span><span class="p">(</span><span class="kt">MyCodableType</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
 </code></pre>
 
                       </div>
@@ -645,6 +822,32 @@ instead.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bodyAs</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The type of the value to decode from the body data
+        (for example: <code>MyCodableType.self</code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the <code>Codable</code> object or <code>nil</code> if there is no body, or if the
+      error was not initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code>, or
+      if decoding fails</p>
                       </div>
                     </section>
                   </div>

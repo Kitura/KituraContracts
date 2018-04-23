@@ -62,7 +62,7 @@ public struct BodyFormat: Equatable {
 
 /**
  An error that may be thrown when a particular instance of `BodyFormat`
- is not supported
+ is not supported.
  */
 public struct UnsupportedBodyFormatError: Error {
     public let bodyFormat: BodyFormat
