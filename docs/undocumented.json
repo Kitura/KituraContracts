@@ -2,28 +2,14 @@
   "warnings": [
     {
       "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
-      "line": 40,
-      "symbol": "BodyFormat.type",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
-      "line": 50,
-      "symbol": "BodyFormat.json",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
-      "line": 58,
+      "line": 68,
       "symbol": "UnsupportedBodyFormatError.bodyFormat",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts/Sources/KituraContracts/BodyFormat.swift",
-      "line": 59,
+      "line": 69,
       "symbol": "UnsupportedBodyFormatError.init(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
