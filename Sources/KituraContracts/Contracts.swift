@@ -75,7 +75,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     }
     
     /**
-    Creates an error representing the given base error, with a custom.
+    Creates an error representing the given base error, with a custom
     response body given as a Codable.
     
      - parameter base: A `RequestError` object.
@@ -94,7 +94,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     }
 
     /**
-    Creates an error respresenting the given base error, with a custom.
+    Creates an error respresenting the given base error, with a custom
     response body given as Data and a BodyFormat.
     
      - parameter base: A `RequestError` object.
