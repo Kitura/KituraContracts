@@ -24,7 +24,7 @@ extension CharacterSet {
 /**
  Query Parameter Encoder.
  
- Encodes an `Encodable` object to a query parameter string, a `URLQueryItemArray`, or to a `String -> String` dictionary. The encode function takes the `Encodable` object to encode as the parameter.
+ Encodes an `Encodable` object to a query parameter string, a `URLQueryItemArray`, or to a `[String: String]` dictionary. The encode function takes the `Encodable` object to encode as the parameter.
  
  ### Usage Example: ###
  ````swift
@@ -111,9 +111,9 @@ public class QueryEncoder: Coder, Encoder {
     }
 
     /**
-     Encodes an Encodable object to a String -> String dictionary.
+     Encodes an Encodable object to a `[String: String]` dictionary.
      
-     - Parameter value: The Encodable object to encode to its [String: String] representation.
+     - Parameter value: The Encodable object to encode to its `[String: String]` representation.
      
      ### Usage Example: ###
      ````swift

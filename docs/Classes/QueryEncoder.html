@@ -173,7 +173,7 @@
               </div>
             <p>Query Parameter Encoder.</p>
 
-<p>Encodes an <code>Encodable</code> object to a query parameter string, a <code>URLQueryItemArray</code>, or to a <code>String -&gt; String</code> dictionary. The encode function takes the <code>Encodable</code> object to encode as the parameter.</p>
+<p>Encodes an <code>Encodable</code> object to a query parameter string, a <code>URLQueryItemArray</code>, or to a <code>[String: String]</code> dictionary. The encode function takes the <code>Encodable</code> object to encode as the parameter.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="kt">MyQuery</span><span class="p">(</span><span class="nv">intField</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nv">optionalIntField</span><span class="p">:</span> <span class="mi">282</span><span class="p">,</span> <span class="nv">stringField</span><span class="p">:</span> <span class="s">"a string"</span><span class="p">,</span> <span class="nv">intArray</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nv">dateField</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="nv">optionalDateField</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="nv">nested</span><span class="p">:</span> <span class="kt">Nested</span><span class="p">(</span><span class="nv">nestedIntField</span><span class="p">:</span> <span class="mi">333</span><span class="p">,</span> <span class="nv">nestedStringField</span><span class="p">:</span> <span class="s">"nested string"</span><span class="p">))</span>
@@ -392,7 +392,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Encodes an Encodable object to a String -&gt; String dictionary.</p>
+                        <p>Encodes an Encodable object to a <code>[String: String]</code> dictionary.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryDict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to [String: String]"</span><span class="p">)</span>
@@ -421,7 +421,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The Encodable object to encode to its [String: String] representation.</p>
+                                  <p>The Encodable object to encode to its <code>[String: String]</code> representation.</p>
                                 </div>
                               </td>
                             </tr>

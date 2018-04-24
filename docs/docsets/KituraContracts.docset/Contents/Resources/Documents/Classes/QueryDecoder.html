@@ -312,7 +312,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Decodes a String -&gt; String mapping to its Decodable object representation.</p>
+                        <p>Decodes a <code>[String: String]</code> mapping to its Decodable object representation.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryDecoder</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="n">expectedDict</span><span class="p">)</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">MyQuery</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to decode query to MyQuery Object"</span><span class="p">)</span>
@@ -341,7 +341,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The Decodable object to decode the dictionary into</p>
+                                  <p>The Decodable object to decode the dictionary into.</p>
                                 </div>
                               </td>
                             </tr>
@@ -424,7 +424,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns an single value decoding container based on the key type.</p>
+                        <p>Returns a single value decoding container based on the key type.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code><span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
 </code></pre>

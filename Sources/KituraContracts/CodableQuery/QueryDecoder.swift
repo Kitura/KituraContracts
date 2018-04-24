@@ -61,9 +61,9 @@ public class QueryDecoder: Coder, Decoder {
     }
 
     /**
-     Decodes a String -> String mapping to its Decodable object representation.
+     Decodes a `[String: String]` mapping to its Decodable object representation.
      
-     - Parameter value: The Decodable object to decode the dictionary into
+     - Parameter value: The Decodable object to decode the dictionary into.
      
      ### Usage Example: ###
      ````swift
@@ -182,7 +182,7 @@ public class QueryDecoder: Coder, Decoder {
     }
 
     /**
-     Returns an single value decoding container based on the key type.
+     Returns a single value decoding container based on the key type.
      
      ### Usage Example: ###
      ````swift
