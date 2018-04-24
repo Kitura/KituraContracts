@@ -42,24 +42,24 @@ This example, shows how to use a shared type definition for `RequestError` withi
 
 ````swift
 public struct User: Codable {
-...
+    ...
 }
 
 router.post("/users") { (user: User, respondWith: (User?, RequestError?) -> Void) in
 
-if databaseConnectionIsOk {
-...
-respondWith(user, nil)
-} else {
-...
-respondWith(nil, .internalServerError)
-}
+    if databaseConnectionIsOk {
+        ...
+        respondWith(user, nil)
+    } else {
+        ...
+        respondWith(nil, .internalServerError)
+    }
 }
 ````
 
 ## Swift version
 
-The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.3 and 4.1 binaries. Please note that this is the default version of Swift that is included in [Xcode 9.2 and 9.3](https://developer.apple.com/xcode/).
+The 0.0.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in [Xcode 9.3](https://developer.apple.com/xcode/).
 
 ## Community
 
