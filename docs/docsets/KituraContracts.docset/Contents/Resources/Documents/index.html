@@ -199,23 +199,23 @@
 
 <p>This example, shows how to use a shared type definition for <code><a href="Structs/RequestError.html">RequestError</a></code> within a router POST method on <code>users</code>. If no errors occurred and you have a <code>User</code> you can respond with the user and pass nil as the <code>RequestError?</code> value. If there has been an error you can respond with an appropriate error and pass nil for the <code>User?</code>.</p>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
-<span class="o">...</span>
+    <span class="o">...</span>
 <span class="p">}</span>
 
 <span class="n">router</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"/users"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">user</span><span class="p">:</span> <span class="kt">User</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
 
-<span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
-<span class="o">...</span>
-<span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="o">...</span>
-<span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
-<span class="p">}</span>
+    <span class="k">if</span> <span class="n">databaseConnectionIsOk</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 <h2 id='swift-version' class='heading'>Swift version</h2>
 
-<p>The 0.0.x releases were tested on macOS and Linux using the Swift 4.0.3 and 4.1 binaries. Please note that this is the default version of Swift that is included in <a href="https://developer.apple.com/xcode/">Xcode 9.2 and 9.3</a>.</p>
+<p>The 0.0.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in <a href="https://developer.apple.com/xcode/">Xcode 9.3</a>.</p>
 <h2 id='community' class='heading'>Community</h2>
 
 <p>We love to talk server-side Swift and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
