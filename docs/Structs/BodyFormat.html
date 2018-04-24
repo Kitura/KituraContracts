@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>IdentifierError Enumeration Reference</title>
+    <title>BodyFormat Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/IdentifierError" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/BodyFormat" class="dashAnchor"></a>
 
-    <a title="IdentifierError Enumeration Reference"></a>
+    <a title="BodyFormat Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
       <img class="carat" src="../img/carat.png" />
-      IdentifierError Enumeration Reference
+      BodyFormat Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -164,18 +164,31 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>IdentifierError</h1>
+            <h1>BodyFormat</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IdentifierError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BodyFormat</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>An error representing a failure to create an <code><a href="../Protocols/Identifier.html">Identifier</a></code>.</p>
-<h3 id='usage-example' class='heading'>Usage Example:</h3>
+            <p>A set of values representing the format of a response body.</p>
 
-<p>An <code><a href="../Enums/IdentifierError.html#/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF">IdentifierError.invalidValue</a></code> may be thrown if the given string cannot be converted to an integer when using an <code><a href="../Protocols/Identifier.html">Identifier</a></code>.</p>
-<pre class="highlight swift"><code> <span class="k">throw</span> <span class="kt">IdentifierError</span><span class="o">.</span><span class="n">invalidValue</span>
+<p>This struct is intended to be <q>enum-like</q> and values should be
+accessed via the public static stored properties.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    An enum was not used here because currently enums are
+    always exhaustive. This means adding a case to an enum
+    is a breaking change. In order to keep such additions
+    non-breaking we have used an <q>enum-like</q> struct instead.
+    This means code using <code>BodyFormat</code> should always handle
+    unrecognised <code>BodyFormat</code> values (eg in a default case
+    of a switch). <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> may be used
+    in this situation.
+
+</div>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">format</span> <span class="o">=</span> <span class="kt">BodyFormat</span><span class="o">.</span><span class="n">json</span>
 </code></pre>
 
           </div>
@@ -188,9 +201,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/invalidValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF">invalidValue</a>
+                    <a name="/s:15KituraContracts10BodyFormatV4typeSSvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts10BodyFormatV4typeSSvp">type</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,14 +211,68 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Represents a failure to create an <code><a href="../Protocols/Identifier.html">Identifier</a></code> from a given <code>String</code> representation.</p>
+                        <p>A String value of the type that the body format will be represented in, which is used to ensure that both the left-hand side and the right-hand side are of the same type in the response body.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">invalidValue</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts10BodyFormatV2eeoiSbAC_ACtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts10BodyFormatV2eeoiSbAC_ACtFZ">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This function checks that both the left-hand side and the right-hand side of the response body are of the same type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="n">_</span> <span class="nv">lhs</span><span class="p">:</span> <span class="kt">BodyFormat</span><span class="p">,</span> <span class="n">_</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">BodyFormat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts10BodyFormatV4jsonACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/json" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts10BodyFormatV4jsonACvpZ">json</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The JSON representation of the response body.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="kt">BodyFormat</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

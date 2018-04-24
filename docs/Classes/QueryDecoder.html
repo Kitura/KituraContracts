@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           KituraContracts Docs
         </a>
-         (98% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -98,7 +98,16 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RequestError/ErrorBody.html">– ErrorBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a>
               </li>
             </ul>
           </li>
@@ -119,6 +128,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts29IdentifierCodableArrayClosurea">IdentifierCodableArrayClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts35IdentifierCodableArrayResultClosurea">IdentifierCodableArrayResultClosure</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts24IdentifierCodableClosurea">IdentifierCodableClosure</a>
@@ -156,8 +171,15 @@
 
                 </div>
               </div>
-            <p>Query Parameter Decoder
-Decodes a [String: String] object to a Decodable object instance</p>
+            <p>Query Parameter Decoder decodes a <code>[String: String]</code> object to a <code>Decodable</code> object instance. The decode function takes the <code>Decodable</code> object as a parameter to decode the dictionary into.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">dict</span> <span class="o">=</span> <span class="p">[</span><span class="s">"intField"</span><span class="p">:</span> <span class="s">"23"</span><span class="p">,</span> <span class="s">"stringField"</span><span class="p">:</span> <span class="s">"a string"</span><span class="p">,</span> <span class="s">"intArray"</span><span class="p">:</span> <span class="s">"1,2,3"</span><span class="p">,</span> <span class="s">"dateField"</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">,</span> <span class="s">"optionalDateField"</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">,</span> <span class="s">"nested"</span><span class="p">:</span> <span class="s">"{</span><span class="se">\"</span><span class="s">nestedIntField</span><span class="se">\"</span><span class="s">:333,</span><span class="se">\"</span><span class="s">nestedStringField</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">nested string</span><span class="se">\"</span><span class="s">}"</span> <span class="p">]</span>
+
+<span class="k">guard</span> <span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryDecoder</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="n">dict</span><span class="p">)</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">MyQuery</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to decode query to MyQuery Object"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
           </div>
         </section>
@@ -169,9 +191,9 @@ Decodes a [String: String] object to a Decodable object instance</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7DecoderP10codingPathSays9CodingKey_pGv"></a>
+                    <a name="/s:15KituraContracts12QueryDecoderC10codingPathSays9CodingKey_pGvp"></a>
                     <a name="//apple_ref/swift/Property/codingPath" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7DecoderP10codingPathSays9CodingKey_pGv">codingPath</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC10codingPathSays9CodingKey_pGvp">codingPath</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -179,7 +201,11 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The coding key path.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">fieldName</span> <span class="o">=</span> <span class="kt">Coder</span><span class="o">.</span><span class="nf">getFieldName</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">codingPath</span><span class="p">)</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -195,9 +221,9 @@ Decodes a [String: String] object to a Decodable object instance</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7DecoderP8userInfos10DictionaryVys010CodingUserC3KeyVypGv"></a>
+                    <a name="/s:15KituraContracts12QueryDecoderC8userInfos10DictionaryVys010CodingUserF3KeyVypGvp"></a>
                     <a name="//apple_ref/swift/Property/userInfo" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7DecoderP8userInfos10DictionaryVys010CodingUserC3KeyVypGv">userInfo</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC8userInfos10DictionaryVys010CodingUserF3KeyVypGvp">userInfo</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -205,7 +231,8 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The coding user info key.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -221,9 +248,9 @@ Decodes a [String: String] object to a Decodable object instance</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts12QueryDecoderC10dictionarys10DictionaryVyS2SGv"></a>
+                    <a name="/s:15KituraContracts12QueryDecoderC10dictionarys10DictionaryVyS2SGvp"></a>
                     <a name="//apple_ref/swift/Property/dictionary" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC10dictionarys10DictionaryVyS2SGv">dictionary</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC10dictionarys10DictionaryVyS2SGvp">dictionary</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -231,14 +258,14 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A <code>[String: String]</code> dictionary.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryDecoder</span><span class="p">:</span> <span class="kt"><a href="../Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Decoder</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -258,14 +285,14 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializer with a <code>[String : String]</code> dictionary.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryDecoder</span><span class="p">:</span> <span class="kt"><a href="../Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Decoder</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -285,7 +312,13 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Decodes a String -&gt; String mapping to its Decodable object representation</p>
+                        <p>Decodes a <code>[String: String]</code> mapping to its Decodable object representation.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryDecoder</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="n">expectedDict</span><span class="p">)</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">MyQuery</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to decode query to MyQuery Object"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -296,15 +329,34 @@ Decodes a [String: String] object to a Decodable object instance</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Decodable object to decode the dictionary into.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7DecoderP9containers22KeyedDecodingContainerVyqd__Gqd__m7keyedBy_tKs9CodingKeyRd__lF"></a>
+                    <a name="/s:15KituraContracts12QueryDecoderC9containers22KeyedDecodingContainerVyxGxm7keyedBy_tKs9CodingKeyRzlF"></a>
                     <a name="//apple_ref/swift/Method/container(keyedBy:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7DecoderP9containers22KeyedDecodingContainerVyqd__Gqd__m7keyedBy_tKs9CodingKeyRd__lF">container(keyedBy:)</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC9containers22KeyedDecodingContainerVyxGxm7keyedBy_tKs9CodingKeyRzlF">container(keyedBy:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -312,7 +364,10 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Strings</p>
+                        <p>Returns a keyed decoding container based on the key type.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="n">keyType</span><span class="p">)</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -329,9 +384,9 @@ Decodes a [String: String] object to a Decodable object instance</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7DecoderP16unkeyedContainers015UnkeyedDecodingC0_pyKF"></a>
+                    <a name="/s:15KituraContracts12QueryDecoderC16unkeyedContainers015UnkeyedDecodingF0_pyKF"></a>
                     <a name="//apple_ref/swift/Method/unkeyedContainer()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7DecoderP16unkeyedContainers015UnkeyedDecodingC0_pyKF">unkeyedContainer()</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC16unkeyedContainers015UnkeyedDecodingF0_pyKF">unkeyedContainer()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -339,7 +394,11 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Returns an unkeyed decoding container.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="n">decoder</span><span class="o">.</span><span class="nf">unkeyedContainer</span><span class="p">()</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -355,9 +414,9 @@ Decodes a [String: String] object to a Decodable object instance</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s7DecoderP20singleValueContainers06Singlec8DecodingD0_pyKF"></a>
+                    <a name="/s:15KituraContracts12QueryDecoderC20singleValueContainers06Singlef8DecodingG0_pyKF"></a>
                     <a name="//apple_ref/swift/Method/singleValueContainer()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s7DecoderP20singleValueContainers06Singlec8DecodingD0_pyKF">singleValueContainer()</a>
+                    <a class="token" href="#/s:15KituraContracts12QueryDecoderC20singleValueContainers06Singlef8DecodingG0_pyKF">singleValueContainer()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -365,7 +424,11 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Returns a single value decoding container based on the key type.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="n">decoder</span><span class="o">.</span><span class="nf">singleValueContainer</span><span class="p">()</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -386,7 +449,7 @@ Decodes a [String: String] object to a Decodable object instance</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-09)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-04-24)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

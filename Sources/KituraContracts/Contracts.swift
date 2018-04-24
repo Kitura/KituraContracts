@@ -20,46 +20,69 @@
 
 /**
  An error representing a failed request.
- This definition is intended to be used by both the client side (eg KituraKit)
- and server side (eg Kitura) of the request (typically a HTTP REST request).
+ This definition is intended to be used by both the client side (e.g. KituraKit)
+ and server side (e.g. Kitura) of the request (typically a HTTP REST request).
 
  ### Usage Example: ###
- ````
+ 
+ In this example, the `RequestError` is used in a Kitura server Codable route handler to
+ indicate the request has failed because the requested record was not found.
+ ````swift
  router.get("/users") { (id: Int, respondWith: (User?, RequestError?) -> Void) in
      ...
      respondWith(nil, RequestError.notFound)
      ...
  }
  ````
- In this example the `RequestError` is used in a Kitura server Codable route handler to
- indicate the request has failed because the requested record was not found.
  */
 public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, Error, CustomStringConvertible {
+    /**
+    A typealias representing the type of error that has occurred.
+    The range of error codes from 100 up to 599 are reserved for HTTP status codes.
+    Custom error codes may be used and must not conflict with this range.
+    */
     public typealias RawValue = Int
 
-    /// Representation of the error body
-    /// May be a type-erased Codable object or a Data (in a particular format)
+    /**
+    Representation of the error body.
+    May be a type-erased Codable object or a Data (in a particular format).
+    */
     public enum ErrorBody {
+        /// Codable object.
         case codable(Codable)
+        /// Data object.
         case data(Data, BodyFormat)
     }
 
     // MARK: Creating a RequestError from a numeric code
-
-    /// Creates an error representing the given error code.
+    /**
+    Creates an error representing the given error code.
+    
+     - parameter rawValue: An Int indicating an error code representing the type of error that has occurred.
+    */
     public init(rawValue: Int) {
         self.rawValue = rawValue
         self.reason = "error_\(rawValue)"
     }
 
-    /// Creates an error representing the given error code and reason string.
+    /**
+    Creates an error representing the given error code and reason string.
+    
+     - parameter rawValue: An Int indicating an error code representing the type of error that has occurred.
+     - parameter reason: A human-readable description of the error code.
+    */
     public init(rawValue: Int, reason: String) {
         self.rawValue = rawValue
         self.reason = reason
     }
-
-    /// Creates an error representing the given base error, with a custom
-    /// response body given as a Codable
+    
+    /**
+    Creates an error representing the given base error, with a custom
+    response body given as a Codable.
+    
+     - parameter base: A `RequestError` object.
+     - parameter body: A representation of the error body - an object representing further details of the failure.
+    */
     public init<Body: Codable>(_ base: RequestError, body: Body) {
         self.rawValue = base.rawValue
         self.reason = base.reason
@@ -72,11 +95,16 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         }
     }
 
-    /// Creates an error respresenting the given base error, with a custom
-    /// response body given as Data and a BodyFormat
-    ///
-    /// - throws an `UnsupportedBodyFormatError` if the provided `BodyFormat`
-    ///          is not supported
+    /**
+    Creates an error respresenting the given base error, with a custom
+    response body given as Data and a BodyFormat.
+    
+     - parameter base: A `RequestError` object.
+     - parameter bodyData: A `Data` object.
+     - parameter format: A `BodyFormat` object used to check whether it is legal JSON.
+     - throws: An `UnsupportedBodyFormatError` if the provided `BodyFormat`
+             is not supported.
+    */
     public init(_ base: RequestError, bodyData: Data, format: BodyFormat) throws {
         self.rawValue = base.rawValue
         self.reason = base.reason
@@ -86,19 +114,23 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
             default: throw UnsupportedBodyFormatError(format)
         }
     }
+    
+    // MARK: Accessing information about the error
 
-    // MARK: Accessing information about the error.
-
-    /// An error code representing the type of error that has occurred.
-    /// The range of error codes from 100 up to 599 are reserved for HTTP status codes.
-    /// Custom error codes may be used and must not conflict with this range.
+    /**
+    An error code representing the type of error that has occurred.
+    The range of error codes from 100 up to 599 are reserved for HTTP status codes.
+    Custom error codes may be used and must not conflict with this range.
+    */
     public let rawValue: Int
 
-    /// A human-readable description of the error code.
+    /**
+    A human-readable description of the error code.
+    */
     public let reason: String
 
     /**
-     Representation of the error body-an object representing further
+     Representation of the error body - an object representing further
      details of the failure.
 
      The value may be:
@@ -108,7 +140,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
        if the error was initialized with `init(_:bodyData:format:)`
 
      ### Usage example: ###
-     ````
+     ````swift
      if let errorBody = error.body {
          switch error.body {
             case let .codable(body): ... // body is Codable
@@ -118,12 +150,12 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      ````
 
      - Note: If you need a Codable representation and the body is data, you
-             can call the `bodyAs(_:)` function to get the converted value
+             can call the `bodyAs(_:)` function to get the converted value.
      */
     public private(set) var body: ErrorBody? = nil
 
     // A closure used to hide the generic type of the Codable body
-    // for later encoding to Data
+    // for later encoding to Data.
     private var bodyDataEncoder: ((BodyFormat) throws -> Data)? = nil
 
     /**
@@ -137,7 +169,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
              a codable route.
 
      ### Usage Example: ###
-     ````
+     ````swift
      do {
          if let errorBodyData = try error.encodeBody(.json) {
              ...
@@ -146,13 +178,13 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
          // Handle the failure to encode
      }
      ````
-     - parameter `BodyFormat` describes the format that should be used
-                 (for example: `BodyFormat.json`)
-     - returns the `Data` object or `nil` if there is no body, or if the
-               error was not initialized with `init(_:body:)`
-     - throws an `EncodingError` if the encoding fails
-     - throws an `UnsupportedBodyFormatError` if the provided `BodyFormat`
-              is not supported
+     - parameter format: Describes the format that should be used
+                 (for example: `BodyFormat.json`).
+     - returns: The `Data` object or `nil` if there is no body, or if the
+               error was not initialized with `init(_:body:)`.
+     - throws: An `EncodingError` if the encoding fails.
+     - throws: An `UnsupportedBodyFormatError` if the provided `BodyFormat`
+              is not supported.
      */
     public func encodeBody(_ format: BodyFormat) throws -> Data? {
         guard case .codable? = body else { return nil }
@@ -173,7 +205,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
              response from `Data` to a `Codable` type.
 
      ### Usage Example: ###
-     ```
+     ````swift
      do {
          if let errorBody = try error.decodeBody(MyCodableType.self) {
              ...
@@ -181,12 +213,12 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      } catch {
          // Handle failure to decode
      }
-     ```
-     - parameter the type of the value to decode from the body data
-                 (for example: `MyCodableType.self`)
-     - returns the `Codable` object or `nil` if there is no body or if the
-               error was not initialized with `init(_:bodyData:format:)`
-     - throws a `DecodingError` if decoding fails
+     ````
+     - parameter type: The type of the value to decode from the body data
+                 (for example: `MyCodableType.self`).
+     - returns: The `Codable` object or `nil` if there is no body or if the
+               error was not initialized with `init(_:bodyData:format:)`.
+     - throws: A `DecodingError` if decoding fails.
      */
     public func decodeBody<Body: Codable>(_ type: Body.Type) throws -> Body? {
         guard case let .data(bodyData, format)? = body else { return nil }
@@ -211,16 +243,16 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
              response from `Data` to a `Codable` type.
 
      ### Usage Example: ###
-     ```
+     ````swift
      if let errorBody = error.bodyAs(MyCodableType.self) {
          ...
      }
-     ```
-     - parameter the type of the value to decode from the body data
-                 (for example: `MyCodableType.self`)
-     - returns the `Codable` object or `nil` if there is no body, or if the
+     ````
+     - parameter type: The type of the value to decode from the body data
+                 (for example: `MyCodableType.self`).
+     - returns: The `Codable` object or `nil` if there is no body, or if the
                error was not initialized with `init(_:bodyData:format:)`, or
-               if decoding fails
+               if decoding fails.
      */
     public func bodyAs<Body: Codable>(_ type: Body.Type) -> Body? {
         return (try? decodeBody(type)) ?? nil
@@ -228,24 +260,32 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     // MARK: Comparing RequestErrors
 
-    /// Returns a Boolean value indicating whether the value of the first argument is less than that of the second argument.
+    /**
+    Returns a Boolean value indicating whether the value of the first argument is less than that of the second argument.
+    */
     public static func < (lhs: RequestError, rhs: RequestError) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 
-    /// Indicates whether two URLs are the same.
+    /**
+    Indicates whether two URLs are the same.
+    */
     public static func == (lhs: RequestError, rhs: RequestError) -> Bool {
         return (lhs.rawValue == rhs.rawValue && lhs.reason == rhs.reason)
     }
 
     // MARK: Describing a RequestError
 
-    /// A textual description of the RequestError instance containing the error code and reason.
+    /**
+    A textual description of the RequestError instance containing the error code and reason.
+    */
     public var description: String {
         return "\(rawValue) : \(reason)"
     }
 
-    /// The computed hash value for the RequestError instance.
+    /**
+    The computed hash value for the RequestError instance.
+    */
     public var hashValue: Int {
         let str = reason + String(rawValue)
         return str.hashValue
@@ -257,16 +297,20 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
  */
 public extension RequestError {
 
-    /// The HTTP status code for the error.
-    /// This value should be a valid HTTP status code if inside the range 100 to 599,
-    /// however, it may take a value outside that range when representing other types
-    /// of error.
+    /**
+    The HTTP status code for the error.
+    This value should be a valid HTTP status code if inside the range 100 to 599,
+    however, it may take a value outside that range when representing other types
+    of error.
+    */
     public var httpCode: Int {
         return rawValue
     }
 
-    /// Creates an error representing a HTTP status code.
-    /// - Parameter httpCode: a standard HTTP status code
+    /**
+    Creates an error representing a HTTP status code.
+    - Parameter httpCode: A standard HTTP status code.
+    */
     public init(httpCode: Int) {
         self.rawValue = httpCode
         self.reason = RequestError.reason(forHTTPCode: httpCode)
@@ -456,12 +500,19 @@ public extension RequestError {
 }
 
 /**
- An identifier for a query parameter object
+ An identifier for a query parameter object.
  */
 public protocol QueryParams: Codable {}
 
 /**
  An error representing a failure to create an `Identifier`.
+
+### Usage Example: ###
+ 
+ An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
+ ````swift
+ throw IdentifierError.invalidValue
+ ````
  */
 public enum IdentifierError: Error {
     /// Represents a failure to create an `Identifier` from a given `String` representation.
@@ -470,6 +521,12 @@ public enum IdentifierError: Error {
 
 /**
  An identifier for an entity with a string representation.
+
+### Usage Example: ###
+ ````swift
+ // Used in the Id field.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
  */
 public protocol Identifier {
     /// Creates an identifier from a given string value.
@@ -482,6 +539,12 @@ public protocol Identifier {
 
 /**
  Extends `String` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be a `String`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
  */
 extension String: Identifier {
     /// Creates a string identifier from a given string value.
@@ -497,6 +560,12 @@ extension String: Identifier {
 
 /**
  Extends `Int` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
  */
 extension Int: Identifier {
     /// Creates an integer identifier from a given string representation.

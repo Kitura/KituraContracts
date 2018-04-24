@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>IdentifierError Enumeration Reference</title>
+    <title>UnsupportedBodyFormatError Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Enum/IdentifierError" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/UnsupportedBodyFormatError" class="dashAnchor"></a>
 
-    <a title="IdentifierError Enumeration Reference"></a>
+    <a title="UnsupportedBodyFormatError Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
       <img class="carat" src="../img/carat.png" />
-      IdentifierError Enumeration Reference
+      UnsupportedBodyFormatError Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -164,19 +164,15 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>IdentifierError</h1>
+            <h1>UnsupportedBodyFormatError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IdentifierError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">UnsupportedBodyFormatError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                 </div>
               </div>
-            <p>An error representing a failure to create an <code><a href="../Protocols/Identifier.html">Identifier</a></code>.</p>
-<h3 id='usage-example' class='heading'>Usage Example:</h3>
-
-<p>An <code><a href="../Enums/IdentifierError.html#/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF">IdentifierError.invalidValue</a></code> may be thrown if the given string cannot be converted to an integer when using an <code><a href="../Protocols/Identifier.html">Identifier</a></code>.</p>
-<pre class="highlight swift"><code> <span class="k">throw</span> <span class="kt">IdentifierError</span><span class="o">.</span><span class="n">invalidValue</span>
-</code></pre>
+            <p>An error that may be thrown when a particular instance of <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+is not supported.</p>
 
           </div>
         </section>
@@ -188,9 +184,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/invalidValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF">invalidValue</a>
+                    <a name="/s:15KituraContracts26UnsupportedBodyFormatErrorV04bodyE0AA0dE0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/bodyFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts26UnsupportedBodyFormatErrorV04bodyE0AA0dE0Vvp">bodyFormat</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,14 +194,41 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Represents a failure to create an <code><a href="../Protocols/Identifier.html">Identifier</a></code> from a given <code>String</code> representation.</p>
+                        <p>The format of the body.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">invalidValue</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bodyFormat</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts26UnsupportedBodyFormatErrorVAcA0dE0Vcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts26UnsupportedBodyFormatErrorVAcA0dE0Vcfc">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize <code>UnsupportedBodyFormatError</code> with the format of the body.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">bodyFormat</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           KituraContracts Docs
         </a>
-         (98% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -98,7 +98,16 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RequestError/ErrorBody.html">– ErrorBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a>
               </li>
             </ul>
           </li>
@@ -119,6 +128,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts29IdentifierCodableArrayClosurea">IdentifierCodableArrayClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts35IdentifierCodableArrayResultClosurea">IdentifierCodableArrayResultClosure</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts24IdentifierCodableClosurea">IdentifierCodableClosure</a>
@@ -156,7 +171,10 @@
 
                 </div>
               </div>
-            <p>Class defining shared resources for the QueryDecoder and QueryEncoder</p>
+            <p>Class defining shared resources for the <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift">QueryDecoder</a> and <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift">QueryEncoder</a>.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span><span class="o">!</span>
+</code></pre>
 
           </div>
         </section>
@@ -168,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:15KituraContracts5CoderC13dateFormatterSo04DateE0Cv"></a>
+                    <a name="/s:15KituraContracts5CoderC13dateFormatterSo04DateE0Cvp"></a>
                     <a name="//apple_ref/swift/Property/dateFormatter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts5CoderC13dateFormatterSo04DateE0Cv">dateFormatter</a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC13dateFormatterSo04DateE0Cvp">dateFormatter</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -178,7 +196,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The designated DateFormatter used for encoding and decoding query parameters</p>
+                        <p>The designated <a href="https://developer.apple.com/documentation/foundation/dateformatter">DateFormatter</a> used for encoding and decoding query parameters.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -205,8 +226,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes a Coder instance with a Date Formatter
-using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date format</p>
+                        <p>Initializes a <code>Coder</code> instance with a <code>DateFormatter</code>
+using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date format.</p>
 
                       </div>
                       <div class="declaration">
@@ -233,7 +254,10 @@ using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date forma
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Helper method to extract the field name from a CodingKey array</p>
+                        <p>Helper method to extract the field name from a <code>CodingKey</code> array.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">fieldName</span> <span class="o">=</span> <span class="kt">Coder</span><span class="o">.</span><span class="nf">getFieldName</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">codingPath</span><span class="p">)</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -255,7 +279,7 @@ using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date forma
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-09)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-04-24)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

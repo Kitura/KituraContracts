@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           KituraContracts Docs
         </a>
-         (98% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -97,7 +97,16 @@
             <a class="nav-group-name-link" href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/RequestError/ErrorBody.html">– ErrorBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a>
               </li>
             </ul>
           </li>
@@ -118,6 +127,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:15KituraContracts29IdentifierCodableArrayClosurea">IdentifierCodableArrayClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:15KituraContracts35IdentifierCodableArrayResultClosurea">IdentifierCodableArrayResultClosure</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Typealiases.html#/s:15KituraContracts24IdentifierCodableClosurea">IdentifierCodableClosure</a>
@@ -171,7 +186,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Class defining shared resources for the QueryDecoder and QueryEncoder</p>
+                        <p>Class defining shared resources for the <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift">QueryDecoder</a> and <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift">QueryEncoder</a>.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span><span class="o">!</span>
+</code></pre>
 
                         <a href="Classes/Coder.html" class="slightly-smaller">See more</a>
                       </div>
@@ -203,8 +221,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Query Parameter Decoder
-Decodes a [String: String] object to a Decodable object instance</p>
+                        <p>Query Parameter Decoder decodes a <code>[String: String]</code> object to a <code>Decodable</code> object instance. The decode function takes the <code>Decodable</code> object as a parameter to decode the dictionary into.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">dict</span> <span class="o">=</span> <span class="p">[</span><span class="s">"intField"</span><span class="p">:</span> <span class="s">"23"</span><span class="p">,</span> <span class="s">"stringField"</span><span class="p">:</span> <span class="s">"a string"</span><span class="p">,</span> <span class="s">"intArray"</span><span class="p">:</span> <span class="s">"1,2,3"</span><span class="p">,</span> <span class="s">"dateField"</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">,</span> <span class="s">"optionalDateField"</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">,</span> <span class="s">"nested"</span><span class="p">:</span> <span class="s">"{</span><span class="se">\"</span><span class="s">nestedIntField</span><span class="se">\"</span><span class="s">:333,</span><span class="se">\"</span><span class="s">nestedStringField</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">nested string</span><span class="se">\"</span><span class="s">}"</span> <span class="p">]</span>
+
+<span class="k">guard</span> <span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryDecoder</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="n">dict</span><span class="p">)</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">MyQuery</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to decode query to MyQuery Object"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
                         <a href="Classes/QueryDecoder.html" class="slightly-smaller">See more</a>
                       </div>
@@ -236,7 +261,18 @@ Decodes a [String: String] object to a Decodable object instance</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Query Parameter Encoder</p>
+                        <p>Query Parameter Encoder.</p>
+
+<p>Encodes an <code>Encodable</code> object to a query parameter string, a <code>URLQueryItemArray</code>, or to a <code>[String: String]</code> dictionary. The encode function takes the <code>Encodable</code> object to encode as the parameter.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="kt">MyQuery</span><span class="p">(</span><span class="nv">intField</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nv">optionalIntField</span><span class="p">:</span> <span class="mi">282</span><span class="p">,</span> <span class="nv">stringField</span><span class="p">:</span> <span class="s">"a string"</span><span class="p">,</span> <span class="nv">intArray</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nv">dateField</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="nv">optionalDateField</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="nv">nested</span><span class="p">:</span> <span class="kt">Nested</span><span class="p">(</span><span class="nv">nestedIntField</span><span class="p">:</span> <span class="mi">333</span><span class="p">,</span> <span class="nv">nestedStringField</span><span class="p">:</span> <span class="s">"nested string"</span><span class="p">))</span>
+
+<span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryDict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to [String: String]"</span><span class="p">)</span>
+    <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
 
                         <a href="Classes/QueryEncoder.html" class="slightly-smaller">See more</a>
                       </div>
@@ -259,7 +295,7 @@ Decodes a [String: String] object to a Decodable object instance</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-01-09)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-04-24)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
