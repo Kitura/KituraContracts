@@ -79,7 +79,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     response body given as a Codable.
     
      - parameter base: A `RequestError` object.
-     - parameter body: A representation of the error body-an object representing further details of the failure.
+     - parameter body: A representation of the error body - an object representing further details of the failure.
     */
     public init<Body: Codable>(_ base: RequestError, body: Body) {
         self.rawValue = base.rawValue
@@ -100,7 +100,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      - parameter base: A `RequestError` object.
      - parameter bodyData: A `Data` object.
      - parameter format: A `BodyFormat` object used to check whether it is legal JSON.
-     - throws: an `UnsupportedBodyFormatError` if the provided `BodyFormat`
+     - throws: An `UnsupportedBodyFormatError` if the provided `BodyFormat`
              is not supported.
     */
     public init(_ base: RequestError, bodyData: Data, format: BodyFormat) throws {
@@ -128,7 +128,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     public let reason: String
 
     /**
-     Representation of the error body-an object representing further
+     Representation of the error body - an object representing further
      details of the failure.
 
      The value may be:
@@ -178,10 +178,10 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      ````
      - parameter format: Describes the format that should be used
                  (for example: `BodyFormat.json`).
-     - returns: the `Data` object or `nil` if there is no body, or if the
+     - returns: The `Data` object or `nil` if there is no body, or if the
                error was not initialized with `init(_:body:)`.
-     - throws: an `EncodingError` if the encoding fails.
-     - throws: an `UnsupportedBodyFormatError` if the provided `BodyFormat`
+     - throws: An `EncodingError` if the encoding fails.
+     - throws: An `UnsupportedBodyFormatError` if the provided `BodyFormat`
               is not supported.
      */
     public func encodeBody(_ format: BodyFormat) throws -> Data? {
@@ -214,9 +214,9 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      ````
      - parameter type: The type of the value to decode from the body data
                  (for example: `MyCodableType.self`).
-     - returns: the `Codable` object or `nil` if there is no body or if the
+     - returns: The `Codable` object or `nil` if there is no body or if the
                error was not initialized with `init(_:bodyData:format:)`.
-     - throws: a `DecodingError` if decoding fails.
+     - throws: A `DecodingError` if decoding fails.
      */
     public func decodeBody<Body: Codable>(_ type: Body.Type) throws -> Body? {
         guard case let .data(bodyData, format)? = body else { return nil }
@@ -247,10 +247,10 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
      }
      ````
      - parameter type: The type of the value to decode from the body data
-                 (for example: `MyCodableType.self`)
-     - returns: the `Codable` object or `nil` if there is no body, or if the
+                 (for example: `MyCodableType.self`).
+     - returns: The `Codable` object or `nil` if there is no body, or if the
                error was not initialized with `init(_:bodyData:format:)`, or
-               if decoding fails
+               if decoding fails.
      */
     public func bodyAs<Body: Codable>(_ type: Body.Type) -> Body? {
         return (try? decodeBody(type)) ?? nil
