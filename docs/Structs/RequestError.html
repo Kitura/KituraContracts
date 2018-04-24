@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           KituraContracts Docs
         </a>
-         (97% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -378,7 +378,7 @@ May be a type-erased Codable object or a Data (in a particular format).</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an error representing the given base error, with a custom.
+                        <p>Creates an error representing the given base error, with a custom
 response body given as a Codable.</p>
 
                       </div>
@@ -414,7 +414,7 @@ response body given as a Codable.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A representation of the error body-an object representing further details of the failure.</p>
+                                  <p>A representation of the error body - an object representing further details of the failure.</p>
                                 </div>
                               </td>
                             </tr>
@@ -437,11 +437,11 @@ response body given as a Codable.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an error respresenting the given base error, with a custom.
+                        <p>Creates an error respresenting the given base error, with a custom
 response body given as Data and a BodyFormat.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+    An <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
      is not supported.
 
 </div>
@@ -581,7 +581,7 @@ Custom error codes may be used and must not conflict with this range.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Representation of the error body-an object representing further
+                        <p>Representation of the error body - an object representing further
 details of the failure.</p>
 
 <p>The value may be:</p>
@@ -654,12 +654,12 @@ if the error was initialized with <code><a href="../Structs/RequestError.html#/s
 </code></pre>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    an <code>EncodingError</code> if the encoding fails.
+    An <code>EncodingError</code> if the encoding fails.
 
 </div>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    an <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
+    An <code><a href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a></code> if the provided <code><a href="../Structs/BodyFormat.html">BodyFormat</a></code>
      is not supported.
 
 </div>
@@ -695,7 +695,7 @@ if the error was initialized with <code><a href="../Structs/RequestError.html#/s
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>the <code>Data</code> object or <code>nil</code> if there is no body, or if the
+                        <p>The <code>Data</code> object or <code>nil</code> if there is no body, or if the
       error was not initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_x4bodytcs9DecodableRzs9EncodableRzlufc">init(_:body:)</a></code>.</p>
                       </div>
                     </section>
@@ -739,7 +739,7 @@ to ignore DecodingErrors.</p>
 </code></pre>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    a <code>DecodingError</code> if decoding fails.
+    A <code>DecodingError</code> if decoding fails.
 
 </div>
 
@@ -774,7 +774,7 @@ to ignore DecodingErrors.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>the <code>Codable</code> object or <code>nil</code> if there is no body or if the
+                        <p>The <code>Codable</code> object or <code>nil</code> if there is no body or if the
       error was not initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code>.</p>
                       </div>
                     </section>
@@ -836,7 +836,7 @@ instead.</p>
                               <td>
                                 <div>
                                   <p>The type of the value to decode from the body data
-        (for example: <code>MyCodableType.self</code>)</p>
+        (for example: <code>MyCodableType.self</code>).</p>
                                 </div>
                               </td>
                             </tr>
@@ -845,9 +845,9 @@ instead.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>the <code>Codable</code> object or <code>nil</code> if there is no body, or if the
+                        <p>The <code>Codable</code> object or <code>nil</code> if there is no body, or if the
       error was not initialized with <code><a href="../Structs/RequestError.html#/s:15KituraContracts12RequestErrorVA2C_10Foundation4DataV04bodyF0AA10BodyFormatV6formattKcfc">init(_:bodyData:format:)</a></code>, or
-      if decoding fails</p>
+      if decoding fails.</p>
                       </div>
                     </section>
                   </div>

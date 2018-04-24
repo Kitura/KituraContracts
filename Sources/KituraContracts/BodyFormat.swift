@@ -65,7 +65,13 @@ public struct BodyFormat: Equatable {
  is not supported.
  */
 public struct UnsupportedBodyFormatError: Error {
+    /**
+     The format of the body.
+     */
     public let bodyFormat: BodyFormat
+    /**
+     Initialize `UnsupportedBodyFormatError` with the format of the body.
+     */
     public init(_ bodyFormat: BodyFormat) {
         self.bodyFormat = bodyFormat
     }

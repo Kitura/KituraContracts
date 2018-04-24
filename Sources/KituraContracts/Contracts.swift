@@ -48,7 +48,9 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     May be a type-erased Codable object or a Data (in a particular format).
     */
     public enum ErrorBody {
+        /// Codable object.
         case codable(Codable)
+        /// Data object.
         case data(Data, BodyFormat)
     }
 
