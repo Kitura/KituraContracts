@@ -42,7 +42,9 @@ public class QueryEncoder: Coder, Encoder {
     /**
      A `[String: String]` dictionary.
      */
-    private var dictionary: [String: String]
+    internal var dictionary: [String: String]
+
+    internal var anyDictionary: [String: Any]
 
     /**
      The coding key path.
@@ -64,6 +66,7 @@ public class QueryEncoder: Coder, Encoder {
      */
     public override init() {
         self.dictionary = [:]
+        self.anyDictionary = [:]
         super.init()
     }
 
@@ -124,108 +127,16 @@ public class QueryEncoder: Coder, Encoder {
      ````
      */
     public func encode<T: Encodable>(_ value: T) throws -> [String : String] {
-        let fieldName = Coder.getFieldName(from: codingPath)
-
-        Log.verbose("fieldName: \(fieldName), fieldValue: \(value)")
-
-        switch value {
-        /// Ints
-        case let fieldValue as Int:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Int8:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Int16:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Int32:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as Int64:
-            self.dictionary[fieldName] = String(fieldValue)
-        /// Int Arrays
-        case let fieldValue as [Int]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [Int8]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [Int16]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [Int32]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [Int64]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        /// UInts
-        case let fieldValue as UInt:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as UInt8:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as UInt16:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as UInt32:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as UInt64:
-            self.dictionary[fieldName] = String(fieldValue)
-        /// UInt Arrays
-        case let fieldValue as [UInt]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [UInt8]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [UInt16]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [UInt32]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        case let fieldValue as [UInt64]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        /// Floats
-        case let fieldValue as Float:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as [Float]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        /// Doubles
-        case let fieldValue as Double:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as [Double]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        /// Bools
-        case let fieldValue as Bool:
-            self.dictionary[fieldName] = String(fieldValue)
-        case let fieldValue as [Bool]:
-            let strs: [String] = fieldValue.map { String($0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        /// Strings
-        case let fieldValue as String:
-            self.dictionary[fieldName] = fieldValue
-        case let fieldValue as [String]:
-            self.dictionary[fieldName] = fieldValue.joined(separator: ",")
-        /// Dates
-        case let fieldValue as Date:
-            self.dictionary[fieldName] = dateFormatter.string(from: fieldValue)
-        case let fieldValue as [Date]:
-            let strs: [String] = fieldValue.map { dateFormatter.string(from: $0) }
-            self.dictionary[fieldName] = strs.joined(separator: ",")
-        default:
-            if fieldName.isEmpty {
-                self.dictionary = [:]   // Make encoder instance reusable
-                try value.encode(to: self)
-            } else {
-                do {
-                    let jsonData = try JSONEncoder().encode(value)
-                    self.dictionary[fieldName] = String(data: jsonData, encoding: .utf8)
-                } catch let error {
-                    throw encodingError(value, underlyingError: error)
-                }
-            }
-        }
+        try value.encode(to: self)
         return self.dictionary
+    }
+
+    /// Encodes an Encodable object to a String -> String dictionary
+    ///
+    /// - Parameter _ value: The Encodable object to encode to its [String: String] representation
+    public func encode<T: Encodable>(_ value: T) throws -> [String : Any] {
+        try value.encode(to: self)
+        return self.anyDictionary
     }
 
     /**
@@ -236,6 +147,7 @@ public class QueryEncoder: Coder, Encoder {
      encoder.container(keyedBy: keyType)
      ````
      */
+
     public func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key : CodingKey {
         return KeyedEncodingContainer(KeyedContainer<Key>(encoder: self))
     }
@@ -264,7 +176,7 @@ public class QueryEncoder: Coder, Encoder {
         return UnkeyedContanier(encoder: self)
     }
 
-    private func encodingError(_ value: Any, underlyingError: Swift.Error?) -> EncodingError {
+    internal func encodingError(_ value: Any, underlyingError: Swift.Error?) -> EncodingError {
         let fieldName = Coder.getFieldName(from: codingPath)
         let errorCtx = EncodingError.Context(codingPath: codingPath, debugDescription: "Could not process field named '\(fieldName)'.", underlyingError: underlyingError)
         return EncodingError.invalidValue(value, errorCtx)
@@ -278,13 +190,158 @@ public class QueryEncoder: Coder, Encoder {
         func encode<T>(_ value: T, forKey key: Key) throws where T : Encodable {
             self.encoder.codingPath.append(key)
             defer { self.encoder.codingPath.removeLast() }
-            let _: [String : String] = try encoder.encode(value)
+            let fieldName = Coder.getFieldName(from: self.encoder.codingPath)
+
+            switch value {
+            /// Ints
+            case let fieldValue as Int:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Int8:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Int16:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Int32:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Int64:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            case let fieldValue as [Int]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Int8]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Int16]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Int32]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Int64]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// UInts
+            case let fieldValue as UInt:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            case let fieldValue as UInt8:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            case let fieldValue as UInt16:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            case let fieldValue as UInt32:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            case let fieldValue as UInt64:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            /// UInt Arrays
+            case let fieldValue as [UInt]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Int Arrays
+            case let fieldValue as [UInt8]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [UInt16]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [UInt32]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [UInt64]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Floats
+            case let fieldValue as Float:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Float]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Doubles
+            case let fieldValue as Double:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Double]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Bools
+            case let fieldValue as Bool:
+                encoder.dictionary[fieldName] = String(fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Bool]:
+                let strs: [String] = fieldValue.map { String($0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Strings
+            case let fieldValue as String:
+                encoder.dictionary[fieldName] = fieldValue
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [String]:
+                encoder.dictionary[fieldName] = fieldValue.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            /// Dates
+            case let fieldValue as Date:
+                encoder.dictionary[fieldName] = encoder.dateFormatter.string(from: fieldValue)
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as [Date]:
+                let strs: [String] = fieldValue.map { encoder.dateFormatter.string(from: $0) }
+                encoder.dictionary[fieldName] = strs.joined(separator: ",")
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Operation:
+                encoder.dictionary[fieldName] = fieldValue.getStringValue()
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Ordering:
+                encoder.dictionary[fieldName] = fieldValue.getStringValue()
+                encoder.anyDictionary[fieldName] = fieldValue
+            case let fieldValue as Pagination:
+                encoder.dictionary[fieldName] = fieldValue.getStringValue()
+                encoder.anyDictionary[fieldName] = fieldValue
+            default:
+                if fieldName.isEmpty {
+                    encoder.dictionary = [:]   // Make encoder instance reusable
+                    encoder.anyDictionary = [:]   // Make encoder instance reusable
+                    try value.encode(to: encoder)
+                } else {
+                    do {
+                        let jsonData = try JSONEncoder().encode(value)
+                        encoder.dictionary[fieldName] = String(data: jsonData, encoding: .utf8)
+                        encoder.anyDictionary[fieldName] = jsonData
+                    } catch let error {
+                        throw encoder.encodingError(value, underlyingError: error)
+                    }
+                }
+            }
         }
 
-        func encodeNil(forKey key: Key) throws { }
+        func encodeNil(forKey: Key) throws {}
 
         func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type, forKey key: Key) -> KeyedEncodingContainer<NestedKey> where NestedKey : CodingKey {
-            return encoder.container(keyedBy: keyType)
+              return encoder.container(keyedBy: keyType)
         }
 
         func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer {

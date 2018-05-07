@@ -502,7 +502,24 @@ public extension RequestError {
 /**
  An identifier for a query parameter object.
  */
-public protocol QueryParams: Codable {}
+public protocol QueryParams: Codable {
+}
+
+/**
+ An error representing a failure to create an `Identifier`.
+
+### Usage Example: ###
+ 
+ An `QueryParamsError.invalidValue` may be thrown if the given type cannot be constructed from the given string.
+ ````swift
+ throw QueryParamsError.invalidValue
+ ````
+ */
+public enum QueryParamsError: Error {
+    /// Represents a failure to create a given filtering type from a given `String` representation.
+    case invalidValue
+
+}
 
 /**
  An error representing a failure to create an `Identifier`.
@@ -528,7 +545,7 @@ public enum IdentifierError: Error {
  public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
  ````
  */
-public protocol Identifier {
+public protocol Identifier: Codable {
     /// Creates an identifier from a given string value.
     /// - Throws: An IdentifierError.invalidValue if the given string is not a valid representation.
     init(value: String) throws
@@ -582,6 +599,566 @@ extension Int: Identifier {
     public var value: String {
         return String(describing: self)
     }
+}
+
+/**
+ Extends `Int8` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int8`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int8: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int8(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `Int16` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int16`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int16: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int16(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `Int32` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int32`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int32: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int32(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `Int64` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int64`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int64: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int64(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt8` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt8`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt8: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt8(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt16` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt16`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt16: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt16(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt32` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt32`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt32: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt32(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt64` to comply to the `Identifier` protocol.
+ 
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt64`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt64: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt64(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+extension Double: Identifier {
+    /// Creates a double identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a Double.
+    public init(value: String) throws {
+        if let id = Double(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+extension Float: Identifier {
+    /// Creates a float identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a Float.
+    public init(value: String) throws {
+        if let id = Float(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+extension Bool: Identifier {
+    /// Creates a bool identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a Bool.
+    public init(value: String) throws {
+        if let id = Bool(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+public enum Order: Codable {
+  case asc(String), desc(String)
+
+  enum CodingKeys: CodingKey {
+    case asc
+    case desc
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    switch self {
+    case .asc(let value):
+      try container.encode(value, forKey: .asc)
+    case .desc(let value):
+      try container.encode(value, forKey: .desc)
+    }
+  }
+
+  public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      do {
+          let ascValue =  try container.decode(String.self, forKey: .asc)
+          self = .asc(ascValue)
+      } catch {
+          let descValue =  try container.decode(String.self, forKey: .desc)
+          self = .desc(descValue)
+      }
+  }
+
+  public var description: String {
+    switch self {
+    case let .asc(value):
+      return "asc(\(value))"
+    case let .desc(value):
+      return "dec(\(value))"
+    }
+  }
+
+  public var value: String {
+    switch self {
+    case let .asc(value):
+      return value
+    case let .desc(value):
+      return value
+    }
+  }
+}
+
+public struct Ordering: Codable {
+  var order: [Order]!
+
+  public init(string value: String) throws {
+    if !value.contains(",") {
+      let extractedValue = try extractValue(value)
+      if value.contains("asc") {
+        self.order = [.asc(extractedValue)]
+      } else if value.contains("desc") {
+        self.order = [.desc(extractedValue)]
+      } else {
+        throw QueryParamsError.invalidValue
+      }
+    } else {
+      self.order = try value.split(separator: ",").map { String($0) }.map {
+        let extractedValue = try extractValue($0)
+        if $0.contains("asc") {
+          return .asc(extractedValue)
+        } else if $0.contains("desc") {
+          return .desc(extractedValue)
+        } else {
+          throw QueryParamsError.invalidValue
+        }
+      }
+    }
+  }
+
+  private func extractValue(_ value: String) throws -> String {
+    guard var startIndex = value.index(of: "("),
+          let endIndex = value.index(of: ")") else {
+      throw QueryParamsError.invalidValue
+    }
+    startIndex = value.index(startIndex, offsetBy: 1)
+    let extractedValue = value[startIndex..<endIndex]
+    return String(extractedValue)
+  }
+
+  public init(by order: Order...) {
+    self.order = order
+  }
+
+  public func getStringValue() -> String {
+    return self.order.map{ $0.description } .joined(separator: ",")
+  }
+
+  public func getValues() -> [Order] {
+    return self.order
+  }
+}
+
+public struct Pagination: Codable {
+  var start: Int
+  var size: Int
+
+  public init(start: Int  = 0, size: Int) {
+    self.start = start
+    self.size = size
+  }
+
+  public init(string value: String) throws {
+    var array = value.split(separator: ",")
+    if array.count != 2 {
+      throw QueryParamsError.invalidValue
+    }
+    self.start = try Int(value: String(array[0]))
+    self.size = try Int(value: String(array[1]))
+  }
+
+  public func getStringValue() -> String {
+    return "\(start),\(size)"
+  }
+
+  public func getValues() -> (start: Int, size: Int) {
+    return (start, size)
+  }
+}
+
+public enum Operator: String, Codable {
+  case or, equal, lowerThan, lowerThanOrEqual, greaterThan, greaterThanOrEqual, exclusiveRange, inclusiveRange
+}
+
+public protocol Operation: Codable {
+  init(string: String) throws
+  func getStringValue() -> String
+  func getOperator() -> Operator
+}
+
+public struct GreaterThan<I: Identifier>: Operation {
+  public var value: I
+  private var `operator`: Operator = .greaterThan
+
+  public init(value: I) {
+    self.value = value
+  }
+
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  public func getStringValue() -> String {
+    return self.value.value
+  }
+
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+public struct GreaterThanOrEqual<I: Identifier>: Operation {
+  public var value: I
+  private var `operator`: Operator = .greaterThanOrEqual
+
+  public init(value: I) {
+    self.value = value
+  }
+
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  public func getStringValue() -> String {
+    return self.value.value
+  }
+
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+public struct LowerThan<I: Identifier>: Operation {
+  public var value: I
+  private var `operator`: Operator = .lowerThan
+
+  public init(value: I) {
+    self.value = value
+  }
+
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  public func getStringValue() -> String {
+    return String(describing: value)
+  }
+
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+public struct LowerThanOrEqual<I: Identifier>: Operation {
+  public var value: I
+  private var `operator`: Operator = .lowerThanOrEqual
+
+  public init(value: I) {
+    self.value = value
+  }
+
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  public func getStringValue() -> String {
+    return String(describing: value)
+  }
+
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+public struct InclusiveRange<I: Identifier>: Operation {
+  public var start: I
+  public var end: I
+  private var `operator`: Operator = .inclusiveRange
+
+  public init(start: I, end: I) {
+    self.start = start
+    self.end = end
+  }
+
+  public init(string value: String) throws {
+    var array = value.split(separator: ",")
+    if array.count != 2 {
+      throw QueryParamsError.invalidValue
+    }
+    self.start = try I(value: String(array[0]))
+    self.end = try I(value: String(array[1]))
+  }
+
+  public func getStringValue() -> String {
+    return "\(start),\(end)"
+  }
+
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+public struct ExclusiveRange<I: Identifier>: Operation {
+  public var start: I
+  public var end: I
+  private var `operator`: Operator = .exclusiveRange
+
+  public init(start: I, end: I) {
+    self.start = start
+    self.end = end
+  }
+
+  public init(string value: String) throws {
+    var array = value.split(separator: ",")
+    if array.count != 2 {
+      throw QueryParamsError.invalidValue
+    }
+    self.start = try I(value: String(array[0]))
+    self.end = try I(value: String(array[1]))
+  }
+
+  public func getStringValue() -> String {
+    return "\(start),\(end)"
+  }
+
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
 }
 
 //public protocol Persistable: Codable {

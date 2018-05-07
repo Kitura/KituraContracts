@@ -146,6 +146,33 @@ public class QueryDecoder: Coder, Decoder {
             return try decodeType(fieldValue?.string, to: T.self)
         case is [String].Type:
             return try decodeType(fieldValue?.stringArray, to: T.self)
+        case is Operation.Type:
+            if let oType = type as? Operation.Type,
+               let value = fieldValue?.string {
+              let result = try oType.init(string: value)
+              if let castedValue = result as? T {
+                return castedValue
+              }
+            }
+            return try decodeType(fieldValue?.decodable(T.self), to: T.self)
+        case is Ordering.Type:
+            if let oType = type as? Ordering.Type,
+               let value = fieldValue?.string {
+              let result = try oType.init(string: value)
+              if let castedValue = result as? T {
+                return castedValue
+              }
+            }
+            return try decodeType(fieldValue?.decodable(T.self), to: T.self)
+        case is Pagination.Type:
+            if let oType = type as? Pagination.Type,
+               let value = fieldValue?.string {
+              let result = try oType.init(string: value)
+              if let castedValue = result as? T {
+                return castedValue
+              }
+            }
+            return try decodeType(fieldValue?.decodable(T.self), to: T.self)
         default:
             Log.verbose("Decoding Custom Type: \(T.Type.self)")
             if fieldName.isEmpty {
@@ -219,7 +246,7 @@ public class QueryDecoder: Coder, Decoder {
         func contains(_ key: Key) -> Bool {
           return decoder.dictionary[key.stringValue] != nil
         }
-      
+
         func decode<T>(_ type: T.Type, forKey key: Key) throws -> T where T : Decodable {
           self.decoder.codingPath.append(key)
           defer { self.decoder.codingPath.removeLast() }
