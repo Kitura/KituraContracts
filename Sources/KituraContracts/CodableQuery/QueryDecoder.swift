@@ -56,7 +56,8 @@ public class QueryDecoder: Coder, Decoder {
      Initializer with a `[String : String]` dictionary.
      */
     public init(dictionary: [String : String]) {
-        self.dictionary = dictionary
+        let removedEmptydictionary = dictionary.filter { !$0.value.isEmpty }
+        self.dictionary = removedEmptydictionary
         super.init()
     }
 
