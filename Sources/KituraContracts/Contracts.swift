@@ -920,7 +920,7 @@ public enum Order: Codable {
     case let .asc(value):
       return "asc(\(value))"
     case let .desc(value):
-      return "dec(\(value))"
+      return "desc(\(value))"
     }
   }
 
