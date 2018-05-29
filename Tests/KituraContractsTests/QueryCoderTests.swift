@@ -130,13 +130,12 @@ class QueryCoderTests: XCTestCase {
         public let pagination: Pagination
 
         public static func ==(lhs: MyFilters, rhs: MyFilters) -> Bool {
-            return  lhs.greaterThan.value == rhs.greaterThan.value &&
-                    lhs.greaterThanOrEqual.value == rhs.greaterThanOrEqual.value &&
-                    lhs.lowerThanOrEqual.value == rhs.lowerThanOrEqual.value &&
-                    lhs.inclusiveRange.start == rhs.inclusiveRange.start &&
-                    lhs.inclusiveRange.end == rhs.inclusiveRange.end &&
-                    lhs.exclusiveRange.start == rhs.exclusiveRange.start &&
-                    lhs.exclusiveRange.end == rhs.exclusiveRange.end &&
+            return  lhs.greaterThan.getValue() == rhs.greaterThan.getValue() &&
+                    lhs.greaterThanOrEqual.getValue() == rhs.greaterThanOrEqual.getValue() &&
+                    lhs.lowerThan.getValue() == rhs.lowerThan.getValue() &&
+                    lhs.lowerThanOrEqual.getValue() == rhs.lowerThanOrEqual.getValue() &&
+                    lhs.inclusiveRange.getValue() == rhs.inclusiveRange.getValue() &&
+                    lhs.exclusiveRange.getValue() == rhs.exclusiveRange.getValue() &&
                     lhs.ordering.getStringValue() == rhs.ordering.getStringValue() &&
                     lhs.pagination.getStringValue() == rhs.pagination.getStringValue()
         }

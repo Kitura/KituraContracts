@@ -24,7 +24,7 @@
  and server side (e.g. Kitura) of the request (typically a HTTP REST request).
 
  ### Usage Example: ###
- 
+
  In this example, the `RequestError` is used in a Kitura server Codable route handler to
  indicate the request has failed because the requested record was not found.
  ````swift
@@ -57,7 +57,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     // MARK: Creating a RequestError from a numeric code
     /**
     Creates an error representing the given error code.
-    
+
      - parameter rawValue: An Int indicating an error code representing the type of error that has occurred.
     */
     public init(rawValue: Int) {
@@ -67,7 +67,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /**
     Creates an error representing the given error code and reason string.
-    
+
      - parameter rawValue: An Int indicating an error code representing the type of error that has occurred.
      - parameter reason: A human-readable description of the error code.
     */
@@ -75,11 +75,11 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.rawValue = rawValue
         self.reason = reason
     }
-    
+
     /**
     Creates an error representing the given base error, with a custom
     response body given as a Codable.
-    
+
      - parameter base: A `RequestError` object.
      - parameter body: A representation of the error body - an object representing further details of the failure.
     */
@@ -98,7 +98,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     /**
     Creates an error respresenting the given base error, with a custom
     response body given as Data and a BodyFormat.
-    
+
      - parameter base: A `RequestError` object.
      - parameter bodyData: A `Data` object.
      - parameter format: A `BodyFormat` object used to check whether it is legal JSON.
@@ -114,7 +114,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
             default: throw UnsupportedBodyFormatError(format)
         }
     }
-    
+
     // MARK: Accessing information about the error
 
     /**
@@ -509,7 +509,7 @@ public protocol QueryParams: Codable {
  An error representing a failure to create an `Identifier`.
 
 ### Usage Example: ###
- 
+
  An `QueryParamsError.invalidValue` may be thrown if the given type cannot be constructed from the given string.
  ````swift
  throw QueryParamsError.invalidValue
@@ -525,7 +525,7 @@ public enum QueryParamsError: Error {
  An error representing a failure to create an `Identifier`.
 
 ### Usage Example: ###
- 
+
  An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
  ````swift
  throw IdentifierError.invalidValue
@@ -556,7 +556,7 @@ public protocol Identifier: Codable {
 
 /**
  Extends `String` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be a `String`.
@@ -577,7 +577,7 @@ extension String: Identifier {
 
 /**
  Extends `Int` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `Int`.
@@ -603,7 +603,7 @@ extension Int: Identifier {
 
 /**
  Extends `Int8` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `Int8`.
@@ -629,7 +629,7 @@ extension Int8: Identifier {
 
 /**
  Extends `Int16` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `Int16`.
@@ -655,7 +655,7 @@ extension Int16: Identifier {
 
 /**
  Extends `Int32` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `Int32`.
@@ -681,7 +681,7 @@ extension Int32: Identifier {
 
 /**
  Extends `Int64` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `Int64`.
@@ -707,7 +707,7 @@ extension Int64: Identifier {
 
 /**
  Extends `UInt` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `UInt`.
@@ -733,7 +733,7 @@ extension UInt: Identifier {
 
 /**
  Extends `UInt8` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `UInt8`.
@@ -759,7 +759,7 @@ extension UInt8: Identifier {
 
 /**
  Extends `UInt16` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `UInt16`.
@@ -785,7 +785,7 @@ extension UInt16: Identifier {
 
 /**
  Extends `UInt32` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `UInt32`.
@@ -811,7 +811,7 @@ extension UInt32: Identifier {
 
 /**
  Extends `UInt64` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `UInt64`.
@@ -886,14 +886,29 @@ extension Bool: Identifier {
     }
 }
 
-public enum Order: Codable {
-  case asc(String), desc(String)
+/**
+  An enum containing the ordering information
+  ### Usage Example: ###
+  To order ascending by name, we would write:
+  ```swift
+  Order.asc("name")
+  ```
+*/
 
+public enum Order: Codable {
+
+  /// Represents an ascending order with an associated String value
+  case asc(String)
+  /// Represents a descending order with an associated String value
+  case desc(String)
+
+  // Coding Keys for encoding and decoding
   enum CodingKeys: CodingKey {
     case asc
     case desc
   }
 
+  // Function to encode enum case
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     switch self {
@@ -904,6 +919,7 @@ public enum Order: Codable {
     }
   }
 
+  // Function to decode enum case
   public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       do {
@@ -915,6 +931,7 @@ public enum Order: Codable {
       }
   }
 
+  /// Description of the enum case
   public var description: String {
     switch self {
     case let .asc(value):
@@ -924,6 +941,7 @@ public enum Order: Codable {
     }
   }
 
+  /// Associated value of the enum case
   public var value: String {
     switch self {
     case let .asc(value):
@@ -934,10 +952,30 @@ public enum Order: Codable {
   }
 }
 
+/**
+  A codable struct containing the ordering information
+  ### Usage Example: ###
+  To order ascending by name and descending by age, we would write:
+  ```swift
+     Ordering(by: .asc("name"), .desc("age"))
+  ```
+*/
 public struct Ordering: Codable {
+  /// Array of Orders
   var order: [Order]!
 
-  public init(string value: String) throws {
+  /// Creates an Ordering instance from one or more Orders
+  public init(by order: Order...) {
+    self.order = order
+  }
+
+  /// Creates an Ordering instance from a given array of Orders.
+  public init(by order: [Order]) {
+    self.order = order
+  }
+
+  /// Creates an Ordering instance from a given string value.
+  internal init(string value: String) throws {
     if !value.contains(",") {
       let extractedValue = try extractValue(value)
       if value.contains("asc") {
@@ -961,6 +999,7 @@ public struct Ordering: Codable {
     }
   }
 
+  // Function to extract the String value from the Order enum case
   private func extractValue(_ value: String) throws -> String {
     guard var startIndex = value.index(of: "("),
           let endIndex = value.index(of: ")") else {
@@ -971,29 +1010,41 @@ public struct Ordering: Codable {
     return String(extractedValue)
   }
 
-  public init(by order: Order...) {
-    self.order = order
-  }
-
-  public func getStringValue() -> String {
+  // The string representation of the Ordering instance
+  internal func getStringValue() -> String {
     return self.order.map{ $0.description } .joined(separator: ",")
   }
 
+  /// Returns an array of Orders
   public func getValues() -> [Order] {
     return self.order
   }
 }
 
-public struct Pagination: Codable {
-  var start: Int
-  var size: Int
 
+/**
+  A codable struct containing the pagination information
+  ### Usage Example: ###
+  To get only the first 10 values, we would write:
+  ```swift
+  Pagination(size: 10)
+  ```
+  To get the 11th to 20th values, we would write:
+  ```swift
+  Pagination(start: 10, size: 10)
+  ```
+*/
+public struct Pagination: Codable {
+  private var start: Int
+  private var size: Int
+
+  /// Creates a Pagination instance from start and size Int values
   public init(start: Int  = 0, size: Int) {
     self.start = start
     self.size = size
   }
 
-  public init(string value: String) throws {
+  internal init(string value: String) throws {
     var array = value.split(separator: ",")
     if array.count != 2 {
       throw QueryParamsError.invalidValue
@@ -1002,119 +1053,241 @@ public struct Pagination: Codable {
     self.size = try Int(value: String(array[1]))
   }
 
-  public func getStringValue() -> String {
+  internal func getStringValue() -> String {
     return "\(start),\(size)"
   }
 
+  /// Returns a tuple containing the start and size Int values
   public func getValues() -> (start: Int, size: Int) {
     return (start, size)
   }
 }
 
+/**
+  An enum defining the available logical operators
+  ### Usage Example: ###
+  To use the OR Operator, we would write:
+  ```swift
+  Operator.or
+  ```
+*/
 public enum Operator: String, Codable {
-  case or, equal, lowerThan, lowerThanOrEqual, greaterThan, greaterThanOrEqual, exclusiveRange, inclusiveRange
+  /// OR Operator
+  case or
+  /// Equal Operator
+  case equal
+  /// LowerThan Operator
+  case lowerThan
+  /// LowerThanOrEqual Operator
+  case lowerThanOrEqual
+  /// GreaterThan Operator
+  case greaterThan
+  /// GreaterThanOrEqual Operator
+  case greaterThanOrEqual
+  /// ExclusiveRange Operator
+  case exclusiveRange
+  /// InclusiveRange Operator
+  case inclusiveRange
 }
 
+
+/**
+  An identifier for an operation object.
+*/
 public protocol Operation: Codable {
   init(string: String) throws
   func getStringValue() -> String
   func getOperator() -> Operator
 }
 
+
+/**
+  A codable struct enabling greater than filtering
+  ### Usage Example: ###
+  To filter with greaterThan on age which is an Integer, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: GreaterThan<Int>
+  }
+  let query = MyQuery(age: GreaterThan<Int>(value: 8))
+  ```
+*/
 public struct GreaterThan<I: Identifier>: Operation {
-  public var value: I
+  private var value: I
   private var `operator`: Operator = .greaterThan
 
+  /// Creates a GreaterThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
   }
 
+  /// Creates a GreaterThan instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
   }
 
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
   public func getStringValue() -> String {
     return self.value.value
   }
 
+  /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
   }
 }
 
+/**
+  A codable struct enabling greater than or equal filtering
+  ### Usage Example: ###
+  To filter with greater than or equal on age which is an Integer, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: GreaterThanOrEqual<Int>
+  }
+  let query = MyQuery(age: GreaterThanOrEqual<Int>(value: 8))
+  ```
+*/
 public struct GreaterThanOrEqual<I: Identifier>: Operation {
-  public var value: I
+  private var value: I
   private var `operator`: Operator = .greaterThanOrEqual
 
+  /// Creates a GreaterThanOrEqual instance from a given Identifier value
   public init(value: I) {
     self.value = value
   }
 
+  /// Creates a GreaterThanOrEqual instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
   }
 
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
   public func getStringValue() -> String {
     return self.value.value
   }
 
+  /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
   }
 }
 
+/**
+  A codable struct enabling lower than filtering
+  ### Usage Example: ###
+  To filter with lower than on age, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: LowerThan<Int>
+  }
+  let query = MyQuery(age: LowerThan<Int>(value: 8))
+  ```
+*/
 public struct LowerThan<I: Identifier>: Operation {
-  public var value: I
+  private var value: I
   private var `operator`: Operator = .lowerThan
 
+  /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
   }
 
+  /// Creates a LowerThan instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
   }
 
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
   public func getStringValue() -> String {
     return String(describing: value)
   }
 
+  /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
   }
 }
 
+/**
+  A codable struct enabling lower than or equal filtering
+  ### Usage Example: ###
+  To filter with lower than or equal on age, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: LowerThanOrEqual<Int>
+  }
+  let query = MyQuery(age: LowerThanOrEqual<Int>(value: 8))
+  ```
+*/
 public struct LowerThanOrEqual<I: Identifier>: Operation {
-  public var value: I
+  private var value: I
   private var `operator`: Operator = .lowerThanOrEqual
 
+  /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
   }
 
+  /// Creates a LowerThan instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
   }
 
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
   public func getStringValue() -> String {
     return String(describing: value)
   }
 
+  /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
   }
 }
 
+/**
+  A codable struct enabling to filter with an inclusive range
+  ### Usage Example: ###
+  To filter on age using an inclusive range, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: InclusiveRange<Int>
+  }
+  let query = MyQuery(age: InclusiveRange<Int>(value: 8))
+  ```
+*/
 public struct InclusiveRange<I: Identifier>: Operation {
-  public var start: I
-  public var end: I
+  private var start: I
+  private var end: I
   private var `operator`: Operator = .inclusiveRange
 
+  /// Creates a InclusiveRange instance from given start and end values
   public init(start: I, end: I) {
     self.start = start
     self.end = end
   }
 
+  /// Creates a InclusiveRange instance from a given String value
   public init(string value: String) throws {
     var array = value.split(separator: ",")
     if array.count != 2 {
@@ -1124,25 +1297,45 @@ public struct InclusiveRange<I: Identifier>: Operation {
     self.end = try I(value: String(array[1]))
   }
 
+  /// Returns the stored values as a tuple
+  public func getValue() -> (start: I, end: I) {
+    return (start: self.start, end: self.end)
+  }
+
+  /// Returns the stored value as a String
   public func getStringValue() -> String {
     return "\(start),\(end)"
   }
 
+  /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
   }
 }
 
+/**
+  A codable struct enabling to filter with an exlusive range
+  ### Usage Example: ###
+  To filter on age using an exclusive range, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: ExclusiveRange<Int>
+  }
+  let query = MyQuery(age: ExclusiveRange<Int>(value: 8))
+  ```
+*/
 public struct ExclusiveRange<I: Identifier>: Operation {
-  public var start: I
-  public var end: I
+  private var start: I
+  private var end: I
   private var `operator`: Operator = .exclusiveRange
 
+  /// Creates a ExclusiveRange instance from given start and end values
   public init(start: I, end: I) {
     self.start = start
     self.end = end
   }
 
+  /// Creates a ExclusiveRange instance from a given String value
   public init(string value: String) throws {
     var array = value.split(separator: ",")
     if array.count != 2 {
@@ -1152,10 +1345,17 @@ public struct ExclusiveRange<I: Identifier>: Operation {
     self.end = try I(value: String(array[1]))
   }
 
+  /// Returns the stored values as a tuple
+  public func getValue() -> (start: I, end: I) {
+    return (start: self.start, end: self.end)
+  }
+
+  /// Returns the stored value as a String
   public func getStringValue() -> String {
     return "\(start),\(end)"
   }
 
+  /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
   }
