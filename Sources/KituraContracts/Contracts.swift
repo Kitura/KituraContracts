@@ -24,7 +24,7 @@
  and server side (e.g. Kitura) of the request (typically a HTTP REST request).
 
  ### Usage Example: ###
- 
+
  In this example, the `RequestError` is used in a Kitura server Codable route handler to
  indicate the request has failed because the requested record was not found.
  ````swift
@@ -57,7 +57,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     // MARK: Creating a RequestError from a numeric code
     /**
     Creates an error representing the given error code.
-    
+
      - parameter rawValue: An Int indicating an error code representing the type of error that has occurred.
     */
     public init(rawValue: Int) {
@@ -67,7 +67,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 
     /**
     Creates an error representing the given error code and reason string.
-    
+
      - parameter rawValue: An Int indicating an error code representing the type of error that has occurred.
      - parameter reason: A human-readable description of the error code.
     */
@@ -75,11 +75,11 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
         self.rawValue = rawValue
         self.reason = reason
     }
-    
+
     /**
     Creates an error representing the given base error, with a custom
     response body given as a Codable.
-    
+
      - parameter base: A `RequestError` object.
      - parameter body: A representation of the error body - an object representing further details of the failure.
     */
@@ -98,7 +98,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
     /**
     Creates an error respresenting the given base error, with a custom
     response body given as Data and a BodyFormat.
-    
+
      - parameter base: A `RequestError` object.
      - parameter bodyData: A `Data` object.
      - parameter format: A `BodyFormat` object used to check whether it is legal JSON.
@@ -114,7 +114,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
             default: throw UnsupportedBodyFormatError(format)
         }
     }
-    
+
     // MARK: Accessing information about the error
 
     /**
@@ -502,13 +502,30 @@ public extension RequestError {
 /**
  An identifier for a query parameter object.
  */
-public protocol QueryParams: Codable {}
+public protocol QueryParams: Codable {
+}
 
 /**
  An error representing a failure to create an `Identifier`.
 
 ### Usage Example: ###
- 
+
+ An `QueryParamsError.invalidValue` may be thrown if the given type cannot be constructed from the given string.
+ ````swift
+ throw QueryParamsError.invalidValue
+ ````
+ */
+public enum QueryParamsError: Error {
+    /// Represents a failure to create a given filtering type from a given `String` representation.
+    case invalidValue
+
+}
+
+/**
+ An error representing a failure to create an `Identifier`.
+
+### Usage Example: ###
+
  An `IdentifierError.invalidValue` may be thrown if the given string cannot be converted to an integer when using an `Identifier`.
  ````swift
  throw IdentifierError.invalidValue
@@ -528,7 +545,7 @@ public enum IdentifierError: Error {
  public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
  ````
  */
-public protocol Identifier {
+public protocol Identifier: Codable {
     /// Creates an identifier from a given string value.
     /// - Throws: An IdentifierError.invalidValue if the given string is not a valid representation.
     init(value: String) throws
@@ -539,7 +556,7 @@ public protocol Identifier {
 
 /**
  Extends `String` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be a `String`.
@@ -560,7 +577,7 @@ extension String: Identifier {
 
 /**
  Extends `Int` to comply to the `Identifier` protocol.
- 
+
 ### Usage Example: ###
  ````swift
  // The Identifier used in the Id field could be an `Int`.
@@ -582,6 +599,766 @@ extension Int: Identifier {
     public var value: String {
         return String(describing: self)
     }
+}
+
+/**
+ Extends `Int8` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int8`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int8: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int8(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `Int16` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int16`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int16: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int16(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `Int32` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int32`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int32: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int32(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `Int64` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `Int64`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension Int64: Identifier {
+    /// Creates an integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an integer.
+    public init(value: String) throws {
+        if let id = Int64(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt8` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt8`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt8: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt8(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt16` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt16`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt16: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt16(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt32` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt32`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt32: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt32(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+ Extends `UInt64` to comply to the `Identifier` protocol.
+
+### Usage Example: ###
+ ````swift
+ // The Identifier used in the Id field could be an `UInt64`.
+ public typealias IdentifierCodableClosure<Id: Identifier, I: Codable, O: Codable> = (Id, I, @escaping CodableResultClosure<O>) -> Void
+ ````
+ */
+extension UInt64: Identifier {
+    /// Creates an unsigned integer identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to an unsigned integer.
+    public init(value: String) throws {
+        if let id = UInt64(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+extension Double: Identifier {
+    /// Creates a double identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a Double.
+    public init(value: String) throws {
+        if let id = Double(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+extension Float: Identifier {
+    /// Creates a float identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a Float.
+    public init(value: String) throws {
+        if let id = Float(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+extension Bool: Identifier {
+    /// Creates a bool identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a Bool.
+    public init(value: String) throws {
+        if let id = Bool(value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return String(describing: self)
+    }
+}
+
+/**
+  An enum containing the ordering information
+  ### Usage Example: ###
+  To order ascending by name, we would write:
+  ```swift
+  Order.asc("name")
+  ```
+*/
+
+public enum Order: Codable {
+
+  /// Represents an ascending order with an associated String value
+  case asc(String)
+  /// Represents a descending order with an associated String value
+  case desc(String)
+
+  // Coding Keys for encoding and decoding
+  enum CodingKeys: CodingKey {
+    case asc
+    case desc
+  }
+
+  // Function to encode enum case
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    switch self {
+    case .asc(let value):
+      try container.encode(value, forKey: .asc)
+    case .desc(let value):
+      try container.encode(value, forKey: .desc)
+    }
+  }
+
+  // Function to decode enum case
+  public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      do {
+          let ascValue =  try container.decode(String.self, forKey: .asc)
+          self = .asc(ascValue)
+      } catch {
+          let descValue =  try container.decode(String.self, forKey: .desc)
+          self = .desc(descValue)
+      }
+  }
+
+  /// Description of the enum case
+  public var description: String {
+    switch self {
+    case let .asc(value):
+      return "asc(\(value))"
+    case let .desc(value):
+      return "desc(\(value))"
+    }
+  }
+
+  /// Associated value of the enum case
+  public var value: String {
+    switch self {
+    case let .asc(value):
+      return value
+    case let .desc(value):
+      return value
+    }
+  }
+}
+
+/**
+  A codable struct containing the ordering information
+  ### Usage Example: ###
+  To order ascending by name and descending by age, we would write:
+  ```swift
+     Ordering(by: .asc("name"), .desc("age"))
+  ```
+*/
+public struct Ordering: Codable {
+  /// Array of Orders
+  var order: [Order]!
+
+  /// Creates an Ordering instance from one or more Orders
+  public init(by order: Order...) {
+    self.order = order
+  }
+
+  /// Creates an Ordering instance from a given array of Orders.
+  public init(by order: [Order]) {
+    self.order = order
+  }
+
+  /// Creates an Ordering instance from a given string value.
+  internal init(string value: String) throws {
+    if !value.contains(",") {
+      let extractedValue = try extractValue(value)
+      if value.contains("asc") {
+        self.order = [.asc(extractedValue)]
+      } else if value.contains("desc") {
+        self.order = [.desc(extractedValue)]
+      } else {
+        throw QueryParamsError.invalidValue
+      }
+    } else {
+      self.order = try value.split(separator: ",").map { String($0) }.map {
+        let extractedValue = try extractValue($0)
+        if $0.contains("asc") {
+          return .asc(extractedValue)
+        } else if $0.contains("desc") {
+          return .desc(extractedValue)
+        } else {
+          throw QueryParamsError.invalidValue
+        }
+      }
+    }
+  }
+
+  // Function to extract the String value from the Order enum case
+  private func extractValue(_ value: String) throws -> String {
+    guard var startIndex = value.index(of: "("),
+          let endIndex = value.index(of: ")") else {
+      throw QueryParamsError.invalidValue
+    }
+    startIndex = value.index(startIndex, offsetBy: 1)
+    let extractedValue = value[startIndex..<endIndex]
+    return String(extractedValue)
+  }
+
+  // The string representation of the Ordering instance
+  internal func getStringValue() -> String {
+    return self.order.map{ $0.description } .joined(separator: ",")
+  }
+
+  /// Returns an array of Orders
+  public func getValues() -> [Order] {
+    return self.order
+  }
+}
+
+
+/**
+  A codable struct containing the pagination information
+  ### Usage Example: ###
+  To get only the first 10 values, we would write:
+  ```swift
+  Pagination(size: 10)
+  ```
+  To get the 11th to 20th values, we would write:
+  ```swift
+  Pagination(start: 10, size: 10)
+  ```
+*/
+public struct Pagination: Codable {
+  private var start: Int
+  private var size: Int
+
+  /// Creates a Pagination instance from start and size Int values
+  public init(start: Int  = 0, size: Int) {
+    self.start = start
+    self.size = size
+  }
+
+  internal init(string value: String) throws {
+    var array = value.split(separator: ",")
+    if array.count != 2 {
+      throw QueryParamsError.invalidValue
+    }
+    self.start = try Int(value: String(array[0]))
+    self.size = try Int(value: String(array[1]))
+  }
+
+  internal func getStringValue() -> String {
+    return "\(start),\(size)"
+  }
+
+  /// Returns a tuple containing the start and size Int values
+  public func getValues() -> (start: Int, size: Int) {
+    return (start, size)
+  }
+}
+
+/**
+  An enum defining the available logical operators
+  ### Usage Example: ###
+  To use the OR Operator, we would write:
+  ```swift
+  Operator.or
+  ```
+*/
+public enum Operator: String, Codable {
+  /// OR Operator
+  case or
+  /// Equal Operator
+  case equal
+  /// LowerThan Operator
+  case lowerThan
+  /// LowerThanOrEqual Operator
+  case lowerThanOrEqual
+  /// GreaterThan Operator
+  case greaterThan
+  /// GreaterThanOrEqual Operator
+  case greaterThanOrEqual
+  /// ExclusiveRange Operator
+  case exclusiveRange
+  /// InclusiveRange Operator
+  case inclusiveRange
+}
+
+
+/**
+  An identifier for an operation object.
+*/
+public protocol Operation: Codable {
+  init(string: String) throws
+  func getStringValue() -> String
+  func getOperator() -> Operator
+}
+
+
+/**
+  A codable struct enabling greater than filtering
+  ### Usage Example: ###
+  To filter with greaterThan on age which is an Integer, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: GreaterThan<Int>
+  }
+  let query = MyQuery(age: GreaterThan<Int>(value: 8))
+  ```
+*/
+public struct GreaterThan<I: Identifier>: Operation {
+  private var value: I
+  private var `operator`: Operator = .greaterThan
+
+  /// Creates a GreaterThan instance from a given Identifier value
+  public init(value: I) {
+    self.value = value
+  }
+
+  /// Creates a GreaterThan instance from a given String value
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
+  public func getStringValue() -> String {
+    return self.value.value
+  }
+
+  /// Returns the Operator
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+/**
+  A codable struct enabling greater than or equal filtering
+  ### Usage Example: ###
+  To filter with greater than or equal on age which is an Integer, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: GreaterThanOrEqual<Int>
+  }
+  let query = MyQuery(age: GreaterThanOrEqual<Int>(value: 8))
+  ```
+*/
+public struct GreaterThanOrEqual<I: Identifier>: Operation {
+  private var value: I
+  private var `operator`: Operator = .greaterThanOrEqual
+
+  /// Creates a GreaterThanOrEqual instance from a given Identifier value
+  public init(value: I) {
+    self.value = value
+  }
+
+  /// Creates a GreaterThanOrEqual instance from a given String value
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
+  public func getStringValue() -> String {
+    return self.value.value
+  }
+
+  /// Returns the Operator
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+/**
+  A codable struct enabling lower than filtering
+  ### Usage Example: ###
+  To filter with lower than on age, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: LowerThan<Int>
+  }
+  let query = MyQuery(age: LowerThan<Int>(value: 8))
+  ```
+*/
+public struct LowerThan<I: Identifier>: Operation {
+  private var value: I
+  private var `operator`: Operator = .lowerThan
+
+  /// Creates a LowerThan instance from a given Identifier value
+  public init(value: I) {
+    self.value = value
+  }
+
+  /// Creates a LowerThan instance from a given String value
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
+  public func getStringValue() -> String {
+    return String(describing: value)
+  }
+
+  /// Returns the Operator
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+/**
+  A codable struct enabling lower than or equal filtering
+  ### Usage Example: ###
+  To filter with lower than or equal on age, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: LowerThanOrEqual<Int>
+  }
+  let query = MyQuery(age: LowerThanOrEqual<Int>(value: 8))
+  ```
+*/
+public struct LowerThanOrEqual<I: Identifier>: Operation {
+  private var value: I
+  private var `operator`: Operator = .lowerThanOrEqual
+
+  /// Creates a LowerThan instance from a given Identifier value
+  public init(value: I) {
+    self.value = value
+  }
+
+  /// Creates a LowerThan instance from a given String value
+  public init(string value: String) throws {
+    self.value = try I(value: value)
+  }
+
+  /// Returns the stored value
+  public func getValue() -> I {
+    return self.value
+  }
+
+  /// Returns the stored value as a String
+  public func getStringValue() -> String {
+    return String(describing: value)
+  }
+
+  /// Returns the Operator
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+/**
+  A codable struct enabling to filter with an inclusive range
+  ### Usage Example: ###
+  To filter on age using an inclusive range, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: InclusiveRange<Int>
+  }
+  let query = MyQuery(age: InclusiveRange<Int>(value: 8))
+  ```
+*/
+public struct InclusiveRange<I: Identifier>: Operation {
+  private var start: I
+  private var end: I
+  private var `operator`: Operator = .inclusiveRange
+
+  /// Creates a InclusiveRange instance from given start and end values
+  public init(start: I, end: I) {
+    self.start = start
+    self.end = end
+  }
+
+  /// Creates a InclusiveRange instance from a given String value
+  public init(string value: String) throws {
+    var array = value.split(separator: ",")
+    if array.count != 2 {
+      throw QueryParamsError.invalidValue
+    }
+    self.start = try I(value: String(array[0]))
+    self.end = try I(value: String(array[1]))
+  }
+
+  /// Returns the stored values as a tuple
+  public func getValue() -> (start: I, end: I) {
+    return (start: self.start, end: self.end)
+  }
+
+  /// Returns the stored value as a String
+  public func getStringValue() -> String {
+    return "\(start),\(end)"
+  }
+
+  /// Returns the Operator
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
+}
+
+/**
+  A codable struct enabling to filter with an exlusive range
+  ### Usage Example: ###
+  To filter on age using an exclusive range, we would write:
+  ```swift
+  struct MyQuery: QueryParams {
+    let age: ExclusiveRange<Int>
+  }
+  let query = MyQuery(age: ExclusiveRange<Int>(value: 8))
+  ```
+*/
+public struct ExclusiveRange<I: Identifier>: Operation {
+  private var start: I
+  private var end: I
+  private var `operator`: Operator = .exclusiveRange
+
+  /// Creates a ExclusiveRange instance from given start and end values
+  public init(start: I, end: I) {
+    self.start = start
+    self.end = end
+  }
+
+  /// Creates a ExclusiveRange instance from a given String value
+  public init(string value: String) throws {
+    var array = value.split(separator: ",")
+    if array.count != 2 {
+      throw QueryParamsError.invalidValue
+    }
+    self.start = try I(value: String(array[0]))
+    self.end = try I(value: String(array[1]))
+  }
+
+  /// Returns the stored values as a tuple
+  public func getValue() -> (start: I, end: I) {
+    return (start: self.start, end: self.end)
+  }
+
+  /// Returns the stored value as a String
+  public func getStringValue() -> String {
+    return "\(start),\(end)"
+  }
+
+  /// Returns the Operator
+  public func getOperator() -> Operator {
+    return self.`operator`
+  }
 }
 
 //public protocol Persistable: Codable {

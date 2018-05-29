@@ -119,6 +119,29 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
+    struct MyFilters: QueryParams, Equatable {
+        public let greaterThan: GreaterThan<Int>
+        public let greaterThanOrEqual: GreaterThanOrEqual<Int>
+        public let lowerThan: LowerThan<Double>
+        public let lowerThanOrEqual: LowerThanOrEqual<Double>
+        public let inclusiveRange: InclusiveRange<UInt>
+        public let exclusiveRange: ExclusiveRange<UInt>
+        public let ordering: Ordering
+        public let pagination: Pagination
+
+        public static func ==(lhs: MyFilters, rhs: MyFilters) -> Bool {
+            return  lhs.greaterThan.getValue() == rhs.greaterThan.getValue() &&
+                    lhs.greaterThanOrEqual.getValue() == rhs.greaterThanOrEqual.getValue() &&
+                    lhs.lowerThan.getValue() == rhs.lowerThan.getValue() &&
+                    lhs.lowerThanOrEqual.getValue() == rhs.lowerThanOrEqual.getValue() &&
+                    lhs.inclusiveRange.getValue() == rhs.inclusiveRange.getValue() &&
+                    lhs.exclusiveRange.getValue() == rhs.exclusiveRange.getValue() &&
+                    lhs.ordering.getStringValue() == rhs.ordering.getStringValue() &&
+                    lhs.pagination.getStringValue() == rhs.pagination.getStringValue()
+        }
+    }
+
+
     let expectedDict = ["boolField": "true", "intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
     let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=a%20string&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
@@ -135,6 +158,20 @@ class QueryCoderTests: XCTestCase {
                                   optionalDateField: Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!,
                                   nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
+    let expectedFiltersDict = ["greaterThan": "8", "greaterThanOrEqual": "10", "lowerThan": "7.0", "lowerThanOrEqual": "12.0", "inclusiveRange": "0,5", "exclusiveRange": "4,15", "ordering": "asc(name),desc(age)", "pagination": "8,14"]
+    let expectedQueryFiltersString = "?greaterThan=8&greaterThanOrEqual=10&lowerThan=7.0&lowerThanOrEqual=12.0&inclusiveRange=0,5&exclusiveRange=4,15&ordering=asc(name),desc(age)&pagination=8,14"
+
+    let expectedFilterQuery = MyFilters(
+      greaterThan: GreaterThan(value: 8),
+      greaterThanOrEqual: GreaterThanOrEqual(value: 10),
+      lowerThan: LowerThan(value: 7.0),
+      lowerThanOrEqual: LowerThanOrEqual(value: 12.0),
+      inclusiveRange: InclusiveRange(start: 0, end: 5),
+      exclusiveRange: ExclusiveRange(start: 4, end: 15),
+      ordering: Ordering(by: .asc("name"), .desc("age")),
+      pagination: Pagination(start: 8, size: 14)
+    )
+
     func testQueryDecoder() {
         guard let query = try? QueryDecoder(dictionary: expectedDict).decode(MyQuery.self) else {
             XCTFail("Failed to decode query to MyQuery Object")
@@ -143,6 +180,12 @@ class QueryCoderTests: XCTestCase {
 
         XCTAssertEqual(query, expectedMyQuery)
 
+        guard let filterQuery = try? QueryDecoder(dictionary: expectedFiltersDict).decode(MyFilters.self) else {
+            XCTFail("Failed to decode query to MyQuery Object")
+            return
+        }
+
+        XCTAssertEqual(filterQuery, expectedFilterQuery)
     }
 
     func testQueryEncoder() {
@@ -201,6 +244,48 @@ class QueryCoderTests: XCTestCase {
         XCTAssertEqual(myQueryStrSplit1["dateField"], myQueryStrSplit2["dateField"])
         XCTAssertEqual(myQueryStrSplit1["optionalDateField"], myQueryStrSplit2["optionalDateField"])
         XCTAssertEqual(myQueryStrSplit1["nested"], myQueryStrSplit2["nested"])
+
+        let filterQuery = MyFilters(
+          greaterThan: GreaterThan(value: 8),
+          greaterThanOrEqual: GreaterThanOrEqual(value: 10),
+          lowerThan: LowerThan(value: 7.0),
+          lowerThanOrEqual: LowerThanOrEqual(value: 12.0),
+          inclusiveRange: InclusiveRange(start: 0, end: 5),
+          exclusiveRange: ExclusiveRange(start: 4, end: 15),
+          ordering: Ordering(by: .asc("name"), .desc("age")),
+          pagination: Pagination(start: 8, size: 14)
+        )
+
+        guard let myFilterQueryDict: [String: String] = try? QueryEncoder().encode(filterQuery) else {
+            XCTFail("Failed to encode query to [String: String]")
+            return
+        }
+
+        guard let myFilterQueryStr: String = try? QueryEncoder().encode(filterQuery) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        XCTAssertEqual(myFilterQueryDict["greaterThan"], "8")
+        XCTAssertEqual(myFilterQueryDict["greaterThanOrEqual"], "10")
+        XCTAssertEqual(myFilterQueryDict["lowerThan"], "7.0")
+        XCTAssertEqual(myFilterQueryDict["lowerThanOrEqual"], "12.0")
+        XCTAssertEqual(myFilterQueryDict["inclusiveRange"], "0,5")
+        XCTAssertEqual(myFilterQueryDict["exclusiveRange"], "4,15")
+        XCTAssertEqual(myFilterQueryDict["ordering"], "asc(name),desc(age)")
+        XCTAssertEqual(myFilterQueryDict["pagination"], "8,14")
+
+        let myFilterQueryStrSplit1: [String: String] = createDict(myFilterQueryStr)
+        let myFilterQueryStrSplit2: [String: String] = createDict(expectedQueryFiltersString)
+
+        XCTAssertEqual(myFilterQueryStrSplit1["greaterThan"], myFilterQueryStrSplit2["greaterThan"])
+        XCTAssertEqual(myFilterQueryStrSplit1["greaterThanOrEqual"], myFilterQueryStrSplit2["greaterThanOrEqual"])
+        XCTAssertEqual(myFilterQueryStrSplit1["lowerThan"], myFilterQueryStrSplit2["lowerThan"])
+        XCTAssertEqual(myFilterQueryStrSplit1["lowerThanOrEqual"], myFilterQueryStrSplit2["lowerThanOrEqual"])
+        XCTAssertEqual(myFilterQueryStrSplit1["inclusiveRange"], myFilterQueryStrSplit2["inclusiveRange"])
+        XCTAssertEqual(myFilterQueryStrSplit1["exlusiveRange"], myFilterQueryStrSplit2["exlusiveRange"])
+        XCTAssertEqual(myFilterQueryStrSplit1["ordering"], myFilterQueryStrSplit2["ordering"])
+        XCTAssertEqual(myFilterQueryStrSplit1["pagination"], myFilterQueryStrSplit2["pagination"])
 
     }
 
