@@ -1,12 +1,12 @@
 <p align="center">
-<a href="http://kitura.io/">
+<a href="https://www.kitura.io/">
 <img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
 </a>
 </p>
 
 
 <p align="center">
-<a href="http://www.kitura.io/">
+<a href="https://www.kitura.io/">
 <img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
 </a>
 <a href="https://travis-ci.org/IBM-Swift/KituraContracts">
@@ -59,7 +59,7 @@ router.post("/users") { (user: User, respondWith: (User?, RequestError?) -> Void
 
 ## Swift version
 
-The 0.0.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in [Xcode 9.3](https://developer.apple.com/xcode/).
+The 1.x.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in [Xcode 9.3](https://developer.apple.com/xcode/).
 
 ## Community
 
