@@ -1095,8 +1095,13 @@ public enum Operator: String, Codable {
   An identifier for an operation object.
 */
 public protocol Operation: Codable {
+  /// Createa an Operation from a string value
   init(string: String) throws
+
+  /// Returns the string value associated with an Operation
   func getStringValue() -> String
+
+  /// Returns the Operator associated with the Operation
   func getOperator() -> Operator
 }
 
