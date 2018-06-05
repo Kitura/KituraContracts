@@ -1095,13 +1095,20 @@ public enum Operator: String, Codable {
   An identifier for an operation object.
 */
 public protocol Operation: Codable {
-  /// Createa an Operation from a string value
+  /// Creates an Operation from a string value
   init(string: String) throws
 
-  /// Returns the string value associated with an Operation
+  /// Returns the string representation of an Operation to be used in the URL.
+  ///
+  /// ```swift
+  ///  let range = InclusiveRange(start: 5, end: 10)
+  /// ```
+  /// would be represented as `"5,10"`, which in the URL would translate to: `?range=5,10`
   func getStringValue() -> String
 
-  /// Returns the Operator associated with the Operation
+  /// Returns the Operator associated with the Operation.
+  ///
+  /// `InclusiveRange(start: 5, end: 10)` will have the operator `Operator.inclusiveRange`
   func getOperator() -> Operator
 }
 
