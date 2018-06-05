@@ -69,16 +69,61 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/IdentifierError.html">IdentifierError</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Operator.html">Operator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/Order.html">Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/QueryParamsError.html">QueryParamsError</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UInt8.html">UInt8</a>
               </li>
             </ul>
           </li>
@@ -87,6 +132,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Identifier.html">Identifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Operation.html">Operation</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols.html#/s:15KituraContracts11QueryParamsP">QueryParams</a>
@@ -98,6 +146,30 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ExclusiveRange.html">ExclusiveRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/GreaterThan.html">GreaterThan</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/GreaterThanOrEqual.html">GreaterThanOrEqual</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/InclusiveRange.html">InclusiveRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/LowerThan.html">LowerThan</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/LowerThanOrEqual.html">LowerThanOrEqual</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Ordering.html">Ordering</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Pagination.html">Pagination</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/RequestError.html">RequestError</a>
@@ -176,6 +248,39 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:15KituraContracts16QueryParamsErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/QueryParamsError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts16QueryParamsErrorO">QueryParamsError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An error representing a failure to create an <code><a href="Protocols/Identifier.html">Identifier</a></code>.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+
+<p>An <code><a href="Enums/QueryParamsError.html#/s:15KituraContracts16QueryParamsErrorO12invalidValueA2CmF">QueryParamsError.invalidValue</a></code> may be thrown if the given type cannot be constructed from the given string.</p>
+<pre class="highlight swift"><code> <span class="k">throw</span> <span class="kt">QueryParamsError</span><span class="o">.</span><span class="n">invalidValue</span>
+</code></pre>
+
+                        <a href="Enums/QueryParamsError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">QueryParamsError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:15KituraContracts15IdentifierErrorO"></a>
                     <a name="//apple_ref/swift/Enum/IdentifierError" class="dashAnchor"></a>
                     <a class="token" href="#/s:15KituraContracts15IdentifierErrorO">IdentifierError</a>
@@ -199,7 +304,73 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IdentifierError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">IdentifierError</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts5OrderO"></a>
+                    <a name="//apple_ref/swift/Enum/Order" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5OrderO">Order</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An enum containing the ordering information</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+
+<p>To order ascending by name, we would write:</p>
+<pre class="highlight swift"><code><span class="kt">Order</span><span class="o">.</span><span class="nf">asc</span><span class="p">(</span><span class="s">"name"</span><span class="p">)</span>
+</code></pre>
+
+                        <a href="Enums/Order.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Order</span><span class="p">:</span> <span class="kt">Codable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts8OperatorO"></a>
+                    <a name="//apple_ref/swift/Enum/Operator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts8OperatorO">Operator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An enum defining the available logical operators</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+
+<p>To use the OR Operator, we would write:</p>
+<pre class="highlight swift"><code><span class="kt">Operator</span><span class="o">.</span><span class="n">or</span>
+</code></pre>
+
+                        <a href="Enums/Operator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Operator</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Codable</span></code></pre>
 
                         </div>
                       </div>
@@ -214,8 +385,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-04-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

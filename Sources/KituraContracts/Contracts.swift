@@ -1095,8 +1095,26 @@ public enum Operator: String, Codable {
   An identifier for an operation object.
 */
 public protocol Operation: Codable {
+  /// Creates an Operation from a string value
   init(string: String) throws
+
+  /// Returns the string representation of the parameters for an Operation to be used in the URL.
+  ///
+  /// ```swift
+  ///  let range = InclusiveRange(start: 5, end: 10)
+  /// ```
+  /// would be represented as `"5,10"`, which in the URL would translate to: `?range=5,10`
+  /// This URL format is not an API but an implementation detail that could change in the future.
+  /// The URL doesn't encode the operator itself instead it is inferred at
+  /// decoding time by the type information associated with that key.
+  /// The type information used to decode this URL format is defined by
+  /// the QueryParams structure associated with a route.
+  /// The key name in the url maps to the field name in the QueryParams structure.
   func getStringValue() -> String
+
+  /// Returns the Operator associated with the Operation.
+  ///
+  /// `InclusiveRange(start: 5, end: 10)` will have the operator `Operator.inclusiveRange`
   func getOperator() -> Operator
 }
 
@@ -1109,8 +1127,14 @@ public protocol Operation: Codable {
   struct MyQuery: QueryParams {
     let age: GreaterThan<Int>
   }
-  let query = MyQuery(age: GreaterThan<Int>(value: 8))
+  let query = MyQuery(age: GreaterThan(value: 8))
   ```
+  In a URL it would translate to:
+  ```
+  ?age=8
+  ```
+
+  Note: The "age=8" format is not an API but an implementation detail that could change in the future.
 */
 public struct GreaterThan<I: Identifier>: Operation {
   private var value: I
@@ -1150,8 +1174,14 @@ public struct GreaterThan<I: Identifier>: Operation {
   struct MyQuery: QueryParams {
     let age: GreaterThanOrEqual<Int>
   }
-  let query = MyQuery(age: GreaterThanOrEqual<Int>(value: 8))
+  let query = MyQuery(age: GreaterThanOrEqual>(value: 8))
   ```
+  In a URL it would translate to:
+  ```
+  ?age=8
+  ```
+
+  Note: The "age=8" format is not an API but an implementation detail that could change in the future.
 */
 public struct GreaterThanOrEqual<I: Identifier>: Operation {
   private var value: I
@@ -1191,7 +1221,14 @@ public struct GreaterThanOrEqual<I: Identifier>: Operation {
   struct MyQuery: QueryParams {
     let age: LowerThan<Int>
   }
-  let query = MyQuery(age: LowerThan<Int>(value: 8))
+  let query = MyQuery(age: LowerThan(value: 8))
+  ```
+  In a URL it would translate to:
+  ```
+  ?age=8
+  ```
+
+  Note: The "age=8" format is not an API but an implementation detail that could change in the future.
   ```
 */
 public struct LowerThan<I: Identifier>: Operation {
@@ -1232,8 +1269,14 @@ public struct LowerThan<I: Identifier>: Operation {
   struct MyQuery: QueryParams {
     let age: LowerThanOrEqual<Int>
   }
-  let query = MyQuery(age: LowerThanOrEqual<Int>(value: 8))
+  let query = MyQuery(age: LowerThanOrEqual(value: 8))
   ```
+  In a URL it would translate to:
+  ```
+  ?age=8
+  ```
+
+  Note: The "age=8" format is not an API but an implementation detail that could change in the future.
 */
 public struct LowerThanOrEqual<I: Identifier>: Operation {
   private var value: I
@@ -1273,8 +1316,14 @@ public struct LowerThanOrEqual<I: Identifier>: Operation {
   struct MyQuery: QueryParams {
     let age: InclusiveRange<Int>
   }
-  let query = MyQuery(age: InclusiveRange<Int>(value: 8))
+  let query = MyQuery(age: InclusiveRange(start: 8, end: 14))
   ```
+  In a URL it would translate to:
+  ```
+  ?age=8,14
+  ```
+
+  Note: The "age=8,14" format is not an API but an implementation detail that could change in the future.
 */
 public struct InclusiveRange<I: Identifier>: Operation {
   private var start: I
@@ -1321,8 +1370,14 @@ public struct InclusiveRange<I: Identifier>: Operation {
   struct MyQuery: QueryParams {
     let age: ExclusiveRange<Int>
   }
-  let query = MyQuery(age: ExclusiveRange<Int>(value: 8))
+  let query = MyQuery(age: ExclusiveRange(start: 8, end: 14))
   ```
+  In a URL it would translate to:
+  ```
+  ?age=8,14
+  ```
+
+  Note: The "age=8,14" format is not an API but an implementation detail that could change in the future.
 */
 public struct ExclusiveRange<I: Identifier>: Operation {
   private var start: I

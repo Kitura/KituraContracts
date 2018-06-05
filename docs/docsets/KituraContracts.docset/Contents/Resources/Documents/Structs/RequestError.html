@@ -70,16 +70,61 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/IdentifierError.html">IdentifierError</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Operator.html">Operator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Order.html">Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/QueryParamsError.html">QueryParamsError</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Int.html">Int</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt8.html">UInt8</a>
               </li>
             </ul>
           </li>
@@ -88,6 +133,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Identifier.html">Identifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Operation.html">Operation</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols.html#/s:15KituraContracts11QueryParamsP">QueryParams</a>
@@ -99,6 +147,30 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ExclusiveRange.html">ExclusiveRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/GreaterThan.html">GreaterThan</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/GreaterThanOrEqual.html">GreaterThanOrEqual</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/InclusiveRange.html">InclusiveRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LowerThan.html">LowerThan</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LowerThanOrEqual.html">LowerThanOrEqual</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Ordering.html">Ordering</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Pagination.html">Pagination</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/RequestError.html">RequestError</a>
@@ -167,7 +239,7 @@
             <h1>RequestError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RequestError</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">RequestError</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="p">,</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Error</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
@@ -214,7 +286,7 @@ Custom error codes may be used and must not conflict with this range.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RawValue</span> <span class="o">=</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RawValue</span> <span class="o">=</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -243,7 +315,7 @@ May be a type-erased Codable object or a Data (in a particular format).</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorBody</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ErrorBody</span></code></pre>
 
                         </div>
                       </div>
@@ -281,7 +353,7 @@ May be a type-erased Codable object or a Data (in a particular format).</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -327,7 +399,7 @@ May be a type-erased Codable object or a Data (in a particular format).</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -386,7 +458,7 @@ response body given as a Codable.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Body</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">Body</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -451,7 +523,7 @@ response body given as Data and a BodyFormat.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">bodyData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">bodyData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -534,7 +606,7 @@ Custom error codes may be used and must not conflict with this range.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -561,7 +633,7 @@ Custom error codes may be used and must not conflict with this range.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -612,7 +684,7 @@ if the error was initialized with <code><a href="../Structs/RequestError.html#/s
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt"><a href="../Structs/RequestError/ErrorBody.html">ErrorBody</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="kt"><a href="../Structs/RequestError/ErrorBody.html">ErrorBody</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
 
                         </div>
                       </div>
@@ -669,7 +741,7 @@ if the error was initialized with <code><a href="../Structs/RequestError.html#/s
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encodeBody</span><span class="p">(</span><span class="n">_</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encodeBody</span><span class="p">(</span><span class="n">_</span> <span class="nv">format</span><span class="p">:</span> <span class="kt"><a href="../Structs/BodyFormat.html">BodyFormat</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -748,7 +820,7 @@ to ignore DecodingErrors.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">decodeBody</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">decodeBody</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -819,7 +891,7 @@ instead.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bodyAs</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">bodyAs</span><span class="o">&lt;</span><span class="kt">Body</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Body</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Body</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -883,7 +955,7 @@ instead.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -910,7 +982,7 @@ instead.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">RequestError</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -948,7 +1020,7 @@ instead.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -975,7 +1047,7 @@ instead.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1009,7 +1081,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">httpCode</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">httpCode</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1036,7 +1108,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1093,7 +1165,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">let</span> <span class="err">`</span><span class="k">continue</span><span class="err">`</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">let</span> <span class="p">`</span><span class="nv">continue</span><span class="p">`</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1120,7 +1192,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">switchingProtocols</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">101</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">switchingProtocols</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">101</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1147,7 +1219,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">ok</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">ok</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1174,7 +1246,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">created</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">201</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">created</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">201</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1201,7 +1273,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">accepted</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">202</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">accepted</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">202</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1228,7 +1300,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">nonAuthoritativeInformation</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">203</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">nonAuthoritativeInformation</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">203</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1255,7 +1327,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">noContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">204</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">noContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">204</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1282,7 +1354,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">resetContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">205</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">resetContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">205</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1309,7 +1381,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">partialContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">206</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">partialContent</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">206</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1336,7 +1408,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multiStatus</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">207</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multiStatus</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">207</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1363,7 +1435,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">alreadyReported</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">208</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">alreadyReported</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">208</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1390,7 +1462,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">imUsed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">226</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">imUsed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">226</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1417,7 +1489,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multipleChoices</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multipleChoices</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1444,7 +1516,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">movedPermanently</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">301</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">movedPermanently</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">301</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1471,7 +1543,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">found</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">302</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">found</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">302</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1498,7 +1570,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">seeOther</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">303</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">seeOther</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">303</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1525,7 +1597,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notModified</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">304</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notModified</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">304</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1552,7 +1624,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">useProxy</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">305</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">useProxy</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">305</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1579,7 +1651,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">temporaryRedirect</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">307</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">temporaryRedirect</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">307</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1606,7 +1678,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">permanentRedirect</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">308</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">permanentRedirect</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">308</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1633,7 +1705,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">badRequest</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">400</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">badRequest</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">400</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1660,7 +1732,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unauthorized</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unauthorized</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">401</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1687,7 +1759,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">paymentRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">402</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">paymentRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">402</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1714,7 +1786,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">forbidden</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">forbidden</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">403</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1741,7 +1813,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notFound</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">404</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notFound</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">404</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1768,7 +1840,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">methodNotAllowed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">405</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">methodNotAllowed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">405</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1795,7 +1867,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notAcceptable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">406</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notAcceptable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">406</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1822,7 +1894,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">proxyAuthenticationRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">407</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">proxyAuthenticationRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">407</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1849,7 +1921,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">requestTimeout</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">408</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">requestTimeout</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">408</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1876,7 +1948,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">conflict</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">409</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">conflict</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">409</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1903,7 +1975,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">gone</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">410</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">gone</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">410</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1930,7 +2002,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">lengthRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">411</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">lengthRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">411</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1957,7 +2029,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">preconditionFailed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">412</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">preconditionFailed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">412</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1984,7 +2056,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">payloadTooLarge</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">413</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">payloadTooLarge</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">413</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2011,7 +2083,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">uriTooLong</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">414</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">uriTooLong</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">414</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2038,7 +2110,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unsupportedMediaType</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">415</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unsupportedMediaType</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">415</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2065,7 +2137,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">rangeNotSatisfiable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">416</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">rangeNotSatisfiable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">416</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2092,7 +2164,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">expectationFailed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">417</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">expectationFailed</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">417</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2119,7 +2191,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">misdirectedRequest</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">421</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">misdirectedRequest</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">421</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2146,7 +2218,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unprocessableEntity</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">422</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unprocessableEntity</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">422</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2173,7 +2245,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">locked</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">423</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">locked</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">423</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2200,7 +2272,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">failedDependency</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">424</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">failedDependency</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">424</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2227,7 +2299,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">upgradeRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">426</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">upgradeRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">426</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2254,7 +2326,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">preconditionRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">428</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">preconditionRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">428</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2281,7 +2353,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">tooManyRequests</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">429</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">tooManyRequests</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">429</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2308,7 +2380,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">requestHeaderFieldsTooLarge</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">431</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">requestHeaderFieldsTooLarge</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">431</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2335,7 +2407,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unavailableForLegalReasons</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">451</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">unavailableForLegalReasons</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">451</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2362,7 +2434,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">internalServerError</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">internalServerError</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">500</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2389,7 +2461,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notImplemented</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">501</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notImplemented</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">501</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2416,7 +2488,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">badGateway</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">502</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">badGateway</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">502</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2443,7 +2515,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">serviceUnavailable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">503</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">serviceUnavailable</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">503</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2470,7 +2542,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">gatewayTimeout</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">504</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">gatewayTimeout</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">504</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2497,7 +2569,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">httpVersionNotSupported</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">505</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">httpVersionNotSupported</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">505</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2524,7 +2596,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">variantAlsoNegotiates</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">506</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">variantAlsoNegotiates</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">506</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2551,7 +2623,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">insufficientStorage</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">507</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">insufficientStorage</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">507</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2578,7 +2650,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">loopDetected</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">508</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">loopDetected</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">508</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2605,7 +2677,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notExtended</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">510</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">notExtended</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">510</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2632,7 +2704,7 @@ of error.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">networkAuthenticationRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">511</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">networkAuthenticationRequired</span> <span class="o">=</span> <span class="kt">RequestError</span><span class="p">(</span><span class="nv">httpCode</span><span class="p">:</span> <span class="mi">511</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -2647,8 +2719,8 @@ of error.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-04-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
