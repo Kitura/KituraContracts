@@ -1,6 +1,26 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/travis/build/IBM-Swift/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "line": 1098,
+      "symbol": "Operation.init(string:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/IBM-Swift/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "line": 1099,
+      "symbol": "Operation.getStringValue()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/IBM-Swift/KituraContracts/Sources/KituraContracts/Contracts.swift",
+      "line": 1100,
+      "symbol": "Operation.getOperator()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
-  "source_directory": "/Users/shihab.mehboob1@ibm.com/Documents/KituraContracts/KituraContracts"
+  "source_directory": "/Users/travis/build/IBM-Swift/KituraContracts"
 }

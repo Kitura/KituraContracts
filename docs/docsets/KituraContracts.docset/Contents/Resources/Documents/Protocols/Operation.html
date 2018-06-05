@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Operation Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/Operation" class="dashAnchor"></a>
+
+    <a title="Operation Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          KituraContracts Docs
+        </a>
+         (98% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/IBM-Swift/KituraContracts/">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Operation Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Coder.html">Coder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/QueryDecoder.html">QueryDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/QueryEncoder.html">QueryEncoder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/IdentifierError.html">IdentifierError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Operator.html">Operator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Order.html">Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/QueryParamsError.html">QueryParamsError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Identifier.html">Identifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Operation.html">Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:15KituraContracts11QueryParamsP">QueryParams</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BodyFormat.html">BodyFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ExclusiveRange.html">ExclusiveRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/GreaterThan.html">GreaterThan</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/GreaterThanOrEqual.html">GreaterThanOrEqual</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/InclusiveRange.html">InclusiveRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LowerThan.html">LowerThan</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/LowerThanOrEqual.html">LowerThanOrEqual</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Ordering.html">Ordering</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Pagination.html">Pagination</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/RequestError/ErrorBody.html">– ErrorBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/UnsupportedBodyFormatError.html">UnsupportedBodyFormatError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts19CodableArrayClosurea">CodableArrayClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts25CodableArrayResultClosurea">CodableArrayResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts14CodableClosurea">CodableClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts24CodableIdentifierClosurea">CodableIdentifierClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts20CodableResultClosurea">CodableResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts29IdentifierCodableArrayClosurea">IdentifierCodableArrayClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts35IdentifierCodableArrayResultClosurea">IdentifierCodableArrayResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts24IdentifierCodableClosurea">IdentifierCodableClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts30IdentifierCodableResultClosurea">IdentifierCodableResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts27IdentifierNonCodableClosurea">IdentifierNonCodableClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts30IdentifierSimpleCodableClosurea">IdentifierSimpleCodableClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts17NonCodableClosurea">NonCodableClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts13ResultClosurea">ResultClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:15KituraContracts20SimpleCodableClosurea">SimpleCodableClosure</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Operation</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Operation</span><span class="p">:</span> <span class="kt">Codable</span></code></pre>
+
+                </div>
+              </div>
+            <p>An identifier for an operation object.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts9OperationPxSS6string_tKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(string:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts9OperationPxSS6string_tKcfc">init(string:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts9OperationP14getStringValueSSyF"></a>
+                    <a name="//apple_ref/swift/Method/getStringValue()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts9OperationP14getStringValueSSyF">getStringValue()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getStringValue</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts9OperationP11getOperatorAA0E0OyF"></a>
+                    <a name="//apple_ref/swift/Method/getOperator()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts9OperationP11getOperatorAA0E0OyF">getOperator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getOperator</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/Operator.html">Operator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
