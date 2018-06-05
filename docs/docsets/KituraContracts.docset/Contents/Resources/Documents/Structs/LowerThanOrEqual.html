@@ -250,8 +250,14 @@
 <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">MyQuery</span><span class="p">:</span> <span class="kt">QueryParams</span> <span class="p">{</span>
   <span class="k">let</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">LowerThanOrEqual</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span>
 <span class="p">}</span>
-<span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="kt">MyQuery</span><span class="p">(</span><span class="nv">age</span><span class="p">:</span> <span class="kt">LowerThanOrEqual</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">query</span> <span class="o">=</span> <span class="kt">MyQuery</span><span class="p">(</span><span class="nv">age</span><span class="p">:</span> <span class="kt">LowerThanOrEqual</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">8</span><span class="p">))</span>
 </code></pre>
+
+<p>In a URL it would translate to:</p>
+<pre class="highlight swift"><code><span class="p">?</span><span class="n">age</span><span class="o">=</span><span class="mi">8</span>
+</code></pre>
+
+<p>Note: The <q>age=8</q> format is not an API but an implementation detail that could change in the future.</p>
 
           </div>
         </section>

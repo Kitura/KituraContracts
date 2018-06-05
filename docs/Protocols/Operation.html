@@ -292,11 +292,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the string representation of an Operation to be used in the URL.</p>
+                        <p>Returns the string representation of the parameters for an Operation to be used in the URL.</p>
 <pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">range</span> <span class="o">=</span> <span class="kt">InclusiveRange</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre>
 
-<p>would be represented as <code>&quot;5,10&quot;</code>, which in the URL would translate to: <code>?range=5,10</code></p>
+<p>would be represented as <code>&quot;5,10&quot;</code>, which in the URL would translate to: <code>?range=5,10</code>
+This URL format is not an API but an implementation detail that could change in the future.
+The URL doesn&rsquo;t encode the operator itself instead it is inferred at
+decoding time by the type information associated with that key.
+The type information used to decode this URL format is defined by
+the QueryParams structure associated with a route.
+The key name in the url maps to the field name in the QueryParams structure.</p>
 
                       </div>
                       <div class="declaration">
