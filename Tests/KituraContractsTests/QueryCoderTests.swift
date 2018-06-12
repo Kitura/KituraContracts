@@ -93,6 +93,7 @@ class QueryCoderTests: XCTestCase {
         public let intField: Int
         public let optionalIntField: Int?
         public let stringField: String
+        public let optionalStringField: String?
         public let intArray: [Int]
         public let dateField: Date
         public let optionalDateField: Date?
@@ -103,6 +104,7 @@ class QueryCoderTests: XCTestCase {
                     lhs.intField == rhs.intField &&
                     lhs.optionalIntField == rhs.optionalIntField &&
                     lhs.stringField == rhs.stringField &&
+                    lhs.optionalStringField == rhs.optionalStringField &&
                     lhs.intArray == rhs.intArray &&
                     lhs.dateField == rhs.dateField &&
                     lhs.optionalDateField == rhs.optionalDateField &&
@@ -142,9 +144,9 @@ class QueryCoderTests: XCTestCase {
     }
 
 
-    let expectedDict = ["boolField": "true", "intField": "23", "stringField": "a string", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "2017-10-31T16:15:56+0000", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
+    let expectedDict = ["boolField": "true", "intField": "23", "stringField": "", "optionalStringField": "", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
-    let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=a%20string&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
+    let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=&optionalStringField=&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
 
     let expectedDateStr = "2017-10-31T16:15:56+0000"
     let expectedDate = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
@@ -152,10 +154,11 @@ class QueryCoderTests: XCTestCase {
     let expectedMyQuery = MyQuery(boolField: true,
                                   intField: 23,
                                   optionalIntField: nil,
-                                  stringField: "a string",
+                                  stringField: "",
+                                  optionalStringField: nil,
                                   intArray: [1, 2, 3],
                                   dateField: Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!,
-                                  optionalDateField: Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!,
+                                  optionalDateField: nil,
                                   nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
     let expectedFiltersDict = ["greaterThan": "8", "greaterThanOrEqual": "10", "lowerThan": "7.0", "lowerThanOrEqual": "12.0", "inclusiveRange": "0,5", "exclusiveRange": "4,15", "ordering": "asc(name),desc(age)", "pagination": "8,14"]
@@ -190,7 +193,7 @@ class QueryCoderTests: XCTestCase {
 
     func testQueryEncoder() {
 
-        let query = MyQuery(boolField: true, intField: -1, optionalIntField: 282, stringField: "a string", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
+        let query = MyQuery(boolField: true, intField: -1, optionalIntField: 282, stringField: "", optionalStringField: "", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
         let myInts = SimpleStruct(intField: 1)
 
@@ -215,7 +218,7 @@ class QueryCoderTests: XCTestCase {
         XCTAssertEqual(myQueryDict["boolField"], "true")
         XCTAssertEqual(myQueryDict["intField"], "-1")
         XCTAssertEqual(myQueryDict["optionalIntField"], "282")
-        XCTAssertEqual(myQueryDict["stringField"], "a string")
+        XCTAssertEqual(myQueryDict["stringField"], "")
         XCTAssertEqual(myQueryDict["intArray"], "1,-1,3")
         XCTAssertEqual(myQueryDict["dateField"], expectedDateStr)
         XCTAssertEqual(myQueryDict["optionalDateField"], expectedDateStr)
