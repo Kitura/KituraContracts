@@ -255,7 +255,7 @@ public class QueryDecoder: Coder, Decoder {
 
         // If it is not in the dictionary or it is a empty string it should be nil
         func decodeNil(forKey key: Key) throws -> Bool {
-          return !contains(key) || decoder.dictionary[key.stringValue] == ""
+          return decoder.dictionary[key.stringValue]?.isEmpty ??  true
         }
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type, forKey key: Key) throws -> KeyedDecodingContainer<NestedKey> where NestedKey : CodingKey {
