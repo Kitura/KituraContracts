@@ -82,7 +82,7 @@ extension String {
 
     /// Converts the given String to a Bool?.
     public var boolean: Bool? {
-        return self != "" ? Bool(self) : false
+        return !self.isEmpty ? Bool(self) : false
     }
 
     /// Converts the given String to a String.
