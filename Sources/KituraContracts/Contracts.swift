@@ -500,7 +500,27 @@ public extension RequestError {
 }
 
 /**
- An identifier for a query parameter object.
+ An object that conforms to QueryParams is identified as being decodable from URLEncoded data.
+ This can be applied to a Codable route to define the names and types of the expected query parameters, and provide type-safe access to their values. The `QueryDecoder` is used to decode the URL encoded parameters into an instance of the conforming type.
+ ### Usage Example: ###
+ ```swift
+ struct Query: QueryParams {
+    let id: Int
+ }
+ router.get("/user") { (query: Query, respondWith: (User?, RequestError?) -> Void) in
+     guard let user: User = userArray[query.id] else {
+        return respondWith(nil, .notFound)
+     }
+     respondWith(user, nil)
+ }
+ ```
+ ### Decoding Empty Values:
+ When an HTML form is sent with an empty or unchecked field, the corresponding key/value pair is sent with an empty value (i.e. `&key1=&key2=`).
+ The corresponding mapping to Swift types performed by `QueryDecoder` is as follows:
+ - Any Optional type (including `String?`) defaults to `nil`
+ - Non-optional `String` successfully decodes to `""`
+ - Non-optional `Bool` decodes to `false`
+ - All other non-optional types throw a decoding error
  */
 public protocol QueryParams: Codable {
 }
