@@ -1184,6 +1184,12 @@ public struct GreaterThan<I: Identifier>: Operation {
   public func getOperator() -> Operator {
     return self.`operator`
   }
+
+  // Custom decoder (Fix for TypeDecoder because it cannot return dummy enum Operator value)
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    value = try values.decode(I.self, forKey: .value)
+  }
 }
 
 /**
@@ -1230,6 +1236,12 @@ public struct GreaterThanOrEqual<I: Identifier>: Operation {
   /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
+  }
+
+  // Custom decoder (Fix for TypeDecoder because it cannot return dummy enum Operator value)
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    value = try values.decode(I.self, forKey: .value)
   }
 }
 
@@ -1279,6 +1291,12 @@ public struct LowerThan<I: Identifier>: Operation {
   public func getOperator() -> Operator {
     return self.`operator`
   }
+
+  // Custom decoder (Fix for TypeDecoder because it cannot return dummy enum Operator value)
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    value = try values.decode(I.self, forKey: .value)
+  }
 }
 
 /**
@@ -1325,6 +1343,12 @@ public struct LowerThanOrEqual<I: Identifier>: Operation {
   /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
+  }
+
+  // Custom decoder (Fix for TypeDecoder because it cannot return dummy enum Operator value)
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    value = try values.decode(I.self, forKey: .value)
   }
 }
 
@@ -1380,6 +1404,13 @@ public struct InclusiveRange<I: Identifier>: Operation {
   public func getOperator() -> Operator {
     return self.`operator`
   }
+
+  // Custom decoder (Fix for TypeDecoder because it cannot return dummy enum Operator value)
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    start = try values.decode(I.self, forKey: .start)
+    end = try values.decode(I.self, forKey: .end)
+  }
 }
 
 /**
@@ -1433,6 +1464,13 @@ public struct ExclusiveRange<I: Identifier>: Operation {
   /// Returns the Operator
   public func getOperator() -> Operator {
     return self.`operator`
+  }
+
+  // Custom decoder (Fix for TypeDecoder because it cannot return dummy enum Operator value)
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    start = try values.decode(I.self, forKey: .start)
+    end = try values.decode(I.self, forKey: .end)
   }
 }
 
