@@ -1158,7 +1158,7 @@ public protocol Operation: Codable {
 */
 public struct GreaterThan<I: Identifier>: Operation {
   private var value: I
-  private var `operator`: Operator = .greaterThan
+  private let `operator`: Operator = .greaterThan
 
   /// Creates a GreaterThan instance from a given Identifier value
   public init(value: I) {
@@ -1205,7 +1205,7 @@ public struct GreaterThan<I: Identifier>: Operation {
 */
 public struct GreaterThanOrEqual<I: Identifier>: Operation {
   private var value: I
-  private var `operator`: Operator = .greaterThanOrEqual
+  private let `operator`: Operator = .greaterThanOrEqual
 
   /// Creates a GreaterThanOrEqual instance from a given Identifier value
   public init(value: I) {
@@ -1253,7 +1253,7 @@ public struct GreaterThanOrEqual<I: Identifier>: Operation {
 */
 public struct LowerThan<I: Identifier>: Operation {
   private var value: I
-  private var `operator`: Operator = .lowerThan
+  private let `operator`: Operator = .lowerThan
 
   /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
@@ -1300,7 +1300,7 @@ public struct LowerThan<I: Identifier>: Operation {
 */
 public struct LowerThanOrEqual<I: Identifier>: Operation {
   private var value: I
-  private var `operator`: Operator = .lowerThanOrEqual
+  private let `operator`: Operator = .lowerThanOrEqual
 
   /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
@@ -1348,7 +1348,7 @@ public struct LowerThanOrEqual<I: Identifier>: Operation {
 public struct InclusiveRange<I: Identifier>: Operation {
   private var start: I
   private var end: I
-  private var `operator`: Operator = .inclusiveRange
+  private let `operator`: Operator = .inclusiveRange
 
   /// Creates a InclusiveRange instance from given start and end values
   public init(start: I, end: I) {
@@ -1402,7 +1402,7 @@ public struct InclusiveRange<I: Identifier>: Operation {
 public struct ExclusiveRange<I: Identifier>: Operation {
   private var start: I
   private var end: I
-  private var `operator`: Operator = .exclusiveRange
+  private let `operator`: Operator = .exclusiveRange
 
   /// Creates a ExclusiveRange instance from given start and end values
   public init(start: I, end: I) {
