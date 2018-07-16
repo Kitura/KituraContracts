@@ -60,12 +60,30 @@ public class QueryDecoder: Coder, Decoder {
      */
     public var dictionary: [String : String]
 
+    
+    /**
+     Initializer with an empty dictionary for decoding from Data.
+     */
+    public override init() {
+        self.dictionary = [:]
+        super.init()
+    }
     /**
      Initializer with a `[String : String]` dictionary.
      */
     public init(dictionary: [String : String]) {
         self.dictionary = dictionary
         super.init()
+    }
+    /**
+     Decode URL encoded data by mapping to its Decodable object representation.
+     */
+    public func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {
+        let urlString = String(data: data, encoding: .utf8)
+        guard let urlKeyValuePairs = urlString?.urlDecodedFieldValuePairs else {
+            throw RequestError.badRequest
+        }
+        return try QueryDecoder(dictionary: urlKeyValuePairs).decode(type)
     }
 
     /**

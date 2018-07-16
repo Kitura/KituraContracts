@@ -206,4 +206,56 @@ extension String {
         let values: [T] = strs.map { T($0) }.filter { $0 != nil }.map { $0! }
         return values.count == strs.count ? values : nil
     }
+    
+    /// Parses percent encoded string into query parameters with comma-separated
+    /// values.
+    var urlDecodedFieldValuePairs: [String: String] {
+        var result: [String: String] = [:]
+        for item in self.components(separatedBy: "&") {
+            let (key, value) = item.keyAndDecodedValue
+            if let value = value {
+                // If value already exists for this key, append it
+                if let existingValue = result[key] {
+                    result[key] = "\(existingValue),\(value)"
+                }
+                else {
+                    result[key] = value
+                }
+            }
+        }
+        return result
+    }
+    
+    /// Parses percent encoded string int query parameters with values as an
+    /// array rather than a concatcenated string.
+    var urlDecodedFieldMultiValuePairs: [String: [String]] {
+        var result: [String: [String]] = [:]
+        
+        for item in self.components(separatedBy: "&") {
+            let (key, value) = item.keyAndDecodedValue
+            if let value = value {
+                result[key, default: []].append(value)
+            }
+        }
+        
+        return result
+    }
+    
+    /// Splits a URL-encoded key and value pair (e.g. "foo=bar") into a tuple
+    /// with corresponding "key" and "value" values, with the value being URL
+    /// unencoded.
+    var keyAndDecodedValue: (key: String, value: String?) {
+        guard let range = self.range(of: "=") else {
+            return (key: self, value: nil)
+        }
+        let key = String(self[..<range.lowerBound])
+        let value = String(self[range.upperBound...])
+        
+        let valueReplacingPlus = value.replacingOccurrences(of: "+", with: " ")
+        let decodedValue = valueReplacingPlus.removingPercentEncoding
+        if decodedValue == nil {
+            Log.warning("Unable to decode query parameter \(key) (coded value: \(valueReplacingPlus)")
+        }
+        return (key: key, value: decodedValue ?? valueReplacingPlus)
+    }
 }

@@ -90,6 +90,15 @@ public class QueryEncoder: Coder, Encoder {
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.customURLQueryAllowed)!
         return "?" + String(desc.dropFirst())
     }
+    
+    public func encode<T : Encodable>(_ value: T) throws -> Data {
+        let queryString: String = try encode(value)
+        let justQuery = String(queryString.dropFirst())
+        guard let data = justQuery.data(using: .utf8) else {
+            throw RequestError.badRequest
+        }
+        return data
+    }
 
     /**
      Encodes an Encodable object to a URLQueryItem array.
@@ -98,9 +107,9 @@ public class QueryEncoder: Coder, Encoder {
      
      ### Usage Example: ###
      ````swift
-     guard let myQuery2 = try? QueryDecoder(dictionary: myQueryDict).decode(T.self) else {
-         print("Failed to decode query to MyQuery object")
-         return
+     guard let myQueryArray: [URLQueryItem] = try? QueryEncoder().encode(query) else {
+        print("Failed to encode query to [URLQueryItem]")
+        return
      }
      ````
      */
@@ -127,16 +136,18 @@ public class QueryEncoder: Coder, Encoder {
      ````
      */
     public func encode<T: Encodable>(_ value: T) throws -> [String : String] {
-        try value.encode(to: self)
-        return self.dictionary
+        let encoder = QueryEncoder()
+        try value.encode(to: encoder)
+        return encoder.dictionary
     }
 
     /// Encodes an Encodable object to a String -> String dictionary
     ///
     /// - Parameter _ value: The Encodable object to encode to its [String: String] representation
     public func encode<T: Encodable>(_ value: T) throws -> [String : Any] {
-        try value.encode(to: self)
-        return self.anyDictionary
+        let encoder = QueryEncoder()
+        try value.encode(to: encoder)
+        return encoder.anyDictionary
     }
 
     /**

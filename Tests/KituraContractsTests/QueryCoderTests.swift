@@ -199,7 +199,7 @@ class QueryCoderTests: XCTestCase {
         let query = MyQuery(boolField: true, intField: -1, optionalIntField: 282, stringField: "a string", emptyStringField: "", optionalStringField: "", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
         let myInts = SimpleStruct(intField: 1)
-
+        
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
             return
@@ -312,6 +312,9 @@ class QueryCoderTests: XCTestCase {
         cycleTester(expectedMyQuery)
         cycleTester(myInts)
         cycleTester(myIntArrays)
+        dataCycleTester(expectedMyQuery)
+        dataCycleTester(myInts)
+        dataCycleTester(myIntArrays)
     }
 
     func testIllegalInt() {
@@ -347,6 +350,21 @@ class QueryCoderTests: XCTestCase {
             return
         }
 
+        XCTAssertEqual(myQuery2, obj)
+    }
+    
+    private func dataCycleTester<T: QueryParams&Equatable>(_ obj: T) {
+        
+        guard let myQueryDict: Data = try? QueryEncoder().encode(obj) else {
+            XCTFail("Failed to encode query to Data")
+            return
+        }
+        
+        guard let myQuery2 = try? QueryDecoder().decode(T.self, from: myQueryDict) else {
+            XCTFail("Failed to decode query to MyQuery object")
+            return
+        }
+        
         XCTAssertEqual(myQuery2, obj)
     }
 }
