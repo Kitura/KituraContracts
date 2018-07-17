@@ -91,6 +91,19 @@ public class QueryEncoder: Coder, Encoder {
         return "?" + String(desc.dropFirst())
     }
     
+    /**
+     Encodes an Encodable object to Data.
+     
+     - Parameter value: The Encodable object to encode to its Data representation.
+     
+     ### Usage Example: ###
+     ````swift
+     guard let myQueryStr: Data = try? QueryEncoder().encode(query) else {
+        print("Failed to encode query to Data")
+        return
+     }
+     ````
+     */
     public func encode<T : Encodable>(_ value: T) throws -> Data {
         let queryString: String = try encode(value)
         let justQuery = String(queryString.dropFirst())

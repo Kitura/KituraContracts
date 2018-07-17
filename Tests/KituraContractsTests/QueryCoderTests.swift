@@ -199,7 +199,7 @@ class QueryCoderTests: XCTestCase {
         let query = MyQuery(boolField: true, intField: -1, optionalIntField: 282, stringField: "a string", emptyStringField: "", optionalStringField: "", intArray: [1, -1, 3], dateField: expectedDate, optionalDateField: expectedDate, nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 
         let myInts = SimpleStruct(intField: 1)
-        
+
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
             return

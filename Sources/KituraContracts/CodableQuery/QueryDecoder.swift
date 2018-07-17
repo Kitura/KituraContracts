@@ -77,6 +77,17 @@ public class QueryDecoder: Coder, Decoder {
     }
     /**
      Decode URL encoded data by mapping to its Decodable object representation.
+     
+     - Parameter type: The Decodable type to the Data will be decoded as.
+     - Parameter from: The Data to be decoded as the Decodable type.
+     
+     ### Usage Example: ###
+     ````swift
+     guard let query = try? QueryDecoder().decode(MyQuery.self, from queryData) else {
+        print("Failed to decode query to MyQuery Object")
+        return
+     }
+     ````
      */
     public func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {
         let urlString = String(data: data, encoding: .utf8)
