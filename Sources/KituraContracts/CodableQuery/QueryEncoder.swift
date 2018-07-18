@@ -106,9 +106,9 @@ public class QueryEncoder: Coder, Encoder {
      */
     public func encode<T : Encodable>(_ value: T) throws -> Data {
         let queryString: String = try encode(value)
-        let justQuery = String(queryString.dropFirst())
-        guard let data = justQuery.data(using: .utf8) else {
-            throw RequestError.badRequest
+        let DroppedQuestionMark = String(queryString.dropFirst())
+        guard let data = DroppedQuestionMark.data(using: .utf8) else {
+            throw RequestError.unprocessableEntity
         }
         return data
     }
