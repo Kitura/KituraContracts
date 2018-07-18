@@ -26,3 +26,8 @@ extension JSONDecoder: BodyDecoder {
         return "json"
     }
 }
+extension QueryDecoder: BodyDecoder {
+    public var contentType: String {
+        return "application/x-www-form-urlencoded"
+    }
+}

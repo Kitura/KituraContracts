@@ -20,9 +20,13 @@ public protocol BodyEncoder {
     func encode<T : Encodable>(_ value: T) throws -> Data
     var contentType: String { get }
 }
-
 extension JSONEncoder: BodyEncoder {
     public var contentType: String {
         return "json"
+    }
+}
+extension QueryEncoder: BodyEncoder {
+    public var contentType: String {
+        return "application/x-www-form-urlencoded"
     }
 }
