@@ -29,6 +29,14 @@ import LoggerAPI
      return
  }
  ````
+ 
+ ### Decoding Empty Values:
+ When an HTML form is sent with an empty or unchecked field, the corresponding key/value pair is sent with an empty value (i.e. `&key1=&key2=`).
+ The corresponding mapping to Swift types performed by `QueryDecoder` is as follows:
+ - Any Optional type (including `String?`) defaults to `nil`
+ - Non-optional `String` successfully decodes to `""`
+ - Non-optional `Bool` decodes to `false`
+ - All other non-optional types throw a decoding error
  */
 public class QueryDecoder: Coder, Decoder {
     
@@ -253,9 +261,9 @@ public class QueryDecoder: Coder, Decoder {
           return try decoder.decode(T.self)
         }
 
-        // If it is not in the dictionary it should be nil
+        // If it is not in the dictionary or it is a empty string it should be nil
         func decodeNil(forKey key: Key) throws -> Bool {
-          return !contains(key)
+          return decoder.dictionary[key.stringValue]?.isEmpty ??  true
         }
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type, forKey key: Key) throws -> KeyedDecodingContainer<NestedKey> where NestedKey : CodingKey {
