@@ -37,7 +37,7 @@ extension CharacterSet {
  }
  ````
  */
-public class QueryEncoder: Coder, Encoder {
+public class QueryEncoder: Coder, Encoder, BodyEncoder {
 
     /**
      A `[String: String]` dictionary.

@@ -38,7 +38,7 @@ import LoggerAPI
  - Non-optional `Bool` decodes to `false`
  - All other non-optional types throw a decoding error
  */
-public class QueryDecoder: Coder, Decoder {
+public class QueryDecoder: Coder, Decoder, BodyDecoder {
     
     /**
      The coding key path.

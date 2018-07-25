@@ -16,18 +16,12 @@
 
 import Foundation
 
+/**
+ A class that conforms to `BodyDecoder` must be able to decode from `Data` into a `Codable` type.
+ This class can then be used to produce input objects for a Codable route.
+ */
 public protocol BodyDecoder {
-    func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable
-    var contentType: String { get }
+    func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T
 }
 
-extension JSONDecoder: BodyDecoder {
-    public var contentType: String {
-        return "json"
-    }
-}
-extension QueryDecoder: BodyDecoder {
-    public var contentType: String {
-        return "application/x-www-form-urlencoded"
-    }
-}
+extension JSONDecoder: BodyDecoder {}
