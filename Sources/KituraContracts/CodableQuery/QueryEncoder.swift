@@ -105,9 +105,11 @@ public class QueryEncoder: Coder, Encoder {
      ````
      */
     public func encode<T : Encodable>(_ value: T) throws -> Data {
-        let queryString: String = try encode(value)
-        let droppedQuestionMark = String(queryString.dropFirst())
-        guard let data = droppedQuestionMark.data(using: .utf8) else {
+        let dict: [String : String] = try encode(value)
+        let desc: String? = dict.map { key, value in "\(key)=\(value)" }
+            .reduce("") {pair1, pair2 in "\(pair1)&\(pair2)"}
+            .addingPercentEncoding(withAllowedCharacters: CharacterSet.customURLQueryAllowed)
+        guard let data = desc?.data(using: .utf8) else {
             throw RequestError.unprocessableEntity
         }
         return data
