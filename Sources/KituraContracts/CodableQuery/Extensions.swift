@@ -209,7 +209,7 @@ extension String {
     
     /// Parses percent encoded string into query parameters with comma-separated
     /// values.
-    public var urlDecodedFieldValuePairs: [String: String] {
+    var urlDecodedFieldValuePairs: [String: String] {
         var result: [String: String] = [:]
         for item in self.components(separatedBy: "&") {
             let (key, value) = item.keyAndDecodedValue
@@ -226,25 +226,10 @@ extension String {
         return result
     }
     
-    /// Parses percent encoded string int query parameters with values as an
-    /// array rather than a concatcenated string.
-    public var urlDecodedFieldMultiValuePairs: [String: [String]] {
-        var result: [String: [String]] = [:]
-        
-        for item in self.components(separatedBy: "&") {
-            let (key, value) = item.keyAndDecodedValue
-            if let value = value {
-                result[key, default: []].append(value)
-            }
-        }
-        
-        return result
-    }
-    
     /// Splits a URL-encoded key and value pair (e.g. "foo=bar") into a tuple
     /// with corresponding "key" and "value" values, with the value being URL
     /// unencoded.
-    public var keyAndDecodedValue: (key: String, value: String?) {
+    var keyAndDecodedValue: (key: String, value: String?) {
         guard let range = self.range(of: "=") else {
             return (key: self, value: nil)
         }

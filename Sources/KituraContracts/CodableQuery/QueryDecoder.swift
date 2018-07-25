@@ -89,11 +89,12 @@ public class QueryDecoder: Coder, Decoder {
      }
      ````
      */
-    public func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {
+    public func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
         guard let urlString = String(data: data, encoding: .utf8) else {
             throw RequestError.unprocessableEntity
         }
-        return try QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs).decode(type)
+        let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs)
+        return try T(from: decoder)
     }
 
     /**
