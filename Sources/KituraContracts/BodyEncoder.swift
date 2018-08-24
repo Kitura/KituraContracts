@@ -20,7 +20,7 @@ import Foundation
  A class that conforms to `BodyEncoder` must be able to encode a `Codable` type into `Data`.
  This class can then be used to produce output objects for a Codable route.
  */
-public protocol BodyEncoder {
+public protocol BodyEncoder: AnyObject {
     func encode<T : Encodable>(_ value: T) throws -> Data
 }
 extension JSONEncoder: BodyEncoder {}

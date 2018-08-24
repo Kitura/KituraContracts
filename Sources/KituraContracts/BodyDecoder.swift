@@ -20,7 +20,7 @@ import Foundation
  A class that conforms to `BodyDecoder` must be able to decode from `Data` into a `Codable` type.
  This class can then be used to produce input objects for a Codable route.
  */
-public protocol BodyDecoder {
+public protocol BodyDecoder: AnyObject {
     func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T
 }
 
