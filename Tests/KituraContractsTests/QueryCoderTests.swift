@@ -148,7 +148,12 @@ class QueryCoderTests: XCTestCase {
 
     let expectedDict = ["boolField": "true", "intField": "23", "stringField": "a string", "emptyStringField": "", "optionalStringField": "", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
-    let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=a%20string&emptyStringField=&optionalStringField=&intField=23&dateField=2017-12-07T21:42:06%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
+    let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=a%20string&emptyStringField=&optionalStringField=&intField=23&dateField=2017-10-31T16:15:56%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
+    
+    var expectedData: Data {
+        let droppedQuestionMark = String(expectedQueryString.dropFirst())
+        return droppedQuestionMark.data(using: .utf8)!
+    }
 
     let expectedDateStr = "2017-10-31T16:15:56+0000"
     let expectedDate = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
@@ -192,7 +197,15 @@ class QueryCoderTests: XCTestCase {
         }
 
         XCTAssertEqual(filterQuery, expectedFilterQuery)
+        
+        guard let dataQuery = try? QueryDecoder().decode(MyQuery.self, from: expectedData.self) else {
+            XCTFail("Failed to decode query to MyQuery Object")
+            return
+        }
+        
+        XCTAssertEqual(dataQuery, expectedMyQuery)
     }
+
 
     func testQueryEncoder() {
 
@@ -212,6 +225,11 @@ class QueryCoderTests: XCTestCase {
 
         guard let myURLQueryItems: [URLQueryItem] = try? QueryEncoder().encode(myInts) else {
             XCTFail("Failed to encode query to String")
+            return
+        }
+        
+        guard let myQueryData: Data = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to Data")
             return
         }
 
@@ -312,6 +330,9 @@ class QueryCoderTests: XCTestCase {
         cycleTester(expectedMyQuery)
         cycleTester(myInts)
         cycleTester(myIntArrays)
+        dataCycleTester(expectedMyQuery)
+        dataCycleTester(myInts)
+        dataCycleTester(myIntArrays)
     }
 
     func testIllegalInt() {
@@ -347,6 +368,21 @@ class QueryCoderTests: XCTestCase {
             return
         }
 
+        XCTAssertEqual(myQuery2, obj)
+    }
+    
+    private func dataCycleTester<T: QueryParams&Equatable>(_ obj: T) {
+        
+        guard let myQueryDict: Data = try? QueryEncoder().encode(obj) else {
+            XCTFail("Failed to encode query to Data")
+            return
+        }
+        
+        guard let myQuery2 = try? QueryDecoder().decode(T.self, from: myQueryDict) else {
+            XCTFail("Failed to decode query to MyQuery object")
+            return
+        }
+        
         XCTAssertEqual(myQuery2, obj)
     }
 }

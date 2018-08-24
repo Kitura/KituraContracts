@@ -90,6 +90,30 @@ public class QueryEncoder: Coder, Encoder {
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.customURLQueryAllowed)!
         return "?" + String(desc.dropFirst())
     }
+    
+    /**
+     Encodes an Encodable object to Data.
+     
+     - Parameter value: The Encodable object to encode to its Data representation.
+     
+     ### Usage Example: ###
+     ````swift
+     guard let myQueryStr: Data = try? QueryEncoder().encode(query) else {
+        print("Failed to encode query to Data")
+        return
+     }
+     ````
+     */
+    public func encode<T : Encodable>(_ value: T) throws -> Data {
+        let dict: [String : String] = try encode(value)
+        let desc: String? = dict.map { key, value in "\(key)=\(value)" }
+            .reduce("") {pair1, pair2 in "\(pair1)&\(pair2)"}
+            .addingPercentEncoding(withAllowedCharacters: CharacterSet.customURLQueryAllowed)
+        guard let data = desc?.data(using: .utf8) else {
+            throw RequestError.unprocessableEntity
+        }
+        return data
+    }
 
     /**
      Encodes an Encodable object to a URLQueryItem array.
@@ -98,9 +122,9 @@ public class QueryEncoder: Coder, Encoder {
      
      ### Usage Example: ###
      ````swift
-     guard let myQuery2 = try? QueryDecoder(dictionary: myQueryDict).decode(T.self) else {
-         print("Failed to decode query to MyQuery object")
-         return
+     guard let myQueryArray: [URLQueryItem] = try? QueryEncoder().encode(query) else {
+        print("Failed to encode query to [URLQueryItem]")
+        return
      }
      ````
      */
@@ -127,16 +151,18 @@ public class QueryEncoder: Coder, Encoder {
      ````
      */
     public func encode<T: Encodable>(_ value: T) throws -> [String : String] {
-        try value.encode(to: self)
-        return self.dictionary
+        let encoder = QueryEncoder()
+        try value.encode(to: encoder)
+        return encoder.dictionary
     }
 
     /// Encodes an Encodable object to a String -> String dictionary
     ///
     /// - Parameter _ value: The Encodable object to encode to its [String: String] representation
     public func encode<T: Encodable>(_ value: T) throws -> [String : Any] {
-        try value.encode(to: self)
-        return self.anyDictionary
+        let encoder = QueryEncoder()
+        try value.encode(to: encoder)
+        return encoder.anyDictionary
     }
 
     /**

@@ -60,12 +60,41 @@ public class QueryDecoder: Coder, Decoder {
      */
     public var dictionary: [String : String]
 
+    
+    /**
+     Initializer with an empty dictionary for decoding from Data.
+     */
+    public override init() {
+        self.dictionary = [:]
+        super.init()
+    }
     /**
      Initializer with a `[String : String]` dictionary.
      */
     public init(dictionary: [String : String]) {
         self.dictionary = dictionary
         super.init()
+    }
+    /**
+     Decode URL encoded data by mapping to its Decodable object representation.
+     
+     - Parameter type: The Decodable type to the Data will be decoded as.
+     - Parameter from: The Data to be decoded as the Decodable type.
+     
+     ### Usage Example: ###
+     ````swift
+     guard let query = try? QueryDecoder().decode(MyQuery.self, from queryData) else {
+        print("Failed to decode query to MyQuery Object")
+        return
+     }
+     ````
+     */
+    public func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+        guard let urlString = String(data: data, encoding: .utf8) else {
+            throw RequestError.unprocessableEntity
+        }
+        let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs)
+        return try T(from: decoder)
     }
 
     /**
