@@ -131,6 +131,12 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/BodyDecoder.html">BodyDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/BodyEncoder.html">BodyEncoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Identifier.html">Identifier</a>
               </li>
               <li class="nav-group-task">
@@ -243,8 +249,8 @@
 </p>
 
 <p align="center">
-<a href="https://www.kitura.io/">
-<img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
+<a href="https://ibm-swift.github.io/KituraContracts/index.html">
+<img src="https://img.shields.io/badge/apidoc-KituraContracts-1FBCE4.svg?style=flat" alt="APIDoc">
 </a>
 <a href="https://travis-ci.org/IBM-Swift/KituraContracts">
 <img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master">
@@ -260,13 +266,21 @@
 <h2 id='summary' class='heading'>Summary</h2>
 
 <p>KituraContracts is a library containing type definitions shared by client (e.g. <a href="https://ibm-swift.github.io/KituraKit/">KituraKit</a>) and server (e.g. <a href="https://ibm-swift.github.io/Kitura">Kitura</a>) code. These shared type definitions include <a href="https://ibm-swift.github.io/KituraContracts/Typealiases.html">Codable Closure Aliases</a>, <a href="https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html">RequestError</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryEncoder.html">QueryEncoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryDecoder.html">QueryDecoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/Coder.html">Coder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv">Identifier Protocol</a> and <a href="https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS">Extensions</a> to String and Int, which add conformity to the Identifier protocol.</p>
-<h2 id='getting-started' class='heading'>Getting Started</h2>
+<h2 id='usage' class='heading'>Usage</h2>
 
-<p>To use KituraContracts, import the package:</p>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">KituraContracts</span>
+<p>KituraContracts represents the types and protocols that are common to both the <a href="https://github.com/IBM-Swift/Kitura">Kitura</a> server and <a href="https://github.com/IBM-Swift/KituraKit">KituraKit</a> client side library. If you are using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.</p>
+<h4 id='add-dependencies' class='heading'>Add dependencies</h4>
+
+<p>Add the <code>KituraContracts</code> package to the dependencies within your application’s <code>Package.swift</code> file. Substitute <code>&quot;x.x.x&quot;</code> with the latest <code>KituraContracts</code> <a href="https://github.com/IBM-Swift/KituraContracts/releases">release</a>.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/IBM-Swift/KituraContracts.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"x.x.x"</span><span class="p">)</span>
 </code></pre>
 
-<p>KituraContracts represents the types and protocols that are common to both the <a href="https://github.com/IBM-Swift/Kitura">Kitura</a> server and <a href="https://github.com/IBM-Swift/KituraKit">KituraKit</a> client side library. If using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.</p>
+<p>Add <code>KituraContracts</code> to your target&rsquo;s dependencies:</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">target</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"example"</span><span class="p">,</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">"KituraContracts"</span><span class="p">]),</span>
+</code></pre>
+<h4 id='import-package' class='heading'>Import package</h4>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">KituraContracts</span>
+</code></pre>
 <h2 id='example' class='heading'>Example</h2>
 
 <p>This example, shows how to use a shared type definition for <code><a href="Structs/RequestError.html">RequestError</a></code> within a router POST method on <code>users</code>. If no errors occurred and you have a <code>User</code> you can respond with the user and pass nil as the <code>RequestError?</code> value. If there has been an error you can respond with an appropriate error and pass nil for the <code>User?</code>.</p>
@@ -288,12 +302,15 @@
 <h2 id='swift-version' class='heading'>Swift version</h2>
 
 <p>The 1.x.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in <a href="https://developer.apple.com/xcode/">Xcode 9.3</a>.</p>
+<h2 id='api-documentation' class='heading'>API Documentation</h2>
+
+<p>For more information visit our <a href="https://ibm-swift.github.io/KituraContracts/index.html">API reference</a>.</p>
 <h2 id='community' class='heading'>Community</h2>
 
 <p>We love to talk server-side Swift and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
 <h2 id='license' class='heading'>License</h2>
 
-<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/LICENSE">LICENSE</a></p>
+<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/LICENSE">LICENSE</a>.</p>
 
           </div>
         </section>
@@ -302,7 +319,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-08-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

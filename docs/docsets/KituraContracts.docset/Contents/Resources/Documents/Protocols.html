@@ -131,6 +131,12 @@
             <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/BodyDecoder.html">BodyDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/BodyEncoder.html">BodyEncoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Identifier.html">Identifier</a>
               </li>
               <li class="nav-group-task">
@@ -248,6 +254,72 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:15KituraContracts11BodyDecoderP"></a>
+                    <a name="//apple_ref/swift/Protocol/BodyDecoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts11BodyDecoderP">BodyDecoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A class that conforms to <code>BodyDecoder</code> must be able to decode from <code>Data</code> into a <code>Codable</code> type.
+This class can then be used to produce input objects for a Codable route.</p>
+
+                        <a href="Protocols/BodyDecoder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BodyDecoder</span><span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts11BodyEncoderP"></a>
+                    <a name="//apple_ref/swift/Protocol/BodyEncoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts11BodyEncoderP">BodyEncoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A class that conforms to <code>BodyEncoder</code> must be able to encode a <code>Codable</code> type into <code>Data</code>.
+This class can then be used to produce output objects for a Codable route.</p>
+
+                        <a href="Protocols/BodyEncoder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BodyEncoder</span><span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:15KituraContracts11QueryParamsP"></a>
                     <a name="//apple_ref/swift/Protocol/QueryParams" class="dashAnchor"></a>
                     <a class="token" href="#/s:15KituraContracts11QueryParamsP">QueryParams</a>
@@ -258,7 +330,30 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An identifier for a query parameter object.</p>
+                        <p>An object that conforms to QueryParams is identified as being decodable from URLEncoded data.
+This can be applied to a Codable route to define the names and types of the expected query parameters, and provide type-safe access to their values. The <code><a href="Classes/QueryDecoder.html">QueryDecoder</a></code> is used to decode the URL encoded parameters into an instance of the conforming type.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Query</span><span class="p">:</span> <span class="kt">QueryParams</span> <span class="p">{</span>
+   <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int</span>
+<span class="p">}</span>
+<span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/user"</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="kt">Query</span><span class="p">,</span> <span class="nv">respondWith</span><span class="p">:</span> <span class="p">(</span><span class="kt">User</span><span class="p">?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">user</span><span class="p">:</span> <span class="kt">User</span> <span class="o">=</span> <span class="n">userArray</span><span class="p">[</span><span class="n">query</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="k">else</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nf">respondWith</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="o">.</span><span class="n">notFound</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nf">respondWith</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='decoding-empty-values' class='heading'>Decoding Empty Values:</h3>
+
+<p>When an HTML form is sent with an empty or unchecked field, the corresponding key/value pair is sent with an empty value (i.e. <code>&amp;key1=&amp;key2=</code>).
+The corresponding mapping to Swift types performed by <code><a href="Classes/QueryDecoder.html">QueryDecoder</a></code> is as follows:</p>
+
+<ul>
+<li>Any Optional type (including <code>String?</code>) defaults to <code>nil</code></li>
+<li>Non-optional <code>String</code> successfully decodes to <code>&quot;&quot;</code></li>
+<li>Non-optional <code>Bool</code> decodes to <code>false</code></li>
+<li>All other non-optional types throw a decoding error</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -340,7 +435,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-08-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
