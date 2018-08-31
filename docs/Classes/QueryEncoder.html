@@ -132,6 +132,12 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BodyDecoder.html">BodyDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BodyEncoder.html">BodyEncoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Identifier.html">Identifier</a>
               </li>
               <li class="nav-group-task">
@@ -239,7 +245,7 @@
             <h1>QueryEncoder</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryEncoder</span><span class="p">:</span> <span class="kt"><a href="../Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Encoder</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueryEncoder</span><span class="p">:</span> <span class="kt"><a href="../Classes/Coder.html">Coder</a></span><span class="p">,</span> <span class="kt">Encoder</span><span class="p">,</span> <span class="kt"><a href="../Protocols/BodyEncoder.html">BodyEncoder</a></span></code></pre>
 
                 </div>
               </div>
@@ -402,6 +408,58 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:15KituraContracts12QueryEncoderC6encode10Foundation4DataVxKs9EncodableRzlF"></a>
+                    <a name="//apple_ref/swift/Method/encode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts12QueryEncoderC6encode10Foundation4DataVxKs9EncodableRzlF">encode(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encodes an Encodable object to Data.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryStr</span><span class="p">:</span> <span class="kt">Data</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to Data"</span><span class="p">)</span>
+   <span class="k">return</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">encode</span><span class="o">&lt;</span><span class="kt">T</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Encodable object to encode to its Data representation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:15KituraContracts12QueryEncoderC6encodeSay10Foundation12URLQueryItemVGxKs9EncodableRzlF"></a>
                     <a name="//apple_ref/swift/Method/encode(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:15KituraContracts12QueryEncoderC6encodeSay10Foundation12URLQueryItemVGxKs9EncodableRzlF">encode(_:)</a>
@@ -414,9 +472,9 @@
                       <div class="abstract">
                         <p>Encodes an Encodable object to a URLQueryItem array.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQuery2</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryDecoder</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="n">myQueryDict</span><span class="p">)</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to decode query to MyQuery object"</span><span class="p">)</span>
-    <span class="k">return</span>
+<pre class="highlight swift"><code><span class="k">guard</span> <span class="k">let</span> <span class="nv">myQueryArray</span><span class="p">:</span> <span class="p">[</span><span class="kt">URLQueryItem</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="nf">print</span><span class="p">(</span><span class="s">"Failed to encode query to [URLQueryItem]"</span><span class="p">)</span>
+   <span class="k">return</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -628,7 +686,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-05)</p>
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-08-31)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

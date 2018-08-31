@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Int8 Extension Reference</title>
+    <title>BodyDecoder Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Extension/Int8" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/BodyDecoder" class="dashAnchor"></a>
 
-    <a title="Int8 Extension Reference"></a>
+    <a title="BodyDecoder Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">KituraContracts Reference</a>
       <img class="carat" src="../img/carat.png" />
-      Int8 Extension Reference
+      BodyDecoder Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -242,18 +242,15 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Int8</h1>
+            <h1>BodyDecoder</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Int8</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span><span class="p">,</span> <span class="kt">SignedInteger</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BodyDecoder</span><span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
-            <p>Extends <code>Int8</code> to comply to the <code><a href="../Protocols/Identifier.html">Identifier</a></code> protocol.</p>
-<h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight swift"><code> <span class="c1">// The Identifier used in the Id field could be an `Int8`.</span>
- <span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">IdentifierCodableClosure</span><span class="o">&lt;</span><span class="kt">Id</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">,</span> <span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="kt">Id</span><span class="p">,</span> <span class="kt">I</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="kt">CodableResultClosure</span><span class="o">&lt;</span><span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
-</code></pre>
+            <p>A class that conforms to <code>BodyDecoder</code> must be able to decode from <code>Data</code> into a <code>Codable</code> type.
+This class can then be used to produce input objects for a Codable route.</p>
 
           </div>
         </section>
@@ -265,9 +262,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:s4Int8V15KituraContractsEABSS5value_tKcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s4Int8V15KituraContractsEABSS5value_tKcfc">init(value:)</a>
+                    <a name="/s:15KituraContracts11BodyDecoderP6decodeqd__qd__m_10Foundation4DataV4fromtKs9DecodableRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/decode(_:from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts11BodyDecoderP6decodeqd__qd__m_10Foundation4DataV4fromtKs9DecodableRd__lF">decode(_:from:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -275,46 +272,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates an integer identifier from a given string representation.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    An <code><a href="../Enums/IdentifierError.html#/s:15KituraContracts15IdentifierErrorO12invalidValueA2CmF">IdentifierError.invalidValue</a></code> if the given string cannot be converted to an integer.
-
-</div>
+                        <p>Decode a <code>Decodable</code> type from a <code>Data</code>, using this <code>BodyDecoder</code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:s4Int8V15KituraContractsE5valueSSvp"></a>
-                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                    <a class="token" href="#/s:s4Int8V15KituraContractsE5valueSSvp">value</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The string representation of the identifier.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
 
                         </div>
                       </div>

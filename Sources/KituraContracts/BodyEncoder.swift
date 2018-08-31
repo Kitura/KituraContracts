@@ -21,6 +21,7 @@ import Foundation
  This class can then be used to produce output objects for a Codable route.
  */
 public protocol BodyEncoder: AnyObject {
+    /// Encode an `Encodable` type to a `Data`, using this `BodyEncoder`.
     func encode<T : Encodable>(_ value: T) throws -> Data
 }
 extension JSONEncoder: BodyEncoder {}
