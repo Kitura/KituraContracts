@@ -21,6 +21,7 @@ import Foundation
  This class can then be used to produce input objects for a Codable route.
  */
 public protocol BodyDecoder: AnyObject {
+    /// Decode a `Decodable` type from a `Data`, using this `BodyDecoder`.
     func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T
 }
 
