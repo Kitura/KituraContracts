@@ -295,7 +295,7 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
 /**
  Extends `RequestError` to provide HTTP specific error code and reason values.
  */
-public extension RequestError {
+extension RequestError {
 
     /**
     The HTTP status code for the error.
