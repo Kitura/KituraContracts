@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.module_name  = 'KituraContracts'
   s.ios.deployment_target = "10.0"
   s.source   = { :git => "https://github.com/IBM-Swift/KituraContracts.git", :tag => s.version }
-  s.source_files = "Sources/KituraContracts/*.swift"
+  s.source_files = "Sources/**/*.swift"
   s.dependency 'LoggerAPI', '~> 1.7'
 end
