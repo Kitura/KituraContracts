@@ -1021,10 +1021,18 @@ public struct Ordering: Codable {
 
   // Function to extract the String value from the Order enum case
   private func extractValue(_ value: String) throws -> String {
+#if swift(>=4.2)
+    guard var startIndex = value.firstIndex(of: "("),
+          let endIndex = value.firstIndex(of: ")") else {
+      throw QueryParamsError.invalidValue
+    }
+#else
     guard var startIndex = value.index(of: "("),
           let endIndex = value.index(of: ")") else {
       throw QueryParamsError.invalidValue
     }
+#endif
+
     startIndex = value.index(startIndex, offsetBy: 1)
     let extractedValue = value[startIndex..<endIndex]
     return String(extractedValue)
