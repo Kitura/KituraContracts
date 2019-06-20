@@ -1073,7 +1073,7 @@ public struct Pagination: Codable {
   }
 
   internal init(string value: String) throws {
-    var array = value.split(separator: ",")
+    let array = value.split(separator: ",")
     if array.count != 2 {
       throw QueryParamsError.invalidValue
     }
@@ -1366,7 +1366,7 @@ public struct InclusiveRange<I: Identifier>: Operation {
 
   /// Creates a InclusiveRange instance from a given String value
   public init(string value: String) throws {
-    var array = value.split(separator: ",")
+    let array = value.split(separator: ",")
     if array.count != 2 {
       throw QueryParamsError.invalidValue
     }
@@ -1420,7 +1420,7 @@ public struct ExclusiveRange<I: Identifier>: Operation {
 
   /// Creates a ExclusiveRange instance from a given String value
   public init(string value: String) throws {
-    var array = value.split(separator: ",")
+    let array = value.split(separator: ",")
     if array.count != 2 {
       throw QueryParamsError.invalidValue
     }
