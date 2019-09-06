@@ -60,18 +60,21 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      */
     public var dictionary: [String : String]
 
-    
+    public var dateDecoder: JSONDecoder.DateDecodingStrategy
+
     /**
      Initializer with an empty dictionary for decoding from Data.
      */
-    public override init() {
+    public init(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter)) {
+        self.dateDecoder = dateDecodingStrategy
         self.dictionary = [:]
         super.init()
     }
     /**
      Initializer with a `[String : String]` dictionary.
      */
-    public init(dictionary: [String : String]) {
+    public init(dictionary: [String : String], dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter)) {
+        self.dateDecoder = dateDecodingStrategy
         self.dictionary = dictionary
         super.init()
     }
@@ -90,10 +93,13 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      ````
      */
     public func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+        if let Q = T.self as? QueryParams.Type {
+            dateDecoder = Q.dateDecoder
+        }
         guard let urlString = String(data: data, encoding: .utf8) else {
             throw RequestError.unprocessableEntity
         }
-        let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs)
+        let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs, dateDecodingStrategy: dateDecoder)
         return try T(from: decoder)
     }
 
@@ -111,6 +117,9 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      ````
      */
     public func decode<T: Decodable>(_ type: T.Type) throws -> T {
+        if let Q = T.self as? QueryParams.Type {
+            dateDecoder = Q.dateDecoder
+        }
         let fieldName = Coder.getFieldName(from: codingPath)
         let fieldValue = dictionary[fieldName]
         Log.verbose("fieldName: \(fieldName), fieldValue: \(String(describing: fieldValue))")
@@ -175,9 +184,33 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             return try decodeType(fieldValue?.doubleArray, to: T.self)
         /// Dates
         case is Date.Type:
-            return try decodeType(fieldValue?.date(dateFormatter), to: T.self)
+            switch dateDecoder {
+            case .deferredToDate:
+                return try decodeType(Date(timeIntervalSinceReferenceDate: (fieldValue?.double)!), to: T.self)
+            case .secondsSince1970:
+                return try decodeType(Date(timeIntervalSince1970: (fieldValue?.double)!), to: T.self)
+            case .millisecondsSince1970:
+                return try decodeType(Date(timeIntervalSince1970: ((fieldValue?.double)!)/1000), to: T.self)
+            case .iso8601:
+                if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+                    let string = fieldValue?.string
+                    guard let date = _iso8601Formatter.date(from: string!) else {
+                        throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: self.codingPath, debugDescription: "Expected date string to be ISO8601-formatted."))
+                    }
+
+                    return try decodeType(date, to: T.self)
+                } else {
+                    fatalError("ISO8601DateFormatter is unavailable on this platform.")
+                }
+            case .formatted(let formatted):
+                return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
+            case .custom(let closure):
+                return try decodeType(closure(self), to: T.self)
+            }
         case is [Date].Type:
+            switch dateDecoder {
             return try decodeType(fieldValue?.dateArray(dateFormatter), to: T.self)
+            }
         /// Strings
         case is String.Type:
             return try decodeType(fieldValue?.string, to: T.self)
@@ -343,4 +376,5 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             return decoder
         }
     }
+
 }

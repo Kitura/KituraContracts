@@ -181,7 +181,7 @@ extension String {
     - Parameter formatter: The designated DateFormatter to convert the string with.
     - Returns: The Date? object. Some on success / nil on failure.
     */
-    public func date(_ formatter: DateFormatter) -> Date? {
+    public func dateFormatted(_ formatter: DateFormatter) -> Date? {
         return formatter.date(from: self)
     }
 
@@ -235,8 +235,8 @@ extension String {
         }
         let key = String(self[..<range.lowerBound])
         let value = String(self[range.upperBound...])
-        
-        let valueReplacingPlus = value.replacingOccurrences(of: "+", with: " ")
+
+        let valueReplacingPlus = value.replacingOccurrences(of: "+", with: "+")
         let decodedValue = valueReplacingPlus.removingPercentEncoding
         if decodedValue == nil {
             Log.warning("Unable to decode query parameter \(key) (coded value: \(valueReplacingPlus)")

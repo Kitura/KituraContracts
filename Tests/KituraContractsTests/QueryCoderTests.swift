@@ -18,6 +18,7 @@ import XCTest
 
 @testable import KituraContracts
 
+@available(OSX 10.12, *)
 class QueryCoderTests: XCTestCase {
 
     static var allTests: [(String, (QueryCoderTests) -> () throws -> Void)] {
@@ -145,6 +146,25 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
+    struct Query1970: QueryParams, Equatable {
+        public let dateField: Date
+        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .secondsSince1970
+        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .secondsSince1970
+
+        public static func ==(lhs: Query1970, rhs: Query1970) -> Bool {
+            return lhs.dateField == rhs.dateField
+        }
+    }
+
+    struct QueryISO: QueryParams, Equatable {
+        public let dateField: Date
+        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .iso8601
+        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .iso8601
+
+        public static func ==(lhs: QueryISO, rhs: QueryISO) -> Bool {
+            return lhs.dateField == rhs.dateField
+        }
+    }
 
     let expectedDict = ["boolField": "true", "intField": "23", "stringField": "a string", "emptyStringField": "", "optionalStringField": "", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
@@ -182,6 +202,35 @@ class QueryCoderTests: XCTestCase {
       ordering: Ordering(by: .asc("name"), .desc("age")),
       pagination: Pagination(start: 8, size: 14)
     )
+
+    let expected1970Dict = ["dateField": "1567684372"]
+
+    let expected1970String = "?dateField=1567684372"
+
+    var expectedData1970: Data {
+        let droppedQuestionMark = String(expected1970String.dropFirst())
+        return droppedQuestionMark.data(using: .utf8)!
+        }
+
+    let expected1970DateStr = "1567684372"
+    let expected1970Date = Date(timeIntervalSince1970: 1567684372)
+
+    let expectedQuery1970 = Query1970(dateField: Date(timeIntervalSince1970: 1567684372))
+
+
+    let expectedISODict = ["dateField": "2019-09-06T10:14:41+0000"]
+
+    let expectedISOString = "?dateField=2019-09-06T10:14:41+0000"
+
+    var expectedDataISO: Data {
+        let droppedQuestionMark = String(expectedISOString.dropFirst())
+        return droppedQuestionMark.data(using: .utf8)!
+        }
+
+    let expectedISODateStr = "2019-09-06T10:14:41+0000"
+    let expectedISODate = _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000")
+
+    let expectedQueryISO = QueryISO(dateField: _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000")!)
 
     func testQueryDecoder() {
         guard let query = try? QueryDecoder(dictionary: expectedDict).decode(MyQuery.self) else {
@@ -315,6 +364,122 @@ class QueryCoderTests: XCTestCase {
 
     }
 
+    func test1970Decode() {
+
+        guard let query = try? QueryDecoder(dictionary: expected1970Dict).decode(Query1970.self) else {
+            XCTFail("Failed to decode query to Query1970 Object")
+            return
+        }
+
+        XCTAssertEqual(query, expectedQuery1970)
+
+        guard let dataQuery = try? QueryDecoder().decode(Query1970.self, from: expectedData1970.self) else {
+            XCTFail("Failed to decode query to Query1970 Object")
+            return
+        }
+
+        XCTAssertEqual(dataQuery, expectedQuery1970)
+
+    }
+
+    func test1970Encode() {
+
+        let query = Query1970(dateField: Date(timeIntervalSince1970: 1567684372))
+
+        guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to [String: String]")
+            return
+        }
+
+        XCTAssertEqual(myQueryDict["dateField"], "1567684372")
+
+        guard let myQueryStr: String = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        func createDict(_ str: String) -> [String: String] {
+            return myQueryStr.components(separatedBy: "&").reduce([String: String]()) { acc, val in
+                var acc = acc
+                let split = val.components(separatedBy: "=")
+                acc[split[0]] = split[1]
+                return acc
+            }
+        }
+
+        let myQueryStrSplit1: [String: String] = createDict(myQueryStr)
+        let myQueryStrSplit2: [String: String] = createDict(expected1970String)
+
+        XCTAssertEqual(myQueryStrSplit1["dateField"], myQueryStrSplit2["dateField"])
+
+        guard let myURLQueryItems: [URLQueryItem] = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        let queryItems = [ URLQueryItem(name: "dateField", value: "1567684372")]
+        XCTAssertEqual(queryItems, myURLQueryItems)
+
+    }
+
+    func testISODecode() {
+
+        guard let query = try? QueryDecoder(dictionary: expectedISODict).decode(QueryISO.self) else {
+            XCTFail("Failed to decode query to Query1970 Object")
+            return
+        }
+
+        XCTAssertEqual(query, expectedQueryISO)
+
+        guard let dataQuery = try? QueryDecoder().decode(QueryISO.self, from: expectedDataISO.self) else {
+            XCTFail("Failed to decode query to Query1970 Object")
+            return
+        }
+
+        XCTAssertEqual(dataQuery, expectedQueryISO)
+
+    }
+
+    func testISOEncode() {
+
+        let query = QueryISO(dateField: _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000")!)
+
+        guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to [String: String]")
+            return
+        }
+
+        XCTAssertEqual(myQueryDict["dateField"], "2019-09-06T10:14:41Z")
+
+        guard let myQueryStr: String = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        func createDict(_ str: String) -> [String: String] {
+            return myQueryStr.components(separatedBy: "&").reduce([String: String]()) { acc, val in
+                var acc = acc
+                let split = val.components(separatedBy: "=")
+                acc[split[0]] = split[1]
+                return acc
+            }
+        }
+
+        let myQueryStrSplit1: [String: String] = createDict(myQueryStr)
+        let myQueryStrSplit2: [String: String] = createDict(expectedISOString)
+
+        XCTAssertEqual(myQueryStrSplit1["dateField"], myQueryStrSplit2["dateField"])
+
+        guard let myURLQueryItems: [URLQueryItem] = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        let queryItems = [ URLQueryItem(name: "dateField", value: "2019-09-06T10:14:41Z")]
+        XCTAssertEqual(queryItems, myURLQueryItems)
+
+    }
+
     func testCycle() {
         let myInts = MyInts(intField: 1, int8Field: 2, int16Field: 3, int32Field: 4, int64Field: 5, uintField: 6, uint8Field: 7, uint16Field: 8, uint32Field: 9, uint64Field: 10)
         let myIntArrays = MyIntArrays(intField: [1,2,3],
@@ -386,3 +551,10 @@ class QueryCoderTests: XCTestCase {
         XCTAssertEqual(myQuery2, obj)
     }
 }
+
+@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
+public var _iso8601Formatter: ISO8601DateFormatter = {
+let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = .withInternetDateTime
+return formatter
+}()

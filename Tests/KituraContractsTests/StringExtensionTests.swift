@@ -51,7 +51,7 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("3.0".double, Double(3.0))
         XCTAssertEqual("4.0".float, Float(4.0))
         XCTAssertEqual("true".boolean, true)
-        XCTAssertEqual(d1.date(fm), fm.date(from: d1))
+        XCTAssertEqual(d1.dateFormatted(fm), fm.date(from: d1))
 
         let strArray = "string1,string2,string3"
         let intArray = "1,2,3"

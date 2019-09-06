@@ -61,10 +61,13 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      */
     public var userInfo: [CodingUserInfoKey: Any] = [:]
 
+    public var dateEncoder: JSONEncoder.DateEncodingStrategy
+
     /**
      Initializer for the dictionary, which initializes an empty `[String: String]` dictionary.
      */
     public override init() {
+        self.dateEncoder = .formatted(Coder().dateFormatter)
         self.dictionary = [:]
         self.anyDictionary = [:]
         super.init()
@@ -129,6 +132,9 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      ````
      */
     public func encode<T: Encodable>(_ value: T) throws -> [URLQueryItem] {
+        if let Q = T.self as? QueryParams.Type {
+            dateEncoder = Q.dateEncoder
+        }
         let dict: [String : String] = try encode(value)
         return dict.reduce([URLQueryItem]()) { array, element in
             var array = array
@@ -152,6 +158,9 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      */
     public func encode<T: Encodable>(_ value: T) throws -> [String : String] {
         let encoder = QueryEncoder()
+        if let Q = T.self as? QueryParams.Type {
+        encoder.dateEncoder = Q.dateEncoder
+        }
         try value.encode(to: encoder)
         return encoder.dictionary
     }
@@ -210,7 +219,6 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
 
     private struct KeyedContainer<Key: CodingKey>: KeyedEncodingContainerProtocol {
         var encoder: QueryEncoder
-
         var codingPath: [CodingKey] { return [] }
 
         func encode<T>(_ value: T, forKey key: Key) throws where T : Encodable {
@@ -332,8 +340,31 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 encoder.anyDictionary[fieldName] = fieldValue
             /// Dates
             case let fieldValue as Date:
-                encoder.dictionary[fieldName] = encoder.dateFormatter.string(from: fieldValue)
-                encoder.anyDictionary[fieldName] = fieldValue
+                switch encoder.dateEncoder {
+                case .formatted(let formatter):
+                    encoder.dictionary[fieldName] = formatter.string(from: fieldValue)
+                    encoder.anyDictionary[fieldName] = fieldValue
+                case .deferredToDate:
+                    let date = NSNumber(value: fieldValue.timeIntervalSinceReferenceDate)
+                    encoder.dictionary[fieldName] = date.stringValue
+                    encoder.anyDictionary[fieldName] = fieldValue
+                case .secondsSince1970:
+                    let date = NSNumber(value: fieldValue.timeIntervalSince1970)
+                    encoder.dictionary[fieldName] = date.stringValue
+                    encoder.anyDictionary[fieldName] = fieldValue
+                case .millisecondsSince1970:
+                    let date = NSNumber(value: 1000 * fieldValue.timeIntervalSince1970)
+                    encoder.dictionary[fieldName] = date.stringValue
+                    encoder.anyDictionary[fieldName] = fieldValue
+                case .iso8601:
+                    if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+                        encoder.dictionary[fieldName] = NSString(string: _iso8601Formatter.string(from: fieldValue)) as String
+                        encoder.anyDictionary[fieldName] = fieldValue
+                    } else {
+                        fatalError("ISO8601DateFormatter is unavailable on this platform.")
+                    }
+                case .custom(let closure):
+                    print("Test")                }
             case let fieldValue as [Date]:
                 let strs: [String] = fieldValue.map { encoder.dateFormatter.string(from: $0) }
                 encoder.dictionary[fieldName] = strs.joined(separator: ",")
@@ -409,3 +440,10 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
         }
     }
 }
+
+@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
+public var _iso8601Formatter: ISO8601DateFormatter = {
+let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = .withInternetDateTime
+return formatter
+}()
