@@ -191,13 +191,63 @@ extension String {
     - Parameter formatter: The designated DateFormatter to convert the string with.
     - Returns: The [Date]? object. Some on success / nil on failure.
     */
-    public func dateArray(_ formatter: DateFormatter) -> [Date]? {
+    public func dateArrayFormatted(_ formatter: DateFormatter) -> [Date]? {
+
         let strs: [String] = self.components(separatedBy: ",")
         let dates = strs.map { formatter.date(from: $0) }.filter { $0 != nil }.map { $0! }
         if dates.count == strs.count {
             return dates
         }
         return nil
+    }
+
+    public func dateArray1970() -> [Date]? {
+
+        let strs: [String] = self.components(separatedBy: ",")
+        let dbs = strs.compactMap(Double.init)
+        let dates = dbs.map { Date(timeIntervalSince1970: $0) }.filter { $0 != nil }.map { $0! }
+        if dates.count == dbs.count {
+            return dates
+        }
+        return nil
+
+    }
+
+    public func dateArray1970M() -> [Date]? {
+
+        let strs: [String] = self.components(separatedBy: ",")
+        let dbs = strs.compactMap(Double.init)
+        let dates = dbs.map { Date(timeIntervalSince1970: ($0)/1000) }.filter { $0 != nil }.map { $0! }
+        if dates.count == dbs.count {
+            return dates
+        }
+        return nil
+    }
+
+    public func dateArrayISO() -> [Date]? {
+
+        if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+            let strs: [String] = self.components(separatedBy: ",")
+            let dates = strs.map { _iso8601Formatter.date(from: $0) }
+            if dates.count == strs.count {
+                return dates as? [Date]
+            }
+            return nil
+        } else {
+            fatalError("ISO8601DateFormatter is unavailable on this platform.")
+        }
+    }
+
+    public func dateArrayDeferred() -> [Date]? {
+
+        let strs: [String] = self.components(separatedBy: ",")
+        let dbs = strs.compactMap(Double.init)
+        let dates = dbs.map { Date(timeIntervalSinceReferenceDate: $0) }.filter { $0 != nil }.map { $0! }
+        if dates.count == dbs.count {
+            return dates
+        }
+        return nil
+
     }
 
     /// Helper Method to decode a string to an LosslessStringConvertible array types.

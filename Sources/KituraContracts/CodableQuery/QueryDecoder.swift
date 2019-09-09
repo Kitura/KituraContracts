@@ -206,10 +206,25 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
             case .custom(let closure):
                 return try decodeType(closure(self), to: T.self)
+            @unknown default:
+                fatalError()
             }
         case is [Date].Type:
             switch dateDecoder {
-            return try decodeType(fieldValue?.dateArray(dateFormatter), to: T.self)
+            case .deferredToDate:
+                return try decodeType(fieldValue?.dateArrayDeferred(), to: T.self)
+            case .secondsSince1970:
+                return try decodeType(fieldValue?.dateArray1970(), to: T.self)
+            case .millisecondsSince1970:
+                return try decodeType(fieldValue?.dateArray1970M(), to: T.self)
+            case .iso8601:
+                return try decodeType(fieldValue?.dateArrayISO(), to: T.self)
+            case .formatted(let formatter):
+                return try decodeType(fieldValue?.dateArrayFormatted(formatter), to: T.self)
+            case .custom(_):
+                return print ("Test") as! T
+            @unknown default:
+                fatalError()
             }
         /// Strings
         case is String.Type:

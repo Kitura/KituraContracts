@@ -364,7 +364,10 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                         fatalError("ISO8601DateFormatter is unavailable on this platform.")
                     }
                 case .custom(let closure):
-                    print("Test")                }
+                    print("Test")
+                @unknown default:
+                    fatalError()
+                }
             case let fieldValue as [Date]:
                 let strs: [String] = fieldValue.map { encoder.dateFormatter.string(from: $0) }
                 encoder.dictionary[fieldName] = strs.joined(separator: ",")
