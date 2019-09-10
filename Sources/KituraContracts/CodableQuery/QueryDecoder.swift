@@ -188,6 +188,8 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             case .deferredToDate:
                 return try decodeType(Date(timeIntervalSinceReferenceDate: (fieldValue?.double)!), to: T.self)
             case .secondsSince1970:
+                print(self)
+
                 return try decodeType(Date(timeIntervalSince1970: (fieldValue?.double)!), to: T.self)
             case .millisecondsSince1970:
                 return try decodeType(Date(timeIntervalSince1970: ((fieldValue?.double)!)/1000), to: T.self)
@@ -205,6 +207,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             case .formatted(let formatted):
                 return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
             case .custom(let closure):
+                
                 return try decodeType(closure(self), to: T.self)
             @unknown default:
                 fatalError()
@@ -221,8 +224,8 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.dateArrayISO(), to: T.self)
             case .formatted(let formatter):
                 return try decodeType(fieldValue?.dateArrayFormatted(formatter), to: T.self)
-            case .custom(_):
-                return print ("Test") as! T
+            case .custom(let closure):
+                return try decodeType(closure(self), to: T.self)
             @unknown default:
                 fatalError()
             }

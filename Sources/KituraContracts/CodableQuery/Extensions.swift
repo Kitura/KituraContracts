@@ -205,7 +205,7 @@ extension String {
 
         let strs: [String] = self.components(separatedBy: ",")
         let dbs = strs.compactMap(Double.init)
-        let dates = dbs.map { Date(timeIntervalSince1970: $0) }.filter { $0 != nil }.map { $0! }
+        let dates = dbs.map { Date(timeIntervalSince1970: $0) }
         if dates.count == dbs.count {
             return dates
         }
@@ -217,7 +217,7 @@ extension String {
 
         let strs: [String] = self.components(separatedBy: ",")
         let dbs = strs.compactMap(Double.init)
-        let dates = dbs.map { Date(timeIntervalSince1970: ($0)/1000) }.filter { $0 != nil }.map { $0! }
+        let dates = dbs.map { Date(timeIntervalSince1970: ($0)/1000) }
         if dates.count == dbs.count {
             return dates
         }
@@ -242,12 +242,11 @@ extension String {
 
         let strs: [String] = self.components(separatedBy: ",")
         let dbs = strs.compactMap(Double.init)
-        let dates = dbs.map { Date(timeIntervalSinceReferenceDate: $0) }.filter { $0 != nil }.map { $0! }
+        let dates = dbs.map { Date(timeIntervalSinceReferenceDate: $0) }
         if dates.count == dbs.count {
             return dates
         }
         return nil
-
     }
 
     /// Helper Method to decode a string to an LosslessStringConvertible array types.

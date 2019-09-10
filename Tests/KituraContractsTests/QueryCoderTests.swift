@@ -166,6 +166,41 @@ class QueryCoderTests: XCTestCase {
         }
     }
 
+    struct QueryCustom: QueryParams, Equatable {
+        public let dateField: Date
+        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .custom { decoder in
+            // pull out the number of days from Codable
+            let container = try decoder.singleValueContainer()
+            let numberOfDays = try container.decode(Int.self)
+
+            // create a start date of Jan 1st 1970, then a DateComponents instance for our JSON days
+            let startDate = Date(timeIntervalSince1970: 0)
+            var components = DateComponents()
+            components.day = numberOfDays
+
+            // create a Calendar and use it to measure the difference between the two
+            let calendar = Calendar(identifier: .gregorian)
+            return calendar.date(byAdding: components, to: startDate) ?? Date()
+        }
+        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .custom { (date, encoder) in
+
+            let calendar = Calendar(identifier: .gregorian)
+            let startDate = Date(timeIntervalSince1970: 0)
+            let endDate = date
+            let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+            let days = components.day
+            let stringData = String(days!)
+            var container = encoder.singleValueContainer()
+            try container.encode(stringData)
+
+        }
+
+        public static func ==(lhs: QueryCustom, rhs: QueryCustom) -> Bool {
+            return lhs.dateField == rhs.dateField
+        }
+
+    }
+
     let expectedDict = ["boolField": "true", "intField": "23", "stringField": "a string", "emptyStringField": "", "optionalStringField": "", "intArray": "1,2,3", "dateField": "2017-10-31T16:15:56+0000", "optionalDateField": "", "nested": "{\"nestedIntField\":333,\"nestedStringField\":\"nested string\"}" ]
 
     let expectedQueryString = "?boolField=true&intArray=1%2C2%2C3&stringField=a%20string&emptyStringField=&optionalStringField=&intField=23&dateField=2017-10-31T16:15:56%2B0000&nested=%7B\"nestedStringField\":\"nested%20string\"%2C\"nestedIntField\":333%7D"
@@ -204,33 +239,42 @@ class QueryCoderTests: XCTestCase {
     )
 
     let expected1970Dict = ["dateField": "1567684372"]
-
     let expected1970String = "?dateField=1567684372"
-
     var expectedData1970: Data {
         let droppedQuestionMark = String(expected1970String.dropFirst())
         return droppedQuestionMark.data(using: .utf8)!
         }
-
     let expected1970DateStr = "1567684372"
     let expected1970Date = Date(timeIntervalSince1970: 1567684372)
-
     let expectedQuery1970 = Query1970(dateField: Date(timeIntervalSince1970: 1567684372))
 
-
     let expectedISODict = ["dateField": "2019-09-06T10:14:41+0000"]
-
     let expectedISOString = "?dateField=2019-09-06T10:14:41+0000"
-
     var expectedDataISO: Data {
         let droppedQuestionMark = String(expectedISOString.dropFirst())
         return droppedQuestionMark.data(using: .utf8)!
         }
-
     let expectedISODateStr = "2019-09-06T10:14:41+0000"
     let expectedISODate = _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000")
-
     let expectedQueryISO = QueryISO(dateField: _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000")!)
+
+    let expectedCustomDict = ["dateField": "10650"]
+    let expectedCustomString = "?dateField=10650"
+    var expectedDataCustom: Data {
+        let droppedQuestionMark = String(expectedCustomString.dropFirst())
+        return droppedQuestionMark.data(using: .utf8)!
+        }
+    let expectedCustomDateStr = "10650"
+    var expectedCustomDate: Date {
+        let numberOfDays = 10650
+        let startDate = Date(timeIntervalSince1970: 0)
+        var components = DateComponents()
+           components.day = numberOfDays
+           // create a Calendar and use it to measure the difference between the two
+           let calendar = Calendar(identifier: .gregorian)
+           return calendar.date(byAdding: components, to: startDate) ?? Date()
+    }
+
 
     func testQueryDecoder() {
         guard let query = try? QueryDecoder(dictionary: expectedDict).decode(MyQuery.self) else {
@@ -479,6 +523,66 @@ class QueryCoderTests: XCTestCase {
         XCTAssertEqual(queryItems, myURLQueryItems)
 
     }
+
+    func testCustomDecode() {
+
+        let expectedQueryCustom = QueryCustom(dateField: expectedCustomDate)
+
+        guard let query = try? QueryDecoder(dictionary: expectedCustomDict).decode(QueryCustom.self) else {
+            XCTFail("Failed to decode query to Query1970 Object")
+            return
+        }
+
+        XCTAssertEqual(query, expectedQueryCustom)
+
+        guard let dataQuery = try? QueryDecoder().decode(QueryCustom.self, from: expectedDataCustom.self) else {
+            XCTFail("Failed to decode query to Query1970 Object")
+            return
+        }
+
+        XCTAssertEqual(dataQuery, expectedQueryCustom)
+    }
+
+    func testCustomEncode() {
+
+        let query = QueryCustom(dateField: expectedCustomDate)
+
+        guard let customQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to [String: String]")
+            return
+        }
+
+        XCTAssertEqual(customQueryDict["dateField"], "10650")
+
+        guard let customQueryStr: String = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        func createDict(_ str: String) -> [String: String] {
+            return customQueryStr.components(separatedBy: "&").reduce([String: String]()) { acc, val in
+                var acc = acc
+                let split = val.components(separatedBy: "=")
+                acc[split[0]] = split[1]
+                return acc
+            }
+        }
+
+        let customQueryStrSplit1: [String: String] = createDict(customQueryStr)
+        let customQueryStrSplit2: [String: String] = createDict(expectedCustomString)
+
+        XCTAssertEqual(customQueryStrSplit1["dateField"], customQueryStrSplit2["dateField"])
+
+        guard let customURLQueryItems: [URLQueryItem] = try? QueryEncoder().encode(query) else {
+            XCTFail("Failed to encode query to String")
+            return
+        }
+
+        let queryItems = [ URLQueryItem(name: "dateField", value: "10650")]
+        XCTAssertEqual(queryItems, customURLQueryItems)
+
+    }
+
 
     func testCycle() {
         let myInts = MyInts(intField: 1, int8Field: 2, int16Field: 3, int32Field: 4, int64Field: 5, uintField: 6, uint8Field: 7, uint16Field: 8, uint32Field: 9, uint64Field: 10)
