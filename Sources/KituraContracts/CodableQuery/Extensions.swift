@@ -186,7 +186,7 @@ extension String {
     }
 
     /**
-    Converts the given String to a [Date]?.
+    Converts the given String to a [Date]? object using the DateFormatter supplied.
     
     - Parameter formatter: The designated DateFormatter to convert the string with.
     - Returns: The [Date]? object. Some on success / nil on failure.
@@ -201,6 +201,11 @@ extension String {
         return nil
     }
 
+    /**
+    Converts the given String to a [Date]? object using timeIntervalSince1970 in seconds.
+
+    - Returns: The [Date]? object. Some on success / nil on failure.
+    */
     public func dateArray1970() -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
@@ -213,6 +218,11 @@ extension String {
 
     }
 
+    /**
+    Converts the given String to a [Date]? object using timeIntervalSince1970 in milliseconds.
+
+    - Returns: The [Date]? object. Some on success / nil on failure.
+    */
     public func dateArray1970M() -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
@@ -224,6 +234,11 @@ extension String {
         return nil
     }
 
+    /**
+    Converts the given String to a [Date]? object using an ISO8601 formatting.
+
+    - Returns: The [Date]? object. Some on success / nil on failure.
+    */
     public func dateArrayISO() -> [Date]? {
 
         if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
@@ -238,6 +253,11 @@ extension String {
         }
     }
 
+    /**
+    Converts the given String to a [Date]? object using deferredToDate formatting.
+
+    - Returns: The [Date]? object. Some on success / nil on failure.
+    */
     public func dateArrayDeferred() -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
@@ -285,7 +305,7 @@ extension String {
         let key = String(self[..<range.lowerBound])
         let value = String(self[range.upperBound...])
 
-        let valueReplacingPlus = value.replacingOccurrences(of: "+", with: "+")
+        let valueReplacingPlus = value.replacingOccurrences(of: "+", with: " ")
         let decodedValue = valueReplacingPlus.removingPercentEncoding
         if decodedValue == nil {
             Log.warning("Unable to decode query parameter \(key) (coded value: \(valueReplacingPlus)")
@@ -293,3 +313,11 @@ extension String {
         return (key: key, value: decodedValue ?? valueReplacingPlus)
     }
 }
+
+/// ISO8601 Formatter used for formatting ISO8601 dates.
+@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
+public var _iso8601Formatter: ISO8601DateFormatter = {
+let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = .withInternetDateTime
+return formatter
+}()

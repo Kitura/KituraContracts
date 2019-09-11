@@ -60,6 +60,10 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      */
     public var dictionary: [String : String]
 
+    /**
+     A `JSONDecoder.DateDecodingStrategy` date decoder used to determine what strategy
+     to use when decoding the specific date.
+     */
     public var dateDecoder: JSONDecoder.DateDecodingStrategy
 
     /**

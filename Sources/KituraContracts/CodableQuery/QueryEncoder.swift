@@ -386,8 +386,10 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 let strs: [String] = fieldValue.map { formatter.string(from: $0) }
                 encoder.dictionary[fieldName] = strs.joined(separator: ",")
                 encoder.anyDictionary[fieldName] = fieldValue
-            case .custom(_):
-                print("test")
+            case .custom(let closure):
+                for (_, element) in fieldValue.enumerated() {
+                    _ = try closure(element, encoder)
+                }
             @unknown default:
                 fatalError()
             }
@@ -478,10 +480,3 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
         }
     }
 }
-
-@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
-public var _iso8601Formatter: ISO8601DateFormatter = {
-let formatter = ISO8601DateFormatter()
-    formatter.formatOptions = .withInternetDateTime
-return formatter
-}()
