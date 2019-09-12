@@ -300,15 +300,15 @@ class QueryCoderTests: XCTestCase {
       pagination: Pagination(start: 8, size: 14)
     )
 
-    let expected1970Dict = ["dateField": "1567684372"]
-    let expected1970String = "?dateField=1567684372"
+    let expected1970Dict = ["dateField": "1567684372.1"]
+    let expected1970String = "?dateField=1567684372.1"
     var expectedData1970: Data {
         let droppedQuestionMark = String(expected1970String.dropFirst())
         return droppedQuestionMark.data(using: .utf8)!
         }
-    let expected1970DateStr = "1567684372"
-    let expected1970Date = Date(timeIntervalSince1970: 1567684372)
-    let expectedQuery1970 = Query1970(dateField: Date(timeIntervalSince1970: 1567684372))
+    let expected1970DateStr = "1567684372.1"
+    let expected1970Date = Date(timeIntervalSince1970: 1567684372.1)
+    let expectedQuery1970 = Query1970(dateField: Date(timeIntervalSince1970: 1567684372.1))
 
     let expectedISODict = ["dateField": "2019-09-06T10:14:41+0000"]
     let expectedISOString = "?dateField=2019-09-06T10:14:41%2B0000"
@@ -516,14 +516,14 @@ class QueryCoderTests: XCTestCase {
 
     func test1970Encode() {
 
-        let query = Query1970(dateField: Date(timeIntervalSince1970: 1567684372))
+        let query = Query1970(dateField: Date(timeIntervalSince1970: 1567684372.1))
 
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
             return
         }
 
-        XCTAssertEqual(myQueryDict["dateField"], "1567684372")
+        XCTAssertEqual(myQueryDict["dateField"], "1567684372.1")
 
         guard let myQueryStr: String = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to String")
@@ -549,7 +549,7 @@ class QueryCoderTests: XCTestCase {
             return
         }
 
-        let queryItems = [ URLQueryItem(name: "dateField", value: "1567684372")]
+        let queryItems = [ URLQueryItem(name: "dateField", value: "1567684372.1")]
         XCTAssertEqual(queryItems, myURLQueryItems)
 
     }
