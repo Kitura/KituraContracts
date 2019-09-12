@@ -209,7 +209,11 @@ extension String {
     public func dateArray1970() -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
-        let dbs = strs.compactMap(Double.init)
+        #if swift(>=4.1)
+            let dbs = strs.compactMap(Double.init)
+        #else
+            let dbs = strs.flatMap(Double.init)
+        #endif
         let dates = dbs.map { Date(timeIntervalSince1970: $0) }
         if dates.count == dbs.count {
             return dates
@@ -226,7 +230,11 @@ extension String {
     public func dateArray1970M() -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
-        let dbs = strs.compactMap(Double.init)
+        #if swift(>=4.1)
+            let dbs = strs.compactMap(Double.init)
+        #else
+            let dbs = strs.flatMap(Double.init)
+        #endif
         let dates = dbs.map { Date(timeIntervalSince1970: ($0)/1000) }
         if dates.count == dbs.count {
             return dates
@@ -261,7 +269,11 @@ extension String {
     public func dateArrayDeferred() -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
-        let dbs = strs.compactMap(Double.init)
+        #if swift(>=4.1)
+            let dbs = strs.compactMap(Double.init)
+        #else
+            let dbs = strs.flatMap(Double.init)
+        #endif
         let dates = dbs.map { Date(timeIntervalSinceReferenceDate: $0) }
         if dates.count == dbs.count {
             return dates
