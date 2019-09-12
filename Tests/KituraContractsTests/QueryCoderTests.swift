@@ -33,6 +33,8 @@ class QueryCoderTests: XCTestCase {
             ("testCustomEncode", testCustomEncode),
             ("testFormattedDecode", testFormattedDecode),
             ("testFormattedEncode", testFormattedEncode),
+            ("testCustomArrayDecode", testCustomArrayDecode),
+            ("testCustomArrayEncode", testCustomArrayEncode),
             ("testCycle", testCycle),
             ("testIllegalInt", testIllegalInt),
         ]
