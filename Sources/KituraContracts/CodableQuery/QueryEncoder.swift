@@ -60,7 +60,10 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      The coding user info key.
      */
     public var userInfo: [CodingUserInfoKey: Any] = [:]
-
+    /**
+     A `JSONDecoder.DateEncodingStrategy` date encoder used to determine what strategy
+     to use when encoding the specific date.
+     */
     public var dateEncoder: JSONEncoder.DateEncodingStrategy
 
     /**
@@ -322,7 +325,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
             encoder.anyDictionary[fieldName] = fieldValue
         /// Strings
         case let fieldValue as String:
-            encoder.dictionary[fieldName] = fieldValue
+            encoder.dictionary[fieldName] =+= fieldValue
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as [String]:
             encoder.dictionary[fieldName] = fieldValue.joined(separator: ",")
@@ -387,8 +390,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 encoder.dictionary[fieldName] = strs.joined(separator: ",")
                 encoder.anyDictionary[fieldName] = fieldValue
             case .custom(let closure):
-                for (_, element) in fieldValue.enumerated() {
-                    _ = try closure(element, encoder)
+                for element in fieldValue {
+                    try closure(element, encoder)
                 }
             @unknown default:
                 fatalError()
@@ -480,3 +483,14 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
         }
     }
 }
+
+infix operator =+=
+
+    func =+= (lhs: inout String?, rhs: String) {
+        if lhs != nil {
+            lhs = String("\(lhs!),\(rhs)")
+        } else {
+            lhs = rhs
+        }
+    }
+

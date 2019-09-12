@@ -65,7 +65,6 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      to use when decoding the specific date.
      */
     public var dateDecoder: JSONDecoder.DateDecodingStrategy
-
     /**
      Initializer with an empty dictionary for decoding from Data.
      */
@@ -211,7 +210,6 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             case .formatted(let formatted):
                 return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
             case .custom(let closure):
-                
                 return try decodeType(closure(self), to: T.self)
             @unknown default:
                 fatalError()
@@ -229,7 +227,22 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             case .formatted(let formatter):
                 return try decodeType(fieldValue?.dateArrayFormatted(formatter), to: T.self)
             case .custom(let closure):
-                return try decodeType(closure(self), to: T.self)
+                // Initialise empty Date array
+                var dateArray: [Date] = []
+                var fieldValueArray = fieldValue?.split(separator: ",")
+                if fieldValueArray != nil {
+                    for _ in fieldValueArray! {
+                        // Call closure to decode value
+                        let date = try closure(self)
+                        dateArray.append(date)
+                        // Delete from array after use
+                        fieldValueArray!.removeFirst()
+                    }
+                    return try decodeType(dateArray, to: T.self)
+                }
+                else {
+                    return try decodeType(dateArray, to: T.self)
+                }
             @unknown default:
                 fatalError()
             }
