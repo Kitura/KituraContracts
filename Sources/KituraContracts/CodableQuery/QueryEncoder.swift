@@ -357,6 +357,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 }
             case .custom(let closure):
                 try closure(fieldValue, encoder)
+            default:
+                Log.warning("Unknown encoding strategy")
             }
         case let fieldValue as [Date]:
             switch encoder.dateEncoder {
@@ -391,6 +393,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 for element in fieldValue {
                     try closure(element, encoder)
                 }
+            default:
+            Log.warning("Unknown encoding strategy")
             }
         case let fieldValue as Operation:
             encoder.dictionary[fieldName] = fieldValue.getStringValue()

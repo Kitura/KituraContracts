@@ -211,6 +211,9 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
             case .custom(let closure):
                 return try decodeType(closure(self), to: T.self)
+            default:
+                Log.warning("Unknown decoding strategy")
+                return try decodeType(fieldValue, to: T.self)
             }
         case is [Date].Type:
             switch dateDecoder {
@@ -241,6 +244,9 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 else {
                     return try decodeType(dateArray, to: T.self)
                 }
+                default:
+                    Log.warning("Unknown decoding strategy")
+                    return try decodeType(fieldValue, to: T.self)
             }
         /// Strings
         case is String.Type:
