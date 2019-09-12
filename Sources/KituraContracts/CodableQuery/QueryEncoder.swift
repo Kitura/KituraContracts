@@ -350,7 +350,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 encoder.anyDictionary[fieldName] = fieldValue
             case .iso8601:
                 if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-                    encoder.dictionary[fieldName] = NSString(string: _iso8601Formatter.string(from: fieldValue)) as String
+                    encoder.dictionary[fieldName] = _iso8601Formatter.string(from: fieldValue)
                     encoder.anyDictionary[fieldName] = fieldValue
                 } else {
                     fatalError("ISO8601DateFormatter is unavailable on this platform.")
@@ -379,7 +379,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 encoder.anyDictionary[fieldName] = fieldValue
             case .iso8601:
                 if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-                    let strs: [String] = fieldValue.map { NSString(string: _iso8601Formatter.string(from: $0)) as String }
+                    let strs: [String] = fieldValue.map { _iso8601Formatter.string(from: $0) }
                     encoder.dictionary[fieldName] = strs.joined(separator: ",")
                     encoder.anyDictionary[fieldName] = fieldValue
                 } else {
