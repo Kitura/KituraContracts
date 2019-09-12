@@ -211,8 +211,6 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
             case .custom(let closure):
                 return try decodeType(closure(self), to: T.self)
-            @unknown default:
-                fatalError()
             }
         case is [Date].Type:
             switch dateDecoder {
@@ -243,8 +241,6 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 else {
                     return try decodeType(dateArray, to: T.self)
                 }
-            @unknown default:
-                fatalError()
             }
         /// Strings
         case is String.Type:

@@ -357,8 +357,6 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 }
             case .custom(let closure):
                 try closure(fieldValue, encoder)
-            @unknown default:
-                fatalError()
             }
         case let fieldValue as [Date]:
             switch encoder.dateEncoder {
@@ -393,8 +391,6 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 for element in fieldValue {
                     try closure(element, encoder)
                 }
-            @unknown default:
-                fatalError()
             }
         case let fieldValue as Operation:
             encoder.dictionary[fieldName] = fieldValue.getStringValue()
