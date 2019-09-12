@@ -85,11 +85,11 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(pointIntArray.floatArray!, [Float(1.0), Float(2.0), Float(3.0)])
         XCTAssertEqual("true,false,true".booleanArray!, [true, false, true])
         XCTAssertEqual("\(d1),\(d2),\(d3)".dateArrayFormatted(fm)!, [fm.date(from: d1)!, fm.date(from: d2)!, fm.date(from: d3)!])
-        XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray1970(), [Date(timeIntervalSince1970: dSeventy1), Date(timeIntervalSince1970: dSeventy2), Date(timeIntervalSince1970: dSeventy3)])
-        XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray1970M(), [Date(timeIntervalSince1970: dSeventy1/1000), Date(timeIntervalSince1970: dSeventy2/1000), Date(timeIntervalSince1970: dSeventy3/1000)])
+        XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray1970()!, [Date(timeIntervalSince1970: dSeventy1), Date(timeIntervalSince1970: dSeventy2), Date(timeIntervalSince1970: dSeventy3)])
+        XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray1970M()!, [Date(timeIntervalSince1970: dSeventy1/1000), Date(timeIntervalSince1970: dSeventy2/1000), Date(timeIntervalSince1970: dSeventy3/1000)])
         if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-        XCTAssertEqual("\(dISO1),\(dISO2),\(dISO3)".dateArrayISO(), [_iso8601Formatter.date(from: dISO1)!, _iso8601Formatter.date(from: dISO2)!, _iso8601Formatter.date(from: dISO3)!])
+        XCTAssertEqual("\(dISO1),\(dISO2),\(dISO3)".dateArrayISO()!, [_iso8601Formatter.date(from: dISO1)!, _iso8601Formatter.date(from: dISO2)!, _iso8601Formatter.date(from: dISO3)!])
         }
-        XCTAssertEqual("\(dDeferred1),\(dDeferred2),\(dDeferred3)".dateArrayDeferred(), [Date(timeIntervalSinceReferenceDate: dDeferred1), Date(timeIntervalSinceReferenceDate: dDeferred2), Date(timeIntervalSinceReferenceDate: dDeferred3)])
+        XCTAssertEqual("\(dDeferred1),\(dDeferred2),\(dDeferred3)".dateArrayDeferred()!, [Date(timeIntervalSinceReferenceDate: dDeferred1), Date(timeIntervalSinceReferenceDate: dDeferred2), Date(timeIntervalSinceReferenceDate: dDeferred3)])
     }
 }
