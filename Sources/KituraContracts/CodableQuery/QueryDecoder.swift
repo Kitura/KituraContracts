@@ -199,11 +199,11 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(Date(timeIntervalSince1970: (doubleValue)), to: T.self)
             case .iso8601:
                 if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-                guard let stringValue = fieldValue?.string else {return try decodeType(fieldValue, to: T.self)}
-                    guard let date = _iso8601Formatter.date(from: stringValue) else {
-                        throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: self.codingPath, debugDescription: "Expected date string to be ISO8601-formatted."))
-                    }
-                    return try decodeType(date, to: T.self)
+                    guard let stringValue = fieldValue?.string else {return try decodeType(fieldValue, to: T.self)}
+                        guard let date = _iso8601Formatter.date(from: stringValue) else {
+                            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: self.codingPath, debugDescription: "Expected date string to be ISO8601-formatted."))
+                        }
+                        return try decodeType(date, to: T.self)
                 } else {
                     fatalError("ISO8601DateFormatter is unavailable on this platform.")
                 }
@@ -224,7 +224,11 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             case .millisecondsSince1970:
                 return try decodeType(fieldValue?.dateArray(decoderStrategy: .millisecondsSince1970), to: T.self)
             case .iso8601:
-                return try decodeType(fieldValue?.dateArray(decoderStrategy: .iso8601), to: T.self)
+                if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+                    return try decodeType(fieldValue?.dateArray(decoderStrategy: .iso8601), to: T.self)
+                } else {
+                    fatalError("ISO8601DateFormatter is unavailable on this platform.")
+                }
             case .formatted(let formatter):
                 return try decodeType(fieldValue?.dateArray(formatter), to: T.self)
             case .custom(let closure):
