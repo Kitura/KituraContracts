@@ -189,20 +189,20 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
         case is Date.Type:
             switch dateDecoder {
             case .deferredToDate:
-                return try decodeType(Date(timeIntervalSinceReferenceDate: (fieldValue?.double)!), to: T.self)
+                guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
+                return try decodeType(Date(timeIntervalSinceReferenceDate: (doubleValue)), to: T.self)
             case .secondsSince1970:
-                print(self)
-
-                return try decodeType(Date(timeIntervalSince1970: (fieldValue?.double)!), to: T.self)
+                guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
+                return try decodeType(Date(timeIntervalSince1970: (doubleValue)), to: T.self)
             case .millisecondsSince1970:
-                return try decodeType(Date(timeIntervalSince1970: ((fieldValue?.double)!)/1000), to: T.self)
+                guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
+                return try decodeType(Date(timeIntervalSince1970: (doubleValue)), to: T.self)
             case .iso8601:
                 if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
-                    let string = fieldValue?.string
-                    guard let date = _iso8601Formatter.date(from: string!) else {
+                guard let stringValue = fieldValue?.string else {return try decodeType(fieldValue, to: T.self)}
+                    guard let date = _iso8601Formatter.date(from: stringValue) else {
                         throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: self.codingPath, debugDescription: "Expected date string to be ISO8601-formatted."))
                     }
-
                     return try decodeType(date, to: T.self)
                 } else {
                     fatalError("ISO8601DateFormatter is unavailable on this platform.")
@@ -218,35 +218,20 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
         case is [Date].Type:
             switch dateDecoder {
             case .deferredToDate:
-                return try decodeType(fieldValue?.dateArrayDeferred(), to: T.self)
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .deferredToDate), to: T.self)
             case .secondsSince1970:
-                return try decodeType(fieldValue?.dateArray1970(), to: T.self)
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .secondsSince1970), to: T.self)
             case .millisecondsSince1970:
-                return try decodeType(fieldValue?.dateArray1970M(), to: T.self)
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .millisecondsSince1970), to: T.self)
             case .iso8601:
-                return try decodeType(fieldValue?.dateArrayISO(), to: T.self)
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .iso8601), to: T.self)
             case .formatted(let formatter):
                 return try decodeType(fieldValue?.dateArray(formatter), to: T.self)
             case .custom(let closure):
-                // Initialise empty Date array
-                var dateArray: [Date] = []
-                var fieldValueArray = fieldValue?.split(separator: ",")
-                if fieldValueArray != nil {
-                    for _ in fieldValueArray! {
-                        // Call closure to decode value
-                        let date = try closure(self)
-                        dateArray.append(date)
-                        // Delete from array after use
-                        fieldValueArray!.removeFirst()
-                    }
-                    return try decodeType(dateArray, to: T.self)
-                }
-                else {
-                    return try decodeType(dateArray, to: T.self)
-                }
-                default:
-                    Log.warning("Unknown decoding strategy")
-                    return try decodeType(fieldValue, to: T.self)
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .custom(closure), decoder: self), to: T.self)
+            default:
+                Log.warning("Unknown decoding strategy")
+                return try decodeType(fieldValue, to: T.self)
             }
         /// Strings
         case is String.Type:

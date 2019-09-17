@@ -186,101 +186,87 @@ extension String {
     }
 
     /**
-    Converts the given String to a [Date]? object using the DateFormatter supplied.
+    Converts the given String to a [Date]? object using the dateDecodingStrategy supplied.
     
-    - Parameter formatter: The designated DateFormatter to convert the string with.
+    - Parameter formatter: The designated `DateFormatter` to convert the string with.
+    - Parameter decoderStrategy: The `JSON.dateDecodingStrategy` that should be used to decode the specifed Date.  Default is set to .formatted with default dateFormatter.
+    - Parameter decoder: The `Decoder` parameter is only used for the custom strategy.
     - Returns: The [Date]? object. Some on success / nil on failure.
     */
-    public func dateArray(_ formatter: DateFormatter) -> [Date]? {
+    public func dateArray(_ formatter: DateFormatter?=nil, decoderStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter), decoder: Decoder?=nil) -> [Date]? {
 
-        let strs: [String] = self.components(separatedBy: ",")
-        let dates = strs.map { formatter.date(from: $0) }.filter { $0 != nil }.map { $0! }
-        if dates.count == strs.count {
-            return dates
-        }
-        return nil
-    }
-
-    /**
-    Converts the given String to a [Date]? object using timeIntervalSince1970 in seconds.
-
-    - Returns: The [Date]? object. Some on success / nil on failure.
-    */
-    public func dateArray1970() -> [Date]? {
-
-        let strs: [String] = self.components(separatedBy: ",")
-        #if swift(>=4.1)
-            let dbs = strs.compactMap(Double.init)
-        #else
-            let dbs = strs.flatMap(Double.init)
-        #endif
-        let dates = dbs.map { Date(timeIntervalSince1970: $0) }
-        if dates.count == dbs.count {
-            return dates
-        }
-        return nil
-
-    }
-
-    /**
-    Converts the given String to a [Date]? object using timeIntervalSince1970 in milliseconds.
-
-    - Returns: The [Date]? object. Some on success / nil on failure.
-    */
-    public func dateArray1970M() -> [Date]? {
-
-        let strs: [String] = self.components(separatedBy: ",")
-        #if swift(>=4.1)
-            let dbs = strs.compactMap(Double.init)
-        #else
-            let dbs = strs.flatMap(Double.init)
-        #endif
-        let dates = dbs.map { Date(timeIntervalSince1970: ($0)/1000) }
-        if dates.count == dbs.count {
-            return dates
-        }
-        return nil
-    }
-
-    /**
-    Converts the given String to a [Date]? object using an ISO8601 formatting.
-
-    - Returns: The [Date]? object. Some on success / nil on failure.
-    */
-    public func dateArrayISO() -> [Date]? {
-
-        if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+        switch decoderStrategy {
+        case .formatted(let formatter):
             let strs: [String] = self.components(separatedBy: ",")
-            let dates = strs.map { _iso8601Formatter.date(from: $0) }
+            let dates = strs.map { formatter.date(from: $0) }.filter { $0 != nil }.map { $0! }
             if dates.count == strs.count {
-                return dates as? [Date]
+                return dates
             }
             return nil
-        } else {
-            fatalError("ISO8601DateFormatter is unavailable on this platform.")
+        case .deferredToDate:
+            let strs: [String] = self.components(separatedBy: ",")
+            #if swift(>=4.1)
+                let dbs = strs.compactMap(Double.init)
+            #else
+                let dbs = strs.flatMap(Double.init)
+            #endif
+            let dates = dbs.map { Date(timeIntervalSinceReferenceDate: $0) }
+            if dates.count == dbs.count {
+                return dates
+            }
+            return nil
+        case .secondsSince1970:
+            let strs: [String] = self.components(separatedBy: ",")
+            #if swift(>=4.1)
+                let dbs = strs.compactMap(Double.init)
+            #else
+                let dbs = strs.flatMap(Double.init)
+            #endif
+            let dates = dbs.map { Date(timeIntervalSince1970: $0) }
+            if dates.count == dbs.count {
+                return dates
+            }
+            return nil
+        case .millisecondsSince1970:
+            let strs: [String] = self.components(separatedBy: ",")
+            #if swift(>=4.1)
+                let dbs = strs.compactMap(Double.init)
+            #else
+                let dbs = strs.flatMap(Double.init)
+            #endif
+            let dates = dbs.map { Date(timeIntervalSince1970: ($0)/1000) }
+            if dates.count == dbs.count {
+                return dates
+            }
+            return nil
+        case .iso8601:
+            let strs: [String] = self.components(separatedBy: ",")
+            if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+                let dates = strs.map { _iso8601Formatter.date(from: $0) }
+                if dates.count == strs.count {
+                    return dates as? [Date]
+                }
+                return nil
+            } else {
+                fatalError("ISO8601DateFormatter is unavailable on this platform.")
+            }
+        case .custom(let closure):
+            var dateArray: [Date] = []
+            guard let decoder = decoder else {return dateArray}
+            var fieldValueArray = self.split(separator: ",")
+                for _ in fieldValueArray {
+                    // Call closure to decode value
+                    let date = try? closure(decoder)
+                    dateArray.append(date!)
+                    // Delete from array after use
+                    fieldValueArray.removeFirst()
+                }
+            return dateArray
+        default:
+            Log.error("Decoding strategy not found")
+            fatalError()
         }
     }
-
-    /**
-    Converts the given String to a [Date]? object using deferredToDate formatting.
-
-    - Returns: The [Date]? object. Some on success / nil on failure.
-    */
-    public func dateArrayDeferred() -> [Date]? {
-
-        let strs: [String] = self.components(separatedBy: ",")
-        #if swift(>=4.1)
-            let dbs = strs.compactMap(Double.init)
-        #else
-            let dbs = strs.flatMap(Double.init)
-        #endif
-        let dates = dbs.map { Date(timeIntervalSinceReferenceDate: $0) }
-        if dates.count == dbs.count {
-            return dates
-        }
-        return nil
-    }
-
     /// Helper Method to decode a string to an LosslessStringConvertible array types.
     private func decodeArray<T: LosslessStringConvertible>(_ type: T.Type) -> [T]? {
         let strs: [String] = self.components(separatedBy: ",")
@@ -328,7 +314,7 @@ extension String {
 
 /// ISO8601 Formatter used for formatting ISO8601 dates.
 @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
-public var _iso8601Formatter: ISO8601DateFormatter = {
+var _iso8601Formatter: ISO8601DateFormatter = {
 let formatter = ISO8601DateFormatter()
     formatter.formatOptions = .withInternetDateTime
 return formatter
