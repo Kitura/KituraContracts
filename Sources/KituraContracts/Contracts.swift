@@ -906,6 +906,23 @@ extension Bool: Identifier {
     }
 }
 
+extension UUID: Identifier {
+    /// Creates a UUID identifier from a given string representation.
+    /// - Throws: An `IdentifierError.invalidValue` if the given string cannot be converted to a UUID.
+    public init(value: String) throws {
+        if let id = UUID(uuidString: value) {
+            self = id
+        } else {
+            throw IdentifierError.invalidValue
+        }
+    }
+
+    /// The string representation of the identifier.
+    public var value: String {
+        return self.uuidString
+    }
+}
+
 /**
   An enum containing the ordering information
   ### Usage Example: ###
