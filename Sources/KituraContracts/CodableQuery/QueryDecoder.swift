@@ -208,7 +208,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                     fatalError("ISO8601DateFormatter is unavailable on this platform.")
                 }
             case .formatted(let formatted):
-                return try decodeType(fieldValue?.dateFormatted(formatted), to: T.self)
+                return try decodeType(fieldValue?.date(formatted), to: T.self)
             case .custom(let closure):
                 return try decodeType(closure(self), to: T.self)
             default:
@@ -226,7 +226,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             case .iso8601:
                 return try decodeType(fieldValue?.dateArrayISO(), to: T.self)
             case .formatted(let formatter):
-                return try decodeType(fieldValue?.dateArrayFormatted(formatter), to: T.self)
+                return try decodeType(fieldValue?.dateArray(formatter), to: T.self)
             case .custom(let closure):
                 // Initialise empty Date array
                 var dateArray: [Date] = []

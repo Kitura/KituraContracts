@@ -181,7 +181,7 @@ extension String {
     - Parameter formatter: The designated DateFormatter to convert the string with.
     - Returns: The Date? object. Some on success / nil on failure.
     */
-    public func dateFormatted(_ formatter: DateFormatter) -> Date? {
+    public func date(_ formatter: DateFormatter) -> Date? {
         return formatter.date(from: self)
     }
 
@@ -191,7 +191,7 @@ extension String {
     - Parameter formatter: The designated DateFormatter to convert the string with.
     - Returns: The [Date]? object. Some on success / nil on failure.
     */
-    public func dateArrayFormatted(_ formatter: DateFormatter) -> [Date]? {
+    public func dateArray(_ formatter: DateFormatter) -> [Date]? {
 
         let strs: [String] = self.components(separatedBy: ",")
         let dates = strs.map { formatter.date(from: $0) }.filter { $0 != nil }.map { $0! }

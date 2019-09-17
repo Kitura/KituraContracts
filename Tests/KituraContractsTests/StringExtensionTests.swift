@@ -63,7 +63,7 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("3.0".double, Double(3.0))
         XCTAssertEqual("4.0".float, Float(4.0))
         XCTAssertEqual("true".boolean, true)
-        XCTAssertEqual(d1.dateFormatted(fm), fm.date(from: d1))
+        XCTAssertEqual(d1.date(fm), fm.date(from: d1))
 
         let strArray = "string1,string2,string3"
         let intArray = "1,2,3"
@@ -84,7 +84,7 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(pointIntArray.doubleArray!, [Double(1.0), Double(2.0), Double(3.0)])
         XCTAssertEqual(pointIntArray.floatArray!, [Float(1.0), Float(2.0), Float(3.0)])
         XCTAssertEqual("true,false,true".booleanArray!, [true, false, true])
-        XCTAssertEqual("\(d1),\(d2),\(d3)".dateArrayFormatted(fm)!, [fm.date(from: d1)!, fm.date(from: d2)!, fm.date(from: d3)!])
+        XCTAssertEqual("\(d1),\(d2),\(d3)".dateArray(fm)!, [fm.date(from: d1)!, fm.date(from: d2)!, fm.date(from: d3)!])
         XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray1970()!, [Date(timeIntervalSince1970: dSeventy1), Date(timeIntervalSince1970: dSeventy2), Date(timeIntervalSince1970: dSeventy3)])
         XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray1970M()!, [Date(timeIntervalSince1970: dSeventy1/1000), Date(timeIntervalSince1970: dSeventy2/1000), Date(timeIntervalSince1970: dSeventy3/1000)])
         if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
