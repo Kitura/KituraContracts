@@ -331,7 +331,7 @@ extension String {
     }
 }
 
-/// ISO8601 Formatter used for formatting ISO8601 dates.
+// ISO8601 Formatter used for formatting ISO8601 dates.
 @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
 var _iso8601Formatter: ISO8601DateFormatter = {
 let formatter = ISO8601DateFormatter()

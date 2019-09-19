@@ -497,8 +497,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
 // The '=+=' operator builds a comma-separated list of values for a given fieldName when encoding a [Date] that uses a custom formatting.
 infix operator =+=
     func =+= (lhs: inout String?, rhs: String) {
-        if lhs != nil {
-            lhs = String("\(lhs!),\(rhs)")
+        if let lhsValue = lhs {
+            lhs = lhsValue + "," + rhs
         } else {
             lhs = rhs
         }

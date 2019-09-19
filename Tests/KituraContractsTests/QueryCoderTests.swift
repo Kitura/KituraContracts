@@ -197,9 +197,9 @@ class QueryCoderTests: XCTestCase {
             let endDate = date
             let components = calendar.dateComponents([.day], from: startDate, to: endDate)
             let days = components.day
-            let stringData = String(days!)
+            let intData = Int(days!)
             var container = encoder.singleValueContainer()
-            try container.encode(stringData)
+            try container.encode(intData)
 
         }
         public static func ==(lhs: QueryCustom, rhs: QueryCustom) -> Bool {
@@ -253,9 +253,9 @@ class QueryCoderTests: XCTestCase {
             let endDate = date
             let components = calendar.dateComponents([.day], from: startDate, to: endDate)
             let days = components.day
-            let stringData = String(days!)
+            let intData = Int(days!)
             var container = encoder.singleValueContainer()
-            try container.encode(stringData)
+            try container.encode(intData)
 
         }
         public static func ==(lhs: QueryCustomArray, rhs: QueryCustomArray) -> Bool {
@@ -574,7 +574,10 @@ class QueryCoderTests: XCTestCase {
 
     func testISOEncode() {
 
-        let query = QueryISO(dateField: _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000")!)
+        guard let dateString = _iso8601Formatter.date(from: "2019-09-06T10:14:41+0000") else {
+            return XCTFail("Date could not be formatted")
+        }
+        let query = QueryISO(dateField: dateString)
 
         guard let myQueryDict: [String: String] = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to [String: String]")
@@ -789,6 +792,38 @@ class QueryCoderTests: XCTestCase {
 
     }
 
+    //This tests the first code example in the QueryParams struct
+    func testExample1() {
+        struct MyQuery: QueryParams {
+           let date: Date
+           static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .iso8601
+           static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
+        }
+
+        let queryParams = ["date": "2019-09-06T10:14:41+0000"]
+
+        XCTAssertNoThrow(try QueryDecoder(dictionary: queryParams).decode(MyQuery.self))
+    }
+
+    //This tests the second code example in the QueryParams struct
+    func testExample2() {
+        do {
+            struct MyQuery: QueryParams {
+                let date: Date
+                static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .iso8601
+                static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
+            }
+
+            let query = MyQuery(date: Date(timeIntervalSinceNow: 0))
+
+            let myQueryDict: [String: String] = try QueryEncoder().encode(query)
+            XCTAssertNotNil(myQueryDict["date"])
+        } catch {
+            XCTFail("\(error)")
+        }
+
+    }
+
 
     func testCycle() {
         let myInts = MyInts(intField: 1, int8Field: 2, int16Field: 3, int32Field: 4, int64Field: 5, uintField: 6, uint8Field: 7, uint16Field: 8, uint32Field: 9, uint64Field: 10)
@@ -860,4 +895,5 @@ class QueryCoderTests: XCTestCase {
         
         XCTAssertEqual(myQuery2, obj)
     }
+    
 }
