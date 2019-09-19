@@ -524,17 +524,17 @@ extension RequestError {
  */
 public protocol QueryParams: Codable {
 
-    static var dateDecoder: JSONDecoder.DateDecodingStrategy { get }
-    static var dateEncoder: JSONEncoder.DateEncodingStrategy { get }
+    static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
+    static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy { get }
 }
 
 extension QueryParams {
 
-    public static var dateDecoder : JSONDecoder.DateDecodingStrategy {
+    static var dateDecodingStrategy : JSONDecoder.DateDecodingStrategy {
         return .formatted(Coder().dateFormatter)
     }
 
-    public static var dateEncoder: JSONEncoder.DateEncodingStrategy {
+    static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
         return .formatted(Coder().dateFormatter)
     }
 

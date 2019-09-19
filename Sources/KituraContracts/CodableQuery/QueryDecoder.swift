@@ -60,24 +60,23 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      */
     public var dictionary: [String : String]
 
-    /**
-     A `JSONDecoder.DateDecodingStrategy` date decoder used to determine what strategy
-     to use when decoding the specific date.
-     */
-    public var dateDecoder: JSONDecoder.DateDecodingStrategy
+
+     // A `JSONDecoder.DateDecodingStrategy` date decoder used to determine what strategy
+     // to use when decoding the specific date.
+    private var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy
     /**
      Initializer with an empty dictionary for decoding from Data.
      */
-    public init(dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter)) {
-        self.dateDecoder = dateDecodingStrategy
+    public override init () {
+        self.dateDecodingStrategy = .formatted(Coder().dateFormatter)
         self.dictionary = [:]
         super.init()
     }
     /**
      Initializer with a `[String : String]` dictionary.
      */
-    public init(dictionary: [String : String], dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter)) {
-        self.dateDecoder = dateDecodingStrategy
+    public init(dictionary: [String : String]) {
+        self.dateDecodingStrategy = .formatted(Coder().dateFormatter)
         self.dictionary = dictionary
         super.init()
     }
@@ -96,13 +95,14 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      ````
      */
     public func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
-        if let Q = T.self as? QueryParams.Type {
-            dateDecoder = Q.dateDecoder
-        }
         guard let urlString = String(data: data, encoding: .utf8) else {
             throw RequestError.unprocessableEntity
         }
-        let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs, dateDecodingStrategy: dateDecoder)
+        let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs)
+        decoder.dateDecodingStrategy = dateDecodingStrategy
+        if let Q = T.self as? QueryParams.Type {
+            decoder.dateDecodingStrategy = Q.dateDecodingStrategy
+        }
         return try T(from: decoder)
     }
 
@@ -121,7 +121,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      */
     public func decode<T: Decodable>(_ type: T.Type) throws -> T {
         if let Q = T.self as? QueryParams.Type {
-            dateDecoder = Q.dateDecoder
+            dateDecodingStrategy = Q.dateDecodingStrategy
         }
         let fieldName = Coder.getFieldName(from: codingPath)
         let fieldValue = dictionary[fieldName]
@@ -187,7 +187,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             return try decodeType(fieldValue?.doubleArray, to: T.self)
         /// Dates
         case is Date.Type:
-            switch dateDecoder {
+            switch dateDecodingStrategy {
             case .deferredToDate:
                 guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
                 return try decodeType(Date(timeIntervalSinceReferenceDate: (doubleValue)), to: T.self)
@@ -211,12 +211,13 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.date(formatted), to: T.self)
             case .custom(let closure):
                 return try decodeType(closure(self), to: T.self)
-            default:
-                Log.warning("Unknown decoding strategy")
-                return try decodeType(fieldValue, to: T.self)
+            #if swift(>=5)
+            @unknown default:
+                throw DateError.unknownStrategy
+            #endif
             }
         case is [Date].Type:
-            switch dateDecoder {
+            switch dateDecodingStrategy {
             case .deferredToDate:
                 return try decodeType(fieldValue?.dateArray(decoderStrategy: .deferredToDate), to: T.self)
             case .secondsSince1970:
@@ -233,9 +234,10 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.dateArray(formatter), to: T.self)
             case .custom(let closure):
                 return try decodeType(fieldValue?.dateArray(decoderStrategy: .custom(closure), decoder: self), to: T.self)
-            default:
-                Log.warning("Unknown decoding strategy")
-                return try decodeType(fieldValue, to: T.self)
+            #if swift(>=5)
+            @unknown default:
+                throw DateError.unknownStrategy
+            #endif
             }
         /// Strings
         case is String.Type:

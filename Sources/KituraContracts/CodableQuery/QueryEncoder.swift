@@ -60,17 +60,16 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      The coding user info key.
      */
     public var userInfo: [CodingUserInfoKey: Any] = [:]
-    /**
-     A `JSONDecoder.DateEncodingStrategy` date encoder used to determine what strategy
-     to use when encoding the specific date.
-     */
-    public var dateEncoder: JSONEncoder.DateEncodingStrategy
+
+     // A `JSONDecoder.DateEncodingStrategy` date encoder used to determine what strategy
+     // to use when encoding the specific date.
+    private var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy
 
     /**
      Initializer for the dictionary, which initializes an empty `[String: String]` dictionary.
      */
     public override init() {
-        self.dateEncoder = .formatted(Coder().dateFormatter)
+        self.dateEncodingStrategy = .formatted(Coder().dateFormatter)
         self.dictionary = [:]
         self.anyDictionary = [:]
         super.init()
@@ -136,7 +135,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      */
     public func encode<T: Encodable>(_ value: T) throws -> [URLQueryItem] {
         if let Q = T.self as? QueryParams.Type {
-            dateEncoder = Q.dateEncoder
+            dateEncodingStrategy = Q.dateEncodingStrategy
         }
         let dict: [String : String] = try encode(value)
         return dict.reduce([URLQueryItem]()) { array, element in
@@ -161,8 +160,9 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      */
     public func encode<T: Encodable>(_ value: T) throws -> [String : String] {
         let encoder = QueryEncoder()
+        encoder.dateEncodingStrategy = self.dateEncodingStrategy
         if let Q = T.self as? QueryParams.Type {
-            encoder.dateEncoder = Q.dateEncoder
+            encoder.dateEncodingStrategy = Q.dateEncodingStrategy
         }
         try value.encode(to: encoder)
         return encoder.dictionary
@@ -173,6 +173,10 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
     /// - Parameter _ value: The Encodable object to encode to its [String: String] representation
     public func encode<T: Encodable>(_ value: T) throws -> [String : Any] {
         let encoder = QueryEncoder()
+        encoder.dateEncodingStrategy = self.dateEncodingStrategy
+        if let Q = T.self as? QueryParams.Type {
+            encoder.dateEncodingStrategy = Q.dateEncodingStrategy
+        }
         try value.encode(to: encoder)
         return encoder.anyDictionary
     }
@@ -221,19 +225,19 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
         switch value {
         /// Ints
         case let fieldValue as Int:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as Int8:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as Int16:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as Int32:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as Int64:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         /// Int Arrays
         case let fieldValue as [Int]:
@@ -258,23 +262,23 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
             encoder.anyDictionary[fieldName] = fieldValue
         /// UInts
         case let fieldValue as UInt:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         /// Int Arrays
         case let fieldValue as UInt8:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         /// Int Arrays
         case let fieldValue as UInt16:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         /// Int Arrays
         case let fieldValue as UInt32:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         /// Int Arrays
         case let fieldValue as UInt64:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         /// Int Arrays
         /// UInt Arrays
@@ -301,7 +305,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
             encoder.anyDictionary[fieldName] = fieldValue
         /// Floats
         case let fieldValue as Float:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as [Float]:
             let strs: [String] = fieldValue.map { String($0) }
@@ -309,7 +313,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
             encoder.anyDictionary[fieldName] = fieldValue
         /// Doubles
         case let fieldValue as Double:
-            encoder.dictionary[fieldName] = String(fieldValue)
+            encoder.dictionary[fieldName] =+= String(fieldValue)
             encoder.anyDictionary[fieldName] = fieldValue
         case let fieldValue as [Double]:
             let strs: [String] = fieldValue.map { String($0) }
@@ -332,7 +336,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
             encoder.anyDictionary[fieldName] = fieldValue
         /// Dates
         case let fieldValue as Date:
-            switch encoder.dateEncoder {
+            switch encoder.dateEncodingStrategy {
             case .formatted(let formatter):
                 encoder.dictionary[fieldName] = formatter.string(from: fieldValue)
                 encoder.anyDictionary[fieldName] = fieldValue
@@ -357,11 +361,13 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 }
             case .custom(let closure):
                 try closure(fieldValue, encoder)
-            default:
-                Log.warning("Unknown encoding strategy")
+            #if swift(>=5)
+            @unknown default:
+                throw DateError.unknownStrategy
+            #endif
             }
         case let fieldValue as [Date]:
-            switch encoder.dateEncoder {
+            switch encoder.dateEncodingStrategy {
             case .deferredToDate:
                 let dbs: [NSNumber] = fieldValue.map { NSNumber(value: $0.timeIntervalSinceReferenceDate) }
                 let strs: [String] = dbs.map { ($0).stringValue}
@@ -389,12 +395,16 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 let strs: [String] = fieldValue.map { formatter.string(from: $0) }
                 encoder.dictionary[fieldName] = strs.joined(separator: ",")
                 encoder.anyDictionary[fieldName] = fieldValue
+            // This calls us back with each serialized element individually, with the same fieldName key,
+            // which builds a comma-separated list using the '=+=' operator.
             case .custom(let closure):
                 for element in fieldValue {
                     try closure(element, encoder)
                 }
-            default:
-            Log.warning("Unknown encoding strategy")
+            #if swift(>=5)
+            @unknown default:
+                throw DateError.unknownStrategy
+            #endif
             }
         case let fieldValue as Operation:
             encoder.dictionary[fieldName] = fieldValue.getStringValue()
@@ -484,8 +494,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
     }
 }
 
+// The '=+=' operator builds a comma-separated list of values for a given fieldName when encoding a [Date] that uses a custom formatting.
 infix operator =+=
-
     func =+= (lhs: inout String?, rhs: String) {
         if lhs != nil {
             lhs = String("\(lhs!),\(rhs)")

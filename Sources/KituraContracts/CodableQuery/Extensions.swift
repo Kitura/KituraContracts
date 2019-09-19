@@ -186,6 +186,21 @@ extension String {
     }
 
     /**
+    Converts the given String to a [Date]?.
+
+    - Parameter formatter: The designated DateFormatter to convert the string with.
+    - Returns: The [Date]? object. Some on success / nil on failure.
+    */
+    public func dateArray(_ formatter: DateFormatter) -> [Date]? {
+        let strs: [String] = self.components(separatedBy: ",")
+        let dates = strs.map { formatter.date(from: $0) }.filter { $0 != nil }.map { $0! }
+        if dates.count == strs.count {
+            return dates
+        }
+        return nil
+    }
+
+    /**
     Converts the given String to a [Date]? object using the dateDecodingStrategy supplied.
     
     - Parameter formatter: The designated `DateFormatter` to convert the string with.
@@ -193,7 +208,7 @@ extension String {
     - Parameter decoder: The `Decoder` parameter is only used for the custom strategy.
     - Returns: The [Date]? object. Some on success / nil on failure.
     */
-    public func dateArray(_ formatter: DateFormatter?=nil, decoderStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter), decoder: Decoder?=nil) -> [Date]? {
+    public func dateArray(decoderStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter), decoder: Decoder?=nil) -> [Date]? {
 
         switch decoderStrategy {
         case .formatted(let formatter):
@@ -256,15 +271,19 @@ extension String {
             var fieldValueArray = self.split(separator: ",")
                 for _ in fieldValueArray {
                     // Call closure to decode value
-                    let date = try? closure(decoder)
-                    dateArray.append(date!)
+                    guard let date = try? closure(decoder) else {
+                        return nil
+                    }
+                    dateArray.append(date)
                     // Delete from array after use
                     fieldValueArray.removeFirst()
                 }
             return dateArray
-        default:
+        #if swift(>=5)
+        @unknown default:
             Log.error("Decoding strategy not found")
             fatalError()
+        #endif
         }
     }
     /// Helper Method to decode a string to an LosslessStringConvertible array types.
@@ -319,3 +338,16 @@ let formatter = ISO8601DateFormatter()
     formatter.formatOptions = .withInternetDateTime
 return formatter
 }()
+
+enum DateError: Error {
+    case unknownStrategy
+}
+
+extension DateError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .unknownStrategy:
+            return("Date encoding or decoding strategy not known.")
+        }
+    }
+}

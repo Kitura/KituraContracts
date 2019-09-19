@@ -158,8 +158,8 @@ class QueryCoderTests: XCTestCase {
 
     struct Query1970: QueryParams, Equatable {
         public let dateField: Date
-        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .secondsSince1970
-        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .secondsSince1970
+        static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .secondsSince1970
+        static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .secondsSince1970
         public static func ==(lhs: Query1970, rhs: Query1970) -> Bool {
             return lhs.dateField == rhs.dateField
         }
@@ -167,8 +167,8 @@ class QueryCoderTests: XCTestCase {
 
     struct QueryISO: QueryParams, Equatable {
         public let dateField: Date
-        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .iso8601
-        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .iso8601
+        static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .iso8601
+        static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
         public static func ==(lhs: QueryISO, rhs: QueryISO) -> Bool {
             return lhs.dateField == rhs.dateField
         }
@@ -176,7 +176,7 @@ class QueryCoderTests: XCTestCase {
 
     struct QueryCustom: QueryParams, Equatable {
         public let dateField: Date
-        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .custom { decoder in
+        static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .custom { decoder in
             // pull out the number of days from Codable
             let container = try decoder.singleValueContainer()
             let numberOfDays = try container.decode(Int.self)
@@ -190,7 +190,7 @@ class QueryCoderTests: XCTestCase {
             let calendar = Calendar(identifier: .gregorian)
             return calendar.date(byAdding: components, to: startDate) ?? Date()
         }
-        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .custom { (date, encoder) in
+        static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .custom { (date, encoder) in
 
             let calendar = Calendar(identifier: .gregorian)
             let startDate = Date(timeIntervalSince1970: 0)
@@ -221,8 +221,8 @@ class QueryCoderTests: XCTestCase {
     struct QueryFormatted: QueryParams, Equatable {
 
         public let dateField: Date
-        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .formatted(AlternateFormatter().altFormatter)
-        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .formatted(AlternateFormatter().altFormatter)
+        static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .formatted(AlternateFormatter().altFormatter)
+        static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .formatted(AlternateFormatter().altFormatter)
         public static func ==(lhs: QueryFormatted, rhs: QueryFormatted) -> Bool {
             return lhs.dateField == rhs.dateField
         }
@@ -231,7 +231,7 @@ class QueryCoderTests: XCTestCase {
     struct QueryCustomArray: QueryParams, Equatable {
 
         public let dateField: [Date]
-        static let dateDecoder: JSONDecoder.DateDecodingStrategy = .custom { decoder in
+        static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .custom { decoder in
             // pull out the number of days from Codable
             let container = try decoder.singleValueContainer()
             let numberOfDaysArray = try container.decode([Int].self)
@@ -246,7 +246,7 @@ class QueryCoderTests: XCTestCase {
             let calendar = Calendar(identifier: .gregorian)
             return calendar.date(byAdding: components, to: startDate) ?? Date()
         }
-        static let dateEncoder: JSONEncoder.DateEncodingStrategy = .custom { (date, encoder) in
+        static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .custom { (date, encoder) in
 
             let calendar = Calendar(identifier: .gregorian)
             let startDate = Date(timeIntervalSince1970: 0)
