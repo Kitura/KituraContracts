@@ -218,6 +218,18 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
         return UnkeyedContainer(encoder: self)
     }
 
+    /// Decode a value for the current field, determined by this encoder's state (codingPath). Some
+    /// paths through this function are recursive (for handling custom Date encodings).
+    ///
+    /// Both the keyed and unkeyed containers call this function. The keyed container first sets the
+    /// encoder's codingPath, which determines the field name we encode.
+    ///
+    /// If a custom encoding is defined for Date, the custom closure will call this encoder back. It
+    /// is expected that any such custom encoding produces a single value, calling back via the
+    /// unkeyed container.
+    ///
+    /// When custom encoding Date arrays, this function will be invoked multiple times for the same
+    /// key. The =+= operator is used to build a comma-separated list of values for a key.
     internal func _encode<T: Encodable>(value: T) throws {
         let encoder = self
         let fieldName = Coder.getFieldName(from: encoder.codingPath)
@@ -442,6 +454,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
         var encoder: QueryEncoder
         var codingPath: [CodingKey] { return [] }
 
+        /// The typical path for encoding a QueryParams (keyed) type. This encode will be called
+        /// for each field in turn.
         func encode<T>(_ value: T, forKey key: Key) throws where T : Encodable {
             self.encoder.codingPath.append(key)
             defer { self.encoder.codingPath.removeLast() }
@@ -488,6 +502,8 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
 
         func encodeNil() throws {}
 
+        /// This unkeyed encode will be called by a custom Date encoder. The correct key (field
+        /// name) will already have been set by a call to the KeyedEncodingContainer.
         func encode<T>(_ value: T) throws where T : Encodable {
             try encoder._encode(value: value)
         }
