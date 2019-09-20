@@ -82,7 +82,7 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(uuidStr,  identifier.value)
 
         guard let uuidIdentifier = identifier as? UUID else {
-            XCTFail("Failed to cast to concrete type: Int")
+            XCTFail("Failed to cast to concrete type: UUID")
             return
         }
         XCTAssertEqual(UUID(uuidString: uuidStr), uuidIdentifier)
