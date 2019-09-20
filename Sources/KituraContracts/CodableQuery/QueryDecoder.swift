@@ -60,11 +60,15 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      */
     public var dictionary: [String : String]
 
-    
+
+     // A `JSONDecoder.DateDecodingStrategy` date decoder used to determine what strategy
+     // to use when decoding the specific date.
+    private var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy
     /**
      Initializer with an empty dictionary for decoding from Data.
      */
-    public override init() {
+    public override init () {
+        self.dateDecodingStrategy = .formatted(Coder().dateFormatter)
         self.dictionary = [:]
         super.init()
     }
@@ -72,6 +76,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      Initializer with a `[String : String]` dictionary.
      */
     public init(dictionary: [String : String]) {
+        self.dateDecodingStrategy = .formatted(Coder().dateFormatter)
         self.dictionary = dictionary
         super.init()
     }
@@ -94,6 +99,10 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             throw RequestError.unprocessableEntity
         }
         let decoder = QueryDecoder(dictionary: urlString.urlDecodedFieldValuePairs)
+        decoder.dateDecodingStrategy = dateDecodingStrategy
+        if let Q = T.self as? QueryParams.Type {
+            decoder.dateDecodingStrategy = Q.dateDecodingStrategy
+        }
         return try T(from: decoder)
     }
 
@@ -111,6 +120,9 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      ````
      */
     public func decode<T: Decodable>(_ type: T.Type) throws -> T {
+        if let Q = T.self as? QueryParams.Type {
+            dateDecodingStrategy = Q.dateDecodingStrategy
+        }
         let fieldName = Coder.getFieldName(from: codingPath)
         let fieldValue = dictionary[fieldName]
         Log.verbose("fieldName: \(fieldName), fieldValue: \(String(describing: fieldValue))")
@@ -175,9 +187,58 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             return try decodeType(fieldValue?.doubleArray, to: T.self)
         /// Dates
         case is Date.Type:
-            return try decodeType(fieldValue?.date(dateFormatter), to: T.self)
+            switch dateDecodingStrategy {
+            case .deferredToDate:
+                guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
+                return try decodeType(Date(timeIntervalSinceReferenceDate: (doubleValue)), to: T.self)
+            case .secondsSince1970:
+                guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
+                return try decodeType(Date(timeIntervalSince1970: (doubleValue)), to: T.self)
+            case .millisecondsSince1970:
+                guard let doubleValue = fieldValue?.double else {return try decodeType(fieldValue, to: T.self)}
+                return try decodeType(Date(timeIntervalSince1970: (doubleValue)), to: T.self)
+            case .iso8601:
+                if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+                    guard let stringValue = fieldValue?.string else {return try decodeType(fieldValue, to: T.self)}
+                        guard let date = _iso8601Formatter.date(from: stringValue) else {
+                            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: self.codingPath, debugDescription: "Expected date string to be ISO8601-formatted."))
+                        }
+                        return try decodeType(date, to: T.self)
+                } else {
+                    fatalError("ISO8601DateFormatter is unavailable on this platform.")
+                }
+            case .formatted(let formatted):
+                return try decodeType(fieldValue?.date(formatted), to: T.self)
+            case .custom(let closure):
+                return try decodeType(closure(self), to: T.self)
+            #if swift(>=5)
+            @unknown default:
+                throw DateError.unknownStrategy
+            #endif
+            }
         case is [Date].Type:
-            return try decodeType(fieldValue?.dateArray(dateFormatter), to: T.self)
+            switch dateDecodingStrategy {
+            case .deferredToDate:
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .deferredToDate), to: T.self)
+            case .secondsSince1970:
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .secondsSince1970), to: T.self)
+            case .millisecondsSince1970:
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .millisecondsSince1970), to: T.self)
+            case .iso8601:
+                if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+                    return try decodeType(fieldValue?.dateArray(decoderStrategy: .iso8601), to: T.self)
+                } else {
+                    fatalError("ISO8601DateFormatter is unavailable on this platform.")
+                }
+            case .formatted(let formatter):
+                return try decodeType(fieldValue?.dateArray(formatter), to: T.self)
+            case .custom(let closure):
+                return try decodeType(fieldValue?.dateArray(decoderStrategy: .custom(closure), decoder: self), to: T.self)
+            #if swift(>=5)
+            @unknown default:
+                throw DateError.unknownStrategy
+            #endif
+            }
         /// Strings
         case is String.Type:
             return try decodeType(fieldValue?.string, to: T.self)
@@ -343,4 +404,5 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
             return decoder
         }
     }
+
 }

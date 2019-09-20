@@ -36,6 +36,18 @@ class StringExtensionsTests: XCTestCase {
         let d2 = fm.string(from: Date())
         let d3 = fm.string(from: Date())
 
+        let dDeferred1 = 589714729.0
+        let dDeferred2 = 589714729.0
+        let dDeferred3 = 589714729.0
+
+        let dSeventy1 = 1567684372.0
+        let dSeventy2 = 1567684372.0
+        let dSeventy3 = 1567684372.0
+
+        let dISO1 = "2019-09-06T10:14:41+0000"
+        let dISO2 = "2019-09-06T10:14:41+0000"
+        let dISO3 = "2019-09-06T10:14:41+0000"
+
         /// Assert object string -> T conversion
         XCTAssertEqual("string".string, "string")
         XCTAssertEqual("1".int, Int(1))
@@ -73,5 +85,11 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(pointIntArray.floatArray!, [Float(1.0), Float(2.0), Float(3.0)])
         XCTAssertEqual("true,false,true".booleanArray!, [true, false, true])
         XCTAssertEqual("\(d1),\(d2),\(d3)".dateArray(fm)!, [fm.date(from: d1)!, fm.date(from: d2)!, fm.date(from: d3)!])
+        XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray(decoderStrategy: .secondsSince1970)!, [Date(timeIntervalSince1970: dSeventy1), Date(timeIntervalSince1970: dSeventy2), Date(timeIntervalSince1970: dSeventy3)])
+        XCTAssertEqual("\(dSeventy1),\(dSeventy2),\(dSeventy3)".dateArray(decoderStrategy: .millisecondsSince1970)!, [Date(timeIntervalSince1970: dSeventy1/1000), Date(timeIntervalSince1970: dSeventy2/1000), Date(timeIntervalSince1970: dSeventy3/1000)])
+        if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+        XCTAssertEqual("\(dISO1),\(dISO2),\(dISO3)".dateArray(decoderStrategy: .iso8601)!, [_iso8601Formatter.date(from: dISO1)!, _iso8601Formatter.date(from: dISO2)!, _iso8601Formatter.date(from: dISO3)!])
+        }
+        XCTAssertEqual("\(dDeferred1),\(dDeferred2),\(dDeferred3)".dateArray(decoderStrategy: .deferredToDate)!, [Date(timeIntervalSinceReferenceDate: dDeferred1), Date(timeIntervalSinceReferenceDate: dDeferred2), Date(timeIntervalSinceReferenceDate: dDeferred3)])
     }
 }

@@ -523,6 +523,54 @@ extension RequestError {
  - All other non-optional types throw a decoding error
  */
 public protocol QueryParams: Codable {
+
+    /**
+     The decoding strategy for Dates.
+     The variable can be defined within your QueryParams object and tells the `QueryDecoder` how dates should be decoded.  The enum used for the DateDecodingStrategy is the same one found in the `JSONDecoder`.
+     ### Usage Example: ###
+     ```swift
+     struct MyQuery: QueryParams {
+        let date: Date
+        static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .iso8601
+        static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
+     }
+
+     let queryParams = ["date": "2019-09-06T10:14:41+0000"]
+
+     let query = try QueryDecoder(dictionary: queryParams).decode(MyQuery.self)
+     ```
+     */
+    static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
+
+    /**
+       The encoding strategy for Dates.
+       The variable would be defined within your QueryParams object and tells the `QueryEncoder` how dates should be encoded.  The enum used for the DateEncodingStrategy is the same one found in the `JSONEncoder`.
+      ### Usage Example: ###
+      ```swift
+      struct MyQuery: QueryParams {
+         let date: Date
+         static let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .iso8601
+         static let dateEncodingStrategy: JSONEncoder.DateEncodingStrategy = .iso8601
+      }
+
+     let query = MyQuery(date: Date(timeIntervalSinceNow: 0))
+
+     let myQueryDict: [String: String] = try QueryEncoder().encode(query)
+     ```
+      */
+    static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy { get }
+}
+
+extension QueryParams {
+
+    static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
+        return .formatted(Coder().dateFormatter)
+    }
+
+    static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
+        return .formatted(Coder().dateFormatter)
+    }
+
 }
 
 /**
