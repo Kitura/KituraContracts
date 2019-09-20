@@ -527,7 +527,9 @@ public protocol QueryParams: Codable {
     /**
      The decoding strategy for Dates.
      The variable can be defined within your QueryParams object and tells the `QueryDecoder` how dates should be decoded.  The enum used for the DateDecodingStrategy is the same one found in the `JSONDecoder`.
+
      ### Usage Example: ###
+
      ```swift
      struct MyQuery: QueryParams {
         let date: Date
@@ -543,9 +545,11 @@ public protocol QueryParams: Codable {
     static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
 
     /**
-       The encoding strategy for Dates.
-       The variable would be defined within your QueryParams object and tells the `QueryEncoder` how dates should be encoded.  The enum used for the DateEncodingStrategy is the same one found in the `JSONEncoder`.
+     The encoding strategy for Dates.
+     The variable would be defined within your QueryParams object and tells the `QueryEncoder` how dates should be encoded.  The enum used for the DateEncodingStrategy is the same one found in the `JSONEncoder`.
+
       ### Usage Example: ###
+
       ```swift
       struct MyQuery: QueryParams {
          let date: Date
@@ -561,12 +565,17 @@ public protocol QueryParams: Codable {
     static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy { get }
 }
 
-extension QueryParams {
+/// Defines default values for the `dateDecodingStrategy` and `dateEncodingStrategy`. The
+/// default formatting for a `Date` in a `QueryParams` type is defined by `Coder.dateFormatter`,
+/// which uses the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
+public extension QueryParams {
 
+    /// Default value: `Coder().dateFormatter`
     static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
         return .formatted(Coder().dateFormatter)
     }
 
+    /// Default value: `Coder().dateFormatter`
     static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
         return .formatted(Coder().dateFormatter)
     }

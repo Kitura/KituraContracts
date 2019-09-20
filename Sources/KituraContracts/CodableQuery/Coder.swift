@@ -27,7 +27,7 @@ import Foundation
 public class Coder {
 
     /**
-     The designated [DateFormatter](https://developer.apple.com/documentation/foundation/dateformatter) used for encoding and decoding query parameters.
+     The default [DateFormatter](https://developer.apple.com/documentation/foundation/dateformatter) used for encoding and decoding query parameters. It uses the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
      
      ### Usage Example: ###
      ````swift
