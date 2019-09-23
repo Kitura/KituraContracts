@@ -568,15 +568,15 @@ public protocol QueryParams: Codable {
 /// Defines default values for the `dateDecodingStrategy` and `dateEncodingStrategy`. The
 /// default formatting for a `Date` in a `QueryParams` type is defined by `Coder.dateFormatter`,
 /// which uses the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
-public extension QueryParams {
+extension QueryParams {
 
     /// Default value: `Coder().dateFormatter`
-    static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
+    public static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
         return .formatted(Coder().dateFormatter)
     }
 
     /// Default value: `Coder().dateFormatter`
-    static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
+    public static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
         return .formatted(Coder().dateFormatter)
     }
 
