@@ -68,7 +68,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      Initializer with an empty dictionary for decoding from Data.
      */
     public override init () {
-        self.dateDecodingStrategy = .formatted(Coder().dateFormatter)
+        self.dateDecodingStrategy = .formatted(Coder.defaultDateFormatter)
         self.dictionary = [:]
         super.init()
     }
@@ -76,7 +76,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
      Initializer with a `[String : String]` dictionary.
      */
     public init(dictionary: [String : String]) {
-        self.dateDecodingStrategy = .formatted(Coder().dateFormatter)
+        self.dateDecodingStrategy = .formatted(Coder.defaultDateFormatter)
         self.dictionary = dictionary
         super.init()
     }

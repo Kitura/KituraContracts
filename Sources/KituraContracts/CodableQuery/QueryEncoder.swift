@@ -69,7 +69,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
      Initializer for the dictionary, which initializes an empty `[String: String]` dictionary.
      */
     public override init() {
-        self.dateEncodingStrategy = .formatted(Coder().dateFormatter)
+        self.dateEncodingStrategy = .formatted(Coder.defaultDateFormatter)
         self.dictionary = [:]
         self.anyDictionary = [:]
         super.init()

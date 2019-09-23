@@ -572,12 +572,12 @@ extension QueryParams {
 
     /// Default value: `Coder().dateFormatter`
     public static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
-        return .formatted(Coder().dateFormatter)
+        return .formatted(Coder.defaultDateFormatter)
     }
 
     /// Default value: `Coder().dateFormatter`
     public static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
-        return .formatted(Coder().dateFormatter)
+        return .formatted(Coder.defaultDateFormatter)
     }
 
 }

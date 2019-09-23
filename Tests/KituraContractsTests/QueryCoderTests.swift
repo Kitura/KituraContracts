@@ -273,7 +273,7 @@ class QueryCoderTests: XCTestCase {
     }
 
     let expectedDateStr = "2017-10-31T16:15:56+0000"
-    let expectedDate = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
+    let expectedDate = Coder.defaultDateFormatter.date(from: "2017-10-31T16:15:56+0000")!
 
     let expectedMyQuery = MyQuery(boolField: true,
                                   intField: 23,
@@ -282,7 +282,7 @@ class QueryCoderTests: XCTestCase {
                                   emptyStringField: "",
                                   optionalStringField: nil,
                                   intArray: [1, 2, 3],
-                                  dateField: Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!,
+                                  dateField: Coder.defaultDateFormatter.date(from: "2017-10-31T16:15:56+0000")!,
                                   optionalDateField: nil,
                                   nested: Nested(nestedIntField: 333, nestedStringField: "nested string"))
 

@@ -208,7 +208,7 @@ extension String {
     - Parameter decoder: The `Decoder` parameter is only used for the custom strategy.
     - Returns: The [Date]? object. Some on success / nil on failure.
     */
-    public func dateArray(decoderStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder().dateFormatter), decoder: Decoder?=nil) -> [Date]? {
+    public func dateArray(decoderStrategy: JSONDecoder.DateDecodingStrategy = .formatted(Coder.defaultDateFormatter), decoder: Decoder?=nil) -> [Date]? {
 
         switch decoderStrategy {
         case .formatted(let formatter):
