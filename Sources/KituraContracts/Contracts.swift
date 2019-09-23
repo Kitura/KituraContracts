@@ -570,12 +570,12 @@ public protocol QueryParams: Codable {
 /// which uses the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
 extension QueryParams {
 
-    /// Default value: `Coder().dateFormatter`
+    /// Default value: `Coder.defaultDateFormatter`
     public static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy {
         return .formatted(Coder.defaultDateFormatter)
     }
 
-    /// Default value: `Coder().dateFormatter`
+    /// Default value: `Coder.defaultDateFormatter`
     public static var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy {
         return .formatted(Coder.defaultDateFormatter)
     }
