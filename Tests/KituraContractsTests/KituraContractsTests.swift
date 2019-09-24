@@ -88,7 +88,7 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(UUID(uuidString: uuidStr), uuidIdentifier)
 
         let bogusUUIDStr = "NOPE"
-        XCTAssertThrowsError(try UUID(value: bogusUUIDStr), "Failed to throw with bogus UUID value", { _ in })
+        XCTAssertThrowsError(try UUID(value: bogusUUIDStr), "Failed to throw with bogus UUID value")
     }
 
 //    func testTypeComputation() {
