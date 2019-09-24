@@ -21,30 +21,34 @@ import Foundation
  
  ### Usage Example: ###
  ````swift
- let date = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")!
+ let date = Coder.defaultDateFormatter.date(from: "2017-10-31T16:15:56+0000")!
  ````
  */
 public class Coder {
 
+    @available(*, deprecated, message: "Use Coder.defaultDateFormatter instead")
+    public let dateFormatter: DateFormatter = Coder.defaultDateFormatter
+
     /**
-     The designated [DateFormatter](https://developer.apple.com/documentation/foundation/dateformatter) used for encoding and decoding query parameters.
-     
+     The default [DateFormatter](https://developer.apple.com/documentation/foundation/dateformatter) used for encoding and decoding query parameters. It uses the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
+
      ### Usage Example: ###
      ````swift
-     let date = Coder().dateFormatter.date(from: "2017-10-31T16:15:56+0000")
+     let date = Coder.defaultDateFormatter.date(from: "2017-10-31T16:15:56+0000")
      ````
      */
-    public let dateFormatter: DateFormatter
+    public static let defaultDateFormatter: DateFormatter = {
+        let value = DateFormatter()
+        value.timeZone = TimeZone(identifier: "UTC")
+        value.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return value
+    }()
 
     /**
     Initializes a `Coder` instance with a `DateFormatter`
     using the "UTC" timezone and "yyyy-MM-dd'T'HH:mm:ssZ" date format.
      */
-    public init() {
-        self.dateFormatter = DateFormatter()
-        self.dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-    }
+    public init() {}
 
     /**
      Helper method to extract the field name from a `CodingKey` array.
