@@ -72,6 +72,25 @@ class KituraContractsTests: XCTestCase {
         XCTAssertEqual(123456,  intIdentifier)
     }
 
+    // Test UUID conforms to Identifier
+    func testUUIDIdentifier() {
+        let uuidStr = "12345678-1234-4000-ABCD-BA9876543210"
+        guard let identifier: Identifier = try? UUID(value: uuidStr) else {
+            XCTFail("Failed to create a UUID identifier!")
+            return
+        }
+        XCTAssertEqual(uuidStr,  identifier.value)
+
+        guard let uuidIdentifier = identifier as? UUID else {
+            XCTFail("Failed to cast to concrete type: UUID")
+            return
+        }
+        XCTAssertEqual(UUID(uuidString: uuidStr), uuidIdentifier)
+
+        let bogusUUIDStr = "NOPE"
+        XCTAssertThrowsError(try UUID(value: bogusUUIDStr), "Failed to throw with bogus UUID value")
+    }
+
 //    func testTypeComputation() {
 //        XCTAssertEqual(User.type, "User")
 //        XCTAssertEqual(User.typeLowerCased, "user")
