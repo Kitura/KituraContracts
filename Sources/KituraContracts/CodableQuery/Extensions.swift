@@ -279,7 +279,7 @@ extension String {
                     fieldValueArray.removeFirst()
                 }
             return dateArray
-        #if swift(>=5)
+        #if swift(>=5) && !os(Linux)
         @unknown default:
             Log.error("Decoding strategy not found")
             fatalError()
