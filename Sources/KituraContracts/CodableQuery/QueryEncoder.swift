@@ -373,7 +373,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 }
             case .custom(let closure):
                 try closure(fieldValue, encoder)
-            #if swift(>=5)
+            #if swift(>=5) && !os(Linux)
             @unknown default:
                 throw DateError.unknownStrategy
             #endif
@@ -413,7 +413,7 @@ public class QueryEncoder: Coder, Encoder, BodyEncoder {
                 for element in fieldValue {
                     try closure(element, encoder)
                 }
-            #if swift(>=5)
+            #if swift(>=5) && !os(Linux)
             @unknown default:
                 throw DateError.unknownStrategy
             #endif

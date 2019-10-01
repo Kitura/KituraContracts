@@ -211,7 +211,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.date(formatted), to: T.self)
             case .custom(let closure):
                 return try decodeType(closure(self), to: T.self)
-            #if swift(>=5)
+            #if swift(>=5) && !os(Linux)
             @unknown default:
                 throw DateError.unknownStrategy
             #endif
@@ -234,7 +234,7 @@ public class QueryDecoder: Coder, Decoder, BodyDecoder {
                 return try decodeType(fieldValue?.dateArray(formatter), to: T.self)
             case .custom(let closure):
                 return try decodeType(fieldValue?.dateArray(decoderStrategy: .custom(closure), decoder: self), to: T.self)
-            #if swift(>=5)
+            #if swift(>=5) && !os(Linux)
             @unknown default:
                 throw DateError.unknownStrategy
             #endif
