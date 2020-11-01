@@ -1240,17 +1240,19 @@ public protocol Operation: Codable {
 */
 public struct GreaterThan<I: Identifier>: Operation {
   private var value: I
-  private let `operator`: Operator = .greaterThan
+  private let `operator`: Operator
 
   /// Creates a GreaterThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
+    `operator` = .greaterThan
   }
 
   /// Creates a GreaterThan instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
-  }
+      self.`operator` = .greaterThan
+}
 
   /// Returns the stored value
   public func getValue() -> I {
@@ -1287,16 +1289,18 @@ public struct GreaterThan<I: Identifier>: Operation {
 */
 public struct GreaterThanOrEqual<I: Identifier>: Operation {
   private var value: I
-  private let `operator`: Operator = .greaterThanOrEqual
+  private let `operator`: Operator
 
   /// Creates a GreaterThanOrEqual instance from a given Identifier value
   public init(value: I) {
     self.value = value
+    self.`operator` = .greaterThanOrEqual
   }
 
   /// Creates a GreaterThanOrEqual instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
+    self.`operator` = .greaterThanOrEqual
   }
 
   /// Returns the stored value
@@ -1335,16 +1339,18 @@ public struct GreaterThanOrEqual<I: Identifier>: Operation {
 */
 public struct LowerThan<I: Identifier>: Operation {
   private var value: I
-  private let `operator`: Operator = .lowerThan
+  private let `operator`: Operator
 
   /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
+    self.`operator` = .lowerThan
   }
 
   /// Creates a LowerThan instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
+    self.`operator` = .lowerThan
   }
 
   /// Returns the stored value
@@ -1382,16 +1388,18 @@ public struct LowerThan<I: Identifier>: Operation {
 */
 public struct LowerThanOrEqual<I: Identifier>: Operation {
   private var value: I
-  private let `operator`: Operator = .lowerThanOrEqual
+  private let `operator`: Operator
 
   /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
-  }
+      self.`operator` = .lowerThanOrEqual
+}
 
   /// Creates a LowerThan instance from a given String value
   public init(string value: String) throws {
     self.value = try I(value: value)
+    self.`operator` = .lowerThanOrEqual
   }
 
   /// Returns the stored value
@@ -1430,12 +1438,13 @@ public struct LowerThanOrEqual<I: Identifier>: Operation {
 public struct InclusiveRange<I: Identifier>: Operation {
   private var start: I
   private var end: I
-  private let `operator`: Operator = .inclusiveRange
+  private let `operator`: Operator
 
   /// Creates a InclusiveRange instance from given start and end values
   public init(start: I, end: I) {
     self.start = start
     self.end = end
+    self.`operator` = .inclusiveRange
   }
 
   /// Creates a InclusiveRange instance from a given String value
@@ -1446,6 +1455,7 @@ public struct InclusiveRange<I: Identifier>: Operation {
     }
     self.start = try I(value: String(array[0]))
     self.end = try I(value: String(array[1]))
+    self.`operator` = .inclusiveRange
   }
 
   /// Returns the stored values as a tuple
@@ -1484,13 +1494,14 @@ public struct InclusiveRange<I: Identifier>: Operation {
 public struct ExclusiveRange<I: Identifier>: Operation {
   private var start: I
   private var end: I
-  private let `operator`: Operator = .exclusiveRange
+  private let `operator`: Operator
 
   /// Creates a ExclusiveRange instance from given start and end values
   public init(start: I, end: I) {
     self.start = start
     self.end = end
-  }
+      self.`operator` = .exclusiveRange
+}
 
   /// Creates a ExclusiveRange instance from a given String value
   public init(string value: String) throws {
@@ -1500,6 +1511,7 @@ public struct ExclusiveRange<I: Identifier>: Operation {
     }
     self.start = try I(value: String(array[0]))
     self.end = try I(value: String(array[1]))
+    self.`operator` = .exclusiveRange
   }
 
   /// Returns the stored values as a tuple
