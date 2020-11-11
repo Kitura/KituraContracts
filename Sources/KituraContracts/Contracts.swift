@@ -1242,6 +1242,15 @@ public struct GreaterThan<I: Identifier>: Operation {
   private var value: I
   private let `operator`: Operator = .greaterThan
 
+  private enum CodingKeys: CodingKey {
+    case value
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(I.self, forKey: .value)
+  }
+
   /// Creates a GreaterThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
@@ -1288,6 +1297,15 @@ public struct GreaterThan<I: Identifier>: Operation {
 public struct GreaterThanOrEqual<I: Identifier>: Operation {
   private var value: I
   private let `operator`: Operator = .greaterThanOrEqual
+
+  private enum CodingKeys: CodingKey {
+    case value
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(I.self, forKey: .value)
+  }
 
   /// Creates a GreaterThanOrEqual instance from a given Identifier value
   public init(value: I) {
@@ -1337,6 +1355,15 @@ public struct LowerThan<I: Identifier>: Operation {
   private var value: I
   private let `operator`: Operator = .lowerThan
 
+  private enum CodingKeys: CodingKey {
+    case value
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(I.self, forKey: .value)
+  }
+
   /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
     self.value = value
@@ -1383,6 +1410,15 @@ public struct LowerThan<I: Identifier>: Operation {
 public struct LowerThanOrEqual<I: Identifier>: Operation {
   private var value: I
   private let `operator`: Operator = .lowerThanOrEqual
+
+  private enum CodingKeys: CodingKey {
+    case value
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(I.self, forKey: .value)
+  }
 
   /// Creates a LowerThan instance from a given Identifier value
   public init(value: I) {
@@ -1431,6 +1467,17 @@ public struct InclusiveRange<I: Identifier>: Operation {
   private var start: I
   private var end: I
   private let `operator`: Operator = .inclusiveRange
+
+  private enum CodingKeys: CodingKey {
+    case start
+    case end
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    start = try container.decode(I.self, forKey: .start)
+    end = try container.decode(I.self, forKey: .end)
+  }
 
   /// Creates a InclusiveRange instance from given start and end values
   public init(start: I, end: I) {
@@ -1485,6 +1532,17 @@ public struct ExclusiveRange<I: Identifier>: Operation {
   private var start: I
   private var end: I
   private let `operator`: Operator = .exclusiveRange
+
+  private enum CodingKeys: CodingKey {
+    case start
+    case end
+  }
+
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    start = try container.decode(I.self, forKey: .start)
+    end = try container.decode(I.self, forKey: .end)
+  }
 
   /// Creates a ExclusiveRange instance from given start and end values
   public init(start: I, end: I) {
