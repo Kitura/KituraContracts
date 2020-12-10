@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          KituraContracts Docs
+          KituraContracts 1.2.200 Docs
         </a>
          (99% documented)
       </p>
@@ -33,7 +33,7 @@
       </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="https://github.com/IBM-Swift/KituraContracts/">
+          <a class="header-link" href="https://github.com/Kitura/KituraContracts/">
             <img class="header-icon" src="../img/gh.png"/>
             View on GitHub
           </a>
@@ -88,9 +88,6 @@
                 <a class="nav-group-task-link" href="../Extensions/Bool.html">Bool</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/DateError.html">DateError</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
               </li>
               <li class="nav-group-task">
@@ -112,6 +109,12 @@
                 <a class="nav-group-task-link" href="../Extensions/Int8.html">Int8</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:10Foundation11JSONDecoderC">JSONDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:10Foundation11JSONEncoderC">JSONEncoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
@@ -128,6 +131,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UUID.html">UUID</a>
               </li>
             </ul>
           </li>
@@ -244,17 +250,18 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             <h1>Coder</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Coder</span></code></pre>
 
                 </div>
               </div>
-            <p>Class defining shared resources for the <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift">QueryDecoder</a> and <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift">QueryEncoder</a>.</p>
+            <p>Class defining shared resources for the <a href="https://github.com/Kitura/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift">QueryDecoder</a> and <a href="https://github.com/Kitura/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift">QueryEncoder</a>.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span><span class="o">!</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="o">.</span><span class="n">defaultDateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span><span class="o">!</span>
 </code></pre>
 
           </div>
@@ -277,10 +284,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The designated <a href="https://developer.apple.com/documentation/foundation/dateformatter">DateFormatter</a> used for encoding and decoding query parameters.</p>
-<h3 id='usage-example' class='heading'>Usage Example:</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="p">()</span><span class="o">.</span><span class="n">dateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span>
-</code></pre>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
@@ -288,6 +292,36 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">dateFormatter</span><span class="p">:</span> <span class="kt">DateFormatter</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15KituraContracts5CoderC20defaultDateFormatterSo06NSDateF0CvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultDateFormatter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC20defaultDateFormatterSo06NSDateF0CvpZ">defaultDateFormatter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default <a href="https://developer.apple.com/documentation/foundation/dateformatter">DateFormatter</a> used for encoding and decoding query parameters. It uses the &ldquo;UTC&rdquo; timezone and &ldquo;yyyy-MM-dd&rsquo;T&#39;HH:mm:ssZ&rdquo; date format.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">date</span> <span class="o">=</span> <span class="kt">Coder</span><span class="o">.</span><span class="n">defaultDateFormatter</span><span class="o">.</span><span class="nf">date</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"2017-10-31T16:15:56+0000"</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultDateFormatter</span><span class="p">:</span> <span class="kt">DateFormatter</span></code></pre>
 
                         </div>
                       </div>
@@ -308,7 +342,7 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Initializes a <code>Coder</code> instance with a <code>DateFormatter</code>
-using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date format.</p>
+using the &ldquo;UTC&rdquo; timezone and &ldquo;yyyy-MM-dd&rsquo;T&#39;HH:mm:ssZ&rdquo; date format.</p>
 
                       </div>
                       <div class="declaration">
@@ -327,7 +361,7 @@ using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date forma
                     <code>
                     <a name="/s:15KituraContracts5CoderC12getFieldName4fromSSSays9CodingKey_pG_tFZ"></a>
                     <a name="//apple_ref/swift/Method/getFieldName(from:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:15KituraContracts5CoderC12getFieldName4fromSSSays9CodingKey_pG_tFZ">getFieldName(from:)</a>
+                    <a class="token" href="#/s:15KituraContracts5CoderC12getFieldName4fromSSSays9CodingKey_pG_tFZ">getFieldName(from:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -360,8 +394,8 @@ using the <q>UTC</q> timezone and <q>yyyy-MM-dd&rsquo;T'HH:mm:ssZ</q> date forma
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/IBM-Swift/KituraContracts" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2019-09-20)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://github.com/Kitura/KituraContracts" target="_blank" rel="external">IBM and Kitura project authors</a>. All rights reserved. (Last updated: 2020-12-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
