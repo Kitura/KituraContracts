@@ -1,16 +1,16 @@
 <p align="center">
 <a href="https://www.kitura.io/">
-<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+<img src="https://raw.githubusercontent.com/Kitura/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
 </a>
 </p>
 
 
 <p align="center">
-<a href="https://ibm-swift.github.io/KituraContracts/index.html">
+<a href="https://kitura.github.io/KituraContracts/index.html">
 <img src="https://img.shields.io/badge/apidoc-KituraContracts-1FBCE4.svg?style=flat" alt="APIDoc">
 </a>
-<a href="https://travis-ci.org/IBM-Swift/KituraContracts">
-<img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master">
+<a href="https://travis-ci.org/Kitura/KituraContracts">
+<img src="https://travis-ci.org/Kitura/KituraContracts.svg?branch=master" alt="Build Status - Master">
 </a>
 <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
@@ -24,18 +24,18 @@
 
 ## Summary
 
-KituraContracts is a library containing type definitions shared by client (e.g. [KituraKit](https://ibm-swift.github.io/KituraKit/)) and server (e.g. [Kitura](https://ibm-swift.github.io/Kitura)) code. These shared type definitions include [Codable Closure Aliases](https://ibm-swift.github.io/KituraContracts/Typealiases.html), [RequestError](https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html), [QueryEncoder](https://ibm-swift.github.io/KituraContracts/Classes/QueryEncoder.html), [QueryDecoder](https://ibm-swift.github.io/KituraContracts/Classes/QueryDecoder.html), [Coder](https://ibm-swift.github.io/KituraContracts/Classes/Coder.html), [Identifier Protocol](https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv) and [Extensions](https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS) to String and Int, which add conformity to the Identifier protocol.
+KituraContracts is a library containing type definitions shared by client (e.g. [KituraKit](https://kitura.github.io/KituraKit/)) and server (e.g. [Kitura](https://kitura.github.io/Kitura)) code. These shared type definitions include [Codable Closure Aliases](https://kitura.github.io/KituraContracts/Typealiases.html), [RequestError](https://kitura.github.io/KituraContracts/Structs/RequestError.html), [QueryEncoder](https://kitura.github.io/KituraContracts/Classes/QueryEncoder.html), [QueryDecoder](https://kitura.github.io/KituraContracts/Classes/QueryDecoder.html), [Coder](https://kitura.github.io/KituraContracts/Classes/Coder.html), [Identifier Protocol](https://kitura.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv) and [Extensions](https://kitura.github.io/KituraContracts/Extensions.html#/s:SS) to String and Int, which add conformity to the Identifier protocol.
 
 ## Usage
 
-KituraContracts represents the types and protocols that are common to both the [Kitura](https://github.com/IBM-Swift/Kitura) server and [KituraKit](https://github.com/IBM-Swift/KituraKit) client side library. If you are using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.
+KituraContracts represents the types and protocols that are common to both the [Kitura](https://github.com/Kitura/Kitura) server and [KituraKit](https://github.com/Kitura/KituraKit) client side library. If you are using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.
 
 #### Add dependencies
 
-Add the `KituraContracts` package to the dependencies within your application’s `Package.swift` file. Substitute `"x.x.x"` with the latest `KituraContracts` [release](https://github.com/IBM-Swift/KituraContracts/releases).
+Add the `KituraContracts` package to the dependencies within your application’s `Package.swift` file. Substitute `"x.x.x"` with the latest `KituraContracts` [release](https://github.com/Kitura/KituraContracts/releases).
 
 ```swift
-.package(url: "https://github.com/IBM-Swift/KituraContracts.git", from: "x.x.x")
+.package(url: "https://github.com/Kitura/KituraContracts.git", from: "x.x.x")
 ```
 
 Add `KituraContracts` to your target's dependencies:
@@ -76,7 +76,7 @@ router.post("/users") { (user: User, respondWith: (User?, RequestError?) -> Void
 The 1.x.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in [Xcode 9.3](https://developer.apple.com/xcode/).
 
 ## API Documentation
-For more information visit our [API reference](https://ibm-swift.github.io/KituraContracts/index.html).
+For more information visit our [API reference](https://kitura.github.io/KituraContracts/index.html).
 
 ## Community
 
@@ -84,4 +84,4 @@ We love to talk server-side Swift and Kitura. Join our [Slack](http://swift-at-i
 
 ## License
 
-This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/IBM-Swift/KituraContracts/blob/master/LICENSE).
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/Kitura/KituraContracts/blob/master/LICENSE).

@@ -17,7 +17,7 @@
 import Foundation
 
 /**
- Class defining shared resources for the [QueryDecoder](https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift) and [QueryEncoder](https://github.com/IBM-Swift/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift).
+ Class defining shared resources for the [QueryDecoder](https://github.com/Kitura/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryDecoder.swift) and [QueryEncoder](https://github.com/Kitura/KituraContracts/blob/master/Sources/KituraContracts/CodableQuery/QueryEncoder.swift).
  
  ### Usage Example: ###
  ````swift
