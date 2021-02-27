@@ -21,7 +21,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          KituraContracts Docs
+          KituraContracts 1.2.200 Docs
         </a>
          (99% documented)
       </p>
@@ -33,7 +33,7 @@
       </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="https://github.com/IBM-Swift/KituraContracts/">
+          <a class="header-link" href="https://github.com/Kitura/KituraContracts/">
             <img class="header-icon" src="../img/gh.png"/>
             View on GitHub
           </a>
@@ -88,9 +88,6 @@
                 <a class="nav-group-task-link" href="../Extensions/Bool.html">Bool</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/DateError.html">DateError</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
               </li>
               <li class="nav-group-task">
@@ -112,6 +109,12 @@
                 <a class="nav-group-task-link" href="../Extensions/Int8.html">Int8</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:10Foundation11JSONDecoderC">JSONDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:10Foundation11JSONEncoderC">JSONEncoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
@@ -128,6 +131,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UUID.html">UUID</a>
               </li>
             </ul>
           </li>
@@ -244,10 +250,11 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             <h1>QueryParams</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">QueryParams</span> <span class="p">:</span> <span class="kt">Decodable</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
 
                 </div>
@@ -291,6 +298,9 @@ The corresponding mapping to Swift types performed by <code><a href="../Classes/
                     <a name="//apple_ref/swift/Variable/dateDecodingStrategy" class="dashAnchor"></a>
                     <a class="token" href="#/s:15KituraContracts11QueryParamsP20dateDecodingStrategy10Foundation11JSONDecoderC04DatefG0OvpZ">dateDecodingStrategy</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -312,6 +322,11 @@ The variable can be defined within your QueryParams object and tells the <code><
 </code></pre>
 
                       </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default value: <code>Coder.defaultDateFormatter</code></p>
+
+                      </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
@@ -330,6 +345,9 @@ The variable can be defined within your QueryParams object and tells the <code><
                     <a name="//apple_ref/swift/Variable/dateEncodingStrategy" class="dashAnchor"></a>
                     <a class="token" href="#/s:15KituraContracts11QueryParamsP20dateEncodingStrategy10Foundation11JSONEncoderC04DatefG0OvpZ">dateEncodingStrategy</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -337,8 +355,9 @@ The variable can be defined within your QueryParams object and tells the <code><
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The encoding strategy for Dates.
-  The variable would be defined within your QueryParams object and tells the <code><a href="../Classes/QueryEncoder.html">QueryEncoder</a></code> how dates should be encoded.  The enum used for the DateEncodingStrategy is the same one found in the <code>JSONEncoder</code>.
- ### Usage Example: ###</p>
+The variable would be defined within your QueryParams object and tells the <code><a href="../Classes/QueryEncoder.html">QueryEncoder</a></code> how dates should be encoded.  The enum used for the DateEncodingStrategy is the same one found in the <code>JSONEncoder</code>.</p>
+
+<p>### Usage Example: ###</p>
 <pre class="highlight swift"><code> <span class="kd">struct</span> <span class="kt">MyQuery</span><span class="p">:</span> <span class="kt">QueryParams</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span>
     <span class="kd">static</span> <span class="k">let</span> <span class="nv">dateDecodingStrategy</span><span class="p">:</span> <span class="kt">JSONDecoder</span><span class="o">.</span><span class="kt">DateDecodingStrategy</span> <span class="o">=</span> <span class="o">.</span><span class="n">iso8601</span>
@@ -349,6 +368,11 @@ The variable can be defined within your QueryParams object and tells the <code><
 
 <span class="k">let</span> <span class="nv">myQueryDict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">QueryEncoder</span><span class="p">()</span><span class="o">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 </code></pre>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default value: <code>Coder.defaultDateFormatter</code></p>
 
                       </div>
                       <div class="declaration">
@@ -370,8 +394,8 @@ The variable can be defined within your QueryParams object and tells the <code><
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/IBM-Swift/KituraContracts" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2019-09-20)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://github.com/Kitura/KituraContracts" target="_blank" rel="external">IBM and Kitura project authors</a>. All rights reserved. (Last updated: 2020-12-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

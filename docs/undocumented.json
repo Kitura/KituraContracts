@@ -1,12 +1,12 @@
 {
   "warnings": [
     {
-      "file": "/Users/travis/build/IBM-Swift/KituraContracts/Sources/KituraContracts/CodableQuery/Extensions.swift",
-      "line": null,
-      "symbol": "DateError",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "file": "/Users/dannys/projects/kitura/KituraContracts/Sources/KituraContracts/CodableQuery/Coder.swift",
+      "line": 30,
+      "symbol": "Coder.dateFormatter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/travis/build/IBM-Swift/KituraContracts"
+  "source_directory": "/Users/dannys/projects/kitura/KituraContracts"
 }

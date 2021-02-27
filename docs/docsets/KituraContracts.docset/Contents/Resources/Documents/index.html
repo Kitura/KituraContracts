@@ -20,7 +20,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-          KituraContracts Docs
+          KituraContracts 1.2.200 Docs
         </a>
          (99% documented)
       </p>
@@ -32,7 +32,7 @@
       </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="https://github.com/IBM-Swift/KituraContracts/">
+          <a class="header-link" href="https://github.com/Kitura/KituraContracts/">
             <img class="header-icon" src="img/gh.png"/>
             View on GitHub
           </a>
@@ -87,9 +87,6 @@
                 <a class="nav-group-task-link" href="Extensions/Bool.html">Bool</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Extensions/DateError.html">DateError</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/Double.html">Double</a>
               </li>
               <li class="nav-group-task">
@@ -111,6 +108,12 @@
                 <a class="nav-group-task-link" href="Extensions/Int8.html">Int8</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions.html#/s:10Foundation11JSONDecoderC">JSONDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions.html#/s:10Foundation11JSONEncoderC">JSONEncoder</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
@@ -127,6 +130,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UInt8.html">UInt8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UUID.html">UUID</a>
               </li>
             </ul>
           </li>
@@ -243,20 +249,20 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             
             <p align="center">
 <a href="https://www.kitura.io/">
-<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+<img src="https://raw.githubusercontent.com/Kitura/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
 </a>
 </p>
 
 <p align="center">
-<a href="https://ibm-swift.github.io/KituraContracts/index.html">
+<a href="https://kitura.github.io/KituraContracts/index.html">
 <img src="https://img.shields.io/badge/apidoc-KituraContracts-1FBCE4.svg?style=flat" alt="APIDoc">
 </a>
-<a href="https://travis-ci.org/IBM-Swift/KituraContracts">
-<img src="https://travis-ci.org/IBM-Swift/KituraContracts.svg?branch=master" alt="Build Status - Master">
+<a href="https://travis-ci.org/Kitura/KituraContracts">
+<img src="https://travis-ci.org/Kitura/KituraContracts.svg?branch=master" alt="Build Status - Master">
 </a>
 <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
 <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
@@ -268,14 +274,14 @@
 <h1 id='kituracontracts' class='heading'>KituraContracts</h1>
 <h2 id='summary' class='heading'>Summary</h2>
 
-<p>KituraContracts is a library containing type definitions shared by client (e.g. <a href="https://ibm-swift.github.io/KituraKit/">KituraKit</a>) and server (e.g. <a href="https://ibm-swift.github.io/Kitura">Kitura</a>) code. These shared type definitions include <a href="https://ibm-swift.github.io/KituraContracts/Typealiases.html">Codable Closure Aliases</a>, <a href="https://ibm-swift.github.io/KituraContracts/Structs/RequestError.html">RequestError</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryEncoder.html">QueryEncoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/QueryDecoder.html">QueryDecoder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Classes/Coder.html">Coder</a>, <a href="https://ibm-swift.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv">Identifier Protocol</a> and <a href="https://ibm-swift.github.io/KituraContracts/Extensions.html#/s:SS">Extensions</a> to String and Int, which add conformity to the Identifier protocol.</p>
+<p>KituraContracts is a library containing type definitions shared by client (e.g. <a href="https://kitura.github.io/KituraKit/">KituraKit</a>) and server (e.g. <a href="https://kitura.github.io/Kitura">Kitura</a>) code. These shared type definitions include <a href="https://kitura.github.io/KituraContracts/Typealiases.html">Codable Closure Aliases</a>, <a href="https://kitura.github.io/KituraContracts/Structs/RequestError.html">RequestError</a>, <a href="https://kitura.github.io/KituraContracts/Classes/QueryEncoder.html">QueryEncoder</a>, <a href="https://kitura.github.io/KituraContracts/Classes/QueryDecoder.html">QueryDecoder</a>, <a href="https://kitura.github.io/KituraContracts/Classes/Coder.html">Coder</a>, <a href="https://kitura.github.io/KituraContracts/Protocols/Identifier.html#/s:15KituraContracts10IdentifierP5valueSSv">Identifier Protocol</a> and <a href="https://kitura.github.io/KituraContracts/Extensions.html#/s:SS">Extensions</a> to String and Int, which add conformity to the Identifier protocol.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 
-<p>KituraContracts represents the types and protocols that are common to both the <a href="https://github.com/IBM-Swift/Kitura">Kitura</a> server and <a href="https://github.com/IBM-Swift/KituraKit">KituraKit</a> client side library. If you are using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.</p>
+<p>KituraContracts represents the types and protocols that are common to both the <a href="https://github.com/Kitura/Kitura">Kitura</a> server and <a href="https://github.com/Kitura/KituraKit">KituraKit</a> client side library. If you are using Kitura or KituraKit, your project does not need to depend on KituraContracts explicitly.</p>
 <h4 id='add-dependencies' class='heading'>Add dependencies</h4>
 
-<p>Add the <code>KituraContracts</code> package to the dependencies within your application’s <code>Package.swift</code> file. Substitute <code>&quot;x.x.x&quot;</code> with the latest <code>KituraContracts</code> <a href="https://github.com/IBM-Swift/KituraContracts/releases">release</a>.</p>
-<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/IBM-Swift/KituraContracts.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"x.x.x"</span><span class="p">)</span>
+<p>Add the <code>KituraContracts</code> package to the dependencies within your application’s <code>Package.swift</code> file. Substitute <code>&quot;x.x.x&quot;</code> with the latest <code>KituraContracts</code> <a href="https://github.com/Kitura/KituraContracts/releases">release</a>.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/Kitura/KituraContracts.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"x.x.x"</span><span class="p">)</span>
 </code></pre>
 
 <p>Add <code>KituraContracts</code> to your target&rsquo;s dependencies:</p>
@@ -307,13 +313,13 @@
 <p>The 1.x.x releases were tested on macOS and Linux using the Swift 4.1 binaries. Please note that this is the default version of Swift that is included in <a href="https://developer.apple.com/xcode/">Xcode 9.3</a>.</p>
 <h2 id='api-documentation' class='heading'>API Documentation</h2>
 
-<p>For more information visit our <a href="https://ibm-swift.github.io/KituraContracts/index.html">API reference</a>.</p>
+<p>For more information visit our <a href="https://kitura.github.io/KituraContracts/index.html">API reference</a>.</p>
 <h2 id='community' class='heading'>Community</h2>
 
 <p>We love to talk server-side Swift and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
 <h2 id='license' class='heading'>License</h2>
 
-<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/KituraContracts/blob/master/LICENSE">LICENSE</a>.</p>
+<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/Kitura/KituraContracts/blob/master/LICENSE">LICENSE</a>.</p>
 
           </div>
         </section>
@@ -322,8 +328,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/IBM-Swift/KituraContracts" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2019-09-20)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2020 <a class="link" href="https://github.com/Kitura/KituraContracts" target="_blank" rel="external">IBM and Kitura project authors</a>. All rights reserved. (Last updated: 2020-12-09)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
