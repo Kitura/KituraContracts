@@ -92,8 +92,10 @@ public struct RequestError: RawRepresentable, Equatable, Hashable, Comparable, E
                 case .json:
                     let json = try JSONEncoder().encode(body)
 
+                    #if DEBUG
                     // ensure body is not a JSON fragment
                     _ = try JSONSerialization.jsonObject(with: json)
+                    #endif
                     return json
                 default: throw UnsupportedBodyFormatError(format)
             }
