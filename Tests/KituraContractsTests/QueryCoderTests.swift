@@ -409,7 +409,7 @@ class QueryCoderTests: XCTestCase {
             return
         }
         
-        guard let myQueryData: Data = try? QueryEncoder().encode(query) else {
+        guard let _: Data = try? QueryEncoder().encode(query) else {
             XCTFail("Failed to encode query to Data")
             return
         }

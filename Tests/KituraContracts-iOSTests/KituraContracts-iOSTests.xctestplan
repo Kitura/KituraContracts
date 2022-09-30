@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "83EDE0AB-4BD9-4407-9630-6B28B3ADC64C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:KituraContracts.xcodeproj",
+        "identifier" : "502F0B8B28E78433009CE053",
+        "name" : "KituraContracts-iOSTests"
+      }
+    }
+  ],
+  "version" : 1
+}
