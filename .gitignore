@@ -2,9 +2,8 @@
 /build/*
 /.build/*
 /.build-ubuntu/*
+/*.xcodeproj
 Package.resolved
-
-xcuserdata
 
 # Swift Package Manager
 #
