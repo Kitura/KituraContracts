@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name        = "KituraContracts"
-  s.version     = "2.0.0"
+  s.version     = "2.0.1"
   s.summary     = "KituraContracts is a library containing type definitions shared by client and server code."
   s.homepage    = "https://github.com/Kitura/KituraContracts"
   s.license     = { :type => "Apache License, Version 2.0" }
